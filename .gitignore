@@ -1,0 +1,15 @@
+# Ignore library folder
+.library
+
+# Ignore build and package folders recursively
+**/bin/
+**/obj/
+**/packages/
+
+# Ignore Nuget Config
+NuGet.Config
+Nuget.Config
+**/NuGet.Config
+**/Nuget.Config
+
+**/.vs/

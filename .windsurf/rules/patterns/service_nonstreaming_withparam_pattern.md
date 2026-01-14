@@ -1,0 +1,47 @@
+---
+trigger: glob
+description: "Non-streaming controller pattern with parameters"
+globs: "*ToCSharpService*"
+---
+
+# Non-Streaming Controller Pattern (With Parameters)
+
+```csharp
+[HttpPost]
+public async Task<{ProgramName}ResultDTO<GetNonStreamingResultDTO>> GetNonStreaming(GetNonStreamingParameterDTO poParameter)
+{
+    var lcMethod = nameof(GetNonStreaming);
+    using var activity = _activitySource.StartActivity(lcMethod);
+    var loEx = new R_Exception();
+    var loCls = new {ProgramName}Cls();
+    var loRtn = new {ProgramName}ResultDTO<GetNonStreamingResultDTO>();
+
+    try
+    {
+        _logger.LogInfo("Start method GetNonStreaming in {0}", lcMethod);
+        
+        // MUST assign all three global variables
+        poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+        poParameter.CLANG_ID = R_BackGlobalVar.CULTURE;
+        poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+        
+        loRtn.Data = await loCls.GetNonStreaming(poParameter);
+    }
+    catch (Exception ex)
+    {
+        loEx.Add(ex);
+        _logger.LogError(loEx);
+    }
+
+    loEx.ThrowExceptionIfErrors();
+    return loRtn;
+}
+```
+
+Rules:
+* Accepts parameter DTO from frontend
+* **MUST assign all three global variables using `R_BackGlobalVar` before calling business logic:**
+  - `CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID`
+  - `CLANG_ID = R_BackGlobalVar.CULTURE`
+  - `CUSER_ID = R_BackGlobalVar.USER_ID`
+* Handle exceptions via `R_Exception`

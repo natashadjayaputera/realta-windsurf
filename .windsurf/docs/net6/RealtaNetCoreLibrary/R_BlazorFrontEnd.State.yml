@@ -1,0 +1,42 @@
+### YamlMime:ManagedReference
+items:
+- uid: R_BlazorFrontEnd.State
+  commentId: N:R_BlazorFrontEnd.State
+  id: R_BlazorFrontEnd.State
+  children:
+  - R_BlazorFrontEnd.State.R_StateContainer`1
+  langs:
+  - csharp
+  - vb
+  name: R_BlazorFrontEnd.State
+  nameWithType: R_BlazorFrontEnd.State
+  fullName: R_BlazorFrontEnd.State
+  type: Namespace
+  assemblies:
+  - R_BlazorFrontEnd
+references:
+- uid: R_BlazorFrontEnd.State.R_StateContainer`1
+  commentId: T:R_BlazorFrontEnd.State.R_StateContainer`1
+  href: R_BlazorFrontEnd.State.R_StateContainer-1.html
+  name: R_StateContainer<T>
+  nameWithType: R_StateContainer<T>
+  fullName: R_BlazorFrontEnd.State.R_StateContainer<T>
+  nameWithType.vb: R_StateContainer(Of T)
+  fullName.vb: R_BlazorFrontEnd.State.R_StateContainer(Of T)
+  name.vb: R_StateContainer(Of T)
+  spec.csharp:
+  - uid: R_BlazorFrontEnd.State.R_StateContainer`1
+    name: R_StateContainer
+    href: R_BlazorFrontEnd.State.R_StateContainer-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: R_BlazorFrontEnd.State.R_StateContainer`1
+    name: R_StateContainer
+    href: R_BlazorFrontEnd.State.R_StateContainer-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

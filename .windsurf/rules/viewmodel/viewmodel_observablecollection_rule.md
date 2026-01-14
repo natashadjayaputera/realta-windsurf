@@ -1,0 +1,12 @@
+---
+trigger: glob
+description: "Ensure ObservableCollection uses ResultDTO, not Entity DTO"
+globs: "*ToCSharpViewModel*"
+---
+# ObservableCollection Type Rule
+
+Use the exact ResultDTO type from model streaming method.
+
+```csharp
+public ObservableCollection<FAM001000201GetDepartmentAssetCodeListResultDTO> DepartmentList { get; set; }
+```

@@ -1,0 +1,62 @@
+---
+description: "Migration pattern for R_CheckDelete (NET4) → R_Conductor/R_Grid R_CheckDelete (NET6)"
+---
+
+# R_CheckDelete (NET4) → R_CheckDelete (NET6)
+
+- NET4: `R_CheckDelete` on Conductor/Grid
+- NET6: `R_CheckDelete` on `R_Conductor` / `R_Grid<T>` with `R_CheckDeleteEventArgs`
+
+## Use
+- Gate Delete based on access flags, record state, and page status.
+
+## Bindings
+- Conductor: add `R_CheckDelete="Conductor_R_CheckDelete"` (+ usual services, `R_ViewModel`).
+- Grid: add `R_CheckDelete="Grid_R_CheckDelete"` (+ usual services).
+
+## Handler
+- Prefer: `private void Conductor_R_CheckDelete(R_CheckDeleteEventArgs eventArgs)` or `private void Grid_R_CheckDelete(R_CheckDeleteEventArgs eventArgs)`.
+- Async allowed if needed: `private async Task Conductor_R_CheckDelete(R_CheckDeleteEventArgs eventArgs)`.
+- Data object: `var loData = (MyDto)eventArgs.Data;` (if applicable).
+- To allow delete: set `eventArgs.Allow = true;` (default is `false`).
+
+## Parameter mapping
+### Conductor
+- NET4 `poEntity` → NET6 `eventArgs.Data`.
+- NET4 `plValid` → NET6 `eventArgs.Allow`.
+### Grid
+- NET4 `poEntity` → NET6 `eventArgs.Data`.
+- NET4 `plAllowDelete` → NET6 `eventArgs.Allow`.
+
+## Example
+```csharp
+private void Grid_R_CheckDelete(R_CheckDeleteEventArgs eventArgs) // OR Conductor_R_CheckDelete
+{
+    var loEx = new R_Exception();
+    try
+    {
+        // mirror VB condition
+        eventArgs.Allow = FormAccess.Contains("D") && PCMODE == "T" && PCSTATUS == "00";
+    }
+    catch (Exception ex)
+    {
+        loEx.Add(ex);
+    }
+    loEx.ThrowExceptionIfErrors();
+}
+```
+
+## NET4 → NET6 mapping examples
+- NET4 VB:
+  - `Private Sub conMain_R_CheckDelete(poEntity As Object, ByRef plValid As Boolean) Handles conMain.R_CheckDelete`
+  - `Private Sub gvMain_R_CheckDelete(poEntity As Object, ByRef plAllowDelete As Boolean) Handles gvMain.R_CheckDelete`
+- NET6 Razor/Razor.cs:
+  - Conductor: `R_CheckDelete="Conductor_R_CheckDelete"`
+  - Grid: `R_CheckDelete="Grid_R_CheckDelete"`
+
+## References
+- `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Events.R_CheckDeleteEventArgs.yml`
+- `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.DataControls.R_Conductor.yml` (R_CheckDelete)
+- `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.R_Grid-1.yml` (R_CheckDelete)
+- `@r_access.mdc`
+

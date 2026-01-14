@@ -1,0 +1,16 @@
+---
+trigger: glob
+description: "Frontend BlazorMenu integration pattern"
+globs: "*SolutionManager*"
+---
+
+# Frontend Menu Integration
+
+- **MUST** add Front project reference to `BlazorMenu.csproj`  
+- **MUST** use relative path format:  
+  `../../../../BS Program/SOURCE/FRONT/{ProgramName}Front/{ProgramName}Front.csproj`  
+- **MUST** add assembly entry in `App.razor`:  
+  `typeof({ProgramName}Front.{ProgramName}).Assembly`  
+- **MUST** maintain alphabetical order in both files  
+- **NEVER** skip App.razor registration  
+- **NEVER** use absolute paths

@@ -1,0 +1,55 @@
+---
+trigger: glob
+description: "Standard CRUD pattern for ViewModel methods"
+globs: "*ToCSharpViewModel*"
+---
+# CRUD Pattern
+
+## ⚠️ CRITICAL RULES:
+1. **DO NOT return values** from CRUD methods - Store results in properties
+2. **Method names**: `GetRecordAsync()`, `SaveRecordAsync()`, `DeleteRecordAsync()`
+3. **Always use `CurrentRecord` property** to store single entity results
+4. **Use C# 8.0 compatible syntax** - Explicit types, not `new()`
+
+Each CRUD method follows this template:
+
+```csharp
+// C# 8.0 Compatible - Use explicit type names
+private readonly FAM00100Model _model = new FAM00100Model();  // NOT new()
+public FAM00100DTO CurrentRecord { get; set; } = new FAM00100DTO();
+
+public async Task GetRecordAsync(FAM00100DTO poEntity)
+{
+    var loEx = new R_Exception();
+    try
+    {
+        var loResult = await _model.R_ServiceGetRecordAsync(poEntity);
+        CurrentRecord = loResult; // Store in separate property, NOT Data
+    }
+    catch (Exception ex) { loEx.Add(ex); }
+    loEx.ThrowExceptionIfErrors();
+}
+
+public async Task SaveRecordAsync(FAM00100DTO poEntity, eCRUDMode peCRUDMode)
+{
+    var loEx = new R_Exception();
+    try
+    {
+        var loResult = await _model.R_ServiceSaveAsync(poEntity, peCRUDMode);
+        CurrentRecord = loResult; // Store in separate property, NOT Data
+    }
+    catch (Exception ex) { loEx.Add(ex); }
+    loEx.ThrowExceptionIfErrors();
+}
+
+public async Task DeleteRecordAsync(FAM00100DTO poEntity)
+{
+    var loEx = new R_Exception();
+    try
+    {
+        await _model.R_ServiceDeleteAsync(poEntity);
+    }
+    catch (Exception ex) { loEx.Add(ex); }
+    loEx.ThrowExceptionIfErrors();
+}
+```

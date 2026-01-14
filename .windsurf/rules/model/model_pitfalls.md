@@ -1,0 +1,11 @@
+---
+trigger: glob
+description: "Warn common mistakes in implementing Model layer methods"
+globs: "*ToCSharpModel*"
+---
+
+# Common Pitfalls
+
+1. Using `.Data` for non-streaming methods
+2. Using inner data types instead of ResultDTO
+3. Forgetting 6th parameter for method disambiguation

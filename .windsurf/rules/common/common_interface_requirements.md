@@ -1,0 +1,29 @@
+---
+trigger: glob
+description: "Ensure all Common layer interfaces inherit R_IServiceCRUDAsyncBase"
+globs: "*ToCSharpCommon*"
+---
+# Interface Requirements
+
+- Must inherit: `R_IServiceCRUDAsyncBase<{ProgramName}DTO>`
+- Non-streaming & streaming methods must follow DTO patterns
+
+# Interface Pattern
+
+```csharp
+public interface I{ProgramName} : R_IServiceCRUDAsyncBase<{ProgramName}DTO>
+{
+    // Streaming pattern
+    IAsyncEnumerable<GetStreamingListResultDTO> GetStreamingList();
+
+    // Non-streaming with parameters
+    Task<{ProgramName}ResultDTO<GetNonStreamingResultDTO>> GetNonStreaming(GetNonStreamingParameterDTO poParameter);
+
+    // Non-streaming without parameters
+    Task<{ProgramName}ResultDTO<GetNonStreamingResultDTO>> GetNonStreaming();
+}
+```
+
+**CRITICAL:** 
+* Must use `R_IServiceCRUDAsyncBase`, not `R_IServiceCRUDBase`
+* Methods in interface MUST NOT have `Async` as suffix

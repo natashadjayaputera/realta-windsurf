@@ -1,0 +1,20 @@
+---
+trigger: glob
+description: "Enforce 1 CRUD entity per ViewModel and map from VB.NET conductor controls"
+globs: "*ToCSharpViewModel*"
+---
+# ViewModel Planning Rule
+
+- 1 ViewModel = 1 CRUD entity per page  
+- 1 BatchViewModel = 1 Batch Process   
+- Each VB.NET form → at least one ViewModel  
+- Each `R_Conductor` or `R_ConductorGrid` = 1 CRUD entity  
+- Analyze VB.NET forms before creating ViewModels  
+
+Checklist:
+- [ ] Identify all `R_Conductor` and `R_ConductorGrid` controls  
+- [ ] Map each CRUD control to DTO entity  
+- [ ] Plan separate ViewModel per entity
+- [ ] **Check for batch processing** (R_BatchProcess, R_BatchParameter in VB.NET)
+- [ ] If batch exists: Create separate `{ProgramName}BatchViewModel` implementing `R_IProcessProgressStatus`
+- [ ] Verify BatchListDTO matches BackEnd BatchCls deserialization DTO

@@ -1,0 +1,59 @@
+---
+trigger: glob
+description: "Database query execution pattern for Back projects"
+globs: "*ToCSharpBack*"
+---
+# Database Method Pattern
+
+```csharp
+public async Task<MethodNameResultDTO> MethodName(MethodNameParameterDTO poParam)
+{
+    string lcMethod = nameof(MethodNameAsync);
+    using var activity = _activitySource.StartActivity(lcMethod);
+    _logger.LogInfo("START method {MethodName}", lcMethod);
+
+    var loEx = new R_Exception();
+    var loDb = new R_Db();
+    MethodNameResultDTO loResult = new();
+
+    try
+    {
+        using DbConnection loConn = await loDb.GetConnectionAsync();
+        using DbCommand loCmd = loDb.GetCommand();
+        loCmd.Parameters.Clear();
+
+        loCmd.CommandText = "SELECT ... FROM ... WHERE ... = @Param";
+        loDb.R_AddCommandParameter(loCmd, "@Param", DbType.String, 500, poParam.Value);
+
+        var loDbParams = loCmd.Parameters.Cast<DbParameter>()
+            .Where(x => x != null && x.ParameterName.StartsWith("@"))
+            .ToDictionary(x => x.ParameterName, x => x.Value);
+
+        _logger.LogDebug("{@ObjectQuery} {@Parameter}", loCmd.CommandText, loDbParams);
+
+        var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
+        loResult = R_Utility.R_ConvertTo<MethodNameResultDTO>(loDataTable).FirstOrDefault();
+    }
+    catch (Exception ex)
+    {
+        loEx.Add(ex);
+        _logger.LogError(loEx);
+    }
+    finally
+    {
+        if (loDb != null) loDb = null;
+    }
+
+    loEx.ThrowExceptionIfErrors();
+    _logger.LogInfo("END method {MethodName}", lcMethod);
+    return loResult;
+}
+```
+
+Rules:
+
+* Log query and parameters before execution
+* Always clear command parameters
+* Use `R_Utility.R_ConvertTo` for result conversion
+* Catch exceptions in `R_Exception` and throw
+* Return should never be wrapped by Generic Result DTO (ex, `FAI00130ResultDTO` that inherit `R_APIResultBaseDTO`)

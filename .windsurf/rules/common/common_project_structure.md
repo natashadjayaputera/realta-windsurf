@@ -1,0 +1,10 @@
+---
+trigger: glob
+description: "Enforce {ProgramName}Common project structure for DTOs, enums, and interfaces"
+globs: "*ToCSharpCommon*"
+---
+# Project Structure
+
+- Location: `COMMON/{module}/{ProgramName}Common/`
+- Target: `netstandard2.1`
+- Purpose: DTOs, enums, interfaces only

@@ -1,0 +1,51 @@
+---
+description: "Migration pattern for R_RadMessageBox (NET4) → R_MessageBox (NET6)"
+---
+
+# R_RadMessageBox → R_MessageBox
+
+- NET4: `R_FrontEnd.R_RadMessageBox.Show()` or `R_RadMessageBox.Show()`
+- NET6: Dependency injection using `R_MessageBoxService` via `[Inject]` attribute
+
+## When to use
+- Display modal dialog messages with confirmation prompts
+- Show informational, warning, or error messages to users
+- Request user confirmation before executing actions (Yes/No, OK/Cancel)
+- Display process completion or validation messages
+
+## Method signature mapping (NET4 → NET6)
+
+- `R_RadMessageBox.Show(message, caption, buttons)` → `await MessageBoxService.Show(title, message, buttonType)`
+- Parameter order reversed: NET4 (message, caption) → NET6 (title, message)
+- Return: `Windows.Forms.DialogResult` → `R_eMessageBoxResult` (async Task<T>)
+
+## Dependency injection pattern
+
+- Required using: `using R_BlazorFrontEnd.Controls.MessageBox;`
+- Injection declaration: `[Inject] private R_MessageBoxService MessageBoxService { get; set; } = default!;`
+- Usage example: `await MessageBoxService.Show("Error", Localizer["PS003"], R_eMessageBoxButtonType.OK);`
+- See @front_dependency_injection.mdc for comprehensive dependency injection patterns
+
+## Value mappings
+
+- Return: `DialogResult.Yes/No/OK/Cancel` → `R_eMessageBoxResult.Yes/No/OK/Cancel`
+- Buttons: `Windows.Forms.MessageBoxButtons.YesNo` → `R_eMessageBoxButtonType.YesNo`
+- Buttons: `Windows.Forms.MessageBoxButtons.OKCancel` → `R_eMessageBoxButtonType.OKCancel`
+- Buttons: `MsgBoxStyle.OkOnly` → `R_eMessageBoxButtonType.OK`
+
+## Resource access pattern
+
+- `R_Utility.R_GetMessage(GetType(Resources_Dummy_Class), "ResourceId")` → `Localizer["ResourceId"]`
+- `R_Utility.R_GetError(GetType(Resources_Dummy_Class), "ErrorId").ErrDescp` → `Localizer["ErrorId"]`
+- Empty caption → use empty string `""` for title
+- Use `Localizer` with `MessageBoxService.Show()`: `await MessageBoxService.Show("Error", Localizer["ErrorId"], R_eMessageBoxButtonType.OK);`
+
+## Anti-patterns
+
+- Using static `R_MessageBox.Show()` directly instead of dependency injection (must use `MessageBoxService` via `[Inject]`)
+- Not using `[Inject]` attribute for `MessageBoxService` (dependency injection is required)
+- Calling synchronously without `await` (NET6 requires async/await)
+- Wrong parameter order (title comes before message in NET6)
+- Using `Windows.Forms.MessageBoxButtons` or `MsgBoxStyle` (use `R_eMessageBoxButtonType`)
+- Using `DialogResult` (use `R_eMessageBoxResult`)
+- Using `R_Utility.R_GetMessage()` (use `Localizer["ResourceId"]`)

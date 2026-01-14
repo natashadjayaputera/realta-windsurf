@@ -1,0 +1,16 @@
+---
+trigger: glob
+description: "Checklist for {ProgramName}Common project migration"
+globs: "*CommonMigrationChecklist*"
+---
+# {ProgramName}Common
+
+- [ ] All DTOs moved to Common project
+- [ ] All enums consolidated here
+- [ ] Interface `I{ProgramName}` using `R_IServiceCRUDAsyncBase`
+- [ ] Each Interface has Entity DTO (`{ProgramName}DTO`)
+- [ ] Parameter DTOs created
+- [ ] Result DTOs created
+- [ ] Parameter DTOs and Result DTOs is not inheriting from Entity DTOs
+- [ ] Generic Result DTO created
+- [ ] No business logic in Common

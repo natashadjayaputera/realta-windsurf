@@ -1,0 +1,31 @@
+---
+description: "R_Page rules"
+---
+# R_Page Rules
+
+- NET6: `R_BlazorFrontEnd.Controls.R_Page`
+
+See @r_formbase.mdc for complete usage patterns, API documentation, and migration details.
+
+- Must override `R_Init_From_Master`
+
+## R_Init_From_Master Template
+```csharp
+protected override async Task R_Init_From_Master(object? poParameter)
+{
+  var loEx = new R_Exception();
+
+  try
+  {
+    // Capture Parameters
+    // Initialization data logic (run once on initialization)
+    // Refresh grid or get entity for form
+  }
+  catch (Exception ex)
+  {
+      loEx.Add(ex);
+  }
+
+  loEx.ThrowExceptionIfErrors();
+}
+```

@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Standardize resource file usage in Back layer"
-globs: "*ToCSharpBack*"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to Standardize resource file usage in Back layer"
 ---
 # Resource File Rules
 

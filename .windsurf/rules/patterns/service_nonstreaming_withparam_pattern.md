@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Non-streaming controller pattern with parameters"
-globs: "*ToCSharpService*"
+trigger: model_decision
+description: "Use in ToCSharpService workflow to Non-streaming controller pattern with parameters"
 ---
 
 # Non-Streaming Controller Pattern (With Parameters)

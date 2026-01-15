@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Define ObservableCollection and grid data-binding pattern"
-globs: "*ToCSharpViewModel*"
+trigger: model_decision
+description: "Use in ToCSharpViewModel workflow to Define ObservableCollection and grid data-binding pattern"
 ---
 # Grid Data Pattern
 

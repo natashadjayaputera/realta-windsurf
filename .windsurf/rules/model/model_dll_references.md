@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Standard DLL references for Model layer"
-globs: "*ToCSharpModel*"
+trigger: model_decision
+description: "Use in ToCSharpModel workflow to Standard DLL references for Model layer"
 ---
 
 # DLL References

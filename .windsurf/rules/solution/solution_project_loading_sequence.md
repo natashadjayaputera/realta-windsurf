@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Define strict dependency-based project loading sequence"
-globs: "*SolutionManager*"
+trigger: model_decision
+description: "Use in SolutionManager workflow for Define strict dependency-based project loading sequence"
 ---
 
 # Project Loading Sequence

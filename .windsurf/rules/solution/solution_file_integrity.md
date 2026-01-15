@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Maintain correct and complete .sln file structure"
-globs: "*SolutionManager*"
+trigger: model_decision
+description: "Use in SolutionManager workflow for Maintain correct and complete .sln file structure"
 ---
 
 # Solution File Integrity

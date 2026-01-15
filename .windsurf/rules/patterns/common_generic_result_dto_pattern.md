@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Standard Generic Result DTO pattern for common projects using R_APIResultBaseDTO"
-globs: "*ToCSharpCommon*"
+trigger: model_decision
+description: "Use in ToCSharpCommon workflow to Standard Generic Result DTO pattern for common projects using R_APIResultBaseDTO"
 ---
 # Activity Pattern
 

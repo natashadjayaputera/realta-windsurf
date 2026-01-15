@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Define {ProgramName}Model project structure and purpose"
-globs: "*ToCSharpModel*"
+trigger: model_decision
+description: "Use in ToCSharpModel workflow to Define {ProgramName}Model project structure and purpose"
 ---
 
 # Project Structure

@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Verify and copy VB.NET resource keys for Front projects"
-globs: "*ToCSharpFront*"
+trigger: model_decision
+description: "Use in ToCSharpFront workflow to Verify and copy VB.NET resource keys for Front projects"
 ---
 # Resource Key Verification Pattern
 

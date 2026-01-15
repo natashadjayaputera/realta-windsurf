@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Complete pattern for ViewModel streaming list method"
-globs: "*ToCSharpViewModel*"
+trigger: model_decision
+description: "Use in ToCSharpViewModel workflow for Complete pattern for ViewModel streaming list method"
 ---
 
 

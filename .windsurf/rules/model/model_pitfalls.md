@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Warn common mistakes in implementing Model layer methods"
-globs: "*ToCSharpModel*"
+trigger: model_decision
+description: "Use in ToCSharpModel workflow to warn common mistakes in implementing Model layer methods"
 ---
 
 # Common Pitfalls

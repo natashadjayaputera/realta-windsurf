@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Standardize resource file usage in Front layer"
-globs: ["*ToCSharpViewModel*", "*ToCSharpFront*"]
+trigger: model_decision
+description: "Use in ToCSharpViewModel and ToCSharpFront workflow to Standardize resource file usage in Front layer"
 ---
 # Resource File Rules
 

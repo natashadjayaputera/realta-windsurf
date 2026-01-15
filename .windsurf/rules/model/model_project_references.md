@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Standard project references for Model layer"
-globs: "*ToCSharpModel*"
+trigger: model_decision
+description: "Use in ToCSharpModel workflow to Standard project references for Model layer"
 ---
 
 # Project References

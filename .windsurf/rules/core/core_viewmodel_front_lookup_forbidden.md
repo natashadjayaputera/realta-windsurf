@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Prohibit lookup and description logic in ViewModels"
-globs: ["*ToCSharpViewModel*", "*ToCSharpFront*"]
+trigger: model_decision
+description: "Use in ToCSharpViewModel and ToCSharpFront workflow to Prohibit lookup and description logic in ViewModels"
 ---
 # Lookup Rule
 

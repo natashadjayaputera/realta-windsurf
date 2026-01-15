@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Enforce {ProgramName}Common project structure for DTOs, enums, and interfaces"
-globs: "*ToCSharpCommon*"
+trigger: model_decision
+description: "Use in ToCSharpCommon workflow to Enforce {ProgramName}Common project structure for DTOs, enums, and interfaces"
 ---
 # Project Structure
 

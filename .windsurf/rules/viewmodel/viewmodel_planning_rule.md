@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Enforce 1 CRUD entity per ViewModel and map from VB.NET conductor controls"
-globs: "*ToCSharpViewModel*"
+trigger: model_decision
+description: "Use in ToCSharpViewModel workflow for Enforce 1 CRUD entity per ViewModel and map from VB.NET conductor controls"
 ---
 # ViewModel Planning Rule
 

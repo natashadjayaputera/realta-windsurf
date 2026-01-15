@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Defines allowed access patterns for controller-to-business interactions"
-globs: "*ToCSharpService*"
+trigger: model_decision
+description: "Use in ToCSharpService workflow to define allowed access patterns for controller-to-business interactions"
 ---
 
 # Access Level Patterns

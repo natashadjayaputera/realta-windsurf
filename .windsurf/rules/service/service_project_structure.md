@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Project structure and purpose for Service layer projects"
-globs: "*ToCSharpService*"
+trigger: model_decision
+description: "Use in ToCSharpService workflow for Project structure and purpose for Service layer projects"
 ---
 
 # Project Structure

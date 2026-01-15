@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Constructor pattern for Back business logic classes"
-globs: "*ToCSharpBack*"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to Constructor pattern for Back business logic classes"
 ---
 # Business Logic Class Constructor Pattern (NOT FOR BATCH OR REPORT RELATED)
 

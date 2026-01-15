@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Maintain consistent hierarchical solution structure"
-globs: "*SolutionManager*"
+trigger: model_decision
+description: "Use in SolutionManager workflow for Maintain consistent hierarchical solution structure"
 ---
 
 # Solution Structure Enforcement

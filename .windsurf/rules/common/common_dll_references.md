@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Minimal DLL references for Common projects"
-globs: "*ToCSharpCommon*"
+trigger: model_decision
+description: "Use in ToCSharpCommon workflow to Minimal DLL references for Common projects"
 ---
 # DLL References
 

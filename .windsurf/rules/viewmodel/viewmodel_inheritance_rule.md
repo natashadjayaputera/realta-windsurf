@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "All ViewModels must inherit R_ViewModel<T> and avoid redefining Data"
-globs: "*ToCSharpViewModel*"
+trigger: model_decision
+description: "Use in ToCSharpViewModel workflow for All ViewModels must inherit R_ViewModel<T> and avoid redefining Data"
 ---
 # Inheritance Rule
 

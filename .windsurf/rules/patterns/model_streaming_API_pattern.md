@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Define correct pattern for streaming API methods"
-globs: "*ToCSharpModel*"
+trigger: model_decision
+description: "Use in ToCSharpModel workflow to Define correct pattern for streaming API methods"
 ---
 
 # Streaming API Pattern

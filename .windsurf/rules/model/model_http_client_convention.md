@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Define HTTP client name convention for Model layer"
-globs: "*ToCSharpModel*"
+trigger: model_decision
+description: "Use in ToCSharpModel workflow to Define HTTP client name convention for Model layer"
 ---
 
 # HTTP Client Name Convention

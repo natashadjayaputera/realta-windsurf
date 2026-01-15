@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Minimal using statements required for {ProgramName}Service layer"
-globs: "*ToCSharpService*"
+trigger: model_decision
+description: "Use in ToCSharpService workflow for Minimal using statements required for {ProgramName}Service layer"
 ---
 
 # Minimal Using Statements

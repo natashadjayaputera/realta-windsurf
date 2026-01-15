@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Frontend BlazorMenu integration pattern"
-globs: "*SolutionManager*"
+trigger: model_decision
+description: "Use in SolutionManager workflow for Frontend BlazorMenu integration pattern"
 ---
 
 # Frontend Menu Integration

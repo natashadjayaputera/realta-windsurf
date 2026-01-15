@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Verify and copy VB.NET resource keys for Back projects"
-globs: "*ToCSharpBack*"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to Verify and copy VB.NET resource keys for Back projects"
 ---
 # Resource Key Verification Pattern
 

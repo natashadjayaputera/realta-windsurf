@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Optimized parameter passing strategy for controllers"
-globs: "*ToCSharpService*"
+trigger: model_decision
+description: "Use in ToCSharpService workflow for Optimized parameter passing strategy for controllers"
 ---
 
 # Parameter Passing Optimization

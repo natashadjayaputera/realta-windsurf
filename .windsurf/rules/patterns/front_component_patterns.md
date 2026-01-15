@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Reusable component minimal parameters patterns for {ProgramName}Front (R_Grid, R_ComboBox, R_Button, etc.)"
-globs: "*ToCSharpFront*"
+trigger: model_decision
+description: "Use in ToCSharpFront workflow to Reusable component minimal parameters patterns for {ProgramName}Front (R_Grid, R_ComboBox, R_Button, etc.)"
 ---
 
 # Component Patterns

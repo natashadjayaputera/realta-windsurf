@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "R_ItemLayout and R_StackLayout column validation rules for {ProgramName}Front"
-globs: "*ToCSharpFront*"
+trigger: model_decision
+description: "Use in ToCSharpFront workflow to R_ItemLayout and R_StackLayout column validation rules for {ProgramName}Front"
 ---
 # Layout Rules
 

@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Specify inheritance and API client usage for Model layer"
-globs: "*ToCSharpModel*"
+trigger: model_decision
+description: "Use in ToCSharpModel workflow to Specify inheritance and API client usage for Model layer"
 ---
 
 # Model Requirements

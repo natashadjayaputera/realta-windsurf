@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Ensure all Common layer interfaces inherit R_IServiceCRUDAsyncBase"
-globs: "*ToCSharpCommon*"
+trigger: model_decision
+description: "Use in ToCSharpCommon workflow to Ensure all Common layer interfaces inherit R_IServiceCRUDAsyncBase"
 ---
 # Interface Requirements
 

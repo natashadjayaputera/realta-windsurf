@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Comprehensive list of forbidden practices and critical violations in ViewModels"
-globs: "*ToCSharpViewModel*"
+trigger: model_decision
+description: "Use in ToCSharpViewModel workflow for Comprehensive list of forbidden practices and critical violations in ViewModels"
 ---
 # Violations (Comprehensive)
 

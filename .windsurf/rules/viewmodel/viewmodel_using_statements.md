@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Required using directives for ViewModel source files"
-globs: "*ToCSharpViewModel*"
+trigger: model_decision
+description: "Use in ToCSharpViewModel workflow for Required using directives for ViewModel source files"
 ---
 # Using Statements
 

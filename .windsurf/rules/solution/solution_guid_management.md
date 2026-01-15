@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Ensure unique and consistent GUIDs for all projects"
-globs: "*SolutionManager*"
+trigger: model_decision
+description: "Use in SolutionManager workflow for Ensure unique and consistent GUIDs for all projects"
 ---
 
 # GUID Management

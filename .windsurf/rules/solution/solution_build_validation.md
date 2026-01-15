@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Solution build and compilation validation rules"
-globs: "*SolutionManager*"
+trigger: model_decision
+description: "Use in SolutionManager workflow for Solution build and compilation validation rules"
 ---
 
 # Build Validation

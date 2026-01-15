@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Standardized error handling for solution operations"
-globs: "*SolutionManager*"
+trigger: model_decision
+description: "Use in SolutionManager workflow for Standardized error handling for solution operations"
 ---
 
 # Error Handling

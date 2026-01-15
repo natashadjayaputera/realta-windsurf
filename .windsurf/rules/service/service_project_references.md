@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Defines inter-project references for {ProgramName}Service layer"
-globs: "*ToCSharpService*"
+trigger: model_decision
+description: "Use in ToCSharpService workflow for Defines inter-project references for {ProgramName}Service layer"
 ---
 
 # Project References

@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Common layer violation list"
-globs: "*ToCSharpCommon*"
+trigger: model_decision
+description: "Use in ToCSharpCommon workflow to Common layer violation list"
 ---
 # Violations
 - ❌ Business logic in Common

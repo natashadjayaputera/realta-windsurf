@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Pre-migration steps applicable to all projects"
-globs: "*MigrationChecklist*"
+trigger: model_decision
+description: "Use in all workflow to Pre-migration steps applicable to all projects"
 ---
 # Pre-Migration
 

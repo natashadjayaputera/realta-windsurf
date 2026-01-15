@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Override unused methods implementation for R_BusinessObjectAsync in Back projects"
-globs: "*ToCSharpBack*"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to Override unused methods implementation for R_BusinessObjectAsync in Back projects"
 ---
 # R_*Async Override Pattern
 

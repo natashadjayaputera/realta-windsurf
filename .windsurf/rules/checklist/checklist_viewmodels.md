@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Checklist for ViewModels in {ProgramName} project"
-globs: "*ViewModelMigrationChecklist*"
+trigger: model_decision
+description: "Use in ToCSharpViewModel and ToCSharpFrontworkflow to Checklist for ViewModels in {ProgramName} project"
 ---
 # ViewModels
 

@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Streaming pattern in ViewModel, Model, and Back Project (MUST FOLLOW EXACTLY)"
-globs: ["*ToCSharpBack*", "*ToCSharpViewModel*", "*ToCSharpModel*", "*ToCSharpService*"]
+trigger: model_decision
+description: "Use in ToCSharpBack, ToCSharpViewModel, ToCSharpModel, and ToCSharpService workflows for streaming pattern in ViewModel, Model, and Back Project (MUST FOLLOW EXACTLY)"
 ---
 
 # STREAMING PATTERN

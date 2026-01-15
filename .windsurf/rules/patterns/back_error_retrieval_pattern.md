@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Retrieve resource-based error messages in Back projects"
-globs: "*ToCSharpBack*"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to Retrieve resource-based error messages in Back projects"
 ---
 # Error Retrieval Pattern
 

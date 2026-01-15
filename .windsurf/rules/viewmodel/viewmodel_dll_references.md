@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Required DLL references for ViewModel projects"
-globs: "*ToCSharpViewModel*"
+trigger: model_decision
+description: "Use in ToCSharpViewModel workflow for Required DLL references for ViewModel projects"
 ---
 # DLL References
 

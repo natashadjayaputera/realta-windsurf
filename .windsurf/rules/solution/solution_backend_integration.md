@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Backend API project integration pattern"
-globs: "*SolutionManager*"
+trigger: model_decision
+description: "Use in SolutionManager workflow for Backend API project integration pattern"
 ---
 
 # Backend API Integration

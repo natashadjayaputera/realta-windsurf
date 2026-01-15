@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Enforce UI vs Data state separation between Razor.cs and ViewModel"
-globs: ["*ToCSharpViewModel*", "*ToCSharpFront*"]
+trigger: model_decision
+description: "Use in ToCSharpViewModel and ToCSharpFront workflow to Enforce UI vs Data state separation between Razor.cs and ViewModel"
 ---
 # Front & ViewModel Data State Separation
 

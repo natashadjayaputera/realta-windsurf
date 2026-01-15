@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Minimal DLL references required for {ProgramName}Service layer"
-globs: "*ToCSharpService*"
+trigger: model_decision
+description: "Use in ToCSharpService workflow for Minimal DLL references required for {ProgramName}Service layer"
 ---
 
 # DLL References

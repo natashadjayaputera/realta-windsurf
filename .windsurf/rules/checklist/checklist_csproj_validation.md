@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Checklist for validating all .csproj files before build"
-globs: ["*MigrationChecklist*", "*ValidationAndBuild*"]
+trigger: model_decision
+description: "Use in ValidationAndBuild workflow to Checklist for validating all .csproj files before build"
 ---
 # .CSPROJ VALIDATION
 

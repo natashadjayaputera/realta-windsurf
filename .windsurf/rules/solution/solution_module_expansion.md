@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Adding new modules to existing solution safely"
-globs: "*SolutionManager*"
+trigger: model_decision
+description: "Use in SolutionManager workflow for Adding new modules to existing solution safely"
 ---
 
 # Module Expansion

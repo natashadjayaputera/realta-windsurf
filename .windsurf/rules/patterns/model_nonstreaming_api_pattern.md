@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Define correct pattern for non-streaming API methods"
-globs: "*ToCSharpModel*"
+trigger: model_decision
+description: "Use in ToCSharpModel workflow to Define correct pattern for non-streaming API methods"
 ---
 
 # Non-Streaming API Pattern

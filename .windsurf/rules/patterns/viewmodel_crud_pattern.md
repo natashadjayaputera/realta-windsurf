@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Standard CRUD pattern for ViewModel methods"
-globs: "*ToCSharpViewModel*"
+trigger: model_decision
+description: "Use in ToCSharpViewModel workflow for Standard CRUD pattern for ViewModel methods"
 ---
 # CRUD Pattern
 

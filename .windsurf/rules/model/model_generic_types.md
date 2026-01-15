@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Specify generic type usage in Model layer methods"
-globs: "*ToCSharpModel*"
+trigger: model_decision
+description: "Use in ToCSharpModel workflow to specify generic type usage in Model layer methods"
 ---
 
 # Generic Type Rules

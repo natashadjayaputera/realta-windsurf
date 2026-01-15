@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Standard logger pattern for Back projects using R_NetCoreLoggerBase"
-globs: "*ToCSharpBack*"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to Standard logger pattern for Back projects using R_NetCoreLoggerBase"
 ---
 # Logger Pattern
 

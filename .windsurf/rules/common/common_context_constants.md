@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Enforce context constant rules in Common layer"
-globs: "*ToCSharpCommon*"
+trigger: model_decision
+description: "Use in ToCSharpCommon workflow to Enforce context constant rules in Common layer"
 ---
 # Context Constants Rules
 

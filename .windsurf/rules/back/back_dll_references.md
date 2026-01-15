@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Minimal DLL references for Back projects"
-globs: "*ToCSharpBack*"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to add Minimal DLL references for Back projects"
 ---
 # DLL References
 

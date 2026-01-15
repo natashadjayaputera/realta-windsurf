@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "List forbidden practices in Model layer"
-globs: "*ToCSharpModel*"
+trigger: model_decision
+description: "Use in ToCSharpModel workflow to List forbidden practices in Model layer"
 ---
 
 # Violations

@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Controller constructor pattern with logger and activity initialization"
-globs: "*ToCSharpService*"
+trigger: model_decision
+description: "Use in ToCSharpService workflow to Controller constructor pattern with logger and activity initialization"
 ---
 
 # Controller Constructor Pattern

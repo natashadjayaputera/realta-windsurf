@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Clarify differences between streaming and non-streaming API patterns"
-globs: "*ToCSharpModel*"
+trigger: model_decision
+description: "Use in ToCSharpModel workflow to Clarify differences between streaming and non-streaming API patterns"
 ---
 
 # Streaming vs Non-Streaming Differences

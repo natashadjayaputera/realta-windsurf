@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Prohibited patterns and known violations for Service layer"
-globs: "*ToCSharpService*"
+trigger: model_decision
+description: "Use in ToCSharpService workflow for Prohibited patterns and known violations for Service layer"
 ---
 
 # Violations

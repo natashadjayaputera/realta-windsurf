@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "ViewModel-Front validation method rules and pattern"
-globs: ["*ToCSharpViewModel*", "*ToCSharpFront*"]
+trigger: model_decision
+description: "Use in ToCSharpViewModel and ToCSharpFront workflow to ViewModel-Front validation method rules and pattern"
 ---
 # Validation Rules
 

@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Define ViewModel and FrontResources project structure and purpose"
-globs: "*ToCSharpViewModel*"
+trigger: model_decision
+description: "Use in ToCSharpViewModel workflow for Define ViewModel and FrontResources project structure and purpose"
 ---
 # Project Structure
 

@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Solution file syntax and structure patterns"
-globs: "*SolutionManager*"
+trigger: model_decision
+description: "Use in SolutionManager workflow for Solution file syntax and structure patterns"
 ---
 
 # Solution File Structure Pattern

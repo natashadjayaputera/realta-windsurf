@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Controller inheritance, attributes, and route patterns for Service layer"
-globs: "*ToCSharpService*"
+trigger: model_decision
+description: "Use in ToCSharpService workflow for Controller inheritance, attributes, and route patterns for Service layer"
 ---
 
 # Controller Requirements

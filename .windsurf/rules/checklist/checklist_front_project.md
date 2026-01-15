@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Checklist for {ProgramName}Front project migration"
-globs: "*FrontMigrationChecklist*"
+trigger: model_decision
+description: "Use in ToCSharpFront workflow to Checklist for {ProgramName}Front project migration"
 ---
 # {ProgramName}Front
 

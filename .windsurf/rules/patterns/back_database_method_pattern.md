@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Database query execution pattern for Back projects"
-globs: "*ToCSharpBack*"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to Database query execution pattern for Back projects"
 ---
 # Database Method Pattern
 

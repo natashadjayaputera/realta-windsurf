@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Standard activity pattern for Back projects using R_ActivitySourceBase"
-globs: "*ToCSharpBack*"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to Standard activity pattern for Back projects using R_ActivitySourceBase"
 ---
 # Activity Pattern
 

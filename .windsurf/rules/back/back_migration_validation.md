@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Validate method counts and signatures during migration from VB.NET to C#"
-globs: "*ToCSharpBack*"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to Validate method counts and signatures during migration from VB.NET to C#"
 ---
 # Migration Validation
 

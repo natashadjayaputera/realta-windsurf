@@ -1,6 +1,6 @@
 ---
-trigger: glob
-description: "Checklist for {ProgramName}Back project migration"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to Checklist for {ProgramName}Back project migration"
 globs: "*BackMigrationChecklist*"
 ---
 # {ProgramName}Back

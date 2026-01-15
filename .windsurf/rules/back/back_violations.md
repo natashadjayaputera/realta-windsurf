@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Forbidden practices in Back projects"
-globs: "*ToCSharpBack*"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to Forbidden practices in Back projects"
 ---
 # Violations
 - ❌ Logger/Activity in Common

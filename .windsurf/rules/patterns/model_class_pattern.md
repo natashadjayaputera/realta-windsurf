@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Define class structure and base usage in Model layer"
-globs: "*ToCSharpModel*"
+trigger: model_decision
+description: "Use in ToCSharpModel workflow to define class structure and base usage in Model layer"
 ---
 
 # Model Class Pattern

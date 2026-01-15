@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Checklist for {ProgramName}Model project migration"
-globs: "*ModelMigrationChecklist*"
+trigger: model_decision
+description: "Use in ToCSharpModel workflow to Checklist for {ProgramName}Model project migration"
 ---
 # {ProgramName}Model
 

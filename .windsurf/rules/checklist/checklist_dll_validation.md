@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Checklist for verifying DLL references for each project"
-globs: ["*MigrationChecklist*", "*ValidationAndBuild*"]
+trigger: model_decision
+description: "Use in ValidationAndBuild workflow to Checklist for verifying DLL references for each project"
 ---
 # DLL REFERENCE VALIDATION
 

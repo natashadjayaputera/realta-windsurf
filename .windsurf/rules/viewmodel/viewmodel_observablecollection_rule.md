@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Ensure ObservableCollection uses ResultDTO, not Entity DTO"
-globs: "*ToCSharpViewModel*"
+trigger: model_decision
+description: "Use in ToCSharpViewModel workflow for Ensure ObservableCollection uses ResultDTO, not Entity DTO"
 ---
 # ObservableCollection Type Rule
 

@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Use R_FrontUtility.R_GetError for all error messages"
-globs: "*ToCSharpViewModel*"
+trigger: model_decision
+description: "Use in ToCSharpViewModel workflow for Use R_FrontUtility.R_GetError for all error messages"
 ---
 # Resource Error Pattern
 

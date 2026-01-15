@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Dependency injection and service integration patterns for {ProgramName}Front"
-globs: "*ToCSharpFront*"
+trigger: model_decision
+description: "Use in ToCSharpFront workflow to Dependency injection and service integration patterns for {ProgramName}Front"
 ---
 
 # Dependency Injection Patterns

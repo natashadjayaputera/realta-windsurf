@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Checklist for UI and data binding patterns"
-globs: ["*ViewModelMigrationChecklist*", "*FrontMigrationChecklist*"]
+trigger: model_decision
+description: "Use in ToCSharpViewModel and ToCSharpFrontworkflow to Checklist for UI and data binding patterns"
 ---
 # UI/Data Binding Patterns
 

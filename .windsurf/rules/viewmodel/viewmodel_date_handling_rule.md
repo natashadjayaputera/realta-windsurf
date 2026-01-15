@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Define mapping for date fields in ViewModels"
-globs: "*ToCSharpViewModel*"
+trigger: model_decision
+description: "Use in ToCSharpViewModel workflow for Define mapping for date fields in ViewModels"
 ---
 # Date Handling Rule
 

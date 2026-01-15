@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Project references for Back projects"
-globs: "*ToCSharpBack*"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to add Project references for Back projects"
 ---
 # Project References
 

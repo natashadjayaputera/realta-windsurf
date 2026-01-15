@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Minimal using statements for Back projects"
-globs: "*ToCSharpBack*"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to add Minimal using statements for Back projects"
 ---
 # Using Statements
 

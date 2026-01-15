@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Program Module validation before loading solution projects"
-globs: "*SolutionManager*"
+trigger: model_decision
+description: "Use in SolutionManager workflow for Program Module validation before loading solution projects"
 ---
 
 # Program Module Validation

@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Enforce {ProgramName}Back project structure for business logic, logging, and resources"
-globs: "*ToCSharpBack*"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to enforce {ProgramName}Back project structure for business logic, logging, and resources"
 ---
 # Project Structure
 ## Back Project

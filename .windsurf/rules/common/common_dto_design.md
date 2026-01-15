@@ -1,6 +1,6 @@
 ---
-trigger: glob
-description: "Rules for DTOs in Common layer"
+trigger: model_decision
+description: "Use in ToCSharpCommon workflow to Rules for DTOs in Common layer"
 globs: "*ToCSharpCommon*"
 ---
 # DTO Design Rules

@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Defines {ProgramName}Front project structure"
-globs: "*ToCSharpFront*"
+trigger: model_decision
+description: "Use in ToCSharpFront workflow to Defines {ProgramName}Front project structure"
 ---
 
 # Project Structure

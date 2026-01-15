@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Pattern for R_FrontContext streaming parameter usage"
-globs: "*ToCSharpViewModel*"
+trigger: model_decision
+description: "Use in ToCSharpViewModel workflow for R_FrontContext streaming parameter usage"
 ---
 # Streaming Context Pattern
 

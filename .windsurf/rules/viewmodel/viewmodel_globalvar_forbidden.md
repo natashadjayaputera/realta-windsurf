@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Disallow usage of R_FrontGlobalVar and R_BackGlobalVar in ViewModels"
-globs: "*ToCSharpViewModel*"
+trigger: model_decision
+description: "Use in ToCSharpViewModel workflow for Disallow usage of R_FrontGlobalVar and R_BackGlobalVar in ViewModels"
 ---
 # R_FrontGlobalVar Forbidden
 

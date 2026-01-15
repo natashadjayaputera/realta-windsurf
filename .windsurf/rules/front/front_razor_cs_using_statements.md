@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Required using directives for .razor.cs source files"
-globs: "*ToCSharpFront*"
+trigger: model_decision
+description: "Use in ToCSharpFront workflow to Required using directives for .razor.cs source files"
 ---
 # Minimal Required Using Statements
 

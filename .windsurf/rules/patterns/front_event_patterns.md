@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Event handling patterns for {ProgramName}Front (OnLostFocus, OnBlur, R_Grid cell events)"
-globs: "*ToCSharpFront*"
+trigger: model_decision
+description: "Use in ToCSharpFront workflow to Event handling patterns for {ProgramName}Front (OnLostFocus, OnBlur, R_Grid cell events)"
 ---
 
 # Event Patterns

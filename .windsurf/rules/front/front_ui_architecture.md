@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Defines UI architecture rules for {ProgramName}Front projects"
-globs: "*ToCSharpFront*"
+trigger: model_decision
+description: "Use in ToCSharpFront workflow to Defines UI architecture rules for {ProgramName}Front projects"
 ---
 
 # UI Architecture Rules

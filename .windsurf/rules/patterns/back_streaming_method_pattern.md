@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Streaming method pattern for Back Project"
-globs: "*ToCSharpBack*"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to Streaming method pattern for Back Project"
 ---
 
 # Streaming Method Pattern (Must Follow Exactly, see @streaming_pattern.md)

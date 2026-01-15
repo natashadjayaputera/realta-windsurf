@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Streaming context usage and restrictions for Service layer"
-globs: "*ToCSharpService*"
+trigger: model_decision
+description: "Use in ToCSharpService workflow for Streaming context usage and restrictions for Service layer"
 ---
 
 # Streaming Context Rules

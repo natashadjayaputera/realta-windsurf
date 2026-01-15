@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Streaming controller pattern with no parameters"
-globs: "*ToCSharpService*"
+trigger: model_decision
+description: "Use in ToCSharpService workflow to Streaming controller pattern with no parameters"
 ---
 
 # Streaming Controller Pattern

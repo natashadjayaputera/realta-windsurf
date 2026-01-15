@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Detailed rules for Back layer business logic and logging"
-globs: "*ToCSharpBack*"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to Detailed rules for Back layer business logic and logging"
 ---
 # Business Logic & Logging Rules
 

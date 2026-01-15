@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Using and imports management rules for {ProgramName}Front Blazor components in .razor files"
-globs: "*ToCSharpFront*"
+trigger: model_decision
+description: "Use in ToCSharpFront workflow to Using and imports management rules for {ProgramName}Front Blazor components in .razor files"
 ---
 
 # Imports and Using Rules 

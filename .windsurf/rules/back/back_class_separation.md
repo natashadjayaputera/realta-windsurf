@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Separate main, report, and batch classes in Back project"
-globs: "*ToCSharpBack*"
+trigger: model_decision
+description: "Use in ToCSharpBack workflow to Separate main, report, and batch classes in Back project"
 ---
 # Class Separation
 

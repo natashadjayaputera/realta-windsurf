@@ -1,7 +1,6 @@
 ---
-trigger: glob
-description: "Project reference insertion pattern for API and BlazorMenu"
-globs: "*SolutionManager*"
+trigger: model_decision
+description: "Use in SolutionManager workflow for project reference insertion pattern for API and BlazorMenu"
 ---
 
 # Project Reference Patterns

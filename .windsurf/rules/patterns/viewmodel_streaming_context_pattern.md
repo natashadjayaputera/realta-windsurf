@@ -5,7 +5,7 @@ globs: "*ToCSharpViewModel*"
 ---
 # Streaming Context Pattern
 
-- MUST follow @streaming_pattern.mdc
+- MUST follow @streaming_pattern.md
 - MUST be used on collection-assigning methods.
 - MUST be used only for **custom parameters**.  
 - MUST use `R_FrontContext.R_SetStreamingContext()` before calling Model methods.

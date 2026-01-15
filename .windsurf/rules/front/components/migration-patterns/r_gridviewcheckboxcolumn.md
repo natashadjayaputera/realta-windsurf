@@ -24,7 +24,7 @@ description: "Migration pattern for R_GridViewCheckBoxColumn (NET4) → R_GridCh
 - `EditMode` → Not applicable (handled by grid)
 
 ## Inherited Properties
-- Properties from `R_GridColumnBase` - See @r_gridcolumnbase.mdc
+- Properties from `R_GridColumnBase` - See @r_gridcolumnbase.md
   - `FieldName` - Field name binding (REQUIRED)
   - `Width` - Column width
   - `HeaderText` - Column header text

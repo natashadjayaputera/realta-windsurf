@@ -5,8 +5,9 @@ globs: "*ToCSharpCommon*"
 ---
 # DTO Design Rules
 
-- All methods returning `List` must use streaming patterns. See @streaming_pattern.mdc
+- All methods returning `List` must use streaming patterns. See @streaming_pattern.md
 - NEVER inherit from EntityDTO
+- NEVER inherit from R_DTOBase
 - Property names must match VB.NET exactly
 - Use `string.Empty` for string defaults
 - Nullable annotations applied correctly

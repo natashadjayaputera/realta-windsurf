@@ -5,7 +5,7 @@ description: "R_Lookup rules"
 
 - NET6: `R_BlazorFrontEnd.Controls.R_Lookup`
 
-See @r_lookup.mdc for complete usage patterns, API documentation, and migration details.
+See @r_lookup.md for complete usage patterns, API documentation, and migration details.
 
 - Must be wrapped inside `R_ItemLayout auto="true"`
 - R_Before_Open_Lookup implementation filled with: `//TODO: Open {ProgramName}, with Parameters: {List of Parameters}`

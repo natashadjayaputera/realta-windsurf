@@ -50,7 +50,7 @@ Agent purpose: validate project structure against the migration checklist, run b
 - Code Warnings (CS####): mark as FIXED/NEEDS FIXING.
 - External Warnings (NU####, MSB####): document with reason and mitigation.
 - Infrastructure Warnings: document acceptable reason if applicable.
-- See @build_report_format.mdc to format outputs.
+- See @build_report_format.md to format outputs.
 
 ### Error Handling Flow
 - 1st failure: attempt a safe fix (csproj setting, missing HintPath) and rebuild.
@@ -58,12 +58,12 @@ Agent purpose: validate project structure against the migration checklist, run b
 - 3rd failure: stop and ask user with collected logs and suggested fixes.
 
 ## Context (files to reference)
-- Automatically fetch all modular `.mdc` rules matching `*ValidationAndBuild*`.
-- Automatically fetch all modular `.mdc` migration checklist matching `*MigrationChecklist*`.
-- See @common_error_compilations.mdc for common error compilations.
+- Automatically fetch all modular `.md` rules matching `*ValidationAndBuild*`.
+- Automatically fetch all modular `.md` migration checklist matching `*MigrationChecklist*`.
+- See @common_error_compilations.md for common error compilations.
 
 ## Outputs / Deliverables
-- Per-project BUILD SUMMARY report (@build_report_format.mdc).
+- Per-project BUILD SUMMARY report (@build_report_format.md).
 - Consolidated validation report for the solution.
 - Optional fixes applied (if safe) with explanation in the report.
 - Raw build logs (stdout/stderr) collected for each build step.

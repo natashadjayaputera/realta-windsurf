@@ -41,6 +41,6 @@ var loParam = GetBatchListData(loObject); //This returns List<{BatchListDTO}>
 ```
 
 # Checklist
-- [ ] MUST Deserialized BigObject to List<{BatchListDisplayDTO}> as `loObject`. See @batch_deserialization_pattern.mdc
+- [ ] MUST Deserialized BigObject to List<{BatchListDisplayDTO}> as `loObject`. See @batch_deserialization_pattern.md
 - [ ] MUST Implement GetBatchListData that returns List<{BatchListDTO}> as `loParam`
 - [ ] MUST Use the `loParam` for subsequent processes

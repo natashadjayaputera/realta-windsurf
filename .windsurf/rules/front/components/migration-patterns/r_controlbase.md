@@ -25,7 +25,7 @@ None
 ### Inherited Properties
 
 #### From R_BaseComponent
-- Properties from `R_BlazorFrontEnd.Controls.Base.R_BaseComponent` - See @r_basecomponent.mdc
+- Properties from `R_BlazorFrontEnd.Controls.Base.R_BaseComponent` - See @r_basecomponent.md
   - `Id` - Component identifier (`string`, virtual)
   - `Class` - CSS class names for styling (`string`)
   - `Style` - Inline CSS styles (`string`)
@@ -36,7 +36,7 @@ None
   - `Controls` - Collection of child components (`List<R_BaseComponent>`, read-only)
 
 #### From R_IEnableControl
-- Properties from `R_BlazorFrontEnd.Controls.Interfaces.R_IEnableControl` - See @r_ienablecontrol.mdc
+- Properties from `R_BlazorFrontEnd.Controls.Interfaces.R_IEnableControl` - See @r_ienablecontrol.md
   - `Enabled` - Enable/disable state of the control (`bool`)
 
 ### Direct Methods
@@ -46,6 +46,6 @@ None
 
 ## References
 
-- Base class: `R_BlazorFrontEnd.Controls.Base.R_BaseComponent` - See @r_basecomponent.mdc
-- Interface: `R_BlazorFrontEnd.Controls.Interfaces.R_IEnableControl` - See @r_ienablecontrol.mdc
-- Enable Binding Pattern: See @r_control_enabled_binding.mdc
+- Base class: `R_BlazorFrontEnd.Controls.Base.R_BaseComponent` - See @r_basecomponent.md
+- Interface: `R_BlazorFrontEnd.Controls.Interfaces.R_IEnableControl` - See @r_ienablecontrol.md
+- Enable Binding Pattern: See @r_control_enabled_binding.md

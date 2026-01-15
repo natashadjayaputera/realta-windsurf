@@ -5,7 +5,7 @@ description: "R_Page rules"
 
 - NET6: `R_BlazorFrontEnd.Controls.R_Page`
 
-See @r_formbase.mdc for complete usage patterns, API documentation, and migration details.
+See @r_formbase.md for complete usage patterns, API documentation, and migration details.
 
 - Must override `R_Init_From_Master`
 

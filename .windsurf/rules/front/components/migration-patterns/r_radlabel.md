@@ -25,8 +25,8 @@ description: "Migration pattern for R_RadLabel (NET4) → R_Label (NET6)"
 - `FontColor` - Font color (R_eFontColor enum)
 
 ### Inherited Properties
-- Properties from `R_ControlBase` - See @r_controlbase.mdc
-- Properties from `R_BaseComponent` - See @r_basecomponent.mdc
+- Properties from `R_ControlBase` - See @r_controlbase.md
+- Properties from `R_BaseComponent` - See @r_basecomponent.md
   - `Class` - CSS class names
   - `Style` - Inline CSS styles
 

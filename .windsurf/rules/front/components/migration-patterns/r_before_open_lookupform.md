@@ -56,5 +56,5 @@ private void Grid_R_Before_Open_Grid_Lookup(R_BeforeOpenGridLookupColumnEventArg
 - NET6: `R_Before_Open_Grid_Lookup="@Grid_R_Before_Open_Grid_Lookup"` on `R_Grid`
 
 ## References
-- `.windsurf/rules/patterns/front_navigation_patterns.mdc`
+- `.windsurf/rules/patterns/front_navigation_patterns.md`
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Events.R_BeforeOpenGridLookupColumnEventArgs.yml`

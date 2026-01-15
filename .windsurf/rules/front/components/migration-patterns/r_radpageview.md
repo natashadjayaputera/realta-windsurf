@@ -25,12 +25,12 @@ Tab content in `R_TabStripTab` can be:
 ### Component-Specific Properties
 - `ActiveTab` - Currently active tab (`R_TabStripTab`)
 - `ActiveTabIndex` - Index of currently active tab (`int`)
-- `Class` - CSS class names - See @r_basecomponent.mdc
-- `Style` - Inline CSS styles - See @r_basecomponent.mdc
+- `Class` - CSS class names - See @r_basecomponent.md
+- `Style` - Inline CSS styles - See @r_basecomponent.md
 - `AdditionalAttributes` - Additional HTML attributes
 
 ### Inherited Properties
-- Properties from `R_ControlBase` - See @r_controlbase.mdc
+- Properties from `R_ControlBase` - See @r_controlbase.md
 
 ## Parameter mapping (NET4 → NET6)
 - R_RadPageView.SelectedPage → R_TabStrip.ActiveTab or R_TabStrip.ActiveTabIndex
@@ -40,7 +40,7 @@ Tab content in `R_TabStripTab` can be:
 - R_RadPageView.Name → Not applicable
 - R_RadPageView.Text → R_TabStripTab.Title (on each tab)
 - R_RadPageView.Location/Size → Not applicable; use `Class`/`Style`/CSS
-- R_RadPageView.TabIndex → Not applicable; tab order not needed in Blazor - See @r_controlbase.mdc
+- R_RadPageView.TabIndex → Not applicable; tab order not needed in Blazor - See @r_controlbase.md
 - R_RadPageView.SuspendLayout/ResumeLayout → Not applicable; Blazor handles layout automatically
 - Styling/extra attrs → R_TabStrip.Class, Style, AdditionalAttributes
 

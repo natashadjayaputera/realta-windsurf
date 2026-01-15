@@ -42,7 +42,7 @@ Agent purpose: orchestrate Visual Studio solution structure, add project referen
 - Ensure new project entries in `.sln` follow existing GUID and nested project patterns.
 
 ## Context (files to reference)
-- Automatically fetch all modular `.mdc` rules matching `*SolutionManager*`.
+- Automatically fetch all modular `.md` rules matching `*SolutionManager*`.
 
 ## Solution Structure (summary)
 ### Backend

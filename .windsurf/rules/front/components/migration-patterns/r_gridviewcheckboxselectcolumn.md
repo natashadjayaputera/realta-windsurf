@@ -25,7 +25,7 @@ description: "Migration pattern for R_GridViewCheckBoxSelectColumn (NET4) → R_
 - `DataType` → Not applicable (inferred from DTO property type)
 
 ## Inherited Properties
-- Properties from `R_GridColumnBase` - See @r_gridcolumnbase.mdc
+- Properties from `R_GridColumnBase` - See @r_gridcolumnbase.md
   - `FieldName` - Field name binding (REQUIRED)
   - `Width` - Column width
   - `HeaderText` - Column header text
@@ -36,7 +36,7 @@ description: "Migration pattern for R_GridViewCheckBoxSelectColumn (NET4) → R_
 
 ## Event Handlers
 
-Checkbox select column events are inherited from `R_GridBase` and must be bound on the `R_Grid` component, not on the column component itself. See @r_radgridview.mdc for complete grid event documentation.
+Checkbox select column events are inherited from `R_GridBase` and must be bound on the `R_Grid` component, not on the column component itself. See @r_radgridview.md for complete grid event documentation.
 
 ### R_CheckBoxSelectValueChanged
 - **NET4**: Not available
@@ -155,7 +155,7 @@ private void Grid_R_CheckBoxSelectRender(R_CheckBoxSelectRenderEventArgs eventAr
 
 ## References
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Grid.Columns.R_GridCheckBoxSelectColumn.yml`
-- `.windsurf/rules/front/components/migration-patterns/r_radgridview.mdc` - Complete grid event documentation including checkbox select events
+- `.windsurf/rules/front/components/migration-patterns/r_radgridview.md` - Complete grid event documentation including checkbox select events
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Events.R_CheckBoxSelectValueChangedEventArgs.yml`
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Events.R_CheckBoxSelectValueChangingEventArgs.yml`
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Events.R_CheckBoxSelectRenderEventArgs.yml`

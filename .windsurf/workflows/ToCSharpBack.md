@@ -33,17 +33,17 @@ Here’s a **chronologically corrected and clarified version** of your Cursor cu
 
 ## Instructions
 
-1. Follow the plan generation from @plan_generation.mdc
+1. Follow the plan generation from @plan_generation.md
 2. **Understand Common DTOs**
    * Read the `{ProgramName}Common` project to understand the required `ResultDTO` and `ParameterDTO` for each method.
-   * Follow the design standard in **@common_dto_design.mdc**.
+   * Follow the design standard in **@common_dto_design.md**.
    * ⚠️ *This is non-negotiable.*
 3. **Plan the Migration**
    * Migrate existing VB.NET business classes and services into a **C# .NET 6** project structure.
    * Ensure the new structure aligns with the `{ProgramName}` solution layout (`Common`, `Back`, `Service`, etc.).
 4. **Implement Business Logic**
    * Implement all business logic classes inside the `{ProgramName}Back` project.
-   * Follow the **class separation rule** strictly (see **@back_class_separation.mdc**).
+   * Follow the **class separation rule** strictly (see **@back_class_separation.md**).
    * This is the **most important rule**.
 5. **Project Responsibilities**
    * Create a `{ProgramName}BackResources` project dedicated **only** for error messages and resource strings.
@@ -55,7 +55,7 @@ Here’s a **chronologically corrected and clarified version** of your Cursor cu
 7. **Asynchronous Implementation**
    * Convert all methods into `async Task` patterns where applicable.
    * Preserve existing **transaction** handling and **error semantics** during migration.
-   * Streaming method must follow this rule **@back_streaming_method_pattern.mdc**
+   * Streaming method must follow this rule **@back_streaming_method_pattern.md**
 8. **Interface**
    * Interfaces defined in `{ProgramName}Common` are **not** to be implemented in Back classes — they are meant for the Service project.
 9. **{ProgramName}Cls.cs**
@@ -64,7 +64,7 @@ Here’s a **chronologically corrected and clarified version** of your Cursor cu
    * **This is non-negotiable**
 
 ## Context (project files to reference)
-- Automatically fetch all modular `.mdc` rules matching `*ToCSharpBack*`.
+- Automatically fetch all modular `.md` rules matching `*ToCSharpBack*`.
 - Start with `MigrationChecklist` and then use `*BackMigrationChecklist*` for project tracking and verification.
 
 ## CSProj Templates / Requirements

@@ -5,7 +5,7 @@ description: "ToCSharpViewModel: Batch data manipulation ViewModel implementatio
 # BATCH DATA MANIPULATION PATTERN
 
 - MUST Implement `R_IProcessProgressStatus` in `{ProgramName}BatchViewModel.cs`.
-- {BatchListDTO} MUST match `{ProgramName}BatchCls` deserialized object DTO. See @batch_deserialization_pattern.mdc
+- {BatchListDTO} MUST match `{ProgramName}BatchCls` deserialized object DTO. See @batch_deserialization_pattern.md
 
 ## ⚠️ CRITICAL: DTO Type Verification
 
@@ -148,7 +148,7 @@ namespace {ProgramName}Model.VMs
                 pcModuleName: "{ModuleName}",
                 plSendWithContext: true,
                 plSendWithToken: true,
-                pcHttpClientName: "R_DefaultServiceUrl{ModuleName}", // see @model_http_client_convention.mdc
+                pcHttpClientName: "R_DefaultServiceUrl{ModuleName}", // see @model_http_client_convention.md
                 poProcessProgressStatus: this);
 
             //Check Data

@@ -31,8 +31,8 @@ description: "Migration pattern for R_ServiceClientWrapper (NET4) → ViewModel 
 ## Handler
 
 See related patterns for detailed handler implementations:
-- **RegularService**: See `@r_getserviceclient.mdc` for complete NET4 → NET6 handler pattern
-- **StreamingService**: See `@streaming_pattern.mdc` and `@viewmodel_streaming_method_pattern.mdc` for streaming implementation
+- **RegularService**: See `@r_getserviceclient.md` for complete NET4 → NET6 handler pattern
+- **StreamingService**: See `@streaming_pattern.md` and `@viewmodel_streaming_method_pattern.md` for streaming implementation
 
 ## Parameter Mapping
 
@@ -51,33 +51,33 @@ See related patterns for detailed handler implementations:
 ## Examples
 
 See related patterns for complete examples:
-- **RegularService**: See `@r_getserviceclient.mdc` for detailed NET4 → NET6 examples
-- **StreamingService**: See `@streaming_pattern.mdc` for complete streaming implementation examples
+- **RegularService**: See `@r_getserviceclient.md` for detailed NET4 → NET6 examples
+- **StreamingService**: See `@streaming_pattern.md` for complete streaming implementation examples
 
 ## NET4 → NET6 Mapping
 
 See related patterns for detailed mapping:
-- **RegularService mapping**: See `@r_getserviceclient.mdc` for complete parameter and component mapping
-- **StreamingService mapping**: See `@streaming_pattern.mdc` for streaming-specific mappings
+- **RegularService mapping**: See `@r_getserviceclient.md` for complete parameter and component mapping
+- **StreamingService mapping**: See `@streaming_pattern.md` for streaming-specific mappings
 
 ## Notes
 
 ### Key Lifecycle Differences (Unique to R_ServiceClientWrapper)
 
 - **Service Client Cleanup**: NET4 requires explicit `.Close()` in `Finally` block with `CommunicationState` check. This is unique to `R_ServiceClientWrapper` pattern and not needed in NET6 HTTP client pattern.
-- **Service Client Instantiation**: NET4 creates service clients per method call via `R_ServiceClientWrapper.R_GetServiceClient(...)`. NET6 instantiates ViewModel once per component. See `@r_getserviceclient.mdc` for details.
+- **Service Client Instantiation**: NET4 creates service clients per method call via `R_ServiceClientWrapper.R_GetServiceClient(...)`. NET6 instantiates ViewModel once per component. See `@r_getserviceclient.md` for details.
 
 ### Related Migration Patterns
 
-- **Exception Handling**: See `@r_serviceexceptions.mdc` for exception handling migration pattern (multiple catch blocks → single catch).
-- **ViewModel + Model Pattern**: See `@r_getserviceclient.mdc` for ViewModel + Model implementation details.
-- **Streaming Pattern**: See `@streaming_pattern.mdc` and `@viewmodel_streaming_method_pattern.mdc` for streaming-specific implementation.
+- **Exception Handling**: See `@r_serviceexceptions.md` for exception handling migration pattern (multiple catch blocks → single catch).
+- **ViewModel + Model Pattern**: See `@r_getserviceclient.md` for ViewModel + Model implementation details.
+- **Streaming Pattern**: See `@streaming_pattern.md` and `@viewmodel_streaming_method_pattern.md` for streaming-specific implementation.
 
 ## Related Patterns
 
-- `@r_getserviceclient.mdc` - Detailed migration pattern for `R_GetServiceClient` method
-- `@streaming_pattern.mdc` - Complete streaming pattern documentation
-- `@viewmodel_streaming_method_pattern.mdc` - ViewModel streaming method implementation pattern
+- `@r_getserviceclient.md` - Detailed migration pattern for `R_GetServiceClient` method
+- `@streaming_pattern.md` - Complete streaming pattern documentation
+- `@viewmodel_streaming_method_pattern.md` - ViewModel streaming method implementation pattern
 
 ## References
 

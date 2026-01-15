@@ -59,4 +59,4 @@ Note: This example uses `async Task` because it calls `await _conductorRef.R_Set
 
 ## References
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.R_Detail.yml`
-- `.windsurf/rules/patterns/front_navigation_patterns.mdc`
+- `.windsurf/rules/patterns/front_navigation_patterns.md`

@@ -26,7 +26,7 @@ description: "Migration pattern for R_GridViewDecimalColumn (NET4) → R_GridNum
 - `Visible` → `Visible` (bool, inherited from R_GridColumnBase)
 
 ## Inherited Properties
-- Properties from `R_GridColumnBase` - See @r_gridcolumnbase.mdc
+- Properties from `R_GridColumnBase` - See @r_gridcolumnbase.md
   - `FieldName` - Field name binding (REQUIRED)
   - `Width` - Column width
   - `HeaderText` - Column header text

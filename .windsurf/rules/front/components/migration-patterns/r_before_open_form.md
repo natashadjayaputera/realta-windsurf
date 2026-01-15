@@ -57,7 +57,7 @@ private void BtnName_R_Before_Open_Popup(R_BeforeOpenPopupEventArgs eventArgs)
   - Detail: `R_Before_Open_Detail="BtnName_R_Before_Open_Detail"` on `R_Detail`
 
 ## References
-- `.windsurf/rules/patterns/front_navigation_patterns.mdc` (component-specific patterns and event args properties)
+- `.windsurf/rules/patterns/front_navigation_patterns.md` (component-specific patterns and event args properties)
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Events.R_BeforeOpenPopupEventArgs.yml`
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Events.R_BeforeOpenLookupEventArgs.yml`
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Events.R_BeforeOpenDetailEventArgs.yml`

@@ -28,13 +28,13 @@ tools:
 Agent purpose: generate C# (.NET 6) `{ProgramName}Model` project, which provides lightweight service-layer client classes based on the existing Service project and Common interfaces. The Model layer targets `netstandard2.1` and is designed for ViewModel layer consumption.  
 
 ## Instructions
-- Follow the plan generation from @plan_generation.mdc
+- Follow the plan generation from @plan_generation.md
 - Add a `{ProgramName}Model` project that implements service client classes using the signatures defined in Common interfaces.
 - Keep Models thin: **no business/domain logic** that belongs in Back.
 - Reference required DLLs and use standard project template below.
 
 ## Context (project files to reference)
-- Automatically fetch all modular `.mdc` rules matching `*ToCSharpModel*`.
+- Automatically fetch all modular `.md` rules matching `*ToCSharpModel*`.
 - Start with `*MigrationChecklist*` and then use `*ModelMigrationChecklist*` for project tracking and verification.
 
 ## CSProj (Model project template)

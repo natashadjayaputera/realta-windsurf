@@ -6,7 +6,7 @@ globs: "*ToCSharpModel*"
 
 # Streaming API Pattern
 
-- MUST follow @streaming_pattern.mdc
+- MUST follow @streaming_pattern.md
 - MUST use `R_APIRequestStreamingObject<T>()`
 - MUST assign to `loRtn.Data` (NOT `loRtn`)
 - MUST use data type as generic parameter

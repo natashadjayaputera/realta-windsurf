@@ -26,12 +26,12 @@ description: "Migration pattern for R_StreamUtility (NET4) → Native Streaming 
 - `R_StreamUtility` is not available in NET6; **must use native streaming patterns** instead.
 
 ## References
-- `.windsurf/rules/patterns/streaming_pattern.mdc` (Complete streaming pattern overview)
-- `.windsurf/rules/patterns/model_streaming_API_pattern.mdc` (Model streaming implementation)
-- `.windsurf/rules/patterns/service_streaming_controller_pattern.mdc` (Controller streaming implementation)
-- `.windsurf/rules/patterns/viewmodel_streaming_method_pattern.mdc` (ViewModel streaming method pattern)
-- `.windsurf/rules/patterns/viewmodel_streaming_context_pattern.mdc` (ViewModel streaming context pattern)
-- `.windsurf/rules/patterns/model_streaming_vs_nonstreaming.mdc` (Streaming vs non-streaming differences)
-- `.windsurf/rules/service/service_streaming_context.mdc` (Service layer streaming context)
-- `.windsurf/rules/front/components/migration-patterns/r_setstreamingcontext.mdc` (R_SetStreamingContext migration)
-- `.windsurf/rules/front/components/migration-patterns/r_combinedata.mdc` (R_CombineData migration - used with R_StreamUtility)
+- `.windsurf/rules/patterns/streaming_pattern.md` (Complete streaming pattern overview)
+- `.windsurf/rules/patterns/model_streaming_API_pattern.md` (Model streaming implementation)
+- `.windsurf/rules/patterns/service_streaming_controller_pattern.md` (Controller streaming implementation)
+- `.windsurf/rules/patterns/viewmodel_streaming_method_pattern.md` (ViewModel streaming method pattern)
+- `.windsurf/rules/patterns/viewmodel_streaming_context_pattern.md` (ViewModel streaming context pattern)
+- `.windsurf/rules/patterns/model_streaming_vs_nonstreaming.md` (Streaming vs non-streaming differences)
+- `.windsurf/rules/service/service_streaming_context.md` (Service layer streaming context)
+- `.windsurf/rules/front/components/migration-patterns/r_setstreamingcontext.md` (R_SetStreamingContext migration)
+- `.windsurf/rules/front/components/migration-patterns/r_combinedata.md` (R_CombineData migration - used with R_StreamUtility)

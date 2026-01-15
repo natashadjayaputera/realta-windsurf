@@ -21,7 +21,7 @@ description: "Migration pattern for R_PopUp (NET4) → R_Popup (NET6)"
 - R_PopUp.Visible → `@if` rendering in .razor (e.g., `@if (isVisible) { <R_Popup>...</R_Popup> }`)
 - R_PopUp.PerformClick() → Use `_popupRef.OnClickAsync()` for programmatic opening
 - R_PopUp.R_ResourceId → R_Popup.R_ResourceId
-- R_PopUp.R_ConductorSource / R_ConductorGridSource / R_Enable* → See @r_ienablecontrol.mdc
+- R_PopUp.R_ConductorSource / R_ConductorGridSource / R_Enable* → See @r_ienablecontrol.md
 - NET6 only: R_Popup.R_WithLock (optional, for locking behavior)
 
 ## Event handlers
@@ -29,7 +29,7 @@ description: "Migration pattern for R_PopUp (NET4) → R_Popup (NET6)"
 - NET6: `private void BtnName_R_Before_Open_Popup(R_BeforeOpenPopupEventArgs eventArgs)` — use `eventArgs.TargetPageType` and `eventArgs.Parameter`
 - NET6: Also supports `R_After_Open_Popup` handler for post-open handling
 
-**For detailed event args documentation and migration patterns (including critical Success vs Result pattern), see @front_navigation_patterns.mdc**
+**For detailed event args documentation and migration patterns (including critical Success vs Result pattern), see @front_navigation_patterns.md**
 
 ## Bindings
 - Use `@ref="_popupRef"` in `.razor` (required for programmatic calls)
@@ -38,7 +38,7 @@ description: "Migration pattern for R_PopUp (NET4) → R_Popup (NET6)"
 
 ## Anti-patterns
 - Using `R_Before_Open_Form` or `R_After_Open_Form` (correct names are `R_Before_Open_Popup` and `R_After_Open_Popup`)
-- Using `R_Title` property (see @r_title.mdc)
+- Using `R_Title` property (see @r_title.md)
 - Setting Text attribute instead of child content
 - Checking `eventArgs.Result == R_eDialogResult.OK` in `R_After_Open_Popup` (use `eventArgs.Success` instead)
 - Casting `eventArgs.Result` to `bool` to check success (use `eventArgs.Success` property instead)

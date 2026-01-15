@@ -16,14 +16,14 @@ description: "Migration pattern for R_LookUp (NET4) → R_Lookup (NET6)"
 - R_LookUp.R_Before_Open_Form → R_Lookup.R_Before_Open_Lookup (with R_BeforeOpenLookupEventArgs)
 - R_LookUp.R_Return_LookUp → R_Lookup.R_After_Open_Lookup (with R_AfterOpenLookupEventArgs)
 - R_LookUp.Text → R_Lookup child content (e.g., `...`)
-- R_LookUp.Enabled → R_Lookup.Enabled - See @r_controlbase.mdc
-- R_LookUp.Tooltip → R_Lookup.Tooltip - See @r_controlbase.mdc
+- R_LookUp.Enabled → R_Lookup.Enabled - See @r_controlbase.md
+- R_LookUp.Tooltip → R_Lookup.Tooltip - See @r_controlbase.md
 - R_LookUp.Visible → `@if` rendering in .razor (e.g., `@if (isVisible) { <R_Lookup>...</R_Lookup> }`)
-- R_LookUp.R_ConductorSource / R_ConductorGridSource / R_Enable* → See @r_ienablecontrol.mdc
+- R_LookUp.R_ConductorSource / R_ConductorGridSource / R_Enable* → See @r_ienablecontrol.md
 - NET6 requirement: Must be wrapped in `R_ItemLayout auto="true"`
 
 ### Inherited Properties
-- Properties from `R_ControlBase` - See @r_controlbase.mdc
+- Properties from `R_ControlBase` - See @r_controlbase.md
 
 ## Event handlers
 - NET4: `Private Sub btnName_R_Before_Open_Form(ByRef poTargetForm As R_FormBase, ByRef poParameter As Object)` with `poTargetForm = New TargetForm` and `poParameter = loParam`

@@ -55,5 +55,5 @@ description: "Migration pattern for R_Return_Popup (NET4) → R_After_Open_Grid_
 - NET6: `R_After_Open_Grid_Popup="@Grid_R_After_Open_Grid_Popup"` on `R_Grid` → `private void Grid_R_After_Open_Grid_Popup(R_AfterOpenGridPopupColumnEventArgs eventArgs)` (TODO: not implemented yet)
 
 ## References
-- `.windsurf/rules/front/components/migration-patterns/r_return_lookup.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_before_open_popupform.mdc`
+- `.windsurf/rules/front/components/migration-patterns/r_return_lookup.md`
+- `.windsurf/rules/front/components/migration-patterns/r_before_open_popupform.md`

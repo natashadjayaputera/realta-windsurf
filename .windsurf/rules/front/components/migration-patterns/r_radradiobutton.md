@@ -15,7 +15,7 @@ Multiple radio buttons sharing the same data-bound property → Single `R_RadioG
 
 ### Editor Required Properties
 - `Data` - **EditorRequired** - Collection of option items (`IEnumerable<TItem>`)
-- `Value` - **EditorRequired** - The bound value property - See @r_inputcomponentbase.mdc
+- `Value` - **EditorRequired** - The bound value property - See @r_inputcomponentbase.md
 - `ValueField` - **EditorRequired** - Property name for value (use `@nameof(PropertyName)`)
 - `TextField` - **EditorRequired** - Property name for display text (use `@nameof(PropertyName)`)
 
@@ -24,10 +24,10 @@ Multiple radio buttons sharing the same data-bound property → Single `R_RadioG
 - `LabelPosition` - Label position (`R_eRadioGroupLabelPosition.Before` (default) or `R_eRadioGroupLabelPosition.After`)
 
 ### Inherited Properties
-- Properties from `R_InputComponentBase<TValue>` - See @r_inputcomponentbase.mdc
+- Properties from `R_InputComponentBase<TValue>` - See @r_inputcomponentbase.md
   - `ValueChanged` - Event callback when value changes
-  - `R_ConductorSource` / `R_ConductorGridSource` / `R_Enable*` - See @r_ienablecontrol.mdc
-- Properties from `R_ControlBase` - See @r_controlbase.mdc
+  - `R_ConductorSource` / `R_ConductorGridSource` / `R_Enable*` - See @r_ienablecontrol.md
+- Properties from `R_ControlBase` - See @r_controlbase.md
   - `Enabled` - Enable/disable component
   - `TabIndex` - Tab order
 
@@ -36,12 +36,12 @@ Multiple radio buttons sharing the same data-bound property → Single `R_RadioG
 - `R_RadRadioButton.IsChecked` → `R_RadioGroup.@bind-Value`
 - `R_RadRadioButton.CheckStateChanged` → `R_RadioGroup.ValueChanged`
 - `R_RadRadioButton.Text` → `R_RadioGroup.TextField` (from Data collection)
-- `R_RadRadioButton.R_ConductorSource` → `R_RadioGroup.R_ConductorSource` - See @r_inputcomponentbase.mdc
-- `R_RadRadioButton.R_Enable*` → `R_RadioGroup.R_EnableAdd`, `R_EnableEdit`, `R_EnableOther`, `R_EnableHasData` - See @r_ienablecontrol.mdc
-- `R_RadRadioButton.Enabled` → `R_RadioGroup.Enabled` - See @r_controlbase.mdc
+- `R_RadRadioButton.R_ConductorSource` → `R_RadioGroup.R_ConductorSource` - See @r_inputcomponentbase.md
+- `R_RadRadioButton.R_Enable*` → `R_RadioGroup.R_EnableAdd`, `R_EnableEdit`, `R_EnableOther`, `R_EnableHasData` - See @r_ienablecontrol.md
+- `R_RadRadioButton.Enabled` → `R_RadioGroup.Enabled` - See @r_controlbase.md
 - `R_RadRadioButton.Name` → Not applicable (Blazor uses component references)
 - `R_RadRadioButton.Location` / `Size` → Not applicable (use `R_ItemLayout` and CSS)
-- `R_RadRadioButton.TabIndex` → `R_RadioGroup.TabIndex` (still available but less commonly used) - See @r_controlbase.mdc
+- `R_RadRadioButton.TabIndex` → `R_RadioGroup.TabIndex` (still available but less commonly used) - See @r_controlbase.md
 - `R_RadRadioButton.Dock` / `Anchor` → Not applicable (use CSS layout)
 
 ## Migration pattern
@@ -98,7 +98,7 @@ public class NumericRadioOptionDTO {
 }
 ```
 
-**Note**: For `CheckStateChanged` handlers with complex logic, use `Value` + `ValueChanged` instead of `@bind-Value`. See @r_inputcomponentbase.mdc.
+**Note**: For `CheckStateChanged` handlers with complex logic, use `Value` + `ValueChanged` instead of `@bind-Value`. See @r_inputcomponentbase.md.
 
 ## Anti-patterns
 

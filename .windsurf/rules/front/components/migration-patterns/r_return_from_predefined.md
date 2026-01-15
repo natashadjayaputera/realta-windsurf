@@ -54,4 +54,4 @@ private void R_AfterOpenPredefinedDock(R_AfterOpenPredefinedDockEventArgs eventA
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Events.R_AfterOpenPredefinedDockEventArgs.yml`
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Forms.R_PredefinedDock.yml`
 - `.windsurf/docs/net4/Realta-Library/R_FrontEnd.R_PredefinedDock.yml`
-- `.windsurf/rules/patterns/front_navigation_patterns.mdc`
+- `.windsurf/rules/patterns/front_navigation_patterns.md`

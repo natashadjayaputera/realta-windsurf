@@ -58,5 +58,5 @@ private void Conductor_R_CheckEdit(R_CheckEditEventArgs eventArgs) // OR Grid_R_
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Events.R_CheckEditEventArgs.yml`
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.DataControls.R_Conductor.yml` (R_CheckEdit)
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.R_Grid-1.yml` (R_CheckEdit)
-- `@r_access.mdc`
+- `@r_access.md`
 

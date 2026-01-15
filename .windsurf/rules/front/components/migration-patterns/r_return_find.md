@@ -55,4 +55,4 @@ private void btnName_R_After_Open_Find(R_AfterOpenFindEventArgs eventArgs)
 
 ## References
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.R_Find.yml`
-- `.windsurf/rules/front/components/migration-patterns/r_before_open_form.mdc`
+- `.windsurf/rules/front/components/migration-patterns/r_before_open_form.md`

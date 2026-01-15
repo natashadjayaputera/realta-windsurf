@@ -55,4 +55,4 @@ private void Conductor_R_CheckAdd(R_CheckAddEventArgs eventArgs) // OR Grid_R_Ch
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Events.R_CheckAddEventArgs.yml`
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.DataControls.R_Conductor.yml` (R_CheckAdd)
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.R_Grid-1.yml` (R_CheckAdd)
-- `@r_access.mdc`
+- `@r_access.md`

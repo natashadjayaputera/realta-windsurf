@@ -11,7 +11,7 @@ description: "Migration pattern for R_LockingClient (NET4) → R_LockingServiceC
 
 - Direct locking/unlocking operations outside of the `R_LockUnlock` event handler
 - Manual lock management when you need explicit control over lock/unlock timing
-- For automatic locking via `R_Conductor`/`R_Grid`, prefer overriding `R_LockUnlock` method (see `@r_lockunlock.mdc`)
+- For automatic locking via `R_Conductor`/`R_Grid`, prefer overriding `R_LockUnlock` method (see `@r_lockunlock.md`)
 
 ## Migration Pattern
 
@@ -89,7 +89,7 @@ loEx.ThrowExceptionIfErrors();
 - Client instantiated per call/method scope (not as class field)
 - All methods are async (`Task<R_LockingFrontResult>`)
 - `Key_Value`: Use `string.Join("|", ...)` in NET6 instead of space-concatenation
-- For `R_LockUnlock` override pattern, see `@r_lockunlock.mdc`
+- For `R_LockUnlock` override pattern, see `@r_lockunlock.md`
 
 ## References
 

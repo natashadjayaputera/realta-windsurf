@@ -28,7 +28,7 @@ tools:
 Agent purpose: create `{ProgramName}ViewModel` classes converted from VB.NET UI code and `{ProgramName}FrontResources` project. ViewModels belong in `VMs/` under the Model project and must follow strict rules (inherit `R_ViewModel<T>`, no `R_FrontGlobalVar`, `IClientHelper` only in Razor.cs, etc). Business logic, data operations and data validation only.
 
 ## Instructions
-- Follow the plan generation from @plan_generation.mdc
+- Follow the plan generation from @plan_generation.md
 - Create `{ProgramName}FrontResources` project.
 - Place ViewModel classes under `VMs/` within the `{ProgramName}Model` project.
 - Each ViewModel **MUST** inherit from `R_ViewModel<T>` where `T` is the entity/data object.
@@ -39,7 +39,7 @@ Agent purpose: create `{ProgramName}ViewModel` classes converted from VB.NET UI 
 - Data Validation is allowed only in viewmodels — not in `.razor.cs` (code-behind)
 
 ## Context (project files to reference)
-- Automatically fetch all modular `.mdc` rules matching `*ToCSharpViewModel*`.
+- Automatically fetch all modular `.md` rules matching `*ToCSharpViewModel*`.
 - Start with `*MigrationChecklist*` and then use `*ViewModelMigrationChecklist*` for project tracking and verification.
 
 ## CSProj (Resources / Model snippet)

@@ -43,5 +43,5 @@ description: "Migration pattern for R_ConductorGrid (NET4) → R_ConductorGrid (
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.DataControls.R_ConductorGrid.yml`
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.R_Grid-1.yml`
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.DataControls.yml`
-- See also: `.windsurf/rules/front/components/migration-patterns/r_conductor.mdc`
+- See also: `.windsurf/rules/front/components/migration-patterns/r_conductor.md`
 

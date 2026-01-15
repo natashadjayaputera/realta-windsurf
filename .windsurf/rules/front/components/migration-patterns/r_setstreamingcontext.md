@@ -52,6 +52,6 @@ var loDepreciationMonths = await _model.GetDepreciationMonthListAsync();
 - Parameters set via streaming context are retrieved in Back layer via `R_Utility.R_GetStreamingContext<Type>(ContextConstant.Key)`.
 
 ## References
-- `.windsurf/rules/patterns/streaming_pattern.mdc` (Complete streaming pattern for Controller/Model/ViewModel)
-- `.windsurf/rules/patterns/viewmodel_streaming_context_pattern.mdc` (Streaming context usage pattern in ViewModel)
+- `.windsurf/rules/patterns/streaming_pattern.md` (Complete streaming pattern for Controller/Model/ViewModel)
+- `.windsurf/rules/patterns/viewmodel_streaming_context_pattern.md` (Streaming context usage pattern in ViewModel)
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.R_FrontContext.yml` (R_SetStreamingContext methods)

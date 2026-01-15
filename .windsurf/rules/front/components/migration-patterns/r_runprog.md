@@ -64,4 +64,4 @@ private async Task OnRunProgramAsync()
 - NET4 `R_Before_Open_Form` → NET6 Navigation with parameter DTO (to be implemented)
 
 ## Notes
-Access control via `FormAccess` property (see `r_access.mdc`). TODO must specify: program ID, program name, and parameter DTO.
+Access control via `FormAccess` property (see `r_access.md`). TODO must specify: program ID, program name, and parameter DTO.

@@ -39,5 +39,5 @@ description: "Migration pattern for R_Utility static class (NET4) → R_FrontUti
 
 ## References
 
-- Detailed patterns: `r_geterror.mdc`, `r_getmessage.mdc`, `r_convertto.mdc`, `r_convertobjecttoobject.mdc`, `r_convertcollectiontocollection.mdc`, `r_setstreamingcontext.mdc`, `r_combinedata.mdc`
+- Detailed patterns: `r_geterror.md`, `r_getmessage.md`, `r_convertto.md`, `r_convertobjecttoobject.md`, `r_convertcollectiontocollection.md`, `r_setstreamingcontext.md`, `r_combinedata.md`
 - Documentation: `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Helpers.R_FrontUtility.yml`, `.windsurf/docs/net6/RealtaLibrary/R_CommonFrontBackAPI.R_NetCoreUtility.yml`

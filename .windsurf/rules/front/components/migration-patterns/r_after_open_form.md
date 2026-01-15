@@ -54,5 +54,5 @@ private void btnName_R_After_Open_Popup(R_AfterOpenPopupEventArgs eventArgs)
 
 ## References
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Events.R_AfterOpenPopupEventArgs.yml`
-- `.windsurf/rules/front/components/migration-patterns/r_before_open_popupform.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_setpopupentityresult.mdc`
+- `.windsurf/rules/front/components/migration-patterns/r_before_open_popupform.md`
+- `.windsurf/rules/front/components/migration-patterns/r_setpopupentityresult.md`

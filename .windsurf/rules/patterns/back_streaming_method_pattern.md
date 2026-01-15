@@ -4,7 +4,7 @@ description: "Streaming method pattern for Back Project"
 globs: "*ToCSharpBack*"
 ---
 
-# Streaming Method Pattern (Must Follow Exactly, see @streaming_pattern.mdc)
+# Streaming Method Pattern (Must Follow Exactly, see @streaming_pattern.md)
 
 ```csharp
 [HttpPost]

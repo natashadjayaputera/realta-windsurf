@@ -22,12 +22,12 @@ description: "Migration pattern for R_RadProgressBar (NET4) → R_ProgressBar (N
 - `MaxValue` - Maximum value for progress bar (`int`)
 - `Value` - Current progress value (`int`)
 - `Label` - Label text displayed with progress bar (`string`)
-- `Class` - CSS class names - See @r_basecomponent.mdc
-- `Style` - Inline CSS styles - See @r_basecomponent.mdc
+- `Class` - CSS class names - See @r_basecomponent.md
+- `Style` - Inline CSS styles - See @r_basecomponent.md
 - `AdditionalAttributes` - Additional HTML attributes
 
 ### Inherited Properties
-- Properties from `R_ControlBase` - See @r_controlbase.mdc
+- Properties from `R_ControlBase` - See @r_controlbase.md
 
 ## Parameter mapping (NET4 → NET6)
 - R_RadProgressBar.Maximum → R_ProgressBar.MaxValue

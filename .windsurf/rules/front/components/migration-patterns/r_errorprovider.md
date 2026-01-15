@@ -5,11 +5,11 @@ description: "Migration pattern for R_ErrorProvider (NET4) → Field-level valid
 # R_ErrorProvider (NET4) → Field-Level Validation (NET6)
 
 - NET4: `R_ErrorProvider.SetError(Control, String)` for field-level validation
-- NET6: Follow `@core_viewmodel_front_validation_rule.mdc` pattern - ViewModel validation methods called from Front
+- NET6: Follow `@core_viewmodel_front_validation_rule.md` pattern - ViewModel validation methods called from Front
 
 ## Pattern
 
-**Follow `@core_viewmodel_front_validation_rule.mdc` exactly:**
+**Follow `@core_viewmodel_front_validation_rule.md` exactly:**
 
 1. **ViewModel**: Create field-specific validation methods returning `R_Exception`
 2. **Front (.razor.cs)**: Call ViewModel validation methods in event handlers (LostFocus, Lookup return, etc.)
@@ -97,7 +97,7 @@ loEx.Add(loValidationEx);
 
 ## Notes
 
-- Follow `@core_viewmodel_front_validation_rule.mdc` pattern exactly
+- Follow `@core_viewmodel_front_validation_rule.md` pattern exactly
 - No UI error display - validation via `R_Exception` pattern
 - Use `R_FrontUtility.R_GetError()` for error messages
 - All validation logic in ViewModel, Front only calls ViewModel methods

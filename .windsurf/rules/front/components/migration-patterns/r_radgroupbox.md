@@ -21,24 +21,24 @@ description: "Migration pattern for R_RadGroupBox (NET4) → R_GroupBox (NET6)"
 - `Title` - Title text displayed in group box header (`string`)
 
 ### Inherited Properties
-- Properties from `R_ControlBase` - See @r_controlbase.mdc
+- Properties from `R_ControlBase` - See @r_controlbase.md
   - `Enabled` - Enable/disable component
-- Properties from `R_BaseComponent` - See @r_basecomponent.mdc
+- Properties from `R_BaseComponent` - See @r_basecomponent.md
   - `Class` - CSS class names
   - `Style` - Inline CSS styles
 
 ## Parameter mapping (NET4 → NET6)
-- R_RadGroupBox.R_ConductorSource / R_ConductorGridSource / R_Enable* → See @r_ienablecontrol.mdc
+- R_RadGroupBox.R_ConductorSource / R_ConductorGridSource / R_Enable* → See @r_ienablecontrol.md
 - R_RadGroupBox.R_ResourceId → Use `@Localizer["ResourceId"]` in R_GroupBox.Title attribute
 - R_RadGroupBox.R_FontType → R_GroupBox.TitleClass (CSS classes instead of enum)
 - R_RadGroupBox.HeaderText → R_GroupBox.Title (use `@Localizer["ResourceId"]` for resource-based)
 - R_RadGroupBox.Text → R_GroupBox.Title (resource-based using `@Localizer`)
-- R_RadGroupBox.Enabled → R_GroupBox.Enabled - See @r_controlbase.mdc
+- R_RadGroupBox.Enabled → R_GroupBox.Enabled - See @r_controlbase.md
 - R_RadGroupBox.Controls → Not applicable
 - R_RadGroupBox.Name → Not applicable
 - R_RadGroupBox.Location → Not applicable (CSS-based layout; use R_ItemLayout or Class/Style)
 - R_RadGroupBox.Size → Not applicable (CSS-based layout; use Width or Class/Style)
-- R_RadGroupBox.TabIndex → Not applicable (Blazor handles tab order automatically) - See @r_controlbase.mdc
+- R_RadGroupBox.TabIndex → Not applicable (Blazor handles tab order automatically) - See @r_controlbase.md
 - R_RadGroupBox.AccessibleRole → Not applicable (Blazor handles accessibility automatically)
 - R_RadGroupBox.ForeColor → Use CSS styling via `Class` or `Style` attribute, e.g., `Style="color: black;"` or custom CSS class
 - R_RadGroupBox.BackColor → Use CSS styling via `Class` or `Style` attribute, e.g., `Style="background-color: white;"` or custom CSS class
@@ -52,5 +52,5 @@ description: "Migration pattern for R_RadGroupBox (NET4) → R_GroupBox (NET6)"
 - Setting HeaderText/Text attributes directly (use Title with @Localizer)
 - Using Controls.Add() method (use ChildContent RenderFragment between tags)
 - Setting Location, Size, TabIndex properties (not applicable in Blazor; use CSS/layout components)
-- See @r_ienablecontrol.mdc for R_Enable* anti-patterns
+- See @r_ienablecontrol.md for R_Enable* anti-patterns
 - Setting R_FontType enum directly (use TitleClass string with CSS classes)

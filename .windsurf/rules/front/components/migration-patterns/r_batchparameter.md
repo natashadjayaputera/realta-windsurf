@@ -18,6 +18,6 @@ description: "R_BatchParameter definition and NET4 → NET6 mapping"
 - `liStep As Integer` is NOT part of `R_BatchParameter`; it is a separate argument to `R_ProcessAndUploadClient.R_BatchProcess` in both NET4 and NET6.
 
 ## References
-- See @r_batchprocess.mdc for invocation pattern.
-- See @batch_viewmodel_pattern.mdc for ViewModel usage and `R_SaveBatch` integration.
+- See @r_batchprocess.md for invocation pattern.
+- See @batch_viewmodel_pattern.md for ViewModel usage and `R_SaveBatch` integration.
 

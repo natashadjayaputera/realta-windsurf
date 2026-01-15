@@ -5,6 +5,6 @@ description: "R_GridNumericColumn rules"
 
 - NET6: `R_BlazorFrontEnd.Controls.R_GridNumericColumn`
 
-See @r_gridviewdecimalcolumn.mdc for complete usage patterns, API documentation, and migration details.
+See @r_gridviewdecimalcolumn.md for complete usage patterns, API documentation, and migration details.
 
 - Must explicitly assign `TValue`

@@ -16,7 +16,7 @@ description: "Migration pattern for R_RadComboBox (NET4) → R_ComboBox (NET6)"
 
 ### Editor Required Properties
 - `Data` - **EditorRequired** - Collection of option items (`IEnumerable<TItem>`)
-- `Value` - **EditorRequired** - The bound value property - See @r_inputcomponentbase.mdc
+- `Value` - **EditorRequired** - The bound value property - See @r_inputcomponentbase.md
 - `TextField` - **EditorRequired** - Property name for display text (use `@nameof(PropertyName)`)
 - `ValueField` - **EditorRequired** - Property name for value (use `@nameof(PropertyName)`)
 
@@ -27,29 +27,29 @@ description: "Migration pattern for R_RadComboBox (NET4) → R_ComboBox (NET6)"
 - `PopupMaxHeight` - Maximum height of dropdown popup (`string`)
 
 ### Inherited Properties
-- Properties from `R_InputComponentBase<TValue>` - See @r_inputcomponentbase.mdc
+- Properties from `R_InputComponentBase<TValue>` - See @r_inputcomponentbase.md
   - `ValueChanged` - Event callback when value changes
   - `OnLostFocused` - Event callback when component loses focus
   - `ReadOnly` - Read-only state
   - `AutoComplete` - Auto-complete behavior
-  - `R_ConductorSource` / `R_ConductorGridSource` / `R_Enable*` - See @r_ienablecontrol.mdc
-- Properties from `R_ControlBase` - See @r_controlbase.mdc
+  - `R_ConductorSource` / `R_ConductorGridSource` / `R_Enable*` - See @r_ienablecontrol.md
+- Properties from `R_ControlBase` - See @r_controlbase.md
   - `Enabled` - Enable/disable component
   - `TabIndex` - Tab order
   - `Tooltip` - Tooltip text
 
 ## Parameter mapping (NET4 → NET6)
-- R_RadComboBox.SelectedValue → R_ComboBox.@bind-Value - See @r_inputcomponentbase.mdc
+- R_RadComboBox.SelectedValue → R_ComboBox.@bind-Value - See @r_inputcomponentbase.md
 - R_RadComboBox.DataSource → R_ComboBox.Data
 - R_RadComboBox.DisplayMember → R_ComboBox.TextField (use `@nameof(PropertyName)`)
 - R_RadComboBox.ValueMember → R_ComboBox.ValueField (use `@nameof(PropertyName)`)
 - R_RadComboBox.SelectedIndexChanged → R_ComboBox.ValueChanged
-- R_RadComboBox.Enabled → R_ComboBox.Enabled - See @r_controlbase.mdc
-- R_RadComboBox.R_ConductorSource / R_ConductorGridSource / R_Enable* → See @r_ienablecontrol.mdc (R_ConductorSource also see @r_inputcomponentbase.mdc)
+- R_RadComboBox.Enabled → R_ComboBox.Enabled - See @r_controlbase.md
+- R_RadComboBox.R_ConductorSource / R_ConductorGridSource / R_Enable* → See @r_ienablecontrol.md (R_ConductorSource also see @r_inputcomponentbase.md)
 - R_RadComboBox.Name → Not applicable
 - R_RadComboBox.Location/Size → Not applicable; use `Class`/`Style`/CSS
-- R_RadComboBox.TabIndex → R_ComboBox.TabIndex - See @r_controlbase.mdc
-- LostFocus event → OnLostFocused event handler - See @r_inputcomponentbase.mdc
+- R_RadComboBox.TabIndex → R_ComboBox.TabIndex - See @r_controlbase.md
+- LostFocus event → OnLostFocused event handler - See @r_inputcomponentbase.md
 
 ## Anti-patterns
 - Using R_ComboBox for multi-select (use R_ComboBoxMultiSelect)

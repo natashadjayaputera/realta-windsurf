@@ -92,4 +92,4 @@ private void Grid_R_After_Open_Grid_Lookup(R_AfterOpenGridLookupColumnEventArgs 
 ## References
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Events.R_AfterOpenLookupEventArgs.yml`
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Events.R_AfterOpenGridLookupColumnEventArgs.yml`
-- `.windsurf/rules/front/components/migration-patterns/r_lookup.mdc`
+- `.windsurf/rules/front/components/migration-patterns/r_lookup.md`

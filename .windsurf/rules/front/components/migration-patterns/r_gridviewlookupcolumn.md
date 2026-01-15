@@ -13,7 +13,7 @@ description: "Migration pattern for R_GridViewLookUpColumn (NET4) → R_GridLook
 
 ## Bindings
 - `R_GridLookupColumn` must be bound to the **code/ID field** (e.g., `CCODE`, `CID`) for lookup functionality
-- For the **description field** (e.g., `CNAME`, `CDESC`), use `R_GridTextColumn` - See @r_gridviewtextboxcolumn.mdc
+- For the **description field** (e.g., `CNAME`, `CDESC`), use `R_GridTextColumn` - See @r_gridviewtextboxcolumn.md
 - Pattern: Code/ID field uses `R_GridLookupColumn`, description field uses `R_GridTextColumn` (typically without R_EnableAdd or R_EnableEdit)
 
 ### Migration Note: Column Type Switching
@@ -32,7 +32,7 @@ description: "Migration pattern for R_GridViewLookUpColumn (NET4) → R_GridLook
 - `R_Title` → handled via `R_Before_Open_Grid_Lookup` event (`eventArgs.PageTitle`)
 
 ## Inherited Properties
-- Properties from `R_GridColumnBase` - See @r_gridcolumnbase.mdc
+- Properties from `R_GridColumnBase` - See @r_gridcolumnbase.md
 
 ## Component-Specific Properties (NET6)
 - `MaxLength` - Maximum input length (int?)
@@ -41,7 +41,7 @@ description: "Migration pattern for R_GridViewLookUpColumn (NET4) → R_GridLook
 
 ## Event handlers
 - NET4: `gvGrid.R_Return_LookUp` event with column name detection
-- NET6: `R_Before_Open_Grid_Lookup` and `R_After_Open_Grid_Lookup` on `R_Grid` - See @r_before_open_lookupform.mdc and @r_return_lookup.mdc
+- NET6: `R_Before_Open_Grid_Lookup` and `R_After_Open_Grid_Lookup` on `R_Grid` - See @r_before_open_lookupform.md and @r_return_lookup.md
 
 ## Anti-patterns
 - **Do NOT** use `Name` property in NET4 - use `FieldName` for data binding

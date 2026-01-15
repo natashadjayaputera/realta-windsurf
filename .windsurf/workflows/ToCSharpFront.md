@@ -70,13 +70,13 @@ For each referenced program name found:
 ### Step 6: Fetch Migration Patterns
 - Fetch migration-patterns from `.windsurf/rules/front/components/migration-patterns/`
 - **Fetch ONLY** patterns for components found in Step 5
-- Pattern naming: `{componentname}.mdc` (e.g., `R_LookUp` → `r_lookup.mdc`)
+- Pattern naming: `{componentname}.md` (e.g., `R_LookUp` → `r_lookup.md`)
 - **Rule**: Always fetch pattern file first, never guess
 
 ### Step 7: Fetch Component Rules (if needed)
 - Fetch specific component rules from `.windsurf/rules/front/components/net6/`
 - **Fetch ONLY** when NET6 component is used without migration
-- Pattern naming: `{componentname}.mdc` (e.g., `R_Page` → `r_page.mdc`)
+- Pattern naming: `{componentname}.md` (e.g., `R_Page` → `r_page.md`)
 
 ### Step 8: Fetch Documentation (if needed)
 - Fetch documentation from `.windsurf/docs/net6`
@@ -91,7 +91,7 @@ For each referenced program name found:
 ### Step 10: Build and Report
 - Build the project
 - **Do NOT** fix errors automatically
-- Generate warnings and errors report following `@build_report_format.mdc`
+- Generate warnings and errors report following `@build_report_format.md`
 
 ## Critical Rules
 
@@ -103,11 +103,11 @@ For each referenced program name found:
   - `IClientHelper ClientHelper` (NOT in ViewModel)
   - `R_ILocalizer Localizer` (NOT in `.razor` file)
   - `R_MessageBoxService MessageBoxService` (NOT in `.razor` file)
-- **Reference**: See `@front_dependency_injection.mdc` for examples
+- **Reference**: See `@front_dependency_injection.md` for examples
 
 ### Using Statements (MANDATORY)
 - **ALL** `@using` statements MUST be in `_Imports.razor` file, **NEVER** in `.razor` files
-- Use EXACT minimal required using statements. See `@front_imports_and_usings.mdc` and `@front_razor_cs_using_statements.mdc`
+- Use EXACT minimal required using statements. See `@front_imports_and_usings.md` and `@front_razor_cs_using_statements.md`
 
 ### State Management
 - **UI state**: Must be in `.razor.cs` code-behind
@@ -123,20 +123,20 @@ For each referenced program name found:
 ### Migration-Patterns
 - **Location**: `.windsurf/rules/front/components/migration-patterns/`
 - **Fetch Strategy**: Fetch ONLY patterns for components found in VB file
-- **Pattern Naming**: `{componentname}.mdc` (e.g., `R_LookUp` → `r_lookup.mdc`, `R_FormBase` → `r_formbase.mdc`)
+- **Pattern Naming**: `{componentname}.md` (e.g., `R_LookUp` → `r_lookup.md`, `R_FormBase` → `r_formbase.md`)
 - **Rule**: Always fetch pattern file first, never guess
 
 ### Specific Component Rules
 - **Location**: `.windsurf/rules/front/components/net6/`
 - **Fetch Strategy**: Fetch ONLY when NET6 component is used without migration
-- **Pattern Naming**: `{componentname}.mdc` (e.g., `R_Page` → `r_page.mdc`, `R_Label` → `r_label.mdc`)
+- **Pattern Naming**: `{componentname}.md` (e.g., `R_Page` → `r_page.md`, `R_Label` → `r_label.md`)
 
 ### Documentation
 - **Location**: `.windsurf/docs/net6`
 - **Fetch Strategy**: Fetch ONLY when specific component API details are needed
 
 ### Rules
-- **Fetch Strategy**: Fetch `.mdc` rules matching `*ToCSharpFront*` only when needed
+- **Fetch Strategy**: Fetch `.md` rules matching `*ToCSharpFront*` only when needed
 
 ### Checklists
 - **Fetch Strategy**: Fetch `*MigrationChecklist*` / `*FrontMigrationChecklist*` only at the end for verification
@@ -192,7 +192,7 @@ For each referenced program name found:
 * `.razor` and `.razor.cs` files per UI screen, following migration patterns
 * Component library usage updated to `R_BlazorFrontEnd*`
 * Migration notes describing lifecycle and binding changes
-* Build report with warnings and errors (following `@build_report_format.mdc`)
+* Build report with warnings and errors (following `@build_report_format.md`)
 
 ## Usage (Cursor)
 

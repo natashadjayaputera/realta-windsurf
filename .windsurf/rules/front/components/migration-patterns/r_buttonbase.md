@@ -25,14 +25,14 @@ None
 ### Inherited Properties
 
 #### From R_ControlBase
-- Properties from `R_BlazorFrontEnd.Controls.Base.R_ControlBase` - See @r_controlbase.mdc
+- Properties from `R_BlazorFrontEnd.Controls.Base.R_ControlBase` - See @r_controlbase.md
   - `Id` - Component identifier (`string`)
   - `Enabled` - Enable/disable state of the control (`bool`, virtual)
   - `TabIndex` - Tab order for keyboard navigation (`int`)
   - `Tooltip` - Tooltip text displayed on hover (`string`)
 
 #### From R_IEnableControl
-- Properties from `R_BlazorFrontEnd.Controls.Interfaces.R_IEnableControl` - See @r_ienablecontrol.mdc
+- Properties from `R_BlazorFrontEnd.Controls.Interfaces.R_IEnableControl` - See @r_ienablecontrol.md
   - `Enabled` - Enable/disable state of the control (`bool`)
 
 ### Direct Methods
@@ -42,5 +42,5 @@ None
 
 ## References
 
-- Base class: `R_BlazorFrontEnd.Controls.Base.R_ControlBase` - See @r_controlbase.mdc
-- Interface: `R_BlazorFrontEnd.Controls.Interfaces.R_IEnableControl` - See @r_ienablecontrol.mdc
+- Base class: `R_BlazorFrontEnd.Controls.Base.R_ControlBase` - See @r_controlbase.md
+- Interface: `R_BlazorFrontEnd.Controls.Interfaces.R_IEnableControl` - See @r_ienablecontrol.md

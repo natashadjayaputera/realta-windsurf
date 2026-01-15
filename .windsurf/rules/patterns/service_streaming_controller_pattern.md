@@ -6,7 +6,7 @@ globs: "*ToCSharpService*"
 
 # Streaming Controller Pattern
 
-- MUST follow @streaming_pattern.mdc
+- MUST follow @streaming_pattern.md
 - MUST use `R_Utility.R_GetStreamingContext` to retrieve parameters 
 - NEVER use parameters in streaming methods
 

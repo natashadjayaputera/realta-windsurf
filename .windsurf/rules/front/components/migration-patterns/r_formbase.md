@@ -60,7 +60,7 @@ protected override async Task R_Init_From_Master(object? poParameter)
 ```
 
 ## Property Mappings
-- **Form Access**: NET4 `Me.R_Access` (string) → NET6 `FormAccess` (R_eFormAccess[]). See `r_access.mdc`
+- **Form Access**: NET4 `Me.R_Access` (string) → NET6 `FormAccess` (R_eFormAccess[]). See `r_access.md`
 - **Form Model**: NET4 `Me._Form_Model` → NET6 `FormModel` (R_eFormModel)
 - **Parameter**: Both pass to `R_Init_From_Master`
 

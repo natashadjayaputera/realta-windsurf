@@ -15,7 +15,7 @@ description: "Migration pattern for R_RadSpinEditor (NET4) → R_NumericTextBox 
 ## NET6 Direct Public API
 
 ### Editor Required Properties
-- `Value` - **EditorRequired** - The bound value property - See @r_inputcomponentbase.mdc
+- `Value` - **EditorRequired** - The bound value property - See @r_inputcomponentbase.md
 
 ### Component-Specific Properties
 - `Arrows` - Show up/down buttons (`bool`)
@@ -28,26 +28,26 @@ description: "Migration pattern for R_RadSpinEditor (NET4) → R_NumericTextBox 
 - `Width` - Component width (`string`)
 
 ### Inherited Properties
-- Properties from `R_InputComponentBase<TValue>` - See @r_inputcomponentbase.mdc
+- Properties from `R_InputComponentBase<TValue>` - See @r_inputcomponentbase.md
   - `ValueChanged` - Event callback when value changes
   - `OnLostFocused` - Event callback when component loses focus
   - `ReadOnly` - Read-only state
-  - `R_ConductorSource` / `R_ConductorGridSource` / `R_Enable*` - See @r_ienablecontrol.mdc
-- Properties from `R_ControlBase` - See @r_controlbase.mdc
+  - `R_ConductorSource` / `R_ConductorGridSource` / `R_Enable*` - See @r_ienablecontrol.md
+- Properties from `R_ControlBase` - See @r_controlbase.md
   - `Enabled` - Enable/disable component
   - `TabIndex` - Tab order
   - `Tooltip` - Tooltip text
 
 ## Parameter mapping (NET4 → NET6)
-- R_RadSpinEditor.Value → R_NumericTextBox.@bind-Value - See @r_inputcomponentbase.mdc
+- R_RadSpinEditor.Value → R_NumericTextBox.@bind-Value - See @r_inputcomponentbase.md
 - R_RadSpinEditor.Maximum → R_NumericTextBox.Max
 - R_RadSpinEditor.Minimum → R_NumericTextBox.Min
 - R_RadSpinEditor.ShowUpDownButtons → R_NumericTextBox.Arrows
 - R_RadSpinEditor.TextAlignment → R_NumericTextBox.TextAlignment (use R_eTextAlignment enum)
 - R_RadSpinEditor.ThousandsSeparator → R_NumericTextBox.ThousandSeparator
-- R_RadSpinEditor.Enabled → R_NumericTextBox.Enabled - See @r_controlbase.mdc
-- R_RadSpinEditor.R_ConductorSource / R_ConductorGridSource / R_Enable* → See @r_ienablecontrol.mdc
-- R_RadSpinEditor.TabIndex → R_NumericTextBox.TabIndex - See @r_controlbase.mdc
+- R_RadSpinEditor.Enabled → R_NumericTextBox.Enabled - See @r_controlbase.md
+- R_RadSpinEditor.R_ConductorSource / R_ConductorGridSource / R_Enable* → See @r_ienablecontrol.md
+- R_RadSpinEditor.TabIndex → R_NumericTextBox.TabIndex - See @r_controlbase.md
 - R_RadSpinEditor.Location/Size → Not applicable; use `Class`/`Style`/CSS
 
 ## Anti-patterns

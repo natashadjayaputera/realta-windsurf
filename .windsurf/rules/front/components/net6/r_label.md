@@ -6,4 +6,4 @@ description: "R_Label component usage rules and API for NET6"
 
 - NET6: `R_BlazorFrontEnd.Controls.R_Label`
 
-See @r_radlabel.mdc for complete usage patterns, API documentation, and migration details.
+See @r_radlabel.md for complete usage patterns, API documentation, and migration details.

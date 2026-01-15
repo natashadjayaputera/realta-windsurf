@@ -18,23 +18,23 @@ description: "Migration pattern for R_RadCheckBox (NET4) → R_CheckBox (NET6)"
 - `Indeterminate` - Three-state checkbox support (`bool`)
 
 ### Inherited Properties
-- Properties from `R_InputComponentBase<bool>` - See @r_inputcomponentbase.mdc
+- Properties from `R_InputComponentBase<bool>` - See @r_inputcomponentbase.md
   - `Value` - **EditorRequired** - The bound boolean value
   - `ValueChanged` - Event callback when value changes
   - `ReadOnly` - Read-only state
-  - `R_ConductorSource` / `R_ConductorGridSource` / `R_Enable*` - See @r_ienablecontrol.mdc
-- Properties from `R_ControlBase` - See @r_controlbase.mdc
+  - `R_ConductorSource` / `R_ConductorGridSource` / `R_Enable*` - See @r_ienablecontrol.md
+- Properties from `R_ControlBase` - See @r_controlbase.md
   - `Enabled` - Enable/disable component
   - `TabIndex` - Tab order
 
 ## Parameter mapping (NET4 → NET6)
-- `R_RadCheckBox.IsChecked` → `R_CheckBox.@bind-Value` - See @r_inputcomponentbase.mdc
-- `R_RadCheckBox.CheckStateChanged` → `R_CheckBox.ValueChanged` - See @r_inputcomponentbase.mdc
-- `R_RadCheckBox.Enabled` → `R_CheckBox.Enabled` - See @r_controlbase.mdc
-- `R_RadCheckBox.ReadOnly` → `R_CheckBox.Enabled="false"` or `R_CheckBox.ReadOnly` - See @r_inputcomponentbase.mdc
-- `R_RadCheckBox.Text` → Use `R_Label` as direct sibling - See @r_radlabel.mdc
-- `R_RadCheckBox.R_ResourceId` → Use `@Localizer["ResourceId"]` in `R_Label` - See @r_radlabel.mdc
-- `R_RadCheckBox.R_ConductorSource` / `R_ConductorGridSource` / `R_Enable*` → See @r_ienablecontrol.mdc
+- `R_RadCheckBox.IsChecked` → `R_CheckBox.@bind-Value` - See @r_inputcomponentbase.md
+- `R_RadCheckBox.CheckStateChanged` → `R_CheckBox.ValueChanged` - See @r_inputcomponentbase.md
+- `R_RadCheckBox.Enabled` → `R_CheckBox.Enabled` - See @r_controlbase.md
+- `R_RadCheckBox.ReadOnly` → `R_CheckBox.Enabled="false"` or `R_CheckBox.ReadOnly` - See @r_inputcomponentbase.md
+- `R_RadCheckBox.Text` → Use `R_Label` as direct sibling - See @r_radlabel.md
+- `R_RadCheckBox.R_ResourceId` → Use `@Localizer["ResourceId"]` in `R_Label` - See @r_radlabel.md
+- `R_RadCheckBox.R_ConductorSource` / `R_ConductorGridSource` / `R_Enable*` → See @r_ienablecontrol.md
 - `R_RadCheckBox.Name` / `Location` / `Size` → Not applicable; use `Class`/`Style`/CSS
 
 ## Examples
@@ -49,7 +49,7 @@ description: "Migration pattern for R_RadCheckBox (NET4) → R_CheckBox (NET6)"
 ```
 
 ## Anti-patterns
-- Using child content for label text (use R_Label as direct sibling instead) - See @r_radlabel.mdc
+- Using child content for label text (use R_Label as direct sibling instead) - See @r_radlabel.md
 - Using IsChecked binding instead of @bind-Value
 - Using Location/Size properties (not applicable in Blazor)
 - Not using @bind-Value for two-way data binding

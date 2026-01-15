@@ -33,16 +33,16 @@ Here’s a **chronologically and logically ordered** version of your instruction
 ---
 
 ## Instructions
-1. Follow the plan generation from @plan_generation.mdc
+1. Follow the plan generation from @plan_generation.md
 2. **Create the `{ProgramName}Common` project**
    * Follow the `.csproj` structure provided below.
-   * Maintain consistent naming according to project conventions (see `@core_variable_naming_rules.mdc`).
+   * Maintain consistent naming according to project conventions (see `@core_variable_naming_rules.md`).
 3. **Extract all methods from the `{ProgramName}Back` project**
    * For each method, create both a **ParameterDTO** and a **ResultDTO**.
    * **Do not use Stream DTOs** under any circumstances.
    * **Do not reuse EntityDTOs** — every method must have its own dedicated DTOs.
 4. **Create Generic Result DTO** 
-   * {ProgramName}ResultDTO — Must inherit `R_APIResultBaseDTO` (see `@common_generic_result_dto_pattern.mdc`).
+   * {ProgramName}ResultDTO — Must inherit `R_APIResultBaseDTO` (see `@common_generic_result_dto_pattern.md`).
 5. **Place all DTOs, enums, and interfaces** inside the `{ProgramName}Common` project.
    * Keep this project strictly for shared contracts and types.
    * **Do not** include or move any business logic here.
@@ -56,9 +56,9 @@ Here’s a **chronologically and logically ordered** version of your instruction
    * Ensure code style and syntax follow C# best practices and project conventions.
 
 ## Context (project files to reference)
-- Automatically fetch all modular `.mdc` rules matching `*ToCSharpCommon*`.
+- Automatically fetch all modular `.md` rules matching `*ToCSharpCommon*`.
 - Start with `*MigrationChecklist*` and then use `*CommonMigrationChecklist*` for project tracking and verification.
-- Follow the plan generation from @plan_generation.mdc
+- Follow the plan generation from @plan_generation.md
 
 ## CSProj (project settings — keep as project template)
 ```xml

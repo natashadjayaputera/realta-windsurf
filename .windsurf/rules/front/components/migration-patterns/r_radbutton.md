@@ -25,15 +25,15 @@ description: "Migration pattern for R_RadButton (NET4) → R_Button (NET6)"
 - `R_ResourceId` - Resource identifier for localization (`string`)
 
 ### Inherited Properties
-- Properties from `R_ButtonBase` - See @r_buttonbase.mdc
+- Properties from `R_ButtonBase` - See @r_buttonbase.md
   - `OnClick` - Event callback when button is clicked
   - `ChildContent` - Child content rendered inside the button (use for button text instead of Text property)
   - `EnableLoaderContainer` - Enable loader container during async operations
-- Properties from `R_ControlBase` - See @r_controlbase.mdc
+- Properties from `R_ControlBase` - See @r_controlbase.md
   - `Enabled` - Enable/disable component
   - `TabIndex` - Tab order
   - `Tooltip` - Tooltip text
-- Properties from `R_BaseComponent` - See @r_basecomponent.mdc
+- Properties from `R_BaseComponent` - See @r_basecomponent.md
   - `Class` - CSS class names
   - `Style` - Inline CSS styles
 
@@ -43,10 +43,10 @@ description: "Migration pattern for R_RadButton (NET4) → R_Button (NET6)"
 ## Parameter mapping (NET4 → NET6)
 - R_RadButton.Click → R_Button.OnClick
 - R_RadButton.Text → R_Button child content (e.g., `@Localizer["btnRefresh"]`)
-- R_RadButton.Enabled → R_Button.Enabled - See @r_controlbase.mdc
-- R_RadButton.Tooltip → R_Button.Tooltip - See @r_controlbase.mdc
+- R_RadButton.Enabled → R_Button.Enabled - See @r_controlbase.md
+- R_RadButton.Tooltip → R_Button.Tooltip - See @r_controlbase.md
 - R_RadButton.Name → Not applicable
-- R_RadButton.TabIndex → R_Button.TabIndex - See @r_controlbase.mdc
+- R_RadButton.TabIndex → R_Button.TabIndex - See @r_controlbase.md
 - R_RadButton.Location/Size → Not applicable; use `Class`/`Style`/CSS
 - R_RadButton.BackColor → R_Button.Style (CSS color)
 - R_RadButton.ForeColor → R_Button.Style (CSS color)
@@ -54,12 +54,12 @@ description: "Migration pattern for R_RadButton (NET4) → R_Button (NET6)"
 - R_RadButton.Image/ImageIndex → R_Button.Icon
 - R_RadButton.Visible → `@if` rendering in .razor (e.g., `@if (isVisible) { <R_Button>...</R_Button> }`)
 - R_RadButton.Dock/Anchor → Not applicable; use CSS layout
-- R_RadButton.Focus() → R_Button.FocusAsync() - See @r_controlbase.mdc
+- R_RadButton.Focus() → R_Button.FocusAsync() - See @r_controlbase.md
 - R_RadButton.PerformClick() → Invoke R_Button.OnClick handler directly
-- R_RadButton.R_ConductorSource / R_ConductorGridSource / R_Enable* → See @r_ienablecontrol.mdc
+- R_RadButton.R_ConductorSource / R_ConductorGridSource / R_Enable* → See @r_ienablecontrol.md
 
 ## Anti-patterns
 - Using R_Button for CRUD operations (use R_AddButton, R_SaveButton, etc.)
 - Setting Text attribute instead of child content (use ChildContent)
 - Using Location/Size/Dock/Anchor properties (not applicable in Blazor)
-- See @r_ienablecontrol.mdc for R_Enable* anti-patterns
+- See @r_ienablecontrol.md for R_Enable* anti-patterns

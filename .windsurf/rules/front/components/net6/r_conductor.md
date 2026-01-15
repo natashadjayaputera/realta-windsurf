@@ -5,7 +5,7 @@ description: "R_Conductor and R_ConductorGrid usage rules for {ProgramName}Front
 
 - NET6: `R_BlazorFrontEnd.Controls.R_Conductor` / `R_BlazorFrontEnd.Controls.R_ConductorGrid`
 
-See @r_conductor.mdc and @r_conductorgrid.mdc for complete usage patterns, API documentation, and migration details.
+See @r_conductor.md and @r_conductorgrid.md for complete usage patterns, API documentation, and migration details.
 
 ## Conductor Source DEPENDS on Control
 - Grid CRUD operations: `R_ConductorGridSource="@_conductorGridRef"`

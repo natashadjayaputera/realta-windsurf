@@ -13,7 +13,7 @@ description: "Migration pattern for R_RadGridView (NET4) → R_Grid (NET6)"
 - Data display with sorting, filtering, and paging capabilities
 - Use with `R_ConductorGrid` for grid-based CRUD pages (GridType.Original with CRUD)
 - Use standalone for inquiry-only grids (no conductor needed)
-- See @r_conductor.mdc for detailed conductor usage rules
+- See @r_conductor.md for detailed conductor usage rules
 
 ## NET6 Direct Public API
 
@@ -52,7 +52,7 @@ None
 
 #### From R_GridBase<TModel>
 - Properties from `R_BlazorFrontEnd.Controls.R_GridBase<TModel>`
-  - `R_GridMode` - Current grid mode (`R_eGridMode`, see @r_egridmode.mdc)
+  - `R_GridMode` - Current grid mode (`R_eGridMode`, see @r_egridmode.md)
   - `R_ServiceGetListRecord` - Event handler for loading list data
   - `R_ServiceGetRecord` - Event handler for loading single record
   - `R_ServiceSave` - Event handler for saving data
@@ -66,18 +66,18 @@ None
   - `R_RefreshGrid` - Method to refresh grid data
 
 #### From R_ControlBase
-- Properties from `R_BlazorFrontEnd.Controls.Base.R_ControlBase` - See @r_controlbase.mdc
+- Properties from `R_BlazorFrontEnd.Controls.Base.R_ControlBase` - See @r_controlbase.md
   - `Enabled` - Enable/disable state of the control (`bool`)
   - `Id` - Component identifier (`string`)
   - `TabIndex` - Tab order for keyboard navigation (`int`)
   - `Tooltip` - Tooltip text displayed on hover (`string`)
 
 #### From R_IEnableControl
-- Properties from `R_BlazorFrontEnd.Controls.Interfaces.R_IEnableControl` - See @r_ienablecontrol.mdc
+- Properties from `R_BlazorFrontEnd.Controls.Interfaces.R_IEnableControl` - See @r_ienablecontrol.md
   - `R_ConductorSource` / `R_ConductorGridSource` / `R_Enable*` - Conductor source and enable control properties
 
 #### From R_BaseComponent
-- Properties from `R_BlazorFrontEnd.Controls.Base.R_BaseComponent` - See @r_basecomponent.mdc
+- Properties from `R_BlazorFrontEnd.Controls.Base.R_BaseComponent` - See @r_basecomponent.md
   - `Class` - CSS class names for styling (`string`)
   - `Style` - Inline CSS styles (`string`)
   - `Tag` - Tag for component identification/tracking (`string`)
@@ -139,8 +139,8 @@ None
 
 ### R_* Specific Properties
 - `R_GridMode` → `R_GridMode` (property on grid reference, accessed via `_gridRef?.R_GridMode`, read-only)
-- `R_GridType` → `R_GridType` (enum: `R_eGridType`, see @r_egridtype.mdc)
-- `R_ConductorGridSource` / `R_ConductorSource` / `R_Enable*` (R_EnableADD, R_EnableEDIT, R_EnableOTHER, R_EnableHASDATA) → See @r_ienablecontrol.mdc
+- `R_GridType` → `R_GridType` (enum: `R_eGridType`, see @r_egridtype.md)
+- `R_ConductorGridSource` / `R_ConductorSource` / `R_Enable*` (R_EnableADD, R_EnableEDIT, R_EnableOTHER, R_EnableHASDATA) → See @r_ienablecontrol.md
 - `R_DataAdded` → Not applicable (handled internally)
 - `R_NewRowText` → Not applicable (handled internally)
 - `R_DisableDeleteConfirmation` → `R_DisableDeleteConfirmation` (bool)
@@ -219,82 +219,82 @@ private R_ConductorGrid? _conductorGridRef;
 
 NET4 gridview columns and their NET6 equivalents:
 
-- `R_GridViewTextBoxColumn` → `R_GridTextColumn` - See @r_gridviewtextboxcolumn.mdc
-- `R_GridViewDecimalColumn` → `R_GridNumericColumn` - See @r_gridviewdecimalcolumn.mdc and @r_gridnumericcolumn.mdc
-- `R_GridViewDateTimeColumn` → `R_GridDatePickerColumn` - See @r_gridviewdatetimecolumn.mdc
-- `R_GridViewCheckBoxColumn` → `R_GridCheckBoxColumn` - See @r_gridviewcheckboxcolumn.mdc
-- `R_GridViewCheckBoxSelectColumn` → `R_GridCheckBoxSelectColumn` - See @r_gridviewcheckboxselectcolumn.mdc
-- `R_GridViewLookUpColumn` → `R_GridLookupColumn` - See @r_gridviewlookupcolumn.mdc
+- `R_GridViewTextBoxColumn` → `R_GridTextColumn` - See @r_gridviewtextboxcolumn.md
+- `R_GridViewDecimalColumn` → `R_GridNumericColumn` - See @r_gridviewdecimalcolumn.md and @r_gridnumericcolumn.md
+- `R_GridViewDateTimeColumn` → `R_GridDatePickerColumn` - See @r_gridviewdatetimecolumn.md
+- `R_GridViewCheckBoxColumn` → `R_GridCheckBoxColumn` - See @r_gridviewcheckboxcolumn.md
+- `R_GridViewCheckBoxSelectColumn` → `R_GridCheckBoxSelectColumn` - See @r_gridviewcheckboxselectcolumn.md
+- `R_GridViewLookUpColumn` → `R_GridLookupColumn` - See @r_gridviewlookupcolumn.md
 
 ## Event handlers
 
 ### R_ServiceGetListRecord
 - NET4: `Private Sub gvMain_R_ServiceGetListRecord(poEntity As Object, ByRef poListEntityResult As Object) Handles gvMain.R_ServiceGetListRecord`
-- NET6: `R_ServiceGetListRecord="Grid_R_ServiceGetListRecord"` - See @r_servicegetlistrecord.mdc
+- NET6: `R_ServiceGetListRecord="Grid_R_ServiceGetListRecord"` - See @r_servicegetlistrecord.md
 
 ### R_ServiceGetRecord
 - NET4: `Private Sub gvMain_R_ServiceGetRecord(poEntity As Object, ByRef poEntityResult As Object) Handles gvMain.R_ServiceGetRecord`
-- NET6: `R_ServiceGetRecord="Grid_R_ServiceGetRecord"` - See @r_servicegetrecord.mdc
+- NET6: `R_ServiceGetRecord="Grid_R_ServiceGetRecord"` - See @r_servicegetrecord.md
 
 ### R_ServiceSave
 - NET4: `Private Sub gvMain_R_ServiceSave(poEntity As Object, peGridMode As R_eGridMode, ByRef poEntityResult As Object) Handles gvMain.R_ServiceSave`
-- NET6: `R_ServiceSave="Grid_R_ServiceSave"` - See @r_servicesave.mdc
+- NET6: `R_ServiceSave="Grid_R_ServiceSave"` - See @r_servicesave.md
 
 ### R_ServiceDelete
 - NET4: `Private Sub gvMain_R_ServiceDelete(poEntity As Object) Handles gvMain.R_ServiceDelete`
-- NET6: `R_ServiceDelete="Grid_R_ServiceDelete"` - See @r_servicedelete.mdc
+- NET6: `R_ServiceDelete="Grid_R_ServiceDelete"` - See @r_servicedelete.md
 
 ### R_Validation
 - NET4: `Private Sub gvMain_R_Validation(poGridCellCollection As GridViewCellInfoCollection, peGridMode As R_eGridMode, ByRef plCancel As Boolean, ByRef pcError As String) Handles gvMain.R_Validation`
-- NET6: `R_Validation="Grid_R_Validation"` - See @r_validation.mdc
+- NET6: `R_Validation="Grid_R_Validation"` - See @r_validation.md
 
 ### R_Saving
 - NET4: `Private Sub gvMain_R_Saving(ByRef poEntity As Object, poGridCellCollection As GridViewCellInfoCollection, peGridMode As R_eGridMode) Handles gvMain.R_Saving`
-- NET6: `R_Saving="Grid_R_Saving"` - See @r_saving.mdc
+- NET6: `R_Saving="Grid_R_Saving"` - See @r_saving.md
 
 ### R_Display
 - NET4: `Private Sub gvMain_R_Display(poEntity As Object, poGridCellCollection As GridViewCellInfoCollection, peGridMode As R_eGridMode) Handles gvMain.R_Display`
-- NET6: `R_Display="Grid_R_Display"` - See @r_display.mdc
+- NET6: `R_Display="Grid_R_Display"` - See @r_display.md
 
 ### R_AfterAdd
 - NET4: `Private Sub gvMain_R_AfterAdd(ByRef poGridCellCollection As GridViewCellInfoCollection) Handles gvMain.R_AfterAdd`
-- NET6: `R_AfterAdd="Grid_R_AfterAdd"` - See @r_afteradd.mdc
+- NET6: `R_AfterAdd="Grid_R_AfterAdd"` - See @r_afteradd.md
 
 ### R_AfterSave
 - NET4: `Private Sub gvMain_R_AfterSave(poEntity As Object, poGridCellCollection As GridViewCellInfoCollection, peGridMode As R_eGridMode) Handles gvMain.R_AfterSave`
-- NET6: `R_AfterSave="Grid_R_AfterSave"` - See @r_aftersave.mdc
+- NET6: `R_AfterSave="Grid_R_AfterSave"` - See @r_aftersave.md
 
 ### R_AfterDelete
 - NET4: `Private Sub gvMain_R_AfterDelete() Handles gvMain.R_AfterDelete`
-- NET6: `R_AfterDelete="Grid_R_AfterDelete"` - See @r_afterdelete.mdc
+- NET6: `R_AfterDelete="Grid_R_AfterDelete"` - See @r_afterdelete.md
 
 ### R_CheckAdd
 - NET4: `Private Sub gvMain_R_CheckAdd(poEntity As Object, ByRef plCancel As Boolean) Handles gvMain.R_CheckAdd`
-- NET6: `R_CheckAdd="Grid_R_CheckAdd"` - See @r_checkadd.mdc
+- NET6: `R_CheckAdd="Grid_R_CheckAdd"` - See @r_checkadd.md
 
 ### R_CheckEdit
 - NET4: `Private Sub gvMain_R_CheckEdit(poEntity As Object, ByRef plCancel As Boolean) Handles gvMain.R_CheckEdit`
-- NET6: `R_CheckEdit="Grid_R_CheckEdit"` - See @r_checkedit.mdc
+- NET6: `R_CheckEdit="Grid_R_CheckEdit"` - See @r_checkedit.md
 
 ### R_CheckDelete
 - NET4: `Private Sub gvMain_R_CheckDelete(poEntity As Object, ByRef plCancel As Boolean) Handles gvMain.R_CheckDelete`
-- NET6: `R_CheckDelete="Grid_R_CheckDelete"` - See @r_checkdelete.mdc
+- NET6: `R_CheckDelete="Grid_R_CheckDelete"` - See @r_checkdelete.md
 
 ### R_BeforeAdd
 - NET4: `Private Sub gvMain_R_BeforeAdd(ByRef poGridCellCollection As GridViewCellInfoCollection) Handles gvMain.R_BeforeAdd`
-- NET6: `R_BeforeAdd="Grid_R_BeforeAdd"` - See @r_beforeadd.mdc
+- NET6: `R_BeforeAdd="Grid_R_BeforeAdd"` - See @r_beforeadd.md
 
 ### R_BeforeEdit
 - NET4: `Private Sub gvMain_R_BeforeEdit(poEntity As Object, ByRef poGridCellCollection As GridViewCellInfoCollection) Handles gvMain.R_BeforeEdit`
-- NET6: `R_BeforeEdit="Grid_R_BeforeEdit"` - See @r_beforeedit.mdc
+- NET6: `R_BeforeEdit="Grid_R_BeforeEdit"` - See @r_beforeedit.md
 
 ### R_BeforeDelete
 - NET4: `Private Sub gvMain_R_BeforeDelete(poEntity As Object) Handles gvMain.R_BeforeDelete`
-- NET6: `R_BeforeDelete="Grid_R_BeforeDelete"` - See @r_beforedelete.mdc
+- NET6: `R_BeforeDelete="Grid_R_BeforeDelete"` - See @r_beforedelete.md
 
 ### R_BeforeCancel
 - NET4: `Private Sub gvMain_R_BeforeCancel(ByRef plCancel As Boolean) Handles gvMain.R_BeforeCancel`
-- NET6: `R_BeforeCancel="Grid_R_BeforeCancel"` - See @r_beforecancel.mdc
+- NET6: `R_BeforeCancel="Grid_R_BeforeCancel"` - See @r_beforecancel.md
 
 ### R_ServiceSaveBatch
 - NET4: `Private Sub gvMain_R_ServiceSaveBatch(poEntity As Object) Handles gvMain.R_ServiceSaveBatch`
@@ -306,7 +306,7 @@ NET4 gridview columns and their NET6 equivalents:
 
 ### R_AfterSaveBatch
 - NET4: `Private Sub gvMain_R_AfterSaveBatch(poEntity As Object) Handles gvMain.R_AfterSaveBatch`
-- NET6: `R_AfterSaveBatch="Grid_R_AfterSaveBatch"` - See @r_aftersavebatch.mdc
+- NET6: `R_AfterSaveBatch="Grid_R_AfterSaveBatch"` - See @r_aftersavebatch.md
 
 ### R_SetAddGridColumn
 - NET4: `Private Sub gvMain_R_SetAddGridColumn(poEntity As Object, ByRef poGridCellCollection As GridViewCellInfoCollection) Handles gvMain.R_SetAddGridColumn`
@@ -318,11 +318,11 @@ NET4 gridview columns and their NET6 equivalents:
 
 ### R_Before_Open_Grid_Lookup
 - NET4: `Private Sub gvMain_R_Before_Open_Grid_Lookup(poEntity As Object, pcColumnName As String, ByRef poLookUpForm As Object) Handles gvMain.R_Before_Open_Grid_Lookup`
-- NET6: `R_Before_Open_Grid_Lookup="Grid_R_Before_Open_Grid_Lookup"` - See @r_before_open_lookupform.mdc
+- NET6: `R_Before_Open_Grid_Lookup="Grid_R_Before_Open_Grid_Lookup"` - See @r_before_open_lookupform.md
 
 ### R_After_Open_Grid_Lookup
 - NET4: `Private Sub gvMain_R_After_Open_Grid_Lookup(poEntity As Object, pcColumnName As String, poSelectedEntity As Object) Handles gvMain.R_After_Open_Grid_Lookup`
-- NET6: `R_After_Open_Grid_Lookup="Grid_R_After_Open_Grid_Lookup"` - See @r_return_lookup.mdc
+- NET6: `R_After_Open_Grid_Lookup="Grid_R_After_Open_Grid_Lookup"` - See @r_return_lookup.md
 
 ### R_GridRowDropping
 - NET4: Not available
@@ -389,24 +389,24 @@ NET4 gridview columns and their NET6 equivalents:
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Enums.R_eGridMode.yml`
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.Enums.R_eGridType.yml`
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Controls.DataControls.R_ConductorGrid.yml`
-- `.windsurf/rules/front/components/r_conductor.mdc`
-- `.windsurf/rules/front/components/net6/r_gridnumericcolumn.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_servicegetlistrecord.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_servicegetrecord.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_servicesave.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_servicedelete.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_validation.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_saving.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_display.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_afteradd.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_aftersave.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_afterdelete.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_refreshgrid.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_gridmode.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_conductorgrid.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_gridviewtextboxcolumn.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_gridviewdecimalcolumn.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_gridviewdatetimecolumn.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_gridviewcheckboxcolumn.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_gridviewcheckboxselectcolumn.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_gridviewlookupcolumn.mdc`
+- `.windsurf/rules/front/components/r_conductor.md`
+- `.windsurf/rules/front/components/net6/r_gridnumericcolumn.md`
+- `.windsurf/rules/front/components/migration-patterns/r_servicegetlistrecord.md`
+- `.windsurf/rules/front/components/migration-patterns/r_servicegetrecord.md`
+- `.windsurf/rules/front/components/migration-patterns/r_servicesave.md`
+- `.windsurf/rules/front/components/migration-patterns/r_servicedelete.md`
+- `.windsurf/rules/front/components/migration-patterns/r_validation.md`
+- `.windsurf/rules/front/components/migration-patterns/r_saving.md`
+- `.windsurf/rules/front/components/migration-patterns/r_display.md`
+- `.windsurf/rules/front/components/migration-patterns/r_afteradd.md`
+- `.windsurf/rules/front/components/migration-patterns/r_aftersave.md`
+- `.windsurf/rules/front/components/migration-patterns/r_afterdelete.md`
+- `.windsurf/rules/front/components/migration-patterns/r_refreshgrid.md`
+- `.windsurf/rules/front/components/migration-patterns/r_gridmode.md`
+- `.windsurf/rules/front/components/migration-patterns/r_conductorgrid.md`
+- `.windsurf/rules/front/components/migration-patterns/r_gridviewtextboxcolumn.md`
+- `.windsurf/rules/front/components/migration-patterns/r_gridviewdecimalcolumn.md`
+- `.windsurf/rules/front/components/migration-patterns/r_gridviewdatetimecolumn.md`
+- `.windsurf/rules/front/components/migration-patterns/r_gridviewcheckboxcolumn.md`
+- `.windsurf/rules/front/components/migration-patterns/r_gridviewcheckboxselectcolumn.md`
+- `.windsurf/rules/front/components/migration-patterns/r_gridviewlookupcolumn.md`

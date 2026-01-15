@@ -15,4 +15,4 @@ description: "Migration pattern for R_CombineData (NET4) → Streaming Pattern (
   - ViewModel assigns to collection; set streaming context via `R_FrontContext.R_SetStreamingContext` as needed.
 
 ## References
-- See `@streaming_pattern.mdc` for complete Controller/Model/ViewModel patterns, context handling, and result assignment.
+- See `@streaming_pattern.md` for complete Controller/Model/ViewModel patterns, context handling, and result assignment.

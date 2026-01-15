@@ -41,7 +41,7 @@ private void Conductor_R_Validation(R_ValidationEventArgs eventArgs)
 
 ## Notes
 - Enum values lost "Mode" suffix in NET6 (AddMode → Add, EditMode → Edit, NormalMode → Normal)
-- Property access pattern covered in @r_mode.mdc
+- Property access pattern covered in @r_mode.md
 
 ## References
 - `.windsurf/docs/net6/RealtaNetCoreLibrary/R_BlazorFrontEnd.Enums.R_eConductorMode.yml`

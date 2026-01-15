@@ -57,5 +57,5 @@ description: "Migration pattern for R_Before_Open_PopUpForm (NET4) → R_Before_
 - NET6: `R_Before_Open_Grid_Popup="@Grid_R_Before_Open_Grid_Popup"` on `R_Grid`
 
 ## References
-- `.windsurf/rules/patterns/front_navigation_patterns.mdc`
-- `.windsurf/rules/front/components/migration-patterns/r_before_open_lookupform.mdc`
+- `.windsurf/rules/patterns/front_navigation_patterns.md`
+- `.windsurf/rules/front/components/migration-patterns/r_before_open_lookupform.md`

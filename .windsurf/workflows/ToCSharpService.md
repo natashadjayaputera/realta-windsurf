@@ -28,7 +28,7 @@ tools:
 Agent purpose: produce  C# (.NET 6) `{ProgramName}Service` project (controllers / API layer) that implements Common interfaces and delegates to Back business logic. 
 
 ## Instructions
-- Follow the plan generation from @plan_generation.mdc
+- Follow the plan generation from @plan_generation.md
 - Implement controller and service layer classes that correspond to Common interfaces.
 - Implement method bodies to call business logic in `{ProgramName}Back`.
 - Use `R_BackGlobalVar` to obtain `IClientHelper` where needed.
@@ -36,7 +36,7 @@ Agent purpose: produce  C# (.NET 6) `{ProgramName}Service` project (controllers 
 - Preserve authorization, routing, and expected signatures. Do not duplicate business logic; call Back.
 
 ## Context (project files to reference)
-- Automatically fetch all modular `.mdc` rules matching `*ToCSharpService*`.
+- Automatically fetch all modular `.md` rules matching `*ToCSharpService*`.
 - Start with `*MigrationChecklist*` and then use `*ServiceMigrationChecklist*` for project tracking and verification.
 
 ## CSProj (Service project template)

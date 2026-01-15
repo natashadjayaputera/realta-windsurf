@@ -5,7 +5,7 @@ description: "R_GroupBox rules"
 
 - NET6: `R_BlazorFrontEnd.Controls.R_GroupBox`
 
-See @r_radgroupbox.mdc for complete usage patterns, API documentation, and migration details.
+See @r_radgroupbox.md for complete usage patterns, API documentation, and migration details.
 
 - Must add `{ProgramName}_r_groupbox` inside `<style>` in `.razor` if R_GroupBox is used.
 - The content of the CSS should be `padding-left: 4px` and `padding-right: 5px`.

@@ -51,7 +51,7 @@ IsSeparatorJournalEnabled = false; // UI won't update
 
 ## Notes
 - Remove component references if only used for Enabled assignment. Keep only for other operations (e.g., `FocusAsync()`).
-- For conductor/grid components, prefer `R_EnableAdd`, `R_EnableEdit`, `R_EnableHasData`, `R_EnableOther` (see @r_ienablecontrol.mdc).
+- For conductor/grid components, prefer `R_EnableAdd`, `R_EnableEdit`, `R_EnableHasData`, `R_EnableOther` (see @r_ienablecontrol.md).
 
 ## Warning
 `Severity	Code	Description	Project	File	Line	Suppression State

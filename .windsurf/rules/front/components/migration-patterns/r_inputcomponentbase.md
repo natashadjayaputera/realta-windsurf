@@ -33,14 +33,14 @@ Properties marked with `[EditorRequired]` must be provided when using the compon
 ### Inherited Properties
 
 #### From R_ControlBase
-- Properties from `R_BlazorFrontEnd.Controls.Base.R_ControlBase` - See @r_controlbase.mdc
+- Properties from `R_BlazorFrontEnd.Controls.Base.R_ControlBase` - See @r_controlbase.md
   - `Id` - Component identifier (`string`)
   - `Enabled` - Enable/disable state of the control (`bool`, virtual)
   - `TabIndex` - Tab order for keyboard navigation (`int`)
   - `Tooltip` - Tooltip text displayed on hover (`string`)
 
 #### From R_IConductorControl
-- Properties from `R_BlazorFrontEnd.Controls.Interfaces.R_IConductorControl` - See @r_ienablecontrol.mdc
+- Properties from `R_BlazorFrontEnd.Controls.Interfaces.R_IConductorControl` - See @r_ienablecontrol.md
   - `R_ConductorSource` - Conductor binding for single-record forms (`R_Conductor?`)
   - `R_ConductorGridSource` - Conductor grid binding for grid-based forms (`R_ConductorGrid?`)
   - `R_EnableAdd` - Enable component in Add mode (`bool`)
@@ -109,5 +109,5 @@ private void OnPropertyChanged(TValue newValue)
 
 ## References
 
-- Base class: `R_BlazorFrontEnd.Controls.Base.R_ControlBase` - See @r_controlbase.mdc
-- Interface: `R_BlazorFrontEnd.Controls.Interfaces.R_IConductorControl` - See @r_ienablecontrol.mdc
+- Base class: `R_BlazorFrontEnd.Controls.Base.R_ControlBase` - See @r_controlbase.md
+- Interface: `R_BlazorFrontEnd.Controls.Interfaces.R_IConductorControl` - See @r_ienablecontrol.md

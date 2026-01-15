@@ -17,12 +17,12 @@ description: "Migration pattern for R_Cancel* (NET4) → R_CancelButton (NET6)"
 - `R_Conductor` - **EditorRequired** - Conductor reference for button state management (`R_Conductor`)
 
 ### Inherited Properties
-- Properties from `R_ButtonBase` - See @r_buttonbase.mdc
-- Properties from `R_ControlBase` - See @r_controlbase.mdc
+- Properties from `R_ButtonBase` - See @r_buttonbase.md
+- Properties from `R_ControlBase` - See @r_controlbase.md
   - `Enabled` - Enable/disable component (managed by conductor)
   - `TabIndex` - Tab order
   - `Tooltip` - Tooltip text
-- Properties from `R_BaseComponent` - See @r_basecomponent.mdc
+- Properties from `R_BaseComponent` - See @r_basecomponent.md
   - `Class` - CSS class names
   - `Style` - Inline CSS styles
   - `AdditionalAttributes` - Additional HTML attributes

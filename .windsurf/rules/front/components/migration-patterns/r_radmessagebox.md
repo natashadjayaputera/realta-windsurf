@@ -24,7 +24,7 @@ description: "Migration pattern for R_RadMessageBox (NET4) → R_MessageBox (NET
 - Required using: `using R_BlazorFrontEnd.Controls.MessageBox;`
 - Injection declaration: `[Inject] private R_MessageBoxService MessageBoxService { get; set; } = default!;`
 - Usage example: `await MessageBoxService.Show("Error", Localizer["PS003"], R_eMessageBoxButtonType.OK);`
-- See @front_dependency_injection.mdc for comprehensive dependency injection patterns
+- See @front_dependency_injection.md for comprehensive dependency injection patterns
 
 ## Value mappings
 

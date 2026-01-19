@@ -1,0 +1,21 @@
+---
+name: batch_back_class_rules
+description: "Rules for batch processing class in Back Project"
+---
+# CLASS RULES
+
+## Implementation Rules
+- `R_IBatchProcessAsync` must be implemented in each batch class in Back Project. See `batch_interface_implementation_pattern.md`
+- Class must initialize `Logger` and `ActivitySource`
+- Batch functions should be contained **only** in the batch class
+- Do not include batch related process in interface (`I{ProgramName}`) and in controller
+
+## Violations
+- ❌ Adding batch functions to Common interfaces
+- ❌ Exposing batch functions through Service layer
+- ❌ Modifying stored procedure names or parameters
+- ❌ Using streaming patterns for batch operations
+- ❌ Implementing batch logic in main business class
+- ❌ Missing Logger or ActivitySource initialization
+- ❌ Adding batch related process in interface
+- ❌ Adding batch related process in controller

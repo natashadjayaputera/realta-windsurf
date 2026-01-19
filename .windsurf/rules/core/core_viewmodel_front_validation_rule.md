@@ -1,6 +1,6 @@
 ---
 trigger: model_decision
-description: "Use in ToCSharpViewModel and ToCSharpFront workflow to ViewModel-Front validation method rules and pattern"
+description: "ViewModel-Front validation method rules and pattern"
 ---
 # Validation Rules
 

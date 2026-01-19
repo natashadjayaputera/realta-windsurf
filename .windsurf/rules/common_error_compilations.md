@@ -1,4 +1,5 @@
 ---
+trigger: model_decision
 description: "Common error compilation reference for {ProgramName} build and validation"
 ---
 

@@ -1,9 +1,0 @@
----
-trigger: model_decision
-description: "Use in ToCSharpViewModel workflow for Define mapping for date fields in ViewModels"
----
-# Date Handling Rule
-
-- Convert string date fields (e.g., `C*_DATE`) into nullable `DateTime` fields (`D*_DATE`)  
-- Use `R_DatePicker` in Razor UI  
-- Date format standard: `'yyyyMMdd'`

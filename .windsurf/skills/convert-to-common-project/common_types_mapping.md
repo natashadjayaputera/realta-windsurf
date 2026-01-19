@@ -1,0 +1,14 @@
+---
+name: common_types_mapping 
+description: "Property Types Mapping in DTO to C# (.NET 6) based on Property Prefix"
+---
+
+| Prefix | Property Type in DTO|
+| --- | --- |
+| C | string |
+| I | integer (NO short, int16, etc)|
+| D | DateTime |
+| N | decimal |
+| L | bool |
+| O | byte[] |
+

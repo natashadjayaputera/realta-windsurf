@@ -3,7 +3,7 @@ name: back_streaming_function_pattern
 description: "Streaming function pattern for Back Project"
 ---
 
-# Streaming Function Pattern (Must Follow Exactly, see @streaming_pattern.mdc)
+# Streaming Function Pattern (Must Follow Exactly, see `streaming_pattern.md`)
 
 ```csharp
 [HttpPost]

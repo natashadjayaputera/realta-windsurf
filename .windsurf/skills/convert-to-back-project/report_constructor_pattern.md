@@ -5,14 +5,21 @@ description: "Defines constructor pattern for report-related / {ProgramName}Repo
 # Constructor Pattern
 
 ```csharp
-private readonly Logger{ProgramName} _logger;
-private readonly ActivitySource _activitySource;
-
-public {ProgramName}ReportCls()
+namespace {ProgramName}Back;
 {
-    _logger = Logger{ProgramName}.R_GetInstanceLogger();
-    _activitySource = {ProgramName}Activity.R_GetInstanceActivitySource();
+    public class {ProgramName}ReportCls 
+    {
+        private readonly Logger{ProgramName} _logger;
+        private readonly ActivitySource _activitySource;
+
+        public {ProgramName}ReportCls()
+        {
+            _logger = Logger{ProgramName}.R_GetInstanceLogger();
+            _activitySource = {ProgramName}Activity.R_GetInstanceActivitySource();
+        }
+    }
 }
+
 ```
 
 Rules:

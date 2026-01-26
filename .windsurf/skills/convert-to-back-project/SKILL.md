@@ -15,7 +15,7 @@ Creating `{ProgramName}Back` project involves 9 phases:
 
 1.1 Gather knowledge about the existing projects.
 1.1.1 Explicitly list all functions from existing VB.NET `{ProgramName}Back` project.
-1.1.2 Categorize each function explicitly into one of the following:
+1.1.2 Read `back_class_seperation.md` and categorize each function explicitly into one of the following:
 * Back class (split into business object overridden functions and non-business object overridden functions, read `core_business_object_overridden_functions.md` for more details)
 * Batch class
 * Report class
@@ -61,24 +61,34 @@ IMPORTANT: Subsequent phases will use the plan generated in this phase.
 5.4 Read `back_class_separation.md` and follow the rules.
 5.5 Read `back_cls_constructor_pattern.md` and implement logger/activity patterns in Back Class constructor.
 5.6 Back Class must not implement `I{ProgramName}` found in `{ProgramName}Common` project.
-5.7 Read `back_r_businessobjectasync_implementation_pattern.md` to convert all business object overridden functions, preserving all business logic, DB and stored procedure names.
+5.7 Read `back_business_object_function_pattern.md` to convert all business object overridden functions, preserving all business logic, DB and stored procedure names.
 5.8 Read `back_streaming_function_pattern.md` to convert streaming functions, preserving all business logic, DB and stored procedure names.
-5.8 Read `back_database_function_pattern.md` and make sure all functions follow the pattern, preserving all business logic, DB and stored procedure names.
-5.9 Read `back_error_retrieval_pattern.md` to and make sure all functions implement error retrieval functions.
-5.10 All functions must be implemented in `async Task`.
+5.9 Read `back_database_function_pattern.md` and make sure all functions follow the pattern, preserving all business logic, DB and stored procedure names.
+5.10 Read `back_error_retrieval_pattern.md` to and make sure all functions implement error retrieval functions.
+5.11 All functions must be implemented in `async Task`.
 
 ### Phase 6: Convert existing VB.NET Batch Functions
 6.1 If there are no batch functions in step 4.3.1, skip this phase.
-6.2 Follow batch project structure rules in `batch_project_structure.md`.
-6.3 Follow batch related DTO rules in `batch_related_dto.md`.
-6.4 Convert batch functions into C# (.NET 6) following `batch_*.md`. Create related DTOs in `{ProgramName}Common` project if required.
+6.2 For step 6.3 to 6.6, you are allowed to modify `{ProgramName}Common` project to follow the rules.
+6.3 Follow batch project structure rules in `batch_project_structure.md`.
+6.4 Follow batch related DTO rules in `batch_related_dto.md`.
+6.5 Convert existing VB.NET Batch Functions found in step 4.3.1 into C# (.NET 6) following `batch_*.md`. Create related DTOs in `{ProgramName}Common` project if required based on  `batch_related_dto.md`.
+6.6 Follow batch rules and violations in `batch_back_class_rules_and_violations.md`.
 
 ### Phase 7: Convert existing VB.NET Report Functions
 7.1 If there are no report functions in step 4.3.1, skip this phase.
-7.2 Follow report project structure rules in `report_project_structure.md`.
-7.3 Follow report related DTO rules in `report_dto_rules.md`.
-7.4 Convert existing VB.NET Report Functions found in step 4.3.1 into C# (.NET 6) following `report_*.md`. Create related DTOs in `{ProgramName}Common` project if required.
-7.5 Follow report rules and violations in `report_rules_and_violations.md`.
+7.2 Add 
+```xml
+<Reference Include="BaseHeaderReportCOMMON">
+    <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\BaseHeaderReportCOMMON.dll</HintPath>
+</Reference>
+```
+to `{ProgramName}Back.csproj` and `{ProgramName}Common.csproj`.
+7.2 For step 7.3 to 7.6, you are allowed to modify `{ProgramName}Common` project to follow the rules.
+7.3 Follow report project structure rules in `report_project_structure.md`.
+7.4 Follow report related DTO rules in `report_dto_rules.md`.
+7.5 Convert existing VB.NET Report Functions (DATA RETRIEVAL FUNCTION ONLY, NO PRINTING FUNCTION) found in step 4.3.1 into C# (.NET 6) following `report_*.md`. Create related DTOs in `{ProgramName}Common` project if required based on `report_dto_rules.md`.
+7.6 Follow report rules and violations in `report_rules_and_violations.md`.
 
 ### Phase 8: Validation (IT'S IMPORTANT THAT YOU READ ALL THE FILE AGAIN)
 8.1 Validate `{ProgramName}Back.csproj` follows `back_csproj.md`.
@@ -88,13 +98,14 @@ IMPORTANT: Subsequent phases will use the plan generated in this phase.
 8.5 Validate all functions follow the logger/activity patterns in Back following `back_cls_constructor_pattern.md` NOT for batch or report related classes.
 8.6 Validate all functions follow the database access patterns in `back_database_function_pattern.md`.
 8.7 Validate all functions follow the error/resource patterns in `back_error_retrieval_pattern.md`.
-8.8 Validate all functions follow the R_BusinessObjectAsync implementation pattern in `back_r_businessobjectasync_implementation_pattern.md`.
+8.8 Validate all functions follow the R_BusinessObjectAsync implementation pattern in `back_business_object_function_pattern.md`.
 8.9 Validate no violations listed in `back_violations.md` exist.
 8.10 Validate all Back Classes use minimal using statements provided in `back_using_statements.md`.
 8.11 Validate all functions does not implement any interface found in `{ProgramName}Common` project.
 8.12 Validate batch and report functions are not implemented in back class, they are implemented in their own class.
 8.13 Validate Back classes do not directly access `R_BackGlobalVar` or `R_Utility.R_GetStreamingContext`. These values must be passed via `{FunctionName}ParameterDTO`.
 8.14 Validate SQL and stored procedure names are preserved (even if buggy).
+8.15 MOST IMPORTANTLY, all created files must have namespace, no global namespace.
 
 ### Phase 9: Build and Bug Fix
 9.1 Build the `{ProgramName}Back` project.

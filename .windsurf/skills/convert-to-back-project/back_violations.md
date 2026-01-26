@@ -14,3 +14,4 @@ description: "Forbidden practices in Back projects"
 - ❌ Missing R_*Async override
 - ❌ Inventing new resource keys
 - ❌ Changing validation error codes from VB.NET
+- ❌ Streaming function returns `IAsyncEnumerable<{FunctionName}ResultDTO>` instead of `Task<List<{FunctionName}ResultDTO>>`

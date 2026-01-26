@@ -10,7 +10,6 @@ private List<{BatchListDTO}> GetBatchListData(List<{BatchListDisplayDTO}> poObje
     return loObject.Select(item => new {BatchListDTO}()
     {
         NO = item.No,
-        FloorId = item.FloorId,
         UnitId = item.UnitId,
         UnitName = item.UnitName,
         UnitType = item.UnitType,
@@ -32,16 +31,18 @@ Use **R_NetCoreUtility** for safe and consistent deserialization of byte objects
 
 ✅ Correct:
 ```csharp
+var loObject = R_NetCoreUtility.R_DeserializeObjectFromByte<List<{BatchListDisplayDTO}>>(poBatchProcessPar.BigObject); 
 var loParam = GetBatchListData(loObject); //This returns List<{BatchListDTO}>
 ````
 
 ❌ Wrong:
 
 ```csharp
+var loObject = R_Utility.Deserialize<List<{BatchListDisplayDTO}>>(poBatchProcessPar.BigObject); // Deprecated
 var loParam = GetBatchListData(loObject); //This returns List<{BatchListDTO}>
 ```
 
 # Checklist
-- [ ] MUST Deserialized BigObject to List<{BatchListDisplayDTO}> as `loObject`. See @batch_deserialization_pattern.mdc
-- [ ] MUST Implement GetBatchListData that returns List<{BatchListDTO}> as `loParam`
+- [ ] MUST Deserialized BigObject to List<{BatchListDisplayDTO}> as `loObject`.
+- [ ] MUST Implement `GetBatchListData(List<{BatchListDisplayDTO}> poObject)` that returns `List<{BatchListDTO}>` as `loParam`
 - [ ] MUST Use the `loParam` for subsequent processes

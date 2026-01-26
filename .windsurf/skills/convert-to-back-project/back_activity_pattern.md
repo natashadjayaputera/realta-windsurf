@@ -7,9 +7,12 @@ description: "Standard activity pattern for Back projects using R_ActivitySource
 ```csharp
 using R_OpenTelemetry;
 
-public class {ProgramName}Activity : R_ActivitySourceBase
+namespace {ProgramName}Back.DTOs
 {
-    // Empty - base class provides all functionality
+    public class {ProgramName}Activity : R_ActivitySourceBase
+    {
+        // Empty - base class provides all functionality
+    }
 }
 ```
 

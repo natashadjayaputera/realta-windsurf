@@ -10,7 +10,7 @@ decription: "Variable naming convention or standard for all code"
 - Private: `private Type _propertyName;`
 - Public: `public Type PropertyName { get; set; }`
 - Local variables: `Type l{typePrefix}VariableName;`
-- Method parameters: `Type p{typePrefix}ParameterName;`
+- Function parameters: `Type p{typePrefix}ParameterName;`
 
 ## Type Prefixes
 | Type | Prefix | Example |

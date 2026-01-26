@@ -11,55 +11,58 @@ Implement both synchronous and asynchronous functions for batch processing.
 ```csharp
 using R_OpenTelemetry;
 
-public class {ProgramName}BatchCls : R_IBatchProcessAsync
+namespace {ProgramName}Back;
 {
-    private readonly ActivitySource _activitySource;
-    private Logger{ProgramName} _logger;
-
-    // MUST FOLLOW THIS EXACTLY FOR CONSTRUCTOR
-    public {ProgramName}BatchCls()
+    public class {ProgramName}BatchCls : R_IBatchProcessAsync
     {
-        _logger = Logger{ProgramName}.R_GetInstanceLogger();
-        _activitySource = R_LibraryActivity.R_GetInstanceActivitySource();
-    }
+        private readonly ActivitySource _activitySource;
+        private Logger{ProgramName} _logger;
 
-    // MUST FOLLOW THIS EXACTLY FOR R_BATCHPROCESSASYNC
-    public async Task R_BatchProcessAsync(R_BatchProcessPar poBatchProcessPar)
-    {
-        using Activity activity = _activitySource.StartActivity("R_BatchProcessAsync");
-        R_Exception loException = new R_Exception();
-        var loDb = new R_Db();
-
-        try
+        // MUST FOLLOW THIS EXACTLY FOR CONSTRUCTOR
+        public {ProgramName}BatchCls()
         {
-            _logger.LogInfo("Test Connection");
-            if (loDb.R_TestConnection() == false)
+            _logger = Logger{ProgramName}.R_GetInstanceLogger();
+            _activitySource = R_LibraryActivity.R_GetInstanceActivitySource();
+        }
+
+        // MUST FOLLOW THIS EXACTLY FOR R_BATCHPROCESSASYNC
+        public async Task R_BatchProcessAsync(R_BatchProcessPar poBatchProcessPar)
+        {
+            using Activity activity = _activitySource.StartActivity("R_BatchProcessAsync");
+            R_Exception loException = new R_Exception();
+            var loDb = new R_Db();
+
+            try
             {
-                loException.Add("01", "Database Connection Failed");
-                goto EndBlock;
+                _logger.LogInfo("Test Connection");
+                if (loDb.R_TestConnection() == false)
+                {
+                    loException.Add("01", "Database Connection Failed");
+                    goto EndBlock;
+                }
+                _logger.LogInfo("Start Batch");
+                _ = _BatchProcessAsync(poBatchProcessPar); // IMPORTANT: Fire and forget
+                _logger.LogInfo("End Batch");
             }
-            _logger.LogInfo("Start Batch");
-            _ = _BatchProcessAsync(poBatchProcessPar); // Fire and forget
-            _logger.LogInfo("End Batch");
-        }
-        catch (Exception ex)
-        {
-            loException.Add(ex);
-        }
-        finally
-        {
-            if (loDb != null)
+            catch (Exception ex)
             {
-                loDb = null;
+                loException.Add(ex);
             }
+            finally
+            {
+                if (loDb != null)
+                {
+                    loDb = null;
+                }
+            }
+
+            loException.ThrowExceptionIfErrors();
         }
 
-        loException.ThrowExceptionIfErrors();
-    }
-
-    private async Task _BatchProcessAsync(R_BatchProcessPar poBatchProcessPar) // Use the same function signature
-    {
-        // Actual implementation logic
+        private async Task _BatchProcessAsync(R_BatchProcessPar poBatchProcessPar) // Use the same function signature
+        {
+            // Actual implementation logic
+        }
     }
 }
 ```

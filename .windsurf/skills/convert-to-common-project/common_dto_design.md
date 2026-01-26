@@ -25,18 +25,21 @@ public string CUSER_ID { get; set; } = string.Empty;
 ### Example: EntityDTO with standard properties
 
 ```csharp
-public class {ProgramName}DTO
+namespace {ProgramName}Common.DTOs;
 {
-    // Required standard properties (ALWAYS include)
-    public string CCOMPANY_ID { get; set; } = string.Empty;
-    public string CLANG_ID { get; set; } = string.Empty;
-    public string CUSER_ID { get; set; } = string.Empty;
-    
-    // Business properties, this is just an example
-    public int ISTART_YEAR { get; set; }
-    public string CJRNGRP_CODE { get; set; } = string.Empty;
-    public string CJRNGRP_ASSET_CODE { get; set; } = string.Empty;
-    // ... other properties
+    public class {ProgramName}DTO
+    {
+        // Required standard properties (ALWAYS include)
+        public string CCOMPANY_ID { get; set; } = string.Empty;
+        public string CLANG_ID { get; set; } = string.Empty;
+        public string CUSER_ID { get; set; } = string.Empty;
+        
+        // Business properties, this is just an example
+        public int ISTART_YEAR { get; set; }
+        public string CJRNGRP_CODE { get; set; } = string.Empty;
+        public string CJRNGRP_ASSET_CODE { get; set; } = string.Empty;
+        // ... other properties
+    }
 }
 ```
 
@@ -52,24 +55,31 @@ public string CUSER_ID { get; set; } = string.Empty;
 ### Example: ParameterDTO with standard properties
 
 ```csharp
-public class {FunctionName}ParameterDTO
+namespace {ProgramName}Common.DTOs;
 {
-    // Required standard properties (ALWAYS include)
-    public string CCOMPANY_ID { get; set; } = string.Empty;
-    public string CLANG_ID { get; set; } = string.Empty;
-    public string CUSER_ID { get; set; } = string.Empty;
-    
-    // Business properties, this is just an example
-    public string CTRANS_DEPT_CODE { get; set; } = string.Empty;
+    public class {FunctionName}ParameterDTO
+    {
+        // Required standard properties (ALWAYS include)
+        public string CCOMPANY_ID { get; set; } = string.Empty;
+        public string CLANG_ID { get; set; } = string.Empty;
+        public string CUSER_ID { get; set; } = string.Empty;
+        
+        // Business properties, this is just an example
+        public string CTRANS_DEPT_CODE { get; set; } = string.Empty;
+    }
 }
+```
 
 ## ResultDTO (for non-business object overridden functions)
 
 ### Example: ResultDTO
 ```csharp
-public class {ProgramName}{FunctionName}ResultDTO
+namespace {ProgramName}Common.DTOs;
 {
-    // all returns value from query or SP
+    public class {ProgramName}{FunctionName}ResultDTO
+    {
+        // all returns value from query or SP
+    }
 }
 ```
 
@@ -78,14 +88,17 @@ public class {ProgramName}{FunctionName}ResultDTO
 ```csharp
 using R_APICommonDTO;
 
-// Generic Result DTO with data (for functions that return data)
-public class {ProgramName}ResultDTO<T> : R_APIResultBaseDTO
+namespace {ProgramName}Common.DTOs;
 {
-    public T? Data { get; set; }
-}
+    // Generic Result DTO with data (for functions that return data)
+    public class {ProgramName}ResultDTO<T> : R_APIResultBaseDTO
+    {
+        public T? Data { get; set; }
+    }
 
-// Generic Result DTO without data (for functions that do not return data)
-public class {ProgramName}ResultDTO : R_APIResultBaseDTO
-{
+    // Generic Result DTO without data (for functions that do not return data)
+    public class {ProgramName}ResultDTO : R_APIResultBaseDTO
+    {
+    }
 }
 ```

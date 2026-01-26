@@ -24,13 +24,13 @@ Creating `{ProgramName}Common` project involves 8 phases:
 
 1.2 Read `common_dto_design.md` and explicitly list all DTOs that will be created based on the result of step 1.1.2.
 1.2.1 For business object overridden functions in Back class, create a single EntityDTO for all functions as `{ProgramName}DTO`.
-1.2.2 For functions that are not business object overridden functions, define `{FunctionName}ParameterDTO` and `{FunctionName}ResultDTO` for each function.
-1.2.3 If a function uses `StreamDTO`, replace it with dedicated `{FunctionName}ParameterDTO` and `{FunctionName}ResultDTO`.
+1.2.2 For functions that are not business object overridden functions, define `{FunctionName}ParameterDTO` and `{FunctionName}ResultDTO` for each function (IMPORTANT!!).
+1.2.3 If a function uses `StreamDTO`, replace it with dedicated `{FunctionName}ParameterDTO` and `{FunctionName}ResultDTO` (IMPORTANT!!).
 
 1.3 Read `common_interface_requirements.md` and explicitly list interfaces based on the result of step 1.1.2, only for Back Classes.
 1.3.1 Each Back Class will have its own interface.
 1.3.2 All functions must be included except business object overridden functions.
-1.3.3 All functions that return List must use streaming pattern.
+1.3.3 All functions that return List must use streaming pattern (IMPORTANT!!).
 
 1.4 Read `common_context_constants.md` and explicitly list all properties that will be included in `ContextConstants.cs` based on the result of created DTOs in step 1.2. Remove any required standard properties (already handled in `R_BackGlobalVar`).
 

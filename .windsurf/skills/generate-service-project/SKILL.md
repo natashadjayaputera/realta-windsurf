@@ -1,6 +1,6 @@
 ---
 name: generate-service-project
-description: A tool to generate .NET6 service projects.
+description: A tool to generate .NET6 service projects. Producing API layer that implements Common interfaces and delegates to Back business logic. 
 ---
 
 # Overview
@@ -9,7 +9,7 @@ Create C# (.NET 6) `{ProgramName}Service` project (controllers / API layer) and 
 # Process
 ## High-Level Workflows
 
-Creating `{ProgramName}Service` project involves 9 phases:
+Creating `{ProgramName}Service` project involves 5 phases:
 
 ### Phase 1: Plan Generation
 
@@ -32,11 +32,13 @@ Creating `{ProgramName}Service` project involves 9 phases:
 * R_Utility.R_GetStreamingContext to be used
 * Back project functions to be called
 
-1.5 Read `plan_generation.md` and generate a plan for the `{ProgramName}Service` project.
-1.6 Add code preview in the plan.
-1.7 Ask for approval of the plan (NON-NEGOTIABLE).
-1.8 If approved, save the plan to `/plan/` folder.
-1.9 If not approved, ask for changes and repeat step 1.5.
+1.5 If there are any report classes found in step 1.1.2, read `report_controller_pattern.md` and create report controller for each report class found in `{ProgramName}Back` project.
+
+1.6 Read `plan_generation.md` and generate a plan for the `{ProgramName}Service` project.
+1.7 Add code preview in the plan.
+1.8 Ask for approval of the plan (NON-NEGOTIABLE).
+1.9 If approved, save the plan to `/plan/` folder.
+1.10 If not approved, ask for changes and repeat step 1.5.
 
 IMPORTANT: Subsequent phases will use the plan generated in this phase.
 
@@ -57,6 +59,7 @@ IMPORTANT: Subsequent phases will use the plan generated in this phase.
 4.3 Validate all controllers use minimal using statements provided in `service_using_statement.md`.
 4.4 Validate all functions follow at least one of the patterns in `service_business_object_function_pattern.md`, `service_streaming_pattern.md`, `service_nonstreaming_withparam_pattern.md`, and `service_nonstreaming_withoutparam_pattern.md`.
 4.5 Validate no violations listed in `service_violation.md` exist.
+4.6 MOST IMPORTANTLY, all created files must have namespace, no global namespace.
 
 ### Phase 5: Build and Bug Fix
 5.1 Build the `{ProgramName}Service` project.

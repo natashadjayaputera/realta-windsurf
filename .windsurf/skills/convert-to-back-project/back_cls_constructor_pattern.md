@@ -5,16 +5,19 @@ description: "Constructor pattern for Back business logic classes"
 # Business Logic Class Constructor Pattern (NOT FOR BATCH OR REPORT RELATED)
 
 ```csharp
-public class {ProgramName}Cls : R_BusinessObjectAsync<{ProgramName}DTO>
+namespace {ProgramName}Back;
 {
-    private readonly {ProgramName}BackResources.Resources_Dummy_Class loRsp = new();
-    private readonly Logger{ProgramName} _logger;
-    private readonly ActivitySource _activitySource;
-
-    public {ProgramName}Cls()
+    public class {ProgramName}Cls : R_BusinessObjectAsync<{ProgramName}DTO>
     {
-        _logger = Logger{ProgramName}.R_GetInstanceLogger();
-        _activitySource = {ProgramName}Activity.R_GetInstanceActivitySource();
+        private readonly {ProgramName}BackResources.Resources_Dummy_Class loRsp = new();
+        private readonly Logger{ProgramName} _logger;
+        private readonly ActivitySource _activitySource;
+
+        public {ProgramName}Cls()
+        {
+            _logger = Logger{ProgramName}.R_GetInstanceLogger();
+            _activitySource = {ProgramName}Activity.R_GetInstanceActivitySource();
+        }
     }
 }
 ```

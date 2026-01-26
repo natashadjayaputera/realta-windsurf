@@ -48,6 +48,7 @@ public async IAsyncEnumerable<{FunctionName}ResultDTO> {FunctionName}()
     {
         var loCls = new {ProgramName}Cls();
         
+        // MUST create parameter DTO and populate properties
         var loParam = new {FunctionName}ParameterDTO
         {
             CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
@@ -77,8 +78,10 @@ public async IAsyncEnumerable<{FunctionName}ResultDTO> {FunctionName}()
 ## Verification Checklist
 
 Before completing any streaming controller function:
+- [ ] MUST create parameter DTO
 - [ ] CCOMPANY_ID from R_BackGlobalVar.COMPANY_ID
 - [ ] CLANG_ID from R_BackGlobalVar.CULTURE  
 - [ ] CUSER_ID from R_BackGlobalVar.USER_ID
 - [ ] All other {FunctionName}ParameterDTO properties from R_Utility.R_GetStreamingContext
 - [ ] Corresponding ContextConstants defined for custom parameters
+- [ ] No parameters in function signature

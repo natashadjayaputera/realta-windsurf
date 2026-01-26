@@ -1,5 +1,5 @@
 ---
-name: batch_back_class_rules
+name: batch_back_class_rules_and_violations
 description: "Rules for batch processing class in Back Project"
 ---
 # CLASS RULES
@@ -11,11 +11,8 @@ description: "Rules for batch processing class in Back Project"
 - Do not include batch related process in interface (`I{ProgramName}`) and in controller
 
 ## Violations
-- ❌ Adding batch functions to Common interfaces
-- ❌ Exposing batch functions through Service layer
-- ❌ Modifying stored procedure names or parameters
-- ❌ Using streaming patterns for batch operations
-- ❌ Implementing batch logic in main business class
-- ❌ Missing Logger or ActivitySource initialization
-- ❌ Adding batch related process in interface
-- ❌ Adding batch related process in controller
+- Adding batch related process in interface
+- Adding batch related process in controller
+- Modifying stored procedure names or parameters
+- Implementing batch logic in main business class
+- Missing Logger or ActivitySource initialization

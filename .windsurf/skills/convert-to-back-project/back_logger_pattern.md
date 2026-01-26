@@ -7,9 +7,12 @@ description: "Standard logger pattern for Back projects using R_NetCoreLoggerBas
 ```csharp
 using R_CommonFrontBackAPI.Log;
 
-public class Logger{ProgramName} : R_NetCoreLoggerBase<Logger{ProgramName}>
+namespace {ProgramName}Back.DTOs    
 {
-    // Empty - base class provides all functionality
+    public class Logger{ProgramName} : R_NetCoreLoggerBase<Logger{ProgramName}>
+    {
+        // Empty - base class provides all functionality
+    }
 }
 ```
 

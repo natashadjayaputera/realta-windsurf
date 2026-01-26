@@ -12,22 +12,27 @@ description: "Ensure all Common layer interfaces inherit R_IServiceCRUDAsyncBase
 ```csharp
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using R_CommonFrontBackAPI;
 using {ProgramName}Common.DTOs;
 
-public interface I{ProgramName} : R_IServiceCRUDAsyncBase<{ProgramName}DTO>
+namespace {ProgramName}Common;
 {
-    // Streaming pattern 
-    IAsyncEnumerable<{FunctionName}ResultDTO>{FunctionName}()
+    public interface I{ProgramName} : R_IServiceCRUDAsyncBase<{ProgramName}DTO>
+    {
+        // Streaming pattern - No Parameter
+        IAsyncEnumerable<{FunctionName}ResultDTO>{FunctionName}() 
 
-    // Non-streaming with parameters
-    Task<{ProgramName}ResultDTO<{FunctionName}ResultDTO>>{FunctionName}({FunctionName}ParameterDTO poParameter)
+        // Non-streaming with parameters
+        Task<{ProgramName}ResultDTO<{FunctionName}ResultDTO>>{FunctionName}({FunctionName}ParameterDTO poParameter)
 
-    // Non-streaming without parameters
-    Task<{ProgramName}ResultDTO<{FunctionName}ResultDTO>>{FunctionName}()
+        // Non-streaming without parameters
+        Task<{ProgramName}ResultDTO<{FunctionName}ResultDTO>>{FunctionName}()
+    }
 }
 ```
 
 **CRITICAL:** 
 * Must use `R_IServiceCRUDAsyncBase`, not `R_IServiceCRUDBase`
 * Functions in interface MUST NOT have `Async` as suffix
+* Validate all streaming functions MUST NOT have parameters

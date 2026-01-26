@@ -6,6 +6,6 @@ description: "Controller inheritance, attributes, and route patterns for Service
 # Controller Requirements
 - Must inherit from:  
   `ControllerBase, I{ProgramName}`
-- All methods decorated with `[HttpPost]`
+- All functions decorated with `[HttpPost]`
 - Route pattern: `[Route("api/[controller]/[action]")]`
 - Logger and Activity must be initialized in constructor

@@ -13,9 +13,12 @@ description: "Enforce context constant rules in Common layer"
 # Context Constants Pattern
 
 ```csharp
-public static class ContextConstants
+namespace {ProgramName}Common;
 {
-    public const string CSOFT_PERIOD = "{ProgramName}_CSOFT_PERIOD";
-    public const string CDEPT_CODE = "{ProgramName}_CDEPT_CODE";
+    public static class ContextConstants
+    {
+        public const string CSOFT_PERIOD = "{ProgramName}_CSOFT_PERIOD";
+        public const string CDEPT_CODE = "{ProgramName}_CDEPT_CODE";
+    }
 }
 ```

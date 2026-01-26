@@ -8,7 +8,7 @@ description: "Defines GetReportData() implementation rules for report-related / 
 - Does not inherit `R_BusinessObjectAsync`
 
 ## Function Naming
-- Function: `GetReportData()` (**non-async**)
+- Function: `GetReportData()` (NON-ASYNC)
 - Parameter DTO: `{ProgramName}GetReportDataParameterDTO`
 - Result DTO: `{ProgramName}GetReportDataResultDTO`
 
@@ -61,3 +61,7 @@ public List<{ProgramName}GetReportDataResultDTO> GetReportData({ProgramName}GetR
     return loRtn;
 }
 ```
+
+Critical:
+- All function must be synchronous (no async/await)
+- All database access must be synchronous (no async/await)

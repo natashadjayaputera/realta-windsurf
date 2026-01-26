@@ -1,5 +1,5 @@
 ---
-name: report_dto_rules
+trigger: model_decision
 description: "Defines parameter and result DTO rules for for report-related / {ProgramName}ReportCls in Common Project"
 ---
 # DTO Rules for Report Operations

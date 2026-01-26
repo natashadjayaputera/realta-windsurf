@@ -14,15 +14,17 @@ This document defines the streaming pattern flow across all layers. Data flows f
 ## 1. ViewModel Layer (Model Project for ViewModel)
 
 ### Rules
-- Use `R_FrontContext.R_SetStreamingContext(ContextConstants.Key, value)` for non-standard properties
-- Do not use `R_FrontContext.R_SetStreamingContext(ContextConstants.Key, value)` for standard properties
+- Use `R_FrontContext.R_SetStreamingContext(ContextConstants.Key, value)` to set streaming context
+- Set streaming context per property
 - Call model's `{FunctionName}Async()` function, not `{FunctionName}()`.
  
 ### ✅ Correct Implementation
 
 ```csharp
 private {ProgramName}Model _model = new {ProgramName}Model();
-public ObservableCollection<{FunctionName}ResultDTO> StreamingList = new();
+
+public ObservableCollection<{FunctionName}ResultDTO> {FunctionName}List { get; set; } = new ObservableCollection<{FunctionName}ResultDTO>();
+public {FunctionName}ResultDTO? {FunctionName}Record { get; set; }
 
 public async Task {FunctionName}Async({FunctionName}ParameterDTO poParameter)
 {
@@ -31,8 +33,11 @@ public async Task {FunctionName}Async({FunctionName}ParameterDTO poParameter)
     {
         R_FrontContext.R_SetStreamingContext(ContextConstants.CDEPT_CODE, poParameter.CDEPT_CODE);
         R_FrontContext.R_SetStreamingContext(ContextConstants.CTRANSACTION_CODE, poParameter.CTRANSACTION_CODE);
+        
         var loResult = await _model.{FunctionName}Async();
-        StreamingList = new ObservableCollection<{FunctionName}ResultDTO>(loResult.Data ?? new());
+        
+        {FunctionName}List = new ObservableCollection<{FunctionName}ResultDTO>(loResult.Data ?? new());
+        {FunctionName}Record = {FunctionName}List.FirstOrDefault();
     }
     catch (Exception ex)
     {

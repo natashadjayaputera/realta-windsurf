@@ -5,12 +5,12 @@ description: "Batch related DTOs needed for batch data display in .razor.cs and 
 
 # DTO that must be created
 MUST CREATE THIS DTO:
-- {ProgramName}BatchPageParameterDTO -> OPTIONAL: ParameterDTO for Batch Page passed in `R_Init_From_Master`.
-- {BatchListDTO} -> Main DTO used in `_BatchProcessAsync` in `{ProgramName}BatchCls`
-- {BatchListDisplayDTO} -> DTO used to show data in R_Grid Component in `*.razor`
-- {BatchListExcelDTO} -> DTO to get excel rows data, property names are based on Excel File Headers, usually in PascalCase. MUST have "Notes" (string) property
-- R_SaveBatchUserParameterDTO -> DTO containing ALL custom user parameters needed by `_BatchProcessAsync` (excluding CCOMPANY_ID and CUSER_ID)
-- R_SaveBatchParameterDTO -> DTO used as parameter of `R_SaveBatchAsync` in BatchViewModel
+- `{ProgramName}BatchPageParameterDTO` -> OPTIONAL: ParameterDTO for Batch Page passed in `R_Init_From_Master`.
+- `{BatchListDTO}` -> Main DTO used in `_BatchProcessAsync` in `{ProgramName}BatchCls`
+- `{BatchListDisplayDTO}` -> DTO used to show data in R_Grid Component in `*.razor`
+- `{BatchListExcelDTO}` -> DTO to get excel rows data, property names are based on Excel File Headers, usually in PascalCase. MUST have "Notes" (string) property
+- `R_SaveBatchUserParameterDTO` -> DTO containing ALL custom user parameters needed by `_BatchProcessAsync` (excluding CCOMPANY_ID and CUSER_ID)
+- `R_SaveBatchParameterDTO` -> DTO used as parameter of `R_SaveBatchAsync` in BatchViewModel
 
 ## R_SaveBatchParameterDTO Structure
 ```csharp

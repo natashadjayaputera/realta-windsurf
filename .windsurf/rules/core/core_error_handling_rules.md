@@ -13,7 +13,7 @@ trigger: always_on
 - Log before rethrow if in backend
 
 ```csharp
-public async Task MethodName()
+public async Task {FunctionName}()
 {
     var loEx = new R_Exception();
     try

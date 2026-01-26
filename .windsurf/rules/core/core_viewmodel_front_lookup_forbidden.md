@@ -1,5 +1,6 @@
 ---
-trigger: model_decision
+trigger: always_on
+name: core_viewmodel_front_lookup_forbidden
 description: "Prohibit lookup and description logic in ViewModels"
 ---
 # Lookup Rule

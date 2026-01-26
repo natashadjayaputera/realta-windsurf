@@ -1,5 +1,6 @@
 ---
-trigger: model_decision
+trigger: always_on
+name: batch_project_structure
 description: "Project structure for batch or bulk related files"
 ---
 DO NOT CREATE A NEW PROJECT. Placed in the same Back, Common, Model and Front project as the main project of 

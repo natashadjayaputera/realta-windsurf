@@ -1,5 +1,6 @@
 ---
 trigger: always_on
+name: plan_generation
 ---
 
 MANDATORY: Must add a checklist in plan generation to save accepted plan to the `/plan/` directory.

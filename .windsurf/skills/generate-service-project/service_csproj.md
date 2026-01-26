@@ -37,6 +37,16 @@ description: "Standard .csproj structure for Service Projects"
     <Reference Include="R_OpenTelemetry">
       <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_OpenTelemetry.dll</HintPath>
     </Reference>
+    <!-- IMPORTANT: Uncomment these references if there is any Report Controller -->
+    <!-- <Reference Include="R_ReportFastReportBack">
+      <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ReportFastReportBack.dll</HintPath>
+    </Reference>
+    <Reference Include="R_Cache">
+      <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_Cache.dll</HintPath>
+    </Reference>
+    <Reference Include="BaseHeaderReportCOMMON">
+    <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\BaseHeaderReportCOMMON.dll</HintPath> -->
+</Reference>
   </ItemGroup>
 
   <ItemGroup>

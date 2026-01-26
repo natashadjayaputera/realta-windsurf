@@ -21,5 +21,9 @@ description: "Standard .csproj structure for Common projects"
   <Reference Include="R_CommonFrontBackAPI">
     <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
   </Reference>
+  <!-- IMPORTANT: Uncomment these references if there is any Report DTO -->
+  <!-- <Reference Include="BaseHeaderReportCOMMON">
+    <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\BaseHeaderReportCOMMON.dll</HintPath>
+  </Reference> -->
 </ItemGroup>
 ```

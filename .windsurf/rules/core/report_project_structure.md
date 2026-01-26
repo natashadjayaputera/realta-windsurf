@@ -1,5 +1,6 @@
 ---
-trigger: model_decision
+trigger: always_on
+name: report_project_structure
 description: "Project structure for Report or Print related files"
 ---
 DO NOT CREATE A NEW PROJECT. Placed in the same Back, Common, Service and Front project as the main project of 

@@ -60,6 +60,10 @@ namespace {ProgramName}Service;
         // Event handler: Provide report data and data source name
         private void _ReportCls_R_GetMainDataAndName(ref ArrayList poData, ref string pcDataSourceName)
         {
+            if (_Parameter == null)
+            {
+                throw new ArgumentNullException(nameof(_Parameter));
+            }
             poData.Add(GenerateData(_Parameter));
             pcDataSourceName = "ResponseDataModel";
         }
@@ -85,6 +89,10 @@ namespace {ProgramName}Service;
             R_DownloadFileResultDTO loRtn = null;
             try
             {
+                if (poParam == null)
+                {
+                    throw new ArgumentNullException(nameof(poParam));
+                }
                 loRtn = new R_DownloadFileResultDTO();
                 loCache = new {ProgramName}ReportLogKeyDTO
                 {
@@ -127,6 +135,11 @@ namespace {ProgramName}Service;
                 R_ReportGlobalVar.R_SetFromReportDTO(loResultGUID.poGlobalVar);
 
                 _Parameter = loResultGUID.poParam;
+
+                if (_Parameter == null)
+                {
+                    throw new ArgumentNullException(nameof(_Parameter));
+                }
 
                 // Generate report based on print mode
                 if (_Parameter.LIS_PRINT)
@@ -195,11 +208,14 @@ using R_BackEnd;
 using R_CommonFrontBackAPI.Log;
 using {ProgramName}Common.DTOs;
 
-public class {ProgramName}ReportLogKeyDTO
+namespace {ProgramName}Service.DTOs
 {
-    public {ProgramName}ReportParam poParam { get; set; } = new();
-    public R_NetCoreLogKeyDTO poLogKey { get; set; } = new();
-    public R_ReportGlobalDTO poGlobalVar { get; set; } = new();
+    public class {ProgramName}ReportLogKeyDTO
+    {
+        public {ProgramName}ReportParam poParam { get; set; } = new();
+        public R_NetCoreLogKeyDTO poLogKey { get; set; } = new();
+        public R_ReportGlobalDTO poGlobalVar { get; set; } = new();
+    }
 }
 ```
 
@@ -208,10 +224,13 @@ public class {ProgramName}ReportLogKeyDTO
 using BaseHeaderReportCOMMON;
 using System.Collections.Generic;
 
-public class {ProgramName}ReportWithBaseHeaderDTO : BaseHeaderResult
+namespace {ProgramName}Common.DTOs
 {
-    public List<GetReportDataResultDTO> Data { get; set; } = new();
-}
+    public class {ProgramName}ReportWithBaseHeaderDTO : BaseHeaderResult
+    {
+        public List<GetReportDataResultDTO> Data { get; set; } = new();
+    }
+};
 ```
 
 ## Key Requirements

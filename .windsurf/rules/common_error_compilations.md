@@ -1,5 +1,6 @@
 ---
-trigger: model_decision
+trigger: always_on
+name: common_error_compilations
 description: "Common error compilation reference for {ProgramName} build and validation"
 ---
 
@@ -9,7 +10,7 @@ description: "Common error compilation reference for {ProgramName} build and val
 |---|---------------------------|------------------|--------------------|
 | **1** | **CS0246:** The type or namespace name 'X' could not be found | Missing `using` statements to access classes from other projects | **Add missing using statements:**<br>```csharp<br>using R_BackEnd;            // For R_BackGlobalVar<br>using R_CommonFrontBackAPI; // For base classes<br>``` |
 | **2** | **CS0103:** The name 'R_BackGlobalVar' does not exist in the current context | `R_BackGlobalVar` used in Service layer without reference | Add `R_APIBackEnd` reference in Service project:<br>```xml<br><Reference Include="R_APIBackEnd"><br>  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath><br></Reference><br>``` |
-| **3** | **CS0535:** Controller does not implement interface member | Controller missing `R_ServiceGetRecord`, `R_ServiceSave`, or `R_ServiceDelete` methods | ✅ **Correct Implementation:**<br>```csharp<br>[HttpPost]<br>public async Task<R_ServiceGetRecordResultDTO<DTO>> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<DTO> poParameter)<br>{<br>    var loCls = new BusinessCls();<br>    loRtn.data = await loCls.R_GetRecordAsync(poParameter.Entity);<br>    return loRtn;<br>}<br>```<br>❌ **Wrong:** Directly calling business logic methods (`R_GetRecordAsync`, etc.) |
+| **3** | **CS0535:** Controller does not implement interface member | Controller missing `R_ServiceGetRecord`, `R_ServiceSave`, or `R_ServiceDelete` functions | ✅ **Correct Implementation:**<br>```csharp<br>[HttpPost]<br>public async Task<R_ServiceGetRecordResultDTO<DTO>> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<DTO> poParameter)<br>{<br>    var loCls = new BusinessCls();<br>    loRtn.data = await loCls.R_GetRecordAsync(poParameter.Entity);<br>    return loRtn;<br>}<br>```<br>❌ **Wrong:** Directly calling business logic functions (`R_GetRecordAsync`, etc.) |
 | **4** | **CS0246:** The type or namespace name 'R_ContextFrontEnd' could not be found | Missing DLL reference when using streaming context | Add to Model `.csproj`:<br>```xml<br><Reference Include="R_ContextFrontEnd"><br>  <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_ContextFrontEnd.dll</HintPath><br></Reference><br>``` |
 | **5** | **CS0103:** The name 'R_FrontUtility' does not exist in the current context | Missing `using` statement | Add to ViewModel:<br>```csharp<br>using R_BlazorFrontEnd.Helpers;<br>``` |
 | **6** | **CS0019:** Operator '??' cannot be applied to operands of mismatched DTO list types | `ObservableCollection` type mismatch with Model’s ResultDTO | Use the correct DTO type:<br>✅ ```csharp<br>public ObservableCollection<FAM0010002GetJournalGroupAssetCodeListResultDTO> JournalGroupList { get; set; }<br>```<br>❌ ```csharp<br>public ObservableCollection<FAM0010002DTO> JournalGroupList { get; set; }<br>``` |

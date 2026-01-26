@@ -1,5 +1,6 @@
 ---
-trigger: model_decision
+trigger: always_on
+name: core_business_object_overridden_functions
 description: "List of business object overridden functions"
 ---
 # Business Object Overridden Functions

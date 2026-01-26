@@ -1,5 +1,6 @@
 ---
-trigger: model_decision
+trigger: always_on
+name: core_viewmodel_front_validation_rule
 description: "ViewModel-Front validation function rules and pattern"
 ---
 # Validation Rules

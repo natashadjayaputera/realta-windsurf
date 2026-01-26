@@ -1,5 +1,6 @@
 ---
-trigger: model_decision
+trigger: always_on
+name: report_dto_rules
 description: "Defines parameter and result DTO rules for for report-related / {ProgramName}ReportCls in Common Project"
 ---
 # DTO Rules for Report Operations

@@ -1,5 +1,6 @@
 ---
 trigger: always_on
+name: core_error_handling_rules
 ---
 
 # ERROR HANDLING

@@ -1,5 +1,6 @@
 ---
 trigger: always_on
+name: core_project_structure_rules
 ---
 
 # RULE 3: PROJECT STRUCTURE

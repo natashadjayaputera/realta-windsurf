@@ -6,18 +6,22 @@ description: "Controller constructor pattern with logger and activity initializa
 # Controller Constructor Pattern
 
 ```csharp
-[ApiController]
-[Route("api/[controller]/[action]")]
-public class {ProgramName}Controller : ControllerBase, I{ProgramName}
+// MUST FOLLOW EXACTLY
+namespace {ProgramName}Service
 {
-    private readonly Logger{ProgramName} _logger;
-    private readonly ActivitySource _activitySource;
-
-    public {ProgramName}Controller(ILogger<{ProgramName}Controller> logger)
+    [ApiController]
+    [Route("api/[controller]/[action]")]
+    public class {ProgramName}Controller : ControllerBase, I{ProgramName}
     {
-        Logger{ProgramName}.R_InitializeLogger(logger);
-        _logger = Logger{ProgramName}.R_GetInstanceLogger();
-        _activitySource = {ProgramName}Activity.R_InitializeAndGetActivitySource(nameof({ProgramName}Controller));
+        private readonly Logger{ProgramName} _logger;
+        private readonly ActivitySource _activitySource;
+
+        public {ProgramName}Controller(ILogger<{ProgramName}Controller> logger)
+        {
+            Logger{ProgramName}.R_InitializeLogger(logger);
+            _logger = Logger{ProgramName}.R_GetInstanceLogger();
+            _activitySource = {ProgramName}Activity.R_InitializeAndGetActivitySource(nameof({ProgramName}Controller));
+        }
     }
 }
 ```

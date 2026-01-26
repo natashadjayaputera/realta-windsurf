@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
+using R_CommonFrontBackAPI.Log;
 using {ProgramName}Common;
 using {ProgramName}Common.DTOs;
 using {ProgramName}Back;

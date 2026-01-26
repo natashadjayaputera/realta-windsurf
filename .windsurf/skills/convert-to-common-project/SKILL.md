@@ -15,27 +15,24 @@ Creating `{ProgramName}Common` project involves 8 phases:
 
 ### Phase 1: Plan Generation
 
-1.1 Gather knowledge about the existing projects.
-1.1.1 Explicitly list all functions from existing VB.NET `{ProgramName}Back` project.
-1.1.2 Categorize each function explicitly into one of the following:
-* Back class (split into business object overridden functions and non-business object overridden functions, read `core_business_object_overridden_functions.md` for more details)
-* Batch class
-* Report class
+1.1 Read project structure in `{ROOT}/project-structure/{ProgramName}_project_structure.md`, THIS IS THE ABSOLUTE TRUTH.
 
-1.2 Read `common_dto_design.md` and explicitly list all DTOs that will be created based on the result of step 1.1.2.
-1.2.1 For business object overridden functions in Back class, create a single EntityDTO for all functions as `{ProgramName}DTO`.
-1.2.2 For functions that are not business object overridden functions, define `{FunctionName}ParameterDTO` and `{FunctionName}ResultDTO` for each function (IMPORTANT!!).
-1.2.3 If a function uses `StreamDTO`, replace it with dedicated `{FunctionName}ParameterDTO` and `{FunctionName}ResultDTO` (IMPORTANT!!).
+1.2 Read rules:
+- `core_business_object_overridden_functions.md`
+- `common_dto_design.md`
+- `common_interface_requirements.md`
+- `common_context_constants.md`
 
-1.3 Read `common_interface_requirements.md` and explicitly list interfaces based on the result of step 1.1.2, only for Back Classes.
-1.3.1 Each Back Class will have its own interface.
-1.3.2 All functions must be included except business object overridden functions.
-1.3.3 All functions that return List must use streaming pattern (IMPORTANT!!).
+1.3 Read `common_interface_requirements.md` and explicitly list interfaces based on the project structure in step 1.1.
+1.3.1 Each Main Back Class will have its own interface.
+1.3.2 No Batch or Report related interfaces.
+1.3.3 All functions must be included except business object overridden functions, batch and report functions.
+1.3.4 All functions that return List must use streaming pattern (IMPORTANT!!).
 
-1.4 Read `common_context_constants.md` and explicitly list all properties that will be included in `ContextConstants.cs` based on the result of created DTOs in step 1.2. Remove any required standard properties (already handled in `R_BackGlobalVar`).
+1.4 Read `common_context_constants.md` and explicitly list all properties that will be included in `ContextConstants.cs` based on the project structure in step 1.1. Remove any required standard properties (already handled in `R_BackGlobalVar`).
 
 1.5 Read `plan_generation.md` and generate a plan for the `{ProgramName}Common` project.
-1.6 Add code preview in the plan.
+1.6 Add code preview in the plan for every pattern used.
 1.7 Ask for approval of the plan (NON-NEGOTIABLE).
 1.8 If approved, save the plan to `/plan/` folder.
 1.9 If not approved, ask for changes and repeat step 1.5.

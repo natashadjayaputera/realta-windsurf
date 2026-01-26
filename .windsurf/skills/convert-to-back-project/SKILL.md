@@ -14,7 +14,7 @@ Creating `{ProgramName}Back` project involves 9 phases:
 ### Phase 1: Plan Generation
 
 1.1 Gather knowledge about the existing projects.
-1.1.1 Explicitly list all functions from existing VB.NET `{ProgramName}Back` project.
+1.1.1 Read project structure in `{ROOT}/project-structure/{ProgramName}_project_structure.md`, THIS IS THE ABSOLUTE TRUTH.
 1.1.2 Read `back_class_seperation.md` and categorize each function explicitly into one of the following:
 * Back class (split into business object overridden functions and non-business object overridden functions, read `core_business_object_overridden_functions.md` for more details)
 * Batch class
@@ -34,7 +34,7 @@ Creating `{ProgramName}Back` project involves 9 phases:
 * Code preview
 
 1.5 Read `plan_generation.md` and generate a plan for the `{ProgramName}Back` project.
-1.6 Add code preview in the plan.
+1.6 Add code preview in the plan for every pattern used.
 1.7 Ask for approval of the plan (NON-NEGOTIABLE).
 1.8 If approved, save the plan to `/plan/` folder.
 1.9 If not approved, ask for changes and repeat step 1.5.
@@ -43,9 +43,9 @@ IMPORTANT: Subsequent phases will use the plan generated in this phase.
 
 ### Phase 2: Create `{ProgramName}BackResources` Project 
 2.1 Read `back_resources_csproj.md` as a template and create `{ProgramName}BackResources.csproj`.
-2.2 Create designer class for resource files.
-2.3 Read `back_resource_dummy_class_pattern.md` and create resource dummy class.
-2.4 Create resource `{ProgramName}BackResources_msgrsc.resx` and `{ProgramName}BackResources_msgrsc.id.resx` files (English and Indonesian).
+2.2 Read `back_resource_dummy_class_pattern.md` and create resource dummy class.
+2.3 Create resource `{ProgramName}BackResources_msgrsc.resx` and `{ProgramName}BackResources_msgrsc.id.resx` files (English and Indonesian).
+2.4 Create `{ProgramName}BackResources_msgrsc.Designer.cs` file.
 
 ### Phase 3: Create `{ProgramName}Back` Project
 3.1 Read `back_csproj.md` as a template and create `{ProgramName}Back.csproj`.
@@ -59,7 +59,7 @@ IMPORTANT: Subsequent phases will use the plan generated in this phase.
 5.2 Create classes (Back Class only) based on the plan. Batch and report classes are excluded and handled in later phases.
 5.3 Add minimal using statements provided in `back_using_statements.md`.
 5.4 Read `back_class_separation.md` and follow the rules.
-5.5 Read `back_cls_constructor_pattern.md` and implement logger/activity patterns in Back Class constructor.
+5.5 Read `back_cls_constructor_pattern.md` and create constructor for Back Class following the pattern.
 5.6 Back Class must not implement `I{ProgramName}` found in `{ProgramName}Common` project.
 5.7 Read `back_business_object_function_pattern.md` to convert all business object overridden functions, preserving all business logic, DB and stored procedure names.
 5.8 Read `back_streaming_function_pattern.md` to convert streaming functions, preserving all business logic, DB and stored procedure names.
@@ -77,13 +77,6 @@ IMPORTANT: Subsequent phases will use the plan generated in this phase.
 
 ### Phase 7: Convert existing VB.NET Report Functions
 7.1 If there are no report functions in step 4.3.1, skip this phase.
-7.2 Add 
-```xml
-<Reference Include="BaseHeaderReportCOMMON">
-    <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\BaseHeaderReportCOMMON.dll</HintPath>
-</Reference>
-```
-to `{ProgramName}Back.csproj` and `{ProgramName}Common.csproj`.
 7.2 For step 7.3 to 7.6, you are allowed to modify `{ProgramName}Common` project to follow the rules.
 7.3 Follow report project structure rules in `report_project_structure.md`.
 7.4 Follow report related DTO rules in `report_dto_rules.md`.

@@ -22,7 +22,7 @@ Creating `{ProgramName}Model` project involves 5 phases:
 1.2.2 Do NOT implement business object functions, it is already implemented by `R_BusinessObjectServiceClientBase<{ProgramName}DTO>`.
 
 1.3 Read `plan_generation.md` and generate a plan for the `{ProgramName}Model` project.
-1.4 Add code preview in the plan.
+1.4 Add code preview in the plan for every pattern used.
 1.5 Ask for approval of the plan (NON-NEGOTIABLE).
 1.6 If approved, save the plan to `/plan/` folder.
 1.7 If not approved, ask for changes and repeat step 1.5.

@@ -1,5 +1,6 @@
 ---
-trigger: model_decision
+trigger: always_on
+name: core_viewmodel_front_state_separation
 description: "Enforce UI vs Data state separation between Razor.cs and ViewModel"
 ---
 # Front & ViewModel Data State Separation

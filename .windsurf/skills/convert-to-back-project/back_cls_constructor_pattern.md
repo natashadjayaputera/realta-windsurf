@@ -5,6 +5,7 @@ description: "Constructor pattern for Back business logic classes"
 # Business Logic Class Constructor Pattern (NOT FOR BATCH OR REPORT RELATED)
 
 ```csharp
+// MUST FOLLOW EXACTLY
 namespace {ProgramName}Back;
 {
     public class {ProgramName}Cls : R_BusinessObjectAsync<{ProgramName}DTO>
@@ -23,7 +24,6 @@ namespace {ProgramName}Back;
 ```
 
 Rules:
-
 * Always instantiate logger and activity source
 * Resource objects (loRsp) per resource file used
 * Base class must always be `R_BusinessObjectAsync<DTO>`

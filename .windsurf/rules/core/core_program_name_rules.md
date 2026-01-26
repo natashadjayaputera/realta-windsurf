@@ -1,5 +1,6 @@
 ---
 trigger: always_on
+name: core_program_name_rules
 ---
 # Program Name Format
 `AABXXXYY`

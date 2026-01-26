@@ -1,5 +1,6 @@
 ---
 trigger: always_on
+name: core_business_logic_rules
 ---
 
 # BUSINESS LOGIC PRESERVATION

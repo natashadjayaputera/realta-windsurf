@@ -1,5 +1,6 @@
 ---
 trigger: always_on
+name: core_variable_naming_rules
 decription: "Variable naming convention or standard for all code"
 ---
 

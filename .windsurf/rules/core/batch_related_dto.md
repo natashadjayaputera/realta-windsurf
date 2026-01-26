@@ -1,5 +1,6 @@
 ---
-trigger: model_decision
+trigger: always_on
+name: batch_related_dto
 description: "Batch related DTOs needed for batch data display in .razor.cs and .razor, batch data manipulation in BatchViewModel, and batch data processing in Back Project"
 ---
 

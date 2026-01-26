@@ -1,5 +1,6 @@
 ---
-trigger: model_decision
+trigger: always_on
+name: streaming_pattern
 description: "Streaming pattern in ViewModel, Model, Service and Back Layers (MUST FOLLOW EXACTLY)"
 ---
 

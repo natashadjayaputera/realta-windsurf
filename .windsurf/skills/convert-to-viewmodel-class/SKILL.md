@@ -17,11 +17,13 @@ Creating `{ProgramName}ViewModel` classes involves 6 phases:
 1.1.1 List all VB.NET forms from existing VB.NET `{ProgramName}Front` project.
 1.1.2 For each form, list all R_Conductor and R_ConductorGrid.
 1.1.3 Each R_Conductor and R_ConductorGrid must have a corresponding ViewModel. Each form must have at least one ViewModel class.
+1.1.4 DO NOT create ViewModel for Report or print, it is handled by Front project.
+1.1.5 Batch related processes has a specific ViewModel.
 1.1.4 For example, there are 3 .vb page files, 
 - form FAM00500 has no R_Conductor or R_ConductorGrid,
-- form FAM00510 has 1 R_Conductor,
-- form FAM00520 has 2 R_Conductor and 1 R_ConductorGrid. 
-The total number of ViewModels is 5, FAM00500ViewModel, FAM00510ViewModel, FAM00521ViewModel, FAM00522ViewModel, FAM00523ViewModel.
+- form FAM00510 has 1 R_Conductor and 1 Print Conductor,
+- form FAM00520 has 2 R_Conductor, 1 R_ConductorGrid, and 1 Batch Process. 
+The total number of ViewModels is 6, FAM00500ViewModel, FAM00510ViewModel, FAM00521ViewModel, FAM00522ViewModel, FAM00523ViewModel, and FAM00520BatchViewModel.
 
 1.2 Function list.
 1.2.1 List all functions that call service layer from existing VB.NET `{ProgramName}Front` project.
@@ -45,7 +47,7 @@ The total number of ViewModels is 5, FAM00500ViewModel, FAM00510ViewModel, FAM00
 1.5 If there are any batch processes (R_BatchProcess, R_BatchParameter in VB.NET) found in step 1.1.2, create a separate `{ProgramName}BatchViewModel` implementing `R_IProcessProgressStatus`.
 
 1.6 Read `plan_generation.md` and generate a plan for the `{ProgramName}Model` project.
-1.7 Add code preview in the plan.
+1.7 Add code preview in the plan for every pattern used.
 1.8 Ask for approval of the plan (NON-NEGOTIABLE).
 1.10 If approved, save the plan to `/plan/` folder.
 1.11 If not approved, ask for changes and repeat step 1.7.
@@ -56,7 +58,7 @@ IMPORTANT: Subsequent phases will use the plan generated in this phase.
 2.1 Read `front_resources_csproj.md` as a template and create `{ProgramName}FrontResources.csproj`.
 2.2 Read `front_resource_dummy_class_pattern.md` and create resource dummy class.
 2.3 Create resource `{ProgramName}FrontResources_msgrsc.resx` and `{ProgramName}FrontResources_msgrsc.id.resx` files (English and Indonesian).
-2.4 Create `{ProgramName}FrontResources_msgrsc.Designer.cs` and `{ProgramName}FrontResources_msgrsc.id.Designer.cs` files.
+2.4 Create `{ProgramName}FrontResources_msgrsc.Designer.cs` file.
 2.5 Update `{ProgramName}Model.csproj` to reference `{ProgramName}FrontResources.csproj` with format: `<ProjectReference Include="..\{ProgramName}FrontResources\{ProgramName}FrontResources.csproj" />`
 
 ### Phase 3: Create `{ProgramName}ViewModel` Classes
@@ -64,7 +66,7 @@ IMPORTANT: Subsequent phases will use the plan generated in this phase.
 3.2 Read `viewmodel_class_pattern.md` and create viewmodel classes based on the plan.
 3.3 Add minimal using statements provided in `viewmodel_using_statement.md` in each viewmodel class.
 3.4 Read `viewmodel_crud_functions_pattern.md` and implement CRUD functions, if not used throw `NotImplementedException`.
-3.5 Read `viewmodel_validation_functions_pattern.md` and implement validation functions, if any.
+3.5 Read `core_viewmodel_front_validation_rule.md` and implement validation functions, if any.
 3.6 Read `viewmodel_streaming_functions_pattern.md` and implement streaming functions, if any.
 3.7 Read `viewmodel_nonstreaming_functions_pattern.md` and implement non-streaming functions, if any.
 3.8 Read `viewmodel_resource_retrieval_pattern.md` and follow the pattern to get resource message or error instance.

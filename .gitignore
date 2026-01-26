@@ -13,3 +13,6 @@ Nuget.Config
 **/Nuget.Config
 
 **/.vs/
+
+/net4/
+/net6/

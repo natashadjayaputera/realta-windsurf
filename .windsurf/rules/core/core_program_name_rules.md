@@ -1,9 +1,10 @@
 ---
 trigger: always_on
 name: core_program_name_rules
+description: "Program name rules for .NET 6 conversion"
 ---
 # Program Name Format
-`AABXXXYY`
+`{AA}{B}{XXX}{YY}`
 
 Exactly 5 characters long.
 
@@ -13,7 +14,7 @@ Where:
 - XXX: Program Number
 - YY: Sub Program Number
 
-List of type of program:
+# List of Type of Program (MUST NOT BE WRONGLY ASSIGNED)
 - B: Batch
 - R: Report
 - M: Master
@@ -22,6 +23,9 @@ List of type of program:
 
 For Example:
 `FAM00500`
+
+Read as: `{FA}{M}{005}{00}`
+
 Means:
 - Module Name: FA
 - Type of program: M - Master

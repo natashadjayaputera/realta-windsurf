@@ -1,6 +1,7 @@
 ---
 trigger: always_on
 name: core_error_handling_rules
+description: "Error handling rules for .NET 6 conversion"
 ---
 
 # ERROR HANDLING

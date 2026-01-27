@@ -57,4 +57,4 @@ Before completing any streaming controller function:
 - [ ] Must always create ParameterDTO
 - [ ] Always return `Task<List<{FunctionName}ResultDTO>>`, never use `IAsyncEnumerable<{FunctionName}ResultDTO>`
 - [ ] Never use `R_BackGlobalVar`
-- [ ] Never retrieve via `R_Utility.R_GetStreamingContext<Type>(ContextConstant.Key)`
+- [ ] Never retrieve via `R_Utility.R_GetStreamingContext<Type>(ContextConstants.Key)`

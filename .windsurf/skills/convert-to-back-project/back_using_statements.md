@@ -1,7 +1,6 @@
 ---
-description: "Minimal using statements for Back projects"
-alwaysApply: false
-globs: "*ToCSharpBack*"
+name: back_using_statements
+description: "Minimal using statements for Main Back Classes in Back projects"
 ---
 # Using Statements
 

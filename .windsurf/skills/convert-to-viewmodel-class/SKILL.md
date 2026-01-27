@@ -44,7 +44,7 @@ The total number of ViewModels is 6, FAM00500ViewModel, FAM00510ViewModel, FAM00
 1.4.2 Assign constants to each streaming function based on the functions `{FunctionName}ParameterDTO`, NEVER include constants that is not available in `ContextConstants.cs`.
 1.4.3 Remove all context refering to Standard Properties (e.g. `CCOMPANY_ID`, `CUSER_ID`, `CLANG_ID`)
 
-1.5 If there are any batch processes (R_BatchProcess, R_BatchParameter in VB.NET) found in step 1.1.2, create a separate `{ProgramName}BatchViewModel` implementing `R_IProcessProgressStatus`.
+1.5 If there are any batch processes (R_BatchProcess, R_BatchParameter in VB.NET) found in step 1.1.2, create a separate `{ProgramName}BatchViewModel` implementing `R_IProcessProgressStatus`. Must decide if batch is excel based or not (IMPORTANT!!).
 
 1.6 Read `plan_generation.md` and generate a plan for the `{ProgramName}Model` project.
 1.7 Add code preview in the plan for every pattern used.

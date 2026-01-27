@@ -15,6 +15,7 @@ description: "Standard .csproj structure for Common projects"
   <ImplicitUsings>disable</ImplicitUsings>
 </PropertyGroup>
 <ItemGroup>
+  <!-- IMPORTANT: DO NOT CHANGE THE FOLDER DEPTH STRUCTURE -->
   <Reference Include="R_APICommonDTO">
     <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommonDTO.dll</HintPath>
   </Reference>

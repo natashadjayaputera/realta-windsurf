@@ -20,8 +20,8 @@ description: "Standard .csproj structure for Service Projects"
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
-
   <ItemGroup>
+    <!-- IMPORTANT: DO NOT CHANGE THE FOLDER DEPTH STRUCTURE -->
     <Reference Include="R_APIBackEnd">
       <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
     </Reference>
@@ -45,8 +45,8 @@ description: "Standard .csproj structure for Service Projects"
       <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_Cache.dll</HintPath>
     </Reference>
     <Reference Include="BaseHeaderReportCOMMON">
-    <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\BaseHeaderReportCOMMON.dll</HintPath> -->
-</Reference>
+      <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\BaseHeaderReportCOMMON.dll</HintPath> 
+    </Reference>-->
   </ItemGroup>
 
   <ItemGroup>

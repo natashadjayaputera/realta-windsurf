@@ -14,6 +14,11 @@ description: "Define correct pattern for non-streaming API methods in Model laye
 
 ## Non-Streaming API with Parameter
 ```csharp
+public Task<{ProgramName}ResultDTO<{FunctionName}ResultDTO>> {FunctionName}({FunctionName}ParameterDTO poParameter)
+{
+    throw new NotImplementedException();
+}
+
 public async Task<{ProgramName}ResultDTO<{FunctionName}ResultDTO>> {FunctionName}Async({FunctionName}ParameterDTO poParameter)
 {
     var loEx = new R_Exception();
@@ -40,6 +45,11 @@ public async Task<{ProgramName}ResultDTO<{FunctionName}ResultDTO>> {FunctionName
 
 ## Non-Streaming API without Parameter
 ```csharp
+public Task<{ProgramName}ResultDTO<{FunctionName}ResultDTO>> {FunctionName}()
+{
+    throw new NotImplementedException();
+}
+
 public async Task<{ProgramName}ResultDTO<{FunctionName}ResultDTO>> {FunctionName}Async()
 {
     var loEx = new R_Exception();

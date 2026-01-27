@@ -18,6 +18,7 @@ description: "Standard .csproj structure for Model Projects"
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- IMPORTANT: DO NOT CHANGE THE FOLDER DEPTH STRUCTURE -->
     <Reference Include="R_APIClient">
         <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_APIClient.dll</HintPath>
     </Reference>

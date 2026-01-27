@@ -99,7 +99,7 @@ public async Task<{ProgramName}ResultDTO<List<{FunctionName}ResultDTO>>> {Functi
 - **DO NOT CONFUSE THIS WITH BACK PROJECT**
 - Must create `{FunctionName}ParameterDTO` inside the function to be passed to Back Project.
 - Use `R_BackGlobalVar` to populate standard properties parameters.
-- Use `R_Utility.R_GetStreamingContext<Type>(ContextConstant.Key)` populate non-standard properties parameters.
+- Use `R_Utility.R_GetStreamingContext<Type>(ContextConstants.Key)` populate non-standard properties parameters.
 - Return `IAsyncEnumerable<{FunctionName}ResultDTO>` and use `yield return` for each item
 - All parameters are assigned here and passed to Back Project
 

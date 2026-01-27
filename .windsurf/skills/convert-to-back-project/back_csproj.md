@@ -17,7 +17,13 @@ description: "Standard .csproj structure for Back Projects"
     <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
 
+  <!-- IMPORTANT: Uncomment these references if there is any Batch Classes -->
+  <!-- <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup> -->
+
   <ItemGroup>
+    <!-- IMPORTANT: DO NOT CHANGE THE FOLDER DEPTH STRUCTURE -->
     <Reference Include="R_APIBackEnd">
       <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
     </Reference>

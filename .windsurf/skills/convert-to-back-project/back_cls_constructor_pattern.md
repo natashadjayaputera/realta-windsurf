@@ -1,11 +1,11 @@
 ---
 name: back_cls_constructor_pattern
-description: "Constructor pattern for Back business logic classes"
+description: "Constructor pattern for Main Back classes"
 ---
-# Business Logic Class Constructor Pattern (NOT FOR BATCH OR REPORT RELATED)
+# Class Constructor Pattern (NOT FOR BATCH OR REPORT RELATED)
 
 ```csharp
-// MUST FOLLOW EXACTLY
+// MAIN BACK CLASS CONSTRUCTOR - MUST FOLLOW EXACTLY
 namespace {ProgramName}Back;
 {
     public class {ProgramName}Cls : R_BusinessObjectAsync<{ProgramName}DTO>

@@ -57,22 +57,23 @@ IMPORTANT: Subsequent phases will use the plan generated in this phase.
 ### Phase 5: Convert existing VB.NET Back Project
 5.1 Study the plan generated in Phase 1.
 5.2 Create classes (Back Class only) based on the plan. Batch and report classes are excluded and handled in later phases.
-5.3 Add minimal using statements provided in `back_using_statements.md`.
-5.4 Read `back_class_separation.md` and follow the rules.
-5.5 Read `back_cls_constructor_pattern.md` and create constructor for Back Class following the pattern.
-5.6 Back Class must not implement `I{ProgramName}` found in `{ProgramName}Common` project.
-5.7 Read `back_business_object_function_pattern.md` to convert all business object overridden functions, preserving all business logic, DB and stored procedure names.
-5.8 Read `back_streaming_function_pattern.md` to convert streaming functions, preserving all business logic, DB and stored procedure names.
-5.9 Read `back_database_function_pattern.md` and make sure all functions follow the pattern, preserving all business logic, DB and stored procedure names.
-5.10 Read `back_error_retrieval_pattern.md` to and make sure all functions implement error retrieval functions.
-5.11 All functions must be implemented in `async Task`.
+5.3 For each Back Class:
+5.3.1 Re-read VB.NET (.NET Framework 4) `{ProgramName}Back` Project to learn the business logic.
+5.3.2 Add minimal using statements provided in `back_using_statements.md`.
+5.3.3 Read `back_cls_constructor_pattern.md` and create constructor for Back Class following the pattern.
+5.3.4 Back Class must not implement `I{ProgramName}` found in `{ProgramName}Common` project.
+5.3.5 Read `back_business_object_function_pattern.md` and please convert all business object overridden functions, preserving all business logic, DB and stored procedure names.
+5.3.6 Read `back_streaming_function_pattern.md` and please convert streaming functions, preserving all business logic, DB and stored procedure names.
+5.3.7 Read `back_database_function_pattern.md` and please make sure all functions follow the pattern, preserving all business logic, DB and stored procedure names.
+5.3.8 Read `back_error_retrieval_pattern.md` and please make sure all functions implement error retrieval functions.
+5.3.9 All functions must be implemented in `async Task`.
 
 ### Phase 6: Convert existing VB.NET Batch Functions
 6.1 If there are no batch functions in step 4.3.1, skip this phase.
 6.2 For step 6.3 to 6.6, you are allowed to modify `{ProgramName}Common` project to follow the rules.
 6.3 Follow batch project structure rules in `batch_project_structure.md`.
 6.4 Follow batch related DTO rules in `batch_related_dto.md`.
-6.5 Convert existing VB.NET Batch Functions found in step 4.3.1 into C# (.NET 6) following `batch_*.md`. Create related DTOs in `{ProgramName}Common` project if required based on  `batch_related_dto.md`.
+6.5 Convert existing VB.NET Batch Functions found in step 4.3.1 into C# (.NET 6) following `batch_*.md`. Create related DTOs in `{ProgramName}Common` project if required based on `batch_related_dto.md`.
 6.6 Follow batch rules and violations in `batch_back_class_rules_and_violations.md`.
 
 ### Phase 7: Convert existing VB.NET Report Functions
@@ -101,7 +102,7 @@ IMPORTANT: Subsequent phases will use the plan generated in this phase.
 8.15 MOST IMPORTANTLY, all created files must have namespace, no global namespace.
 
 ### Phase 9: Build and Bug Fix
-9.1 Build the `{ProgramName}Back` project.
+9.1 Build the `{ProgramName}Back` project. DO NOT fix errors and warnings automatically.
 9.2 Give me list of all errors and warnings and proposed fix before fixing them. Ask for approval of the fix.
 9.3 If approved, fix the errors and warnings.
 9.4 If not approved, ask for changes and repeat step 9.2.

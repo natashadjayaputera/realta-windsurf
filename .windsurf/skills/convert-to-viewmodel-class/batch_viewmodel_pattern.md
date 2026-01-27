@@ -6,7 +6,7 @@ description: "Batch data manipulation ViewModel implementation pattern in Model 
 # BATCH DATA MANIPULATION PATTERN
 
 - MUST Implement `R_IProcessProgressStatus` in `{ProgramName}BatchViewModel.cs`.
-- `{BatchListDTO}` MUST match `{ProgramName}BatchCls` deserialized object DTO. See `batch_get_batch_list_data_pattern.md`.
+- `{BatchListDTO}` MUST match `{ProgramName}BatchCls` deserialized object DTO in actual implementation.
 
 ## ⚠️ CRITICAL: DTO Type Verification
 ## Implementation Template
@@ -30,140 +30,140 @@ namespace {ProgramName}Model.VMs
 {
     public class {ProgramName}BatchViewModel : R_IProcessProgressStatus
     {
-    public Action<DataSet>? ShowErrorAction { get; set; }
-    public Action? StateChangeAction { get; set; }
-    public Action? ShowSuccessAction { get; set; }
-    public string Message { get; set; } = string.Empty;
-    public int Percentage { get; set; }
-    public ObservableCollection<{BatchListDisplayDTO}> DisplayList { get; set; } = new ObservableCollection<{BatchListDisplayDTO}>();
-    
-    public int SumValid { get; set; }
-    public int SumInvalid { get; set; }
-    public int SumList { get; set; }
-    public bool VisibleError { get; set; }
+        public Action<DataSet>? ShowErrorAction { get; set; }
+        public Action? StateChangeAction { get; set; }
+        public Action? ShowSuccessAction { get; set; }
+        public string Message { get; set; } = string.Empty;
+        public int Percentage { get; set; }
+        public ObservableCollection<{BatchListDisplayDTO}> DisplayList { get; set; } = new ObservableCollection<{BatchListDisplayDTO}>();
+        
+        public int SumValid { get; set; }
+        public int SumInvalid { get; set; }
+        public int SumList { get; set; }
+        public bool VisibleError { get; set; }
 
-    // Private fields to store COMPANY_ID and USER_ID for multi-language error retrieval
-    private string _companyId = string.Empty;
-    private string _userId = string.Empty;
+        // Private fields to store COMPANY_ID and USER_ID for multi-language error retrieval
+        private string _companyId = string.Empty;
+        private string _userId = string.Empty;
 
-    // DO NOT add UserParameter properties here
-    // UserParameters should be passed via R_SaveBatchParameterDTO.UserParameters
-    // add other properties related to batch process (e.g., display lists, file upload properties)
-    
-    #region EXCEL BASED (OPTIONAL)
-    // add this properties if LIST comes from uploading an excel file
-    public bool IsFileSelected { get; set; }
-    public long MaximumFileSize => 5 * 1024 * 1024; // 5MB
-    public byte[] FileByte { get; set;}
-    public bool IsErrorEmptyFile { get; set; }
-    public List<{BatchListExcelDTO}> UploadList { get; set; } = new List<{BatchListExcelDTO}>();
-    #endregion
+        // DO NOT add UserParameter properties here
+        // UserParameters should be passed via R_SaveBatchParameterDTO.UserParameters
+        // add other properties related to batch process (e.g., display lists, file upload properties)
+        
+        // IMPORTANT: uncomment this section if data list comes from uploading an excel file
+        /*
+        #region EXCEL BASED (OPTIONAL)
+        public bool IsFileSelected { get; set; }
+        public long MaximumFileSize => 5 * 1024 * 1024; // 5MB
+        public byte[] FileByte { get; set;}
+        public bool IsErrorEmptyFile { get; set; }
+        public List<{BatchListExcelDTO}> UploadList { get; set; } = new List<{BatchListExcelDTO}>();
+        #endregion
+        */
 
-    // add additional data manipulation methods if needed
-
-    private List<{BatchListDisplayDTO}> GetSelectedData({BatchListDisplayDTO} poList)
-    {
-        R_Exception loEx = new R_Exception();
-        List<{BatchListDisplayDTO}> loTemp = new List<{BatchListDisplayDTO}>();
-
-        try
+        // IMPORTANT: UNCOMMENT THIS if {BatchListDisplayDTO} has bool LSELECTED
+        /*
+        private List<{BatchListDisplayDTO}> GetSelectedData({BatchListDisplayDTO} poList)
         {
-            // NOTE: ADD THIS if {BatchListDisplayDTO} has bool LSELECTED
-            // int no = 1;
-            // foreach (var item in poList)
-            // {
-            //     if (item.LSELECTED == true)
-            //     {
-            //         item.INO = no;
-            //         no++;
-            //         loTemp.Add(item);
-            //     }
-            // }
+            R_Exception loEx = new R_Exception();
+            List<{BatchListDisplayDTO}> loTemp = new List<{BatchListDisplayDTO}>();
 
-            // if (loTemp.Count == 0) 
-            // {
-            //     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "{EmptySelectedListErrorResourceKeys}"))
-            // }
-
-            // NOTE: Immediately Return List if {BatchListDisplayDTO} does not have bool LSELECTED
-            //loTemp.AddRange(poList)
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-        loEx.ThrowExceptionIfErrors();
-
-        return loTemp;
-    }
-
-    public async Task R_SaveBatchAsync(R_SaveBatchParameterDTO poParameter)
-    {
-        R_Exception loEx = new R_Exception();
-        R_BatchParameter loBatchPar;
-        R_ProcessAndUploadClient loCls;
-        string lcGuid = "";
-        List<{BatchListDTO}> loBigObject;
-        var loUserParam = new List<R_KeyValue>();
-        int liStep = 10; 
-
-        try
-        {
-            // Validate and filter data
-            if (poParameter.Data == null)
+            try
             {
-                loEx.Add(new Exception("Data cannot be null"));
-                loEx.ThrowExceptionIfErrors();
-                return;
+                int no = 1;
+                foreach (var item in poList)
+                {
+                    if (item.LSELECTED == true)
+                    {
+                        item.INO = no;
+                        no++;
+                        loTemp.Add(item);
+                    }
+                }
+
+                if (loTemp.Count == 0) 
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "{EmptySelectedListErrorResourceKeys}"))
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+
+            return loTemp;
+        }
+        */
+
+        public async Task R_SaveBatchAsync(R_SaveBatchParameterDTO poParameter)
+        {
+            R_Exception loEx = new R_Exception();
+            R_BatchParameter loBatchPar;
+            R_ProcessAndUploadClient loCls;
+            string lcGuid = "";
+            List<{BatchListDTO}> loBigObject;
+            var loUserParam = new List<R_KeyValue>();
+            int liStep = 10; 
+
+            try
+            {
+                // Validate and filter data
+                if (poParameter.Data == null)
+                {
+                    loEx.Add(new Exception("Data cannot be null"));
+                    loEx.ThrowExceptionIfErrors();
+                    return;
+                }
+
+                // IMPORTANT: UNCOMMENT THIS if {BatchListDisplayDTO} has bool LSELECTED
+                //poParameter.Data = GetSelectedData(poParameter.Data);
+
+                SumList = poParameter.Data.Count;
+
+                // Store company and user ID for error retrieval with multi-language support
+                _companyId = poParameter.CCOMPANY_ID;
+                _userId = poParameter.CUSER_ID;
+
+                // Set custom UserParameters from poParameter.UserParameters
+                // DO NOT add CCOMPANY_ID or CUSER_ID here (they are set in R_BatchParameter)
+                // Example:
+                loUserParam.Add(new R_KeyValue { Key = "ContextConstants.UserParam1", Value = poParameter.UserParameters.UserParam1 });
+                loUserParam.Add(new R_KeyValue { Key = "ContextConstants.UserParam2", Value = poParameter.UserParameters.UserParam2 });
+                loUserParam.Add(new R_KeyValue { Key = "ContextConstants.UserParam3", Value = poParameter.UserParameters.UserParam3 });
+                // ... add all other custom parameters from poParameter.UserParameters
+
+                loCls = new R_ProcessAndUploadClient(
+                    pcModuleName: "{ModuleName}",
+                    plSendWithContext: true,
+                    plSendWithToken: true,
+                    pcHttpClientName: "R_DefaultServiceUrl{ModuleName}", // see @model_http_client_convention.mdc
+                    poProcessProgressStatus: this);
+
+                //Check Data
+                if (poParameter.Data.Count == 0)
+                    return;
+
+                loBigObject = poParameter.Data.ToList();
+
+                //prepare Batch Parameter
+                loBatchPar = new R_BatchParameter();
+
+                loBatchPar.COMPANY_ID = poParameter.CCOMPANY_ID;  // Set from DTO
+                loBatchPar.USER_ID = poParameter.CUSER_ID;        // Set from DTO
+                loBatchPar.ClassName = "{ProgramName}Back.{ProgramName}BatchCls";
+                loBatchPar.UserParameters = loUserParam;          // Custom parameters only
+                loBatchPar.BigObject = loBigObject;
+
+                lcGuid = await loCls.R_BatchProcess<List<{BatchListDTO}>>(loBatchPar, liStep);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
             }
 
-            poParameter.Data = GetSelectedData(poParameter.Data);
-
-            SumList = poParameter.Data.Count;
-
-            // Store company and user ID for error retrieval with multi-language support
-            _companyId = poParameter.CCOMPANY_ID;
-            _userId = poParameter.CUSER_ID;
-
-            // Set custom UserParameters from poParameter.UserParameters
-            // DO NOT add CCOMPANY_ID or CUSER_ID here (they are set in R_BatchParameter)
-            // Example:
-            loUserParam.Add(new R_KeyValue { Key = "ContextConstant.UserParam1", Value = poParameter.UserParameters.UserParam1 });
-            loUserParam.Add(new R_KeyValue { Key = "ContextConstant.UserParam2", Value = poParameter.UserParameters.UserParam2 });
-            loUserParam.Add(new R_KeyValue { Key = "ContextConstant.UserParam3", Value = poParameter.UserParameters.UserParam3 });
-            // ... add all other custom parameters from poParameter.UserParameters
-
-            loCls = new R_ProcessAndUploadClient(
-                pcModuleName: "{ModuleName}",
-                plSendWithContext: true,
-                plSendWithToken: true,
-                pcHttpClientName: "R_DefaultServiceUrl{ModuleName}", // see @model_http_client_convention.mdc
-                poProcessProgressStatus: this);
-
-            //Check Data
-            if (poParameter.Data.Count == 0)
-                return;
-
-            loBigObject = poParameter.Data.ToList();
-
-            //prepare Batch Parameter
-            loBatchPar = new R_BatchParameter();
-
-            loBatchPar.COMPANY_ID = poParameter.CCOMPANY_ID;  // Set from DTO
-            loBatchPar.USER_ID = poParameter.CUSER_ID;        // Set from DTO
-            loBatchPar.ClassName = "{ProgramName}Back.{ProgramName}BatchCls";
-            loBatchPar.UserParameters = loUserParam;          // Custom parameters only
-            loBatchPar.BigObject = loBigObject;
-
-            lcGuid = await loCls.R_BatchProcess<List<{BatchListDTO}>>(loBatchPar, liStep);
+            loEx.ThrowExceptionIfErrors();
         }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-
-        loEx.ThrowExceptionIfErrors();
-    }
 
         /// <summary>
         /// Called when batch process completes

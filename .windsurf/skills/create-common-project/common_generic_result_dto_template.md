@@ -1,9 +1,8 @@
 ---
-name: common_generic_result_dto_pattern
-description: "Standard Generic Result DTO pattern for common projects using R_APIResultBaseDTO"
+name: common_generic_result_dto_template
+description: "Generic Result DTO template for Common Project using R_APIResultBaseDTO"
 ---
-# Generic Result DTO Pattern
-
+# Generic Result DTO Template
 ```csharp
 using R_APICommonDTO;
 
@@ -22,6 +21,5 @@ namespace {ProgramName}Common.DTOs;
 }
 ```
 
-Rules:
-
+# Rules:
 * Must inherit from `R_APIResultBaseDTO`

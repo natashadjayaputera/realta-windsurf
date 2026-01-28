@@ -1,32 +1,27 @@
-ProgramName: "FAB00200"
-SubProgramName: "FAB00200"
+ProgramName: "FAM00500"
 ModuleName: "FA"
 
 Please find and replace the 2 things above including the "" 
 
 ===========
-run-vb-parser
+PROJECT-ANALYZER
 ===========
-VB.NET (.NET Framework 4) location (Back Project): 
-ProgramName: "FAB00200"
+@project-analyzer
+VB.NET (.NET Framework 4) location (Back & Common Project): `realta-windsurf/net4/FA Smart Client/Development/Back/{ProgramName}*/**/*.vb`
+Do NOT read Front Project
+ProgramName: "FAM00500"
+ModuleName: "FA"
+Please be mindful of Report, Batch, and Back classes separation.
 
 ===========
-create-common-project
+COMMON
 ===========
-VB.NET (.NET Framework 4) location (Common Project): 
-VB.NET (.NET Framework 4) location (Back Project): 
-C# (.NET 6) location (Common Project): 
-ProgramName: "FAB00200"
+This is the Common Layer / Common Project of the program.
+VB.NET (.NET Framework 4) location (Back & Common Project): `realta-windsurf/net4/FA Smart Client/Development/Back/{ProgramName}*/**/*.vb`
+C# (.NET 6) location (Common Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/{ModuleName}/{ProgramName}Common/`
+ProgramName: "FAM00500"
 ModuleName: "FA"
-
-===========
-create-additional-files-in-common-project
-===========
-ClassDeclaration.vb & functions.txt folder: `realta-windsurf\chunks_cs\{ProgramName}\{SubProgramName}CLS`
-C# (.NET 6) location (Common Project):  
-ProgramName: "FAB00200"
-SubProgramName: "FAB00200"
-ModuleName: "FA"
+Please be mindful of Report, Batch, and Back classes separation.
 
 ===========
 BACK
@@ -35,7 +30,7 @@ This is the Back Layer / Back Project of the program.
 VB.NET (.NET Framework 4) location (Back & Common Project): `realta-windsurf/net4/FA Smart Client/Development/Back/{ProgramName}*/**/*.vb`
 C# (.NET 6) location (Common Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/{ModuleName}/{ProgramName}Common/`
 C# (.NET 6) location (Back Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/BACK/{ModuleName}/{ProgramName}Back/`
-ProgramName: "FAB00200"
+ProgramName: "FAM00500"
 ModuleName: "FA"
 Please be mindful of Report, Batch, and Back classes separation.
 
@@ -48,7 +43,7 @@ This is the Service Layer / Service Project of the program.
 C# (.NET 6) location (Common Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/{ModuleName}/{ProgramName}Common/`
 C# (.NET 6) location (Back Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/BACK/{ModuleName}/{ProgramName}Back/`
 C# (.NET 6) location (Service Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/SERVICE/{ModuleName}/{ProgramName}Service/`
-ProgramName: "FAB00200"
+ProgramName: "FAM00500"
 ModuleName: "FA"
 Please be mindful of Report, Batch, and Back classes separation.
 
@@ -59,7 +54,7 @@ This is the Model Layer / Model Project of the program.
 C# (.NET 6) location (Service Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/SERVICE/{ModuleName}/{ProgramName}Service/`
 C# (.NET 6) location (Common Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/{ModuleName}/{ProgramName}Common/`
 C# (.NET 6) location (Model Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/{ProgramName}Model/`
-ProgramName: "FAB00200"
+ProgramName: "FAM00500"
 ModuleName: "FA"
 
 ===========
@@ -71,7 +66,7 @@ C# (.NET 6) location (Common Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.
 C# (.NET 6) location (Model Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/{ProgramName}Model/`
 C# (.NET 6) location (ViewModel Class): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/{ProgramName}Model/VMs/`
 C# (.NET 6) location (Front Resources Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/{ProgramName}FrontResources/`
-ProgramName: "FAB00200"
+ProgramName: "FAM00500"
 ModuleName: "FA"
 
 ====================

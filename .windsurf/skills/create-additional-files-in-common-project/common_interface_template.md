@@ -28,3 +28,4 @@ namespace {ProgramName}Common;
 - If it is inheriting R_BusinessObject, inherit R_IServiceCRUDAsyncBase<{ProgramName}DTO>
 - If it is implementing R_IBatchProcess, do not add R_BatchProcess function
 - Skip override functions
+- Skip private or protected functions

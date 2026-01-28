@@ -1,20 +1,19 @@
 ---
-name: back_streaming_function_pattern
-description: "Streaming function pattern for Back Project"
+name: back_database_function_pattern
+description: "Database query execution pattern for Back projects"
 ---
-
-# Streaming Function Pattern (Must Follow Exactly, see `streaming_pattern.md`)
+# Database Function Pattern
 
 ```csharp
-public async Task<List<{FunctionName}ResultDTO>> {FunctionName}({FunctionName}ParameterDTO poParam)
+public async Task<{FunctionName}ResultDTO> {FunctionName}({FunctionName}ParameterDTO poParam)
 {
-    string lcFunction = nameof({FunctionName});
+    string lcFunction = nameof(FunctionNameAsync);
     using var activity = _activitySource.StartActivity(lcFunction);
     _logger.LogInfo("START function {FunctionName}", lcFunction);
 
     var loEx = new R_Exception();
     var loDb = new R_Db();
-    List<{FunctionName}ResultDTO> loResult = new();
+    {FunctionName}ResultDTO loResult = new();
 
     try
     {
@@ -32,7 +31,7 @@ public async Task<List<{FunctionName}ResultDTO>> {FunctionName}({FunctionName}Pa
         _logger.LogDebug("{@ObjectQuery} {@Parameter}", loCmd.CommandText, loDbParams);
 
         var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
-        loResult = R_Utility.R_ConvertTo<{FunctionName}ResultDTO>(loDataTable).ToList();
+        loResult = R_Utility.R_ConvertTo<{FunctionName}ResultDTO>(loDataTable).FirstOrDefault();
     }
     catch (Exception ex)
     {
@@ -50,10 +49,12 @@ public async Task<List<{FunctionName}ResultDTO>> {FunctionName}({FunctionName}Pa
 }
 ```
 
-## Verification Checklist
-
-Before completing any streaming controller function:
-- [ ] Must always create ParameterDTO
-- [ ] Always return `Task<List<{FunctionName}ResultDTO>>`, never use `IAsyncEnumerable<{FunctionName}ResultDTO>`
-- [ ] Never use `R_BackGlobalVar`
-- [ ] Never retrieve via `R_Utility.R_GetStreamingContext<Type>(ContextConstants.Key)`
+Rules:
+* Adding parameters to DbCommand must use `loDb.R_AddCommandParameter`
+* Log query and parameters before execution
+* Always clear command parameters
+* Use `R_Utility.R_ConvertTo` for result conversion
+* Catch exceptions in `R_Exception` and throw
+* Never use `using` for var loDb = new R_Db()
+* Always use `using` for var loConn = await loDb.GetConnectionAsync()
+* Always use `using` for var loCmd = loDb.GetCommand()

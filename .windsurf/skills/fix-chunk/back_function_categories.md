@@ -1,0 +1,12 @@
+---
+name: back_function_categories
+description: "Back project function categories"
+---
+# Back Function Categories
+1. business-object-overridden-function
+- Has `protected override` keyword
+- Function name start with `R_` 
+2. batch-function
+- Function name is `R_BatchProcess` or `R_BatchProcessAsync`
+3. other-function
+- Any function that is not business object overridden function or batch function

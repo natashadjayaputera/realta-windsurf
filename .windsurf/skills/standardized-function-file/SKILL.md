@@ -15,6 +15,8 @@ IMPORTANT: Please continue to fix the function chunk files until all function ch
 - back_business_object_overridden_function_pattern
 - back_database_function_pattern
 - back_error_retrieval_pattern
+- prevent_common_error_and_fixes
+- back_additional_properties_recognizer
 
 1.2 For each file in:
 chunks_cs/{ProgramName}/{SubProgramName}CLS
@@ -26,6 +28,8 @@ Then:
 - Modify function signature according to back_business_object_overridden_function_pattern
 - Update database access using back_database_function_pattern
 - Update error retrieval using back_error_retrieval_pattern
+- Fix common errors using prevent_common_error_and_fixes
+- Recognize additional properties using back_additional_properties_recognizer
 - Immediately append the new function signature to functions.txt
 
 1.3 If category is not present or category is not `business-object-overridden-function`, skip file.
@@ -33,6 +37,8 @@ Then:
 ## Phase 2: Fix `XXXX_FunctionName.cs` with `batch-function` category 
 2.1 Load and interpret:
 - back_batch_function_pattern
+- prevent_common_error_and_fixes
+- back_additional_properties_recognizer
 
 2.2 For each file in:
 chunks_cs/{ProgramName}/{SubProgramName}CLS
@@ -42,6 +48,8 @@ If file contains:
 
 Then:
 - Change old implementation to follow back_batch_function_pattern
+- Fix common errors using prevent_common_error_and_fixes
+- Recognize additional properties using back_additional_properties_recognizer
 - Immediately append the new function signature to functions.txt
 
 2.3 If category is not present or category is not `batch-function`, skip file.
@@ -50,6 +58,8 @@ Then:
 3.1 Load and interpret:
 - back_database_function_pattern
 - back_error_retrieval_pattern
+- prevent_common_error_and_fixes
+- back_additional_properties_recognizer
 
 3.2 For each file in:
 chunks_cs/{ProgramName}/{SubProgramName}CLS
@@ -61,6 +71,8 @@ Then:
 - DO NOT MODIFY FUNCTION SIGNATURE (NON-NEGOTIABLE)
 - Update database access using back_database_function_pattern
 - Update error retrieval using back_error_retrieval_pattern
+- Fix common errors using prevent_common_error_and_fixes
+- Recognize additional properties using back_additional_properties_recognizer
 - Immediately append the new function signature to functions.txt
 
 3.3 If category is not present or category is not `other-function`, skip file.

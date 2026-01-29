@@ -4,33 +4,73 @@ ModuleName: "FA"
 
 Please find and replace the 2 things above including the "" 
 
-===========
+=================================
 run-vb-parser
-===========
+=================================
 VB.NET (.NET Framework 4) location (Back Project): 
 ProgramName: "FAB00200"
 
-===========
+=================================
+convert-chunk
+=================================
+ProgramName: "FAB00200"
+SubProgramName: "FAB00200"
+
+NB: must do for SubProgramName
+
+=================================
+fix-chunk
+=================================
+ProgramName: "FAB00200"
+SubProgramName: "FAB00200"
+
+NB: must do for SubProgramName
+
+=================================
+standardized-function-file
+=================================
+ProgramName: "FAB00200"
+SubProgramName: "FAB00200"
+
+NB: must do for SubProgramName
+
+=================================
 create-common-project
-===========
-VB.NET (.NET Framework 4) location (Common Project): 
+=================================
 VB.NET (.NET Framework 4) location (Back Project): 
+VB.NET (.NET Framework 4) location (Common Project): 
 C# (.NET 6) location (Common Project): 
 ProgramName: "FAB00200"
 ModuleName: "FA"
 
-===========
+=================================
 create-additional-files-in-common-project
-===========
-ClassDeclaration.vb & functions.txt folder: `realta-windsurf\chunks_cs\{ProgramName}\{SubProgramName}CLS`
+=================================
 C# (.NET 6) location (Common Project):  
 ProgramName: "FAB00200"
 SubProgramName: "FAB00200"
 ModuleName: "FA"
 
-===========
+NB: must do for SubProgramName
+
+=================================
+create-back-project
+=================================
+VB.NET (.NET Framework 4) location (Back Resources Project): 
+C# (.NET 6) location (Back Project):  
+ProgramName: "FAB00200"
+ModuleName: "FA"
+
+=================================
+build-and-fix-project
+=================================
+C# (.NET 6) location to build (.csproj):  
+ProgramName: "FAB00200"
+ModuleName: "FA"
+
+=================================
 BACK
-===========
+=================================
 This is the Back Layer / Back Project of the program.
 VB.NET (.NET Framework 4) location (Back & Common Project): `realta-windsurf/net4/FA Smart Client/Development/Back/{ProgramName}*/**/*.vb`
 C# (.NET 6) location (Common Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/{ModuleName}/{ProgramName}Common/`
@@ -41,9 +81,9 @@ Please be mindful of Report, Batch, and Back classes separation.
 
 {mention .vb files} Please scrutinize each function. DO NOT EDIT the .cs files. Please tell me all business process deviation in .cs files. Preserve the bugs as it was in the .vb files.
 
-===========
+=================================
 SERVICE
-===========
+=================================
 This is the Service Layer / Service Project of the program.
 C# (.NET 6) location (Common Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/{ModuleName}/{ProgramName}Common/`
 C# (.NET 6) location (Back Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/BACK/{ModuleName}/{ProgramName}Back/`
@@ -52,9 +92,9 @@ ProgramName: "FAB00200"
 ModuleName: "FA"
 Please be mindful of Report, Batch, and Back classes separation.
 
-===========
+=================================
 MODEL
-===========
+=================================
 This is the Model Layer / Model Project of the program.
 C# (.NET 6) location (Service Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/SERVICE/{ModuleName}/{ProgramName}Service/`
 C# (.NET 6) location (Common Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/{ModuleName}/{ProgramName}Common/`
@@ -62,9 +102,9 @@ C# (.NET 6) location (Model Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.0
 ProgramName: "FAB00200"
 ModuleName: "FA"
 
-===========
+=================================
 VIEWMODEL
-===========
+=================================
 This is the ViewModel Layer in Model Project of the program.
 VB.NET (.NET Framework 4) location (Front Project): `realta-windsurf/net4/FA Smart Client/Development/Front/{ProgramName}*/**/*.vb`
 C# (.NET 6) location (Common Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/{ModuleName}/{ProgramName}Common/`
@@ -74,8 +114,8 @@ C# (.NET 6) location (Front Resources Project): `realta-windsurf/net6/RSF/BIMASA
 ProgramName: "FAB00200"
 ModuleName: "FA"
 
-====================
+==========================================
 ALL PLAN APPROVAL
-====================
+==========================================
 approve, and please follow the plan
 

@@ -1,6 +1,6 @@
 ---
 name: common_csproj_template
-description: "Common Project .csproj template"
+description: "Template for Common Projects .csproj"
 ---
 # Project Structure
 - Location: `COMMON/{ModuleName}/{ProgramName}Common/{ProgramName}Common.csproj`

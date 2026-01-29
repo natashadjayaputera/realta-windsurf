@@ -50,7 +50,7 @@ class Program
         {
             var classSignatureOnly = ExtractClassSignatureOnly(classNode);
             File.WriteAllText(
-                Path.Combine(outputDir, $"ClassDeclaration.vb"),
+                Path.Combine(outputDir, $"ClassDeclaration.txt"),
                 classSignatureOnly
             );
         }

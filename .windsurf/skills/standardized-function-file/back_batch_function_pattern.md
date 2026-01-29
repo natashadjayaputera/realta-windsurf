@@ -106,9 +106,4 @@ private async Task _BatchProcessAsync(R_BatchProcessPar poBatchProcessPar)
         if (loDb != null) loDb = null;
     }
 }
-
-// Please note: Must add properties for EVERY Stored Procedure used in the batch process
-// If no stored procedure is used, please do not add this line
-private {YOUR_SP_NAME}Resources.Resources_Dummy_Class _{YOUR_SP_NAME} = new();
-
 ```

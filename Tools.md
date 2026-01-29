@@ -1,16 +1,19 @@
 # Flow
+- Requirement: Must recreate RSP Resources project first
+
 - [run-vb-parser] Chunk each classes into list of functions and class signature
-- Convert each function chunk into .cs file (add info about type of function)
-- Fix each .cs file to follow new template and or standard
+- [convert-chunk] Convert each function chunk into .cs file 
+- [fix-chunk] High level fix of ClassDeclaration.cs, functions.txt and each function .cs file to follow new standard (add category metadata in each function .cs file)
+- [standardized-function-file] Standardized each function .cs file to follow new standard (more complex)
 - [create-common-project] Create Common Project 
 - [create-common-project] Convert Common directly 
 - [create-common-project] Build Common Project 
 - [create-additional-files-in-common-project] Add interface 
 - [create-additional-files-in-common-project] Build Common Project
-- Create Back Project
-- Create Cls files.
-- Concat and inject into each cls file.
-- Build Back Project.
+- [create-back-project] Create Back Project
+- [create-back-project] Create Empty Cls files.
+- [create-back-project] Concat and inject into each cls file.
+- [build-and-fix-project] Build Back Project.
 - Create Service Project
 - Read function signature .txt
 - Build Service Project

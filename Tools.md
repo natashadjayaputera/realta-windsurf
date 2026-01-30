@@ -14,11 +14,12 @@
 - [create-back-project] Create Empty Cls files.
 - [create-back-project] Concat and inject into each cls file.
 - [build-and-fix-project] Build Back Project.
-- Create Service Project
-- Read function signature .txt
-- Build Service Project
-- Create Model Project based on Service Project
-- Build Model Project
+- [create-service-project] Create Service Project
+- [create-service-project] Create Controller
+- [create-service-project] Create Report Controller
+- [create-service-project] Build Service Project
+- [create-model-project] Create Model Project based on Service Project
+- [create-model-project] Build Model Project
 - Create ViewModel Classes based on Front Project
 - Build Model Project
 

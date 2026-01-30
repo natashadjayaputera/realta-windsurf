@@ -16,7 +16,8 @@ Create additional files in .NET6 common project based on .NET4 common projects.
 2.1 From `chunks_cs/{ProgramName}/{SubProgramName}CLS`, read `functions.txt`.
 2.2 Read common_interface_template as a template and based on `functions.txt`, create `I{SubProgramName}.cs` in `{ProgramName}Common` Project root folder.
 
-## Phase 3: Build and Bug Fix
-3.1 Build {ProgramName}Common project AND provide a list of all errors and warnings with proposed fixes based on common_error_and_fixes before applying them. Ask for approval of the fixes (NON-NEGOTIABLE).
-3.2 If approved, apply the fixes, and repeat step 3.1.
-3.3 If not approved, ask for changes and repeat step 3.1.
+## Phase 3: Build and Bug Fix (REPEAT UNTIL NO ERRORS AND WARNINGS)
+3.1 Build {ProgramName}Common project and create a list of all error codes and warnings.
+3.2 Ask for approval of the fixes (NON-NEGOTIABLE). 
+3.3 If approved, apply the fixes, and repeat step 3.1 until there are no errors and warnings.
+3.4 If not approved, ask for changes and repeat step 3.2.

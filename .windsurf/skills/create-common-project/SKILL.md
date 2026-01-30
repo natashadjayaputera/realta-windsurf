@@ -24,8 +24,9 @@ Create a .NET 6 common project based on .NET4 common projects.
 4.1 All enums is in namespace `{ProgramName}Common.Enums`.
 4.2 Convert each enum from VB.NET Back & Common Project to C# Common Project.
 
-## Phase 5: Build and Bug Fix
-5.1 Build {ProgramName}Common project AND provide a list of all errors and warnings with proposed fixes based on common_error_and_fixes before applying them. Ask for approval of the fixes (NON-NEGOTIABLE).
-5.2 If approved, apply the fixes, and repeat step 5.1.
-5.3 If not approved, ask for changes and repeat step 5.1.
+## Phase 5: Build and Bug Fix (REPEAT UNTIL NO ERRORS AND WARNINGS)
+5.1 Build {ProgramName}Common project and create a list of all error codes and warnings.
+5.2 Ask for approval of the fixes (NON-NEGOTIABLE). 
+5.3 If approved, apply the fixes, and repeat step 5.1 until there are no errors and warnings.
+5.4 If not approved, ask for changes and repeat step 5.2.
 

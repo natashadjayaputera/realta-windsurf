@@ -39,7 +39,7 @@ create-common-project
 =================================
 VB.NET (.NET Framework 4) location (Back Project): 
 VB.NET (.NET Framework 4) location (Common Project): 
-C# (.NET 6) location (Common Project): 
+C# (.NET 6) location (Common Folder): 
 ProgramName: "FAB00200"
 ModuleName: "FA"
 
@@ -57,16 +57,28 @@ NB: must do for SubProgramName
 create-back-project
 =================================
 VB.NET (.NET Framework 4) location (Back Resources Project): 
-C# (.NET 6) location (Back Project):  
+C# (.NET 6) location (Back Folder):  
 ProgramName: "FAB00200"
 ModuleName: "FA"
 
 =================================
-build-and-fix-project
+create-service-project
 =================================
-C# (.NET 6) location to build (.csproj):  
+VB.NET (.NET Framework 4) location (Front Project): 
+C# (.NET 6) location (Common Project):  
+C# (.NET 6) location (Service Folder):  
 ProgramName: "FAB00200"
 ModuleName: "FA"
+
+
+=================================
+create-model-project
+=================================
+C# (.NET 6) location (Common Project):  
+C# (.NET 6) location (Model Folder):  
+ProgramName: "FAB00200"
+ModuleName: "FA"
+
 
 =================================
 BACK

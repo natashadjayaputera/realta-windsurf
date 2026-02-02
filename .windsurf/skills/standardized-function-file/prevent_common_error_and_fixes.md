@@ -28,7 +28,7 @@ string.Right(10) => string[^10]
 
 ## Error 4: `R_Utility.R_ConvertTo<{TargetDTO}>(loDataTable)` returns `IList<{TargetDTO}>`
 
-Fix it by adding .ToList()
+Fix it by adding .ToList() skips `R_Utility.R_ConvertTo<{TargetDTO}>(loDataTable).FirstOrDefault()`
 ```csharp
 R_Utility.R_ConvertTo<{TargetDTO}>(loDataTable) => R_Utility.R_ConvertTo<{TargetDTO}>(loDataTable).ToList()
 ```

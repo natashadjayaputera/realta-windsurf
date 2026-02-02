@@ -9,8 +9,8 @@ Create additional files in .NET6 common project based on .NET4 common projects.
 # Process
 ## Phase 1: Extract `ClassDeclaration.txt` file
 1.1 From `chunks_cs/{ProgramName}/{SubProgramName}CLS`, read `ClassDeclaration.txt`.
-1.2 Decide if it is inheriting R_BusinessObject
-1.3 Decide if it is implementing R_IBatchProcess
+1.2 Decide if it is inheriting R_BusinessObject or R_BusinessObjectAsync
+1.3 Decide if it is implementing R_IBatchProcess or R_IBatchProcessAsync
 
 ## Phase 2: Create Interface for {SubProgramName}
 2.1 From `chunks_cs/{ProgramName}/{SubProgramName}CLS`, read `functions.txt`.

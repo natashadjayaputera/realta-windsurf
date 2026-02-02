@@ -47,7 +47,8 @@ If file contains:
 //CATEGORY: batch-function
 
 Then:
-- Change old implementation to follow back_batch_function_pattern
+- Change old implementation to follow back_batch_function_pattern, make sure User Parameter use `nameof({SubProgramName}R_SaveBatchUserParameterDTO.{UserParameterName}` as key
+- Add Standard Batch DTO following back_batch_function_pattern
 - Fix common errors using prevent_common_error_and_fixes
 - Recognize additional properties using back_additional_properties_recognizer
 - Immediately append the new function signature to functions.txt

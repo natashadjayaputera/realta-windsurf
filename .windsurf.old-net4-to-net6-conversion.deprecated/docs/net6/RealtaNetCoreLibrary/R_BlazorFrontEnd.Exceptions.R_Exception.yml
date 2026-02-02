@@ -1,0 +1,1286 @@
+### YamlMime:ManagedReference
+items:
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception
+  commentId: T:R_BlazorFrontEnd.Exceptions.R_Exception
+  id: R_Exception
+  parent: R_BlazorFrontEnd.Exceptions
+  children:
+  - R_BlazorFrontEnd.Exceptions.R_Exception.#ctor
+  - R_BlazorFrontEnd.Exceptions.R_Exception.#ctor(System.Collections.Generic.List{R_BlazorFrontEnd.Exceptions.R_Error})
+  - R_BlazorFrontEnd.Exceptions.R_Exception.Add(R_BlazorFrontEnd.Exceptions.R_Error)
+  - R_BlazorFrontEnd.Exceptions.R_Exception.Add(System.Exception)
+  - R_BlazorFrontEnd.Exceptions.R_Exception.Add(System.String,System.String)
+  - R_BlazorFrontEnd.Exceptions.R_Exception.Add(System.String,System.String,System.Collections.Generic.List{R_BlazorFrontEnd.Exceptions.R_ErrorDetail})
+  - R_BlazorFrontEnd.Exceptions.R_Exception.Add(System.String,System.String,System.String,System.String)
+  - R_BlazorFrontEnd.Exceptions.R_Exception.ErrorList
+  - R_BlazorFrontEnd.Exceptions.R_Exception.GetErrorList
+  - R_BlazorFrontEnd.Exceptions.R_Exception.HasError
+  - R_BlazorFrontEnd.Exceptions.R_Exception.ThrowExceptionIfErrors
+  langs:
+  - csharp
+  - vb
+  name: R_Exception
+  nameWithType: R_Exception
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception
+  type: Class
+  source:
+    remote:
+      path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: R_Exception
+    path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+    startLine: 7
+  assemblies:
+  - R_BlazorFrontEnd
+  namespace: R_BlazorFrontEnd.Exceptions
+  syntax:
+    content: 'public class R_Exception : Exception, ISerializable'
+    content.vb: Public Class R_Exception Inherits Exception Implements ISerializable
+  inheritance:
+  - System.Object
+  - System.Exception
+  implements:
+  - System.Runtime.Serialization.ISerializable
+  inheritedMembers:
+  - System.Exception.GetBaseException
+  - System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  - System.Exception.GetType
+  - System.Exception.ToString
+  - System.Exception.Data
+  - System.Exception.HelpLink
+  - System.Exception.HResult
+  - System.Exception.InnerException
+  - System.Exception.Message
+  - System.Exception.Source
+  - System.Exception.StackTrace
+  - System.Exception.TargetSite
+  - System.Exception.SerializeObjectState
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  extensionMethods:
+  - System.Object.R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull
+  - System.Object.R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object)
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception.ErrorList
+  commentId: P:R_BlazorFrontEnd.Exceptions.R_Exception.ErrorList
+  id: ErrorList
+  parent: R_BlazorFrontEnd.Exceptions.R_Exception
+  langs:
+  - csharp
+  - vb
+  name: ErrorList
+  nameWithType: R_Exception.ErrorList
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception.ErrorList
+  type: Property
+  source:
+    remote:
+      path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: ErrorList
+    path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+    startLine: 10
+  assemblies:
+  - R_BlazorFrontEnd
+  namespace: R_BlazorFrontEnd.Exceptions
+  syntax:
+    content: public List<R_IError> ErrorList { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{R_APICommonDTO.R_IError}
+    content.vb: Public ReadOnly Property ErrorList As List(Of R_IError)
+  overload: R_BlazorFrontEnd.Exceptions.R_Exception.ErrorList*
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception.HasError
+  commentId: P:R_BlazorFrontEnd.Exceptions.R_Exception.HasError
+  id: HasError
+  parent: R_BlazorFrontEnd.Exceptions.R_Exception
+  langs:
+  - csharp
+  - vb
+  name: HasError
+  nameWithType: R_Exception.HasError
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception.HasError
+  type: Property
+  source:
+    remote:
+      path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: HasError
+    path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+    startLine: 18
+  assemblies:
+  - R_BlazorFrontEnd
+  namespace: R_BlazorFrontEnd.Exceptions
+  syntax:
+    content: public bool HasError { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property HasError As Boolean
+  overload: R_BlazorFrontEnd.Exceptions.R_Exception.HasError*
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception.#ctor
+  commentId: M:R_BlazorFrontEnd.Exceptions.R_Exception.#ctor
+  id: '#ctor'
+  parent: R_BlazorFrontEnd.Exceptions.R_Exception
+  langs:
+  - csharp
+  - vb
+  name: R_Exception()
+  nameWithType: R_Exception.R_Exception()
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception.R_Exception()
+  type: Constructor
+  source:
+    remote:
+      path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: .ctor
+    path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+    startLine: 26
+  assemblies:
+  - R_BlazorFrontEnd
+  namespace: R_BlazorFrontEnd.Exceptions
+  syntax:
+    content: public R_Exception()
+    content.vb: Public Sub New()
+  overload: R_BlazorFrontEnd.Exceptions.R_Exception.#ctor*
+  nameWithType.vb: R_Exception.New()
+  fullName.vb: R_BlazorFrontEnd.Exceptions.R_Exception.New()
+  name.vb: New()
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception.#ctor(System.Collections.Generic.List{R_BlazorFrontEnd.Exceptions.R_Error})
+  commentId: M:R_BlazorFrontEnd.Exceptions.R_Exception.#ctor(System.Collections.Generic.List{R_BlazorFrontEnd.Exceptions.R_Error})
+  id: '#ctor(System.Collections.Generic.List{R_BlazorFrontEnd.Exceptions.R_Error})'
+  parent: R_BlazorFrontEnd.Exceptions.R_Exception
+  langs:
+  - csharp
+  - vb
+  name: R_Exception(List<R_Error>)
+  nameWithType: R_Exception.R_Exception(List<R_Error>)
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception.R_Exception(System.Collections.Generic.List<R_BlazorFrontEnd.Exceptions.R_Error>)
+  type: Constructor
+  source:
+    remote:
+      path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: .ctor
+    path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+    startLine: 32
+  assemblies:
+  - R_BlazorFrontEnd
+  namespace: R_BlazorFrontEnd.Exceptions
+  syntax:
+    content: public R_Exception(List<R_Error> poErrors)
+    parameters:
+    - id: poErrors
+      type: System.Collections.Generic.List{R_BlazorFrontEnd.Exceptions.R_Error}
+    content.vb: Public Sub New(poErrors As List(Of R_Error))
+  overload: R_BlazorFrontEnd.Exceptions.R_Exception.#ctor*
+  nameWithType.vb: R_Exception.New(List(Of R_Error))
+  fullName.vb: R_BlazorFrontEnd.Exceptions.R_Exception.New(System.Collections.Generic.List(Of R_BlazorFrontEnd.Exceptions.R_Error))
+  name.vb: New(List(Of R_Error))
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception.GetErrorList
+  commentId: M:R_BlazorFrontEnd.Exceptions.R_Exception.GetErrorList
+  id: GetErrorList
+  parent: R_BlazorFrontEnd.Exceptions.R_Exception
+  langs:
+  - csharp
+  - vb
+  name: GetErrorList()
+  nameWithType: R_Exception.GetErrorList()
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception.GetErrorList()
+  type: Method
+  source:
+    remote:
+      path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: GetErrorList
+    path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+    startLine: 38
+  assemblies:
+  - R_BlazorFrontEnd
+  namespace: R_BlazorFrontEnd.Exceptions
+  syntax:
+    content: public List<R_Error> GetErrorList()
+    return:
+      type: System.Collections.Generic.List{R_BlazorFrontEnd.Exceptions.R_Error}
+    content.vb: Public Function GetErrorList() As List(Of R_Error)
+  overload: R_BlazorFrontEnd.Exceptions.R_Exception.GetErrorList*
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception.Add(R_BlazorFrontEnd.Exceptions.R_Error)
+  commentId: M:R_BlazorFrontEnd.Exceptions.R_Exception.Add(R_BlazorFrontEnd.Exceptions.R_Error)
+  id: Add(R_BlazorFrontEnd.Exceptions.R_Error)
+  parent: R_BlazorFrontEnd.Exceptions.R_Exception
+  langs:
+  - csharp
+  - vb
+  name: Add(R_Error)
+  nameWithType: R_Exception.Add(R_Error)
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception.Add(R_BlazorFrontEnd.Exceptions.R_Error)
+  type: Method
+  source:
+    remote:
+      path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: Add
+    path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+    startLine: 44
+  assemblies:
+  - R_BlazorFrontEnd
+  namespace: R_BlazorFrontEnd.Exceptions
+  syntax:
+    content: public void Add(R_Error poError)
+    parameters:
+    - id: poError
+      type: R_BlazorFrontEnd.Exceptions.R_Error
+    content.vb: Public Sub Add(poError As R_Error)
+  overload: R_BlazorFrontEnd.Exceptions.R_Exception.Add*
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception.Add(System.String,System.String)
+  commentId: M:R_BlazorFrontEnd.Exceptions.R_Exception.Add(System.String,System.String)
+  id: Add(System.String,System.String)
+  parent: R_BlazorFrontEnd.Exceptions.R_Exception
+  langs:
+  - csharp
+  - vb
+  name: Add(string, string)
+  nameWithType: R_Exception.Add(string, string)
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception.Add(string, string)
+  type: Method
+  source:
+    remote:
+      path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: Add
+    path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+    startLine: 49
+  assemblies:
+  - R_BlazorFrontEnd
+  namespace: R_BlazorFrontEnd.Exceptions
+  syntax:
+    content: public void Add(string pcErrorNo, string pcErrorDesc)
+    parameters:
+    - id: pcErrorNo
+      type: System.String
+    - id: pcErrorDesc
+      type: System.String
+    content.vb: Public Sub Add(pcErrorNo As String, pcErrorDesc As String)
+  overload: R_BlazorFrontEnd.Exceptions.R_Exception.Add*
+  nameWithType.vb: R_Exception.Add(String, String)
+  fullName.vb: R_BlazorFrontEnd.Exceptions.R_Exception.Add(String, String)
+  name.vb: Add(String, String)
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception.Add(System.String,System.String,System.Collections.Generic.List{R_BlazorFrontEnd.Exceptions.R_ErrorDetail})
+  commentId: M:R_BlazorFrontEnd.Exceptions.R_Exception.Add(System.String,System.String,System.Collections.Generic.List{R_BlazorFrontEnd.Exceptions.R_ErrorDetail})
+  id: Add(System.String,System.String,System.Collections.Generic.List{R_BlazorFrontEnd.Exceptions.R_ErrorDetail})
+  parent: R_BlazorFrontEnd.Exceptions.R_Exception
+  langs:
+  - csharp
+  - vb
+  name: Add(string, string, List<R_ErrorDetail>)
+  nameWithType: R_Exception.Add(string, string, List<R_ErrorDetail>)
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception.Add(string, string, System.Collections.Generic.List<R_BlazorFrontEnd.Exceptions.R_ErrorDetail>)
+  type: Method
+  source:
+    remote:
+      path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: Add
+    path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+    startLine: 54
+  assemblies:
+  - R_BlazorFrontEnd
+  namespace: R_BlazorFrontEnd.Exceptions
+  syntax:
+    content: public void Add(string pcErrorNo, string pcErrorDesc, List<R_ErrorDetail> poErrorDetails)
+    parameters:
+    - id: pcErrorNo
+      type: System.String
+    - id: pcErrorDesc
+      type: System.String
+    - id: poErrorDetails
+      type: System.Collections.Generic.List{R_BlazorFrontEnd.Exceptions.R_ErrorDetail}
+    content.vb: Public Sub Add(pcErrorNo As String, pcErrorDesc As String, poErrorDetails As List(Of R_ErrorDetail))
+  overload: R_BlazorFrontEnd.Exceptions.R_Exception.Add*
+  nameWithType.vb: R_Exception.Add(String, String, List(Of R_ErrorDetail))
+  fullName.vb: R_BlazorFrontEnd.Exceptions.R_Exception.Add(String, String, System.Collections.Generic.List(Of R_BlazorFrontEnd.Exceptions.R_ErrorDetail))
+  name.vb: Add(String, String, List(Of R_ErrorDetail))
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception.Add(System.String,System.String,System.String,System.String)
+  commentId: M:R_BlazorFrontEnd.Exceptions.R_Exception.Add(System.String,System.String,System.String,System.String)
+  id: Add(System.String,System.String,System.String,System.String)
+  parent: R_BlazorFrontEnd.Exceptions.R_Exception
+  langs:
+  - csharp
+  - vb
+  name: Add(string, string, string, string)
+  nameWithType: R_Exception.Add(string, string, string, string)
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception.Add(string, string, string, string)
+  type: Method
+  source:
+    remote:
+      path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: Add
+    path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+    startLine: 59
+  assemblies:
+  - R_BlazorFrontEnd
+  namespace: R_BlazorFrontEnd.Exceptions
+  syntax:
+    content: public void Add(string pcErrorNo, string pcErrorDesc, string pcErrorDetailNo, string pcErrorDetailDesc)
+    parameters:
+    - id: pcErrorNo
+      type: System.String
+    - id: pcErrorDesc
+      type: System.String
+    - id: pcErrorDetailNo
+      type: System.String
+    - id: pcErrorDetailDesc
+      type: System.String
+    content.vb: Public Sub Add(pcErrorNo As String, pcErrorDesc As String, pcErrorDetailNo As String, pcErrorDetailDesc As String)
+  overload: R_BlazorFrontEnd.Exceptions.R_Exception.Add*
+  nameWithType.vb: R_Exception.Add(String, String, String, String)
+  fullName.vb: R_BlazorFrontEnd.Exceptions.R_Exception.Add(String, String, String, String)
+  name.vb: Add(String, String, String, String)
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception.Add(System.Exception)
+  commentId: M:R_BlazorFrontEnd.Exceptions.R_Exception.Add(System.Exception)
+  id: Add(System.Exception)
+  parent: R_BlazorFrontEnd.Exceptions.R_Exception
+  langs:
+  - csharp
+  - vb
+  name: Add(Exception)
+  nameWithType: R_Exception.Add(Exception)
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception.Add(System.Exception)
+  type: Method
+  source:
+    remote:
+      path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: Add
+    path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+    startLine: 67
+  assemblies:
+  - R_BlazorFrontEnd
+  namespace: R_BlazorFrontEnd.Exceptions
+  syntax:
+    content: public void Add(Exception poException)
+    parameters:
+    - id: poException
+      type: System.Exception
+    content.vb: Public Sub Add(poException As Exception)
+  overload: R_BlazorFrontEnd.Exceptions.R_Exception.Add*
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception.ThrowExceptionIfErrors
+  commentId: M:R_BlazorFrontEnd.Exceptions.R_Exception.ThrowExceptionIfErrors
+  id: ThrowExceptionIfErrors
+  parent: R_BlazorFrontEnd.Exceptions.R_Exception
+  langs:
+  - csharp
+  - vb
+  name: ThrowExceptionIfErrors()
+  nameWithType: R_Exception.ThrowExceptionIfErrors()
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception.ThrowExceptionIfErrors()
+  type: Method
+  source:
+    remote:
+      path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: ThrowExceptionIfErrors
+    path: Library/R_BlazorFrontEnd/Exceptions/R_Exception.cs
+    startLine: 110
+  assemblies:
+  - R_BlazorFrontEnd
+  namespace: R_BlazorFrontEnd.Exceptions
+  syntax:
+    content: public void ThrowExceptionIfErrors()
+    content.vb: Public Sub ThrowExceptionIfErrors()
+  overload: R_BlazorFrontEnd.Exceptions.R_Exception.ThrowExceptionIfErrors*
+references:
+- uid: R_BlazorFrontEnd.Exceptions
+  commentId: N:R_BlazorFrontEnd.Exceptions
+  href: R_BlazorFrontEnd.html
+  name: R_BlazorFrontEnd.Exceptions
+  nameWithType: R_BlazorFrontEnd.Exceptions
+  fullName: R_BlazorFrontEnd.Exceptions
+  spec.csharp:
+  - uid: R_BlazorFrontEnd
+    name: R_BlazorFrontEnd
+    href: R_BlazorFrontEnd.html
+  - name: .
+  - uid: R_BlazorFrontEnd.Exceptions
+    name: Exceptions
+    href: R_BlazorFrontEnd.Exceptions.html
+  spec.vb:
+  - uid: R_BlazorFrontEnd
+    name: R_BlazorFrontEnd
+    href: R_BlazorFrontEnd.html
+  - name: .
+  - uid: R_BlazorFrontEnd.Exceptions
+    name: Exceptions
+    href: R_BlazorFrontEnd.Exceptions.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Exception
+  commentId: T:System.Exception
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
+- uid: System.Runtime.Serialization.ISerializable
+  commentId: T:System.Runtime.Serialization.ISerializable
+  parent: System.Runtime.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.runtime.serialization.iserializable
+  name: ISerializable
+  nameWithType: ISerializable
+  fullName: System.Runtime.Serialization.ISerializable
+- uid: System.Exception.GetBaseException
+  commentId: M:System.Exception.GetBaseException
+  parent: System.Exception
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception.getbaseexception
+  name: GetBaseException()
+  nameWithType: Exception.GetBaseException()
+  fullName: System.Exception.GetBaseException()
+  spec.csharp:
+  - uid: System.Exception.GetBaseException
+    name: GetBaseException
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.exception.getbaseexception
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Exception.GetBaseException
+    name: GetBaseException
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.exception.getbaseexception
+  - name: (
+  - name: )
+- uid: System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  commentId: M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  parent: System.Exception
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception.getobjectdata
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType: Exception.GetObjectData(SerializationInfo, StreamingContext)
+  fullName: System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  spec.csharp:
+  - uid: System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+    name: GetObjectData
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.exception.getobjectdata
+  - name: (
+  - uid: System.Runtime.Serialization.SerializationInfo
+    name: SerializationInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime.serialization.serializationinfo
+  - name: ','
+  - name: " "
+  - uid: System.Runtime.Serialization.StreamingContext
+    name: StreamingContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime.serialization.streamingcontext
+  - name: )
+  spec.vb:
+  - uid: System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+    name: GetObjectData
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.exception.getobjectdata
+  - name: (
+  - uid: System.Runtime.Serialization.SerializationInfo
+    name: SerializationInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime.serialization.serializationinfo
+  - name: ','
+  - name: " "
+  - uid: System.Runtime.Serialization.StreamingContext
+    name: StreamingContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime.serialization.streamingcontext
+  - name: )
+- uid: System.Exception.GetType
+  commentId: M:System.Exception.GetType
+  parent: System.Exception
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception.gettype
+  name: GetType()
+  nameWithType: Exception.GetType()
+  fullName: System.Exception.GetType()
+  spec.csharp:
+  - uid: System.Exception.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.exception.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Exception.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.exception.gettype
+  - name: (
+  - name: )
+- uid: System.Exception.ToString
+  commentId: M:System.Exception.ToString
+  parent: System.Exception
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception.tostring
+  name: ToString()
+  nameWithType: Exception.ToString()
+  fullName: System.Exception.ToString()
+  spec.csharp:
+  - uid: System.Exception.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.exception.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Exception.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.exception.tostring
+  - name: (
+  - name: )
+- uid: System.Exception.Data
+  commentId: P:System.Exception.Data
+  parent: System.Exception
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception.data
+  name: Data
+  nameWithType: Exception.Data
+  fullName: System.Exception.Data
+- uid: System.Exception.HelpLink
+  commentId: P:System.Exception.HelpLink
+  parent: System.Exception
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception.helplink
+  name: HelpLink
+  nameWithType: Exception.HelpLink
+  fullName: System.Exception.HelpLink
+- uid: System.Exception.HResult
+  commentId: P:System.Exception.HResult
+  parent: System.Exception
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception.hresult
+  name: HResult
+  nameWithType: Exception.HResult
+  fullName: System.Exception.HResult
+- uid: System.Exception.InnerException
+  commentId: P:System.Exception.InnerException
+  parent: System.Exception
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception.innerexception
+  name: InnerException
+  nameWithType: Exception.InnerException
+  fullName: System.Exception.InnerException
+- uid: System.Exception.Message
+  commentId: P:System.Exception.Message
+  parent: System.Exception
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception.message
+  name: Message
+  nameWithType: Exception.Message
+  fullName: System.Exception.Message
+- uid: System.Exception.Source
+  commentId: P:System.Exception.Source
+  parent: System.Exception
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception.source
+  name: Source
+  nameWithType: Exception.Source
+  fullName: System.Exception.Source
+- uid: System.Exception.StackTrace
+  commentId: P:System.Exception.StackTrace
+  parent: System.Exception
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception.stacktrace
+  name: StackTrace
+  nameWithType: Exception.StackTrace
+  fullName: System.Exception.StackTrace
+- uid: System.Exception.TargetSite
+  commentId: P:System.Exception.TargetSite
+  parent: System.Exception
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception.targetsite
+  name: TargetSite
+  nameWithType: Exception.TargetSite
+  fullName: System.Exception.TargetSite
+- uid: System.Exception.SerializeObjectState
+  commentId: E:System.Exception.SerializeObjectState
+  parent: System.Exception
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception.serializeobjectstate
+  name: SerializeObjectState
+  nameWithType: Exception.SerializeObjectState
+  fullName: System.Exception.SerializeObjectState
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull
+  commentId: M:R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(System.Object)
+  parent: R_BlazorFrontEnd.Extensions.R_FrontExtensions
+  definition: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(System.Object)
+  href: R_BlazorFrontEnd.Extensions.R_FrontExtensions.html#R_BlazorFrontEnd_Extensions_R_FrontExtensions_ThrowIfNull_System_Object_
+  name: ThrowIfNull(object)
+  nameWithType: R_FrontExtensions.ThrowIfNull(object)
+  fullName: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(object)
+  nameWithType.vb: R_FrontExtensions.ThrowIfNull(Object)
+  fullName.vb: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(Object)
+  name.vb: ThrowIfNull(Object)
+  spec.csharp:
+  - uid: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(System.Object)
+    name: ThrowIfNull
+    href: R_BlazorFrontEnd.Extensions.R_FrontExtensions.html#R_BlazorFrontEnd_Extensions_R_FrontExtensions_ThrowIfNull_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(System.Object)
+    name: ThrowIfNull
+    href: R_BlazorFrontEnd.Extensions.R_FrontExtensions.html#R_BlazorFrontEnd_Extensions_R_FrontExtensions_ThrowIfNull_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object)
+  commentId: M:R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object,System.Object)
+  parent: R_BlazorFrontEnd.Helpers.R_FrontUtility
+  definition: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object,System.Object)
+  href: R_BlazorFrontEnd.Helpers.R_FrontUtility.html#R_BlazorFrontEnd_Helpers_R_FrontUtility_CompareObject_System_Object_System_Object_
+  name: CompareObject(object, object)
+  nameWithType: R_FrontUtility.CompareObject(object, object)
+  fullName: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(object, object)
+  nameWithType.vb: R_FrontUtility.CompareObject(Object, Object)
+  fullName.vb: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(Object, Object)
+  name.vb: CompareObject(Object, Object)
+  spec.csharp:
+  - uid: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object,System.Object)
+    name: CompareObject
+    href: R_BlazorFrontEnd.Helpers.R_FrontUtility.html#R_BlazorFrontEnd_Helpers_R_FrontUtility_CompareObject_System_Object_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object,System.Object)
+    name: CompareObject
+    href: R_BlazorFrontEnd.Helpers.R_FrontUtility.html#R_BlazorFrontEnd_Helpers_R_FrontUtility_CompareObject_System_Object_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Runtime.Serialization
+  commentId: N:System.Runtime.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Runtime.Serialization
+  nameWithType: System.Runtime.Serialization
+  fullName: System.Runtime.Serialization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Runtime
+    name: Runtime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime
+  - name: .
+  - uid: System.Runtime.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime.serialization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Runtime
+    name: Runtime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime
+  - name: .
+  - uid: System.Runtime.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime.serialization
+- uid: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(System.Object)
+  commentId: M:R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(System.Object)
+  isExternal: true
+  href: R_BlazorFrontEnd.Extensions.R_FrontExtensions.html#R_BlazorFrontEnd_Extensions_R_FrontExtensions_ThrowIfNull_System_Object_
+  name: ThrowIfNull(object)
+  nameWithType: R_FrontExtensions.ThrowIfNull(object)
+  fullName: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(object)
+  nameWithType.vb: R_FrontExtensions.ThrowIfNull(Object)
+  fullName.vb: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(Object)
+  name.vb: ThrowIfNull(Object)
+  spec.csharp:
+  - uid: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(System.Object)
+    name: ThrowIfNull
+    href: R_BlazorFrontEnd.Extensions.R_FrontExtensions.html#R_BlazorFrontEnd_Extensions_R_FrontExtensions_ThrowIfNull_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(System.Object)
+    name: ThrowIfNull
+    href: R_BlazorFrontEnd.Extensions.R_FrontExtensions.html#R_BlazorFrontEnd_Extensions_R_FrontExtensions_ThrowIfNull_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: R_BlazorFrontEnd.Extensions.R_FrontExtensions
+  commentId: T:R_BlazorFrontEnd.Extensions.R_FrontExtensions
+  parent: R_BlazorFrontEnd.Extensions
+  href: R_BlazorFrontEnd.Extensions.R_FrontExtensions.html
+  name: R_FrontExtensions
+  nameWithType: R_FrontExtensions
+  fullName: R_BlazorFrontEnd.Extensions.R_FrontExtensions
+- uid: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object,System.Object)
+  commentId: M:R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object,System.Object)
+  isExternal: true
+  href: R_BlazorFrontEnd.Helpers.R_FrontUtility.html#R_BlazorFrontEnd_Helpers_R_FrontUtility_CompareObject_System_Object_System_Object_
+  name: CompareObject(object, object)
+  nameWithType: R_FrontUtility.CompareObject(object, object)
+  fullName: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(object, object)
+  nameWithType.vb: R_FrontUtility.CompareObject(Object, Object)
+  fullName.vb: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(Object, Object)
+  name.vb: CompareObject(Object, Object)
+  spec.csharp:
+  - uid: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object,System.Object)
+    name: CompareObject
+    href: R_BlazorFrontEnd.Helpers.R_FrontUtility.html#R_BlazorFrontEnd_Helpers_R_FrontUtility_CompareObject_System_Object_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object,System.Object)
+    name: CompareObject
+    href: R_BlazorFrontEnd.Helpers.R_FrontUtility.html#R_BlazorFrontEnd_Helpers_R_FrontUtility_CompareObject_System_Object_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: R_BlazorFrontEnd.Helpers.R_FrontUtility
+  commentId: T:R_BlazorFrontEnd.Helpers.R_FrontUtility
+  parent: R_BlazorFrontEnd.Helpers
+  href: R_BlazorFrontEnd.Helpers.R_FrontUtility.html
+  name: R_FrontUtility
+  nameWithType: R_FrontUtility
+  fullName: R_BlazorFrontEnd.Helpers.R_FrontUtility
+- uid: R_BlazorFrontEnd.Extensions
+  commentId: N:R_BlazorFrontEnd.Extensions
+  href: R_BlazorFrontEnd.html
+  name: R_BlazorFrontEnd.Extensions
+  nameWithType: R_BlazorFrontEnd.Extensions
+  fullName: R_BlazorFrontEnd.Extensions
+  spec.csharp:
+  - uid: R_BlazorFrontEnd
+    name: R_BlazorFrontEnd
+    href: R_BlazorFrontEnd.html
+  - name: .
+  - uid: R_BlazorFrontEnd.Extensions
+    name: Extensions
+    href: R_BlazorFrontEnd.Extensions.html
+  spec.vb:
+  - uid: R_BlazorFrontEnd
+    name: R_BlazorFrontEnd
+    href: R_BlazorFrontEnd.html
+  - name: .
+  - uid: R_BlazorFrontEnd.Extensions
+    name: Extensions
+    href: R_BlazorFrontEnd.Extensions.html
+- uid: R_BlazorFrontEnd.Helpers
+  commentId: N:R_BlazorFrontEnd.Helpers
+  href: R_BlazorFrontEnd.html
+  name: R_BlazorFrontEnd.Helpers
+  nameWithType: R_BlazorFrontEnd.Helpers
+  fullName: R_BlazorFrontEnd.Helpers
+  spec.csharp:
+  - uid: R_BlazorFrontEnd
+    name: R_BlazorFrontEnd
+    href: R_BlazorFrontEnd.html
+  - name: .
+  - uid: R_BlazorFrontEnd.Helpers
+    name: Helpers
+    href: R_BlazorFrontEnd.Helpers.html
+  spec.vb:
+  - uid: R_BlazorFrontEnd
+    name: R_BlazorFrontEnd
+    href: R_BlazorFrontEnd.html
+  - name: .
+  - uid: R_BlazorFrontEnd.Helpers
+    name: Helpers
+    href: R_BlazorFrontEnd.Helpers.html
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception.ErrorList*
+  commentId: Overload:R_BlazorFrontEnd.Exceptions.R_Exception.ErrorList
+  href: R_BlazorFrontEnd.Exceptions.R_Exception.html#R_BlazorFrontEnd_Exceptions_R_Exception_ErrorList
+  name: ErrorList
+  nameWithType: R_Exception.ErrorList
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception.ErrorList
+- uid: System.Collections.Generic.List{R_APICommonDTO.R_IError}
+  commentId: T:System.Collections.Generic.List{R_APICommonDTO.R_IError}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<R_IError>
+  nameWithType: List<R_IError>
+  fullName: System.Collections.Generic.List<R_APICommonDTO.R_IError>
+  nameWithType.vb: List(Of R_IError)
+  fullName.vb: System.Collections.Generic.List(Of R_APICommonDTO.R_IError)
+  name.vb: List(Of R_IError)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: R_APICommonDTO.R_IError
+    name: R_IError
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: R_APICommonDTO.R_IError
+    name: R_IError
+    isExternal: true
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception.HasError*
+  commentId: Overload:R_BlazorFrontEnd.Exceptions.R_Exception.HasError
+  href: R_BlazorFrontEnd.Exceptions.R_Exception.html#R_BlazorFrontEnd_Exceptions_R_Exception_HasError
+  name: HasError
+  nameWithType: R_Exception.HasError
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception.HasError
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception.#ctor*
+  commentId: Overload:R_BlazorFrontEnd.Exceptions.R_Exception.#ctor
+  href: R_BlazorFrontEnd.Exceptions.R_Exception.html#R_BlazorFrontEnd_Exceptions_R_Exception__ctor
+  name: R_Exception
+  nameWithType: R_Exception.R_Exception
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception.R_Exception
+  nameWithType.vb: R_Exception.New
+  fullName.vb: R_BlazorFrontEnd.Exceptions.R_Exception.New
+  name.vb: New
+- uid: System.Collections.Generic.List{R_BlazorFrontEnd.Exceptions.R_Error}
+  commentId: T:System.Collections.Generic.List{R_BlazorFrontEnd.Exceptions.R_Error}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<R_Error>
+  nameWithType: List<R_Error>
+  fullName: System.Collections.Generic.List<R_BlazorFrontEnd.Exceptions.R_Error>
+  nameWithType.vb: List(Of R_Error)
+  fullName.vb: System.Collections.Generic.List(Of R_BlazorFrontEnd.Exceptions.R_Error)
+  name.vb: List(Of R_Error)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: R_BlazorFrontEnd.Exceptions.R_Error
+    name: R_Error
+    href: R_BlazorFrontEnd.Exceptions.R_Error.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: R_BlazorFrontEnd.Exceptions.R_Error
+    name: R_Error
+    href: R_BlazorFrontEnd.Exceptions.R_Error.html
+  - name: )
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception.GetErrorList*
+  commentId: Overload:R_BlazorFrontEnd.Exceptions.R_Exception.GetErrorList
+  href: R_BlazorFrontEnd.Exceptions.R_Exception.html#R_BlazorFrontEnd_Exceptions_R_Exception_GetErrorList
+  name: GetErrorList
+  nameWithType: R_Exception.GetErrorList
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception.GetErrorList
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception.Add*
+  commentId: Overload:R_BlazorFrontEnd.Exceptions.R_Exception.Add
+  href: R_BlazorFrontEnd.Exceptions.R_Exception.html#R_BlazorFrontEnd_Exceptions_R_Exception_Add_R_BlazorFrontEnd_Exceptions_R_Error_
+  name: Add
+  nameWithType: R_Exception.Add
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception.Add
+- uid: R_BlazorFrontEnd.Exceptions.R_Error
+  commentId: T:R_BlazorFrontEnd.Exceptions.R_Error
+  parent: R_BlazorFrontEnd.Exceptions
+  href: R_BlazorFrontEnd.Exceptions.R_Error.html
+  name: R_Error
+  nameWithType: R_Error
+  fullName: R_BlazorFrontEnd.Exceptions.R_Error
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Collections.Generic.List{R_BlazorFrontEnd.Exceptions.R_ErrorDetail}
+  commentId: T:System.Collections.Generic.List{R_BlazorFrontEnd.Exceptions.R_ErrorDetail}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<R_ErrorDetail>
+  nameWithType: List<R_ErrorDetail>
+  fullName: System.Collections.Generic.List<R_BlazorFrontEnd.Exceptions.R_ErrorDetail>
+  nameWithType.vb: List(Of R_ErrorDetail)
+  fullName.vb: System.Collections.Generic.List(Of R_BlazorFrontEnd.Exceptions.R_ErrorDetail)
+  name.vb: List(Of R_ErrorDetail)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: R_BlazorFrontEnd.Exceptions.R_ErrorDetail
+    name: R_ErrorDetail
+    href: R_BlazorFrontEnd.Exceptions.R_ErrorDetail.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: R_BlazorFrontEnd.Exceptions.R_ErrorDetail
+    name: R_ErrorDetail
+    href: R_BlazorFrontEnd.Exceptions.R_ErrorDetail.html
+  - name: )
+- uid: R_BlazorFrontEnd.Exceptions.R_Exception.ThrowExceptionIfErrors*
+  commentId: Overload:R_BlazorFrontEnd.Exceptions.R_Exception.ThrowExceptionIfErrors
+  href: R_BlazorFrontEnd.Exceptions.R_Exception.html#R_BlazorFrontEnd_Exceptions_R_Exception_ThrowExceptionIfErrors
+  name: ThrowExceptionIfErrors
+  nameWithType: R_Exception.ThrowExceptionIfErrors
+  fullName: R_BlazorFrontEnd.Exceptions.R_Exception.ThrowExceptionIfErrors

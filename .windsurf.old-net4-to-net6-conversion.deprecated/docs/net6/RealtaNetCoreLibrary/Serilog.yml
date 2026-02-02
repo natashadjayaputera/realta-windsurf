@@ -1,0 +1,30 @@
+### YamlMime:ManagedReference
+items:
+- uid: Serilog
+  commentId: N:Serilog
+  id: Serilog
+  children:
+  - Serilog.ApplicationBuilderSerilogClientExtensions
+  - Serilog.LoggerConfigurationBrowserHttpExtensions
+  langs:
+  - csharp
+  - vb
+  name: Serilog
+  nameWithType: Serilog
+  fullName: Serilog
+  type: Namespace
+  assemblies:
+  - Serilog.Sinks.BrowserHttp
+references:
+- uid: Serilog.LoggerConfigurationBrowserHttpExtensions
+  commentId: T:Serilog.LoggerConfigurationBrowserHttpExtensions
+  href: Serilog.LoggerConfigurationBrowserHttpExtensions.html
+  name: LoggerConfigurationBrowserHttpExtensions
+  nameWithType: LoggerConfigurationBrowserHttpExtensions
+  fullName: Serilog.LoggerConfigurationBrowserHttpExtensions
+- uid: Serilog.ApplicationBuilderSerilogClientExtensions
+  commentId: T:Serilog.ApplicationBuilderSerilogClientExtensions
+  href: Serilog.ApplicationBuilderSerilogClientExtensions.html
+  name: ApplicationBuilderSerilogClientExtensions
+  nameWithType: ApplicationBuilderSerilogClientExtensions
+  fullName: Serilog.ApplicationBuilderSerilogClientExtensions

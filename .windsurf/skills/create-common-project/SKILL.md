@@ -13,20 +13,23 @@ Create a .NET 6 common project based on .NET4 common projects.
 ## Phase 2: Create Generic Result DTO
 2.1 Read common_generic_result_dto_template as a template and create `{ProgramName}ResultDTO.cs`.
 
-## Phase 3: Convert DTOs from VB.NET to C#
-3.1 Read common_types_mapping as a reference to convert VB.NET types to C# types.
-3.2 All DTOs is in namespace `{ProgramName}Common.DTOs`.
-3.3 Convert each DTO from VB.NET Back & Common Project to C# Common Project.
-3.4 Remove `R_DTOBase` from all DTOs.
-3.5 Remove all decoration attributes from all DTOs.
+## Phase 3: Add Additional DTO
+3.1 Copy `chunks_cs/{ProgramName}/**/DTO` to `{ProgramName}Common/DTOs`
 
-## Phase 4: Convert Enums from VB.NET to C#
-4.1 All enums is in namespace `{ProgramName}Common.Enums`.
-4.2 Convert each enum from VB.NET Back & Common Project to C# Common Project.
+## Phase 4: Convert DTOs from VB.NET to C#
+4.1 Read common_types_mapping as a reference to convert VB.NET types to C# types.
+4.2 All DTOs must be created with namespace `{ProgramName}Common.DTOs`.
+4.3 Convert each DTO from VB.NET Back & Common Project to C# Common Project.
+4.4 Remove `R_DTOBase` from all DTOs.
+4.5 Remove all decoration attributes from all DTOs.
 
-## Phase 5: Build and Bug Fix (REPEAT UNTIL NO ERRORS AND WARNINGS)
-5.1 Build {ProgramName}Common project and create a list of all error codes and warnings.
-5.2 Ask for approval of the fixes (NON-NEGOTIABLE). 
-5.3 If approved, apply the fixes, and repeat step 5.1 until there are no errors and warnings.
-5.4 If not approved, ask for changes and repeat step 5.2.
+## Phase 5: Convert Enums from VB.NET to C#
+5.1 All enums is in namespace `{ProgramName}Common.Enums`.
+5.2 Convert each enum from VB.NET Back & Common Project to C# Common Project.
+
+## Phase 6: Build and Bug Fix (REPEAT UNTIL NO ERRORS AND WARNINGS)
+6.1 Build {ProgramName}Common project and create a list of all error codes and warnings.
+6.2 Ask for approval of the fixes (NON-NEGOTIABLE). 
+6.3 If approved, apply the fixes, and repeat step 5.1 until there are no errors and warnings.
+6.4 If not approved, ask for changes and repeat step 5.2.
 

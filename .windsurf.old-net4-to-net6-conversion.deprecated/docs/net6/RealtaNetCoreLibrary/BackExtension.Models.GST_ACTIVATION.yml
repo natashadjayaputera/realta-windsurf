@@ -1,0 +1,1010 @@
+### YamlMime:ManagedReference
+items:
+- uid: BackExtension.Models.GST_ACTIVATION
+  commentId: T:BackExtension.Models.GST_ACTIVATION
+  id: GST_ACTIVATION
+  parent: BackExtension.Models
+  children:
+  - BackExtension.Models.GST_ACTIVATION.CACTIVATION_CODE
+  - BackExtension.Models.GST_ACTIVATION.CCOMPANY_ID
+  - BackExtension.Models.GST_ACTIVATION.CCREATE_BY
+  - BackExtension.Models.GST_ACTIVATION.CEXPIRED_DATE
+  - BackExtension.Models.GST_ACTIVATION.CLAST_LOGIN_DATE
+  - BackExtension.Models.GST_ACTIVATION.CSERVER_UID
+  - BackExtension.Models.GST_ACTIVATION.CSTART_DATE
+  - BackExtension.Models.GST_ACTIVATION.CUPDATE_BY
+  - BackExtension.Models.GST_ACTIVATION.DCREATE_DATE
+  - BackExtension.Models.GST_ACTIVATION.DUPDATE_DATE
+  - BackExtension.Models.GST_ACTIVATION.NGRACE_DAYS
+  - BackExtension.Models.GST_ACTIVATION.NWARNING_DAYS
+  langs:
+  - csharp
+  - vb
+  name: GST_ACTIVATION
+  nameWithType: GST_ACTIVATION
+  fullName: BackExtension.Models.GST_ACTIVATION
+  type: Class
+  source:
+    remote:
+      path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: GST_ACTIVATION
+    path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+    startLine: 4
+  assemblies:
+  - BackExtension
+  namespace: BackExtension.Models
+  syntax:
+    content: public class GST_ACTIVATION
+    content.vb: Public Class GST_ACTIVATION
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull
+  - System.Object.R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object)
+- uid: BackExtension.Models.GST_ACTIVATION.CCOMPANY_ID
+  commentId: P:BackExtension.Models.GST_ACTIVATION.CCOMPANY_ID
+  id: CCOMPANY_ID
+  parent: BackExtension.Models.GST_ACTIVATION
+  langs:
+  - csharp
+  - vb
+  name: CCOMPANY_ID
+  nameWithType: GST_ACTIVATION.CCOMPANY_ID
+  fullName: BackExtension.Models.GST_ACTIVATION.CCOMPANY_ID
+  type: Property
+  source:
+    remote:
+      path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: CCOMPANY_ID
+    path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+    startLine: 6
+  assemblies:
+  - BackExtension
+  namespace: BackExtension.Models
+  syntax:
+    content: public string CCOMPANY_ID { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property CCOMPANY_ID As String
+  overload: BackExtension.Models.GST_ACTIVATION.CCOMPANY_ID*
+- uid: BackExtension.Models.GST_ACTIVATION.CSERVER_UID
+  commentId: P:BackExtension.Models.GST_ACTIVATION.CSERVER_UID
+  id: CSERVER_UID
+  parent: BackExtension.Models.GST_ACTIVATION
+  langs:
+  - csharp
+  - vb
+  name: CSERVER_UID
+  nameWithType: GST_ACTIVATION.CSERVER_UID
+  fullName: BackExtension.Models.GST_ACTIVATION.CSERVER_UID
+  type: Property
+  source:
+    remote:
+      path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: CSERVER_UID
+    path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+    startLine: 7
+  assemblies:
+  - BackExtension
+  namespace: BackExtension.Models
+  syntax:
+    content: public string CSERVER_UID { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property CSERVER_UID As String
+  overload: BackExtension.Models.GST_ACTIVATION.CSERVER_UID*
+- uid: BackExtension.Models.GST_ACTIVATION.CACTIVATION_CODE
+  commentId: P:BackExtension.Models.GST_ACTIVATION.CACTIVATION_CODE
+  id: CACTIVATION_CODE
+  parent: BackExtension.Models.GST_ACTIVATION
+  langs:
+  - csharp
+  - vb
+  name: CACTIVATION_CODE
+  nameWithType: GST_ACTIVATION.CACTIVATION_CODE
+  fullName: BackExtension.Models.GST_ACTIVATION.CACTIVATION_CODE
+  type: Property
+  source:
+    remote:
+      path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: CACTIVATION_CODE
+    path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+    startLine: 8
+  assemblies:
+  - BackExtension
+  namespace: BackExtension.Models
+  syntax:
+    content: public string CACTIVATION_CODE { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property CACTIVATION_CODE As String
+  overload: BackExtension.Models.GST_ACTIVATION.CACTIVATION_CODE*
+- uid: BackExtension.Models.GST_ACTIVATION.CSTART_DATE
+  commentId: P:BackExtension.Models.GST_ACTIVATION.CSTART_DATE
+  id: CSTART_DATE
+  parent: BackExtension.Models.GST_ACTIVATION
+  langs:
+  - csharp
+  - vb
+  name: CSTART_DATE
+  nameWithType: GST_ACTIVATION.CSTART_DATE
+  fullName: BackExtension.Models.GST_ACTIVATION.CSTART_DATE
+  type: Property
+  source:
+    remote:
+      path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: CSTART_DATE
+    path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+    startLine: 9
+  assemblies:
+  - BackExtension
+  namespace: BackExtension.Models
+  syntax:
+    content: public string CSTART_DATE { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property CSTART_DATE As String
+  overload: BackExtension.Models.GST_ACTIVATION.CSTART_DATE*
+- uid: BackExtension.Models.GST_ACTIVATION.CEXPIRED_DATE
+  commentId: P:BackExtension.Models.GST_ACTIVATION.CEXPIRED_DATE
+  id: CEXPIRED_DATE
+  parent: BackExtension.Models.GST_ACTIVATION
+  langs:
+  - csharp
+  - vb
+  name: CEXPIRED_DATE
+  nameWithType: GST_ACTIVATION.CEXPIRED_DATE
+  fullName: BackExtension.Models.GST_ACTIVATION.CEXPIRED_DATE
+  type: Property
+  source:
+    remote:
+      path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: CEXPIRED_DATE
+    path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+    startLine: 10
+  assemblies:
+  - BackExtension
+  namespace: BackExtension.Models
+  syntax:
+    content: public string CEXPIRED_DATE { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property CEXPIRED_DATE As String
+  overload: BackExtension.Models.GST_ACTIVATION.CEXPIRED_DATE*
+- uid: BackExtension.Models.GST_ACTIVATION.NGRACE_DAYS
+  commentId: P:BackExtension.Models.GST_ACTIVATION.NGRACE_DAYS
+  id: NGRACE_DAYS
+  parent: BackExtension.Models.GST_ACTIVATION
+  langs:
+  - csharp
+  - vb
+  name: NGRACE_DAYS
+  nameWithType: GST_ACTIVATION.NGRACE_DAYS
+  fullName: BackExtension.Models.GST_ACTIVATION.NGRACE_DAYS
+  type: Property
+  source:
+    remote:
+      path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: NGRACE_DAYS
+    path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+    startLine: 11
+  assemblies:
+  - BackExtension
+  namespace: BackExtension.Models
+  syntax:
+    content: public int NGRACE_DAYS { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property NGRACE_DAYS As Integer
+  overload: BackExtension.Models.GST_ACTIVATION.NGRACE_DAYS*
+- uid: BackExtension.Models.GST_ACTIVATION.NWARNING_DAYS
+  commentId: P:BackExtension.Models.GST_ACTIVATION.NWARNING_DAYS
+  id: NWARNING_DAYS
+  parent: BackExtension.Models.GST_ACTIVATION
+  langs:
+  - csharp
+  - vb
+  name: NWARNING_DAYS
+  nameWithType: GST_ACTIVATION.NWARNING_DAYS
+  fullName: BackExtension.Models.GST_ACTIVATION.NWARNING_DAYS
+  type: Property
+  source:
+    remote:
+      path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: NWARNING_DAYS
+    path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+    startLine: 12
+  assemblies:
+  - BackExtension
+  namespace: BackExtension.Models
+  syntax:
+    content: public int NWARNING_DAYS { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property NWARNING_DAYS As Integer
+  overload: BackExtension.Models.GST_ACTIVATION.NWARNING_DAYS*
+- uid: BackExtension.Models.GST_ACTIVATION.CLAST_LOGIN_DATE
+  commentId: P:BackExtension.Models.GST_ACTIVATION.CLAST_LOGIN_DATE
+  id: CLAST_LOGIN_DATE
+  parent: BackExtension.Models.GST_ACTIVATION
+  langs:
+  - csharp
+  - vb
+  name: CLAST_LOGIN_DATE
+  nameWithType: GST_ACTIVATION.CLAST_LOGIN_DATE
+  fullName: BackExtension.Models.GST_ACTIVATION.CLAST_LOGIN_DATE
+  type: Property
+  source:
+    remote:
+      path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: CLAST_LOGIN_DATE
+    path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+    startLine: 13
+  assemblies:
+  - BackExtension
+  namespace: BackExtension.Models
+  syntax:
+    content: public string CLAST_LOGIN_DATE { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property CLAST_LOGIN_DATE As String
+  overload: BackExtension.Models.GST_ACTIVATION.CLAST_LOGIN_DATE*
+- uid: BackExtension.Models.GST_ACTIVATION.CUPDATE_BY
+  commentId: P:BackExtension.Models.GST_ACTIVATION.CUPDATE_BY
+  id: CUPDATE_BY
+  parent: BackExtension.Models.GST_ACTIVATION
+  langs:
+  - csharp
+  - vb
+  name: CUPDATE_BY
+  nameWithType: GST_ACTIVATION.CUPDATE_BY
+  fullName: BackExtension.Models.GST_ACTIVATION.CUPDATE_BY
+  type: Property
+  source:
+    remote:
+      path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: CUPDATE_BY
+    path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+    startLine: 14
+  assemblies:
+  - BackExtension
+  namespace: BackExtension.Models
+  syntax:
+    content: public string? CUPDATE_BY { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property CUPDATE_BY As String
+  overload: BackExtension.Models.GST_ACTIVATION.CUPDATE_BY*
+- uid: BackExtension.Models.GST_ACTIVATION.DUPDATE_DATE
+  commentId: P:BackExtension.Models.GST_ACTIVATION.DUPDATE_DATE
+  id: DUPDATE_DATE
+  parent: BackExtension.Models.GST_ACTIVATION
+  langs:
+  - csharp
+  - vb
+  name: DUPDATE_DATE
+  nameWithType: GST_ACTIVATION.DUPDATE_DATE
+  fullName: BackExtension.Models.GST_ACTIVATION.DUPDATE_DATE
+  type: Property
+  source:
+    remote:
+      path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: DUPDATE_DATE
+    path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+    startLine: 15
+  assemblies:
+  - BackExtension
+  namespace: BackExtension.Models
+  syntax:
+    content: public DateTime? DUPDATE_DATE { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.DateTime}
+    content.vb: Public Property DUPDATE_DATE As Date?
+  overload: BackExtension.Models.GST_ACTIVATION.DUPDATE_DATE*
+- uid: BackExtension.Models.GST_ACTIVATION.CCREATE_BY
+  commentId: P:BackExtension.Models.GST_ACTIVATION.CCREATE_BY
+  id: CCREATE_BY
+  parent: BackExtension.Models.GST_ACTIVATION
+  langs:
+  - csharp
+  - vb
+  name: CCREATE_BY
+  nameWithType: GST_ACTIVATION.CCREATE_BY
+  fullName: BackExtension.Models.GST_ACTIVATION.CCREATE_BY
+  type: Property
+  source:
+    remote:
+      path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: CCREATE_BY
+    path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+    startLine: 16
+  assemblies:
+  - BackExtension
+  namespace: BackExtension.Models
+  syntax:
+    content: public string? CCREATE_BY { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property CCREATE_BY As String
+  overload: BackExtension.Models.GST_ACTIVATION.CCREATE_BY*
+- uid: BackExtension.Models.GST_ACTIVATION.DCREATE_DATE
+  commentId: P:BackExtension.Models.GST_ACTIVATION.DCREATE_DATE
+  id: DCREATE_DATE
+  parent: BackExtension.Models.GST_ACTIVATION
+  langs:
+  - csharp
+  - vb
+  name: DCREATE_DATE
+  nameWithType: GST_ACTIVATION.DCREATE_DATE
+  fullName: BackExtension.Models.GST_ACTIVATION.DCREATE_DATE
+  type: Property
+  source:
+    remote:
+      path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+      branch: master
+      repo: git@github.com:siholsihol/RealtaNetCoreLibrary.git
+    id: DCREATE_DATE
+    path: Library Back/BackExtension/Models/GST_ACTIVATION.cs
+    startLine: 17
+  assemblies:
+  - BackExtension
+  namespace: BackExtension.Models
+  syntax:
+    content: public DateTime? DCREATE_DATE { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.DateTime}
+    content.vb: Public Property DCREATE_DATE As Date?
+  overload: BackExtension.Models.GST_ACTIVATION.DCREATE_DATE*
+references:
+- uid: BackExtension.Models
+  commentId: N:BackExtension.Models
+  href: BackExtension.html
+  name: BackExtension.Models
+  nameWithType: BackExtension.Models
+  fullName: BackExtension.Models
+  spec.csharp:
+  - uid: BackExtension
+    name: BackExtension
+    href: BackExtension.html
+  - name: .
+  - uid: BackExtension.Models
+    name: Models
+    href: BackExtension.Models.html
+  spec.vb:
+  - uid: BackExtension
+    name: BackExtension
+    href: BackExtension.html
+  - name: .
+  - uid: BackExtension.Models
+    name: Models
+    href: BackExtension.Models.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull
+  commentId: M:R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(System.Object)
+  parent: R_BlazorFrontEnd.Extensions.R_FrontExtensions
+  definition: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(System.Object)
+  href: R_BlazorFrontEnd.Extensions.R_FrontExtensions.html#R_BlazorFrontEnd_Extensions_R_FrontExtensions_ThrowIfNull_System_Object_
+  name: ThrowIfNull(object)
+  nameWithType: R_FrontExtensions.ThrowIfNull(object)
+  fullName: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(object)
+  nameWithType.vb: R_FrontExtensions.ThrowIfNull(Object)
+  fullName.vb: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(Object)
+  name.vb: ThrowIfNull(Object)
+  spec.csharp:
+  - uid: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(System.Object)
+    name: ThrowIfNull
+    href: R_BlazorFrontEnd.Extensions.R_FrontExtensions.html#R_BlazorFrontEnd_Extensions_R_FrontExtensions_ThrowIfNull_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(System.Object)
+    name: ThrowIfNull
+    href: R_BlazorFrontEnd.Extensions.R_FrontExtensions.html#R_BlazorFrontEnd_Extensions_R_FrontExtensions_ThrowIfNull_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object)
+  commentId: M:R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object,System.Object)
+  parent: R_BlazorFrontEnd.Helpers.R_FrontUtility
+  definition: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object,System.Object)
+  href: R_BlazorFrontEnd.Helpers.R_FrontUtility.html#R_BlazorFrontEnd_Helpers_R_FrontUtility_CompareObject_System_Object_System_Object_
+  name: CompareObject(object, object)
+  nameWithType: R_FrontUtility.CompareObject(object, object)
+  fullName: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(object, object)
+  nameWithType.vb: R_FrontUtility.CompareObject(Object, Object)
+  fullName.vb: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(Object, Object)
+  name.vb: CompareObject(Object, Object)
+  spec.csharp:
+  - uid: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object,System.Object)
+    name: CompareObject
+    href: R_BlazorFrontEnd.Helpers.R_FrontUtility.html#R_BlazorFrontEnd_Helpers_R_FrontUtility_CompareObject_System_Object_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object,System.Object)
+    name: CompareObject
+    href: R_BlazorFrontEnd.Helpers.R_FrontUtility.html#R_BlazorFrontEnd_Helpers_R_FrontUtility_CompareObject_System_Object_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(System.Object)
+  commentId: M:R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(System.Object)
+  isExternal: true
+  href: R_BlazorFrontEnd.Extensions.R_FrontExtensions.html#R_BlazorFrontEnd_Extensions_R_FrontExtensions_ThrowIfNull_System_Object_
+  name: ThrowIfNull(object)
+  nameWithType: R_FrontExtensions.ThrowIfNull(object)
+  fullName: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(object)
+  nameWithType.vb: R_FrontExtensions.ThrowIfNull(Object)
+  fullName.vb: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(Object)
+  name.vb: ThrowIfNull(Object)
+  spec.csharp:
+  - uid: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(System.Object)
+    name: ThrowIfNull
+    href: R_BlazorFrontEnd.Extensions.R_FrontExtensions.html#R_BlazorFrontEnd_Extensions_R_FrontExtensions_ThrowIfNull_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: R_BlazorFrontEnd.Extensions.R_FrontExtensions.ThrowIfNull(System.Object)
+    name: ThrowIfNull
+    href: R_BlazorFrontEnd.Extensions.R_FrontExtensions.html#R_BlazorFrontEnd_Extensions_R_FrontExtensions_ThrowIfNull_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: R_BlazorFrontEnd.Extensions.R_FrontExtensions
+  commentId: T:R_BlazorFrontEnd.Extensions.R_FrontExtensions
+  parent: R_BlazorFrontEnd.Extensions
+  href: R_BlazorFrontEnd.Extensions.R_FrontExtensions.html
+  name: R_FrontExtensions
+  nameWithType: R_FrontExtensions
+  fullName: R_BlazorFrontEnd.Extensions.R_FrontExtensions
+- uid: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object,System.Object)
+  commentId: M:R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object,System.Object)
+  isExternal: true
+  href: R_BlazorFrontEnd.Helpers.R_FrontUtility.html#R_BlazorFrontEnd_Helpers_R_FrontUtility_CompareObject_System_Object_System_Object_
+  name: CompareObject(object, object)
+  nameWithType: R_FrontUtility.CompareObject(object, object)
+  fullName: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(object, object)
+  nameWithType.vb: R_FrontUtility.CompareObject(Object, Object)
+  fullName.vb: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(Object, Object)
+  name.vb: CompareObject(Object, Object)
+  spec.csharp:
+  - uid: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object,System.Object)
+    name: CompareObject
+    href: R_BlazorFrontEnd.Helpers.R_FrontUtility.html#R_BlazorFrontEnd_Helpers_R_FrontUtility_CompareObject_System_Object_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: R_BlazorFrontEnd.Helpers.R_FrontUtility.CompareObject(System.Object,System.Object)
+    name: CompareObject
+    href: R_BlazorFrontEnd.Helpers.R_FrontUtility.html#R_BlazorFrontEnd_Helpers_R_FrontUtility_CompareObject_System_Object_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: R_BlazorFrontEnd.Helpers.R_FrontUtility
+  commentId: T:R_BlazorFrontEnd.Helpers.R_FrontUtility
+  parent: R_BlazorFrontEnd.Helpers
+  href: R_BlazorFrontEnd.Helpers.R_FrontUtility.html
+  name: R_FrontUtility
+  nameWithType: R_FrontUtility
+  fullName: R_BlazorFrontEnd.Helpers.R_FrontUtility
+- uid: R_BlazorFrontEnd.Extensions
+  commentId: N:R_BlazorFrontEnd.Extensions
+  href: R_BlazorFrontEnd.html
+  name: R_BlazorFrontEnd.Extensions
+  nameWithType: R_BlazorFrontEnd.Extensions
+  fullName: R_BlazorFrontEnd.Extensions
+  spec.csharp:
+  - uid: R_BlazorFrontEnd
+    name: R_BlazorFrontEnd
+    href: R_BlazorFrontEnd.html
+  - name: .
+  - uid: R_BlazorFrontEnd.Extensions
+    name: Extensions
+    href: R_BlazorFrontEnd.Extensions.html
+  spec.vb:
+  - uid: R_BlazorFrontEnd
+    name: R_BlazorFrontEnd
+    href: R_BlazorFrontEnd.html
+  - name: .
+  - uid: R_BlazorFrontEnd.Extensions
+    name: Extensions
+    href: R_BlazorFrontEnd.Extensions.html
+- uid: R_BlazorFrontEnd.Helpers
+  commentId: N:R_BlazorFrontEnd.Helpers
+  href: R_BlazorFrontEnd.html
+  name: R_BlazorFrontEnd.Helpers
+  nameWithType: R_BlazorFrontEnd.Helpers
+  fullName: R_BlazorFrontEnd.Helpers
+  spec.csharp:
+  - uid: R_BlazorFrontEnd
+    name: R_BlazorFrontEnd
+    href: R_BlazorFrontEnd.html
+  - name: .
+  - uid: R_BlazorFrontEnd.Helpers
+    name: Helpers
+    href: R_BlazorFrontEnd.Helpers.html
+  spec.vb:
+  - uid: R_BlazorFrontEnd
+    name: R_BlazorFrontEnd
+    href: R_BlazorFrontEnd.html
+  - name: .
+  - uid: R_BlazorFrontEnd.Helpers
+    name: Helpers
+    href: R_BlazorFrontEnd.Helpers.html
+- uid: BackExtension.Models.GST_ACTIVATION.CCOMPANY_ID*
+  commentId: Overload:BackExtension.Models.GST_ACTIVATION.CCOMPANY_ID
+  href: BackExtension.Models.GST_ACTIVATION.html#BackExtension_Models_GST_ACTIVATION_CCOMPANY_ID
+  name: CCOMPANY_ID
+  nameWithType: GST_ACTIVATION.CCOMPANY_ID
+  fullName: BackExtension.Models.GST_ACTIVATION.CCOMPANY_ID
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: BackExtension.Models.GST_ACTIVATION.CSERVER_UID*
+  commentId: Overload:BackExtension.Models.GST_ACTIVATION.CSERVER_UID
+  href: BackExtension.Models.GST_ACTIVATION.html#BackExtension_Models_GST_ACTIVATION_CSERVER_UID
+  name: CSERVER_UID
+  nameWithType: GST_ACTIVATION.CSERVER_UID
+  fullName: BackExtension.Models.GST_ACTIVATION.CSERVER_UID
+- uid: BackExtension.Models.GST_ACTIVATION.CACTIVATION_CODE*
+  commentId: Overload:BackExtension.Models.GST_ACTIVATION.CACTIVATION_CODE
+  href: BackExtension.Models.GST_ACTIVATION.html#BackExtension_Models_GST_ACTIVATION_CACTIVATION_CODE
+  name: CACTIVATION_CODE
+  nameWithType: GST_ACTIVATION.CACTIVATION_CODE
+  fullName: BackExtension.Models.GST_ACTIVATION.CACTIVATION_CODE
+- uid: BackExtension.Models.GST_ACTIVATION.CSTART_DATE*
+  commentId: Overload:BackExtension.Models.GST_ACTIVATION.CSTART_DATE
+  href: BackExtension.Models.GST_ACTIVATION.html#BackExtension_Models_GST_ACTIVATION_CSTART_DATE
+  name: CSTART_DATE
+  nameWithType: GST_ACTIVATION.CSTART_DATE
+  fullName: BackExtension.Models.GST_ACTIVATION.CSTART_DATE
+- uid: BackExtension.Models.GST_ACTIVATION.CEXPIRED_DATE*
+  commentId: Overload:BackExtension.Models.GST_ACTIVATION.CEXPIRED_DATE
+  href: BackExtension.Models.GST_ACTIVATION.html#BackExtension_Models_GST_ACTIVATION_CEXPIRED_DATE
+  name: CEXPIRED_DATE
+  nameWithType: GST_ACTIVATION.CEXPIRED_DATE
+  fullName: BackExtension.Models.GST_ACTIVATION.CEXPIRED_DATE
+- uid: BackExtension.Models.GST_ACTIVATION.NGRACE_DAYS*
+  commentId: Overload:BackExtension.Models.GST_ACTIVATION.NGRACE_DAYS
+  href: BackExtension.Models.GST_ACTIVATION.html#BackExtension_Models_GST_ACTIVATION_NGRACE_DAYS
+  name: NGRACE_DAYS
+  nameWithType: GST_ACTIVATION.NGRACE_DAYS
+  fullName: BackExtension.Models.GST_ACTIVATION.NGRACE_DAYS
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: BackExtension.Models.GST_ACTIVATION.NWARNING_DAYS*
+  commentId: Overload:BackExtension.Models.GST_ACTIVATION.NWARNING_DAYS
+  href: BackExtension.Models.GST_ACTIVATION.html#BackExtension_Models_GST_ACTIVATION_NWARNING_DAYS
+  name: NWARNING_DAYS
+  nameWithType: GST_ACTIVATION.NWARNING_DAYS
+  fullName: BackExtension.Models.GST_ACTIVATION.NWARNING_DAYS
+- uid: BackExtension.Models.GST_ACTIVATION.CLAST_LOGIN_DATE*
+  commentId: Overload:BackExtension.Models.GST_ACTIVATION.CLAST_LOGIN_DATE
+  href: BackExtension.Models.GST_ACTIVATION.html#BackExtension_Models_GST_ACTIVATION_CLAST_LOGIN_DATE
+  name: CLAST_LOGIN_DATE
+  nameWithType: GST_ACTIVATION.CLAST_LOGIN_DATE
+  fullName: BackExtension.Models.GST_ACTIVATION.CLAST_LOGIN_DATE
+- uid: BackExtension.Models.GST_ACTIVATION.CUPDATE_BY*
+  commentId: Overload:BackExtension.Models.GST_ACTIVATION.CUPDATE_BY
+  href: BackExtension.Models.GST_ACTIVATION.html#BackExtension_Models_GST_ACTIVATION_CUPDATE_BY
+  name: CUPDATE_BY
+  nameWithType: GST_ACTIVATION.CUPDATE_BY
+  fullName: BackExtension.Models.GST_ACTIVATION.CUPDATE_BY
+- uid: BackExtension.Models.GST_ACTIVATION.DUPDATE_DATE*
+  commentId: Overload:BackExtension.Models.GST_ACTIVATION.DUPDATE_DATE
+  href: BackExtension.Models.GST_ACTIVATION.html#BackExtension_Models_GST_ACTIVATION_DUPDATE_DATE
+  name: DUPDATE_DATE
+  nameWithType: GST_ACTIVATION.DUPDATE_DATE
+  fullName: BackExtension.Models.GST_ACTIVATION.DUPDATE_DATE
+- uid: System.Nullable{System.DateTime}
+  commentId: T:System.Nullable{System.DateTime}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime?
+  nameWithType: DateTime?
+  fullName: System.DateTime?
+  nameWithType.vb: Date?
+  fullName.vb: Date?
+  name.vb: Date?
+  spec.csharp:
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+  spec.vb:
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: BackExtension.Models.GST_ACTIVATION.CCREATE_BY*
+  commentId: Overload:BackExtension.Models.GST_ACTIVATION.CCREATE_BY
+  href: BackExtension.Models.GST_ACTIVATION.html#BackExtension_Models_GST_ACTIVATION_CCREATE_BY
+  name: CCREATE_BY
+  nameWithType: GST_ACTIVATION.CCREATE_BY
+  fullName: BackExtension.Models.GST_ACTIVATION.CCREATE_BY
+- uid: BackExtension.Models.GST_ACTIVATION.DCREATE_DATE*
+  commentId: Overload:BackExtension.Models.GST_ACTIVATION.DCREATE_DATE
+  href: BackExtension.Models.GST_ACTIVATION.html#BackExtension_Models_GST_ACTIVATION_DCREATE_DATE
+  name: DCREATE_DATE
+  nameWithType: GST_ACTIVATION.DCREATE_DATE
+  fullName: BackExtension.Models.GST_ACTIVATION.DCREATE_DATE

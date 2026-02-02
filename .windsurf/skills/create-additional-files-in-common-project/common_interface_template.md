@@ -25,7 +25,7 @@ namespace {ProgramName}Common;
 ```
 
 # Rules
-- If it is inheriting R_BusinessObject, inherit R_IServiceCRUDAsyncBase<{SubProgramName}DTO>
-- If it is implementing R_IBatchProcess, do not add `R_BatchProcess` or `R_BatchProcessAsync` function
+- If it is inheriting R_BusinessObject or R_BusinessObjectAsync, inherit R_IServiceCRUDAsyncBase<{SubProgramName}DTO>
+- If it is implementing R_IBatchProcess or R_IBatchProcessAsync, do not add `R_BatchProcess` or `R_BatchProcessAsync` function
 - Skip override functions
 - Skip private or protected functions

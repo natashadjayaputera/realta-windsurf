@@ -59,16 +59,27 @@ private async Task _BatchProcessAsync(R_BatchProcessPar poBatchProcessPar)
             // Deserialize BigObject, MUST FOLLOW THIS EXACTLY
             var loObject = R_NetCoreUtility.R_DeserializeObjectFromByte<List<{BatchListDisplayDTO}>>(poBatchProcessPar.BigObject);
 
-            // Get All User Parameters, THIS IS ONLY EXAMPLE
-            // Equals must use nameof(R_SaveBatchUserParameterDTO.{UserParameterName})
-            var loUserParameter1 = poBatchProcessPar.UserParameters.Where(x => x.Key.Equals(nameof(R_SaveBatchUserParameterDTO.{UserParameterName}), StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault().Value ?? string.Empty;
-            string lcUserParameter1 = ((System.Text.Json.JsonElement)loUserParameter1).GetString();
+            // Get all user parameters with this format:
+            #region User Parameters
+            // x.Key.Equals must use nameof({SubProgramName}R_SaveBatchUserParameterDTO.{UserParameterName})
+            // poBatchProcessPar.UserParameters.Where(x => x.Key.Equals("CCOMPANY_ID", StringComparison.InvariantCultureIgnoreCase)) => poBatchProcessPar.UserParameters.Where(x => x.Key.Equals(nameof({SubProgramName}R_SaveBatchUserParameterDTO.CCOMPANY_ID), StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+            var loUserParameter1 = poBatchProcessPar.UserParameters.Where(x => x.Key.Equals(nameof({SubProgramName}R_SaveBatchUserParameterDTO.{UserParameterName}), StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
             
-            // Equals must use nameof(R_SaveBatchUserParameterDTO.{UserParameterName})
-            var loUserParameter2 = poBatchProcessPar.UserParameters.Where(x => x.Key.Equals(nameof(R_SaveBatchUserParameterDTO.{UserParameterName}), StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault().Value ?? string.Empty;
-            string lcUserParameter2 = ((System.Text.Json.JsonElement)loUserParameter2).GetString();
-            
+            // if {UserParameterName} of type string, use GetString()
+            string lcUserParameter1 = ((System.Text.Json.JsonElement)loUserParameter1.Value).GetString();
+            // if {UserParameterName} of type bool, use GetBoolean()
+            bool lbUserParameter1 = ((System.Text.Json.JsonElement)loUserParameter1.Value).GetBoolean();
+            // if {UserParameterName} of type int, use GetInt32()
+            int liUserParameter1 = ((System.Text.Json.JsonElement)loUserParameter1.Value).GetInt32();
+            // if {UserParameterName} of type decimal, use GetDecimal()
+            decimal ldUserParameter1 = ((System.Text.Json.JsonElement)loUserParameter1.Value).GetDecimal();
+            // if {UserParameterName} of type DateTime, use GetDateTime()
+            DateTime ldUserParameter1 = ((System.Text.Json.JsonElement)loUserParameter1.Value).GetDateTime();
+            // if {UserParameterName} of type Array of T, use GetArray()
+            var loUserParameter1Array = ((System.Text.Json.JsonElement)loUserParameter1.Value).EnumerateArray().Select(x => x.{GetT()}).ToArray();
+
             // ... more user parameters
+            #endregion
 
             // PLEASE NOTE: ALL `SqlExec*` and `R_BulkInsert*` MUST USE `await` AND `Async` SUFFIX
 
@@ -105,5 +116,38 @@ private async Task _BatchProcessAsync(R_BatchProcessPar poBatchProcessPar)
 
         if (loDb != null) loDb = null;
     }
+}
+```
+
+## Batch DTOs
+Create `chunks_cs/{ProgramName}/{SubProgramName}CLS/DTO/{SubProgramName}R_SaveBatchUserParameterDTO.cs` with content:
+### {SubProgramName}R_SaveBatchUserParameterDTO Structure
+```csharp
+namespace {ProgramName}Common.DTOs;
+
+// DTO name MUST be {SubProgramName}R_SaveBatchUserParameterDTO
+public class {SubProgramName}R_SaveBatchUserParameterDTO
+{
+    // Add ALL custom parameters listed in `#region User Parameters`
+    public string VAR_CRECID { get; set; } = string.Empty;
+    public bool LJRNGRP_MODE { get; set; } 
+    public bool LDEPT_MODE { get; set; } 
+}
+```
+
+Create `chunks_cs/{ProgramName}/{SubProgramName}CLS/DTO/{SubProgramName}R_SaveBatchParameterDTO.cs` with content:
+### {SubProgramName}R_SaveBatchParameterDTO Structure
+```csharp
+using System.Collections.Generic;
+
+namespace {ProgramName}Common.DTOs;
+
+// DTO name MUST be {SubProgramName}R_SaveBatchParameterDTO
+public class {SubProgramName}R_SaveBatchParameterDTO
+{
+    public string CCOMPANY_ID { get; set; } = string.Empty;
+    public string CUSER_ID { get; set; } = string.Empty;
+    public {SubProgramName}R_SaveBatchUserParameterDTO UserParameters { get; set; } = new {SubProgramName}R_SaveBatchUserParameterDTO();
+    public List<{BatchListDisplayDTO}>? Data { get; set; }
 }
 ```

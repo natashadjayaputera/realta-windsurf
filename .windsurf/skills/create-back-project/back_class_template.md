@@ -25,15 +25,15 @@ using System.Diagnostics;
 // using R_OpenTelemetry;
 // using System.Data.SqlClient;
 
-namespace {ProgramName}Back;
+namespace {ProgramName}Back
 {
     // Class Declaration MUST MATCH `chunks_cs/{ProgramName}/{SubProgramName}CLS/ClassDeclaration.txt`
-    public class {SubProgramName}Cls
+    public class {SubProgramName}CLS
     {
         private readonly Logger{ProgramName} _logger;
         private readonly ActivitySource _activitySource;
 
-        public {SubProgramName}Cls()
+        public {SubProgramName}CLS()
         {
             _logger = Logger{ProgramName}.R_GetInstanceLogger();
             _activitySource = {ProgramName}Activity.R_GetInstanceActivitySource();

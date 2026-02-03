@@ -7,8 +7,8 @@ description: A tool to convert VB.NET (.NET Framework 4) Chunk files into C# (.N
 Convert VB.NET (.NET Framework 4) Chunk files into C# (.NET 6) Chunk files.
 
 # Process
-## Phase 1: Convert `ClassDeclaration.vb` to `ClassDeclaration.cs`
-1.1 From `chunks_vb/{ProgramName}/{SubProgramName}CLS`, convert `ClassDeclaration.vb` to `ClassDeclaration.cs` and save it to `chunks_cs/{ProgramName}/{SubProgramName}CLS`.
+## Phase 1: Convert `ClassDeclaration.txt` to `ClassDeclaration.txt`
+1.1 From `chunks_vb/{ProgramName}/{SubProgramName}CLS`, convert `ClassDeclaration.txt` (class declaration in VB.NET) to `ClassDeclaration.txt` (class declaration in C#) and save it to `chunks_cs/{ProgramName}/{SubProgramName}CLS`.
 1.2 Must add `public` keyword to the class declaration.
 1.3 Remove any `{` or `}` from the class declaration.
 

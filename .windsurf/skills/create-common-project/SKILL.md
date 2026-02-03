@@ -19,7 +19,7 @@ Create a .NET 6 common project based on .NET4 common projects.
 ## Phase 4: Convert DTOs from VB.NET to C#
 4.1 Read common_types_mapping as a reference to convert VB.NET types to C# types.
 4.2 All DTOs must be created with namespace `{ProgramName}Common.DTOs`.
-4.3 Convert each DTO from VB.NET Back & Common Project to C# Common Project.
+4.3 Convert each DTO from VB.NET `{ProgramName}Back` & `{ProgramName}Common` Project to C# Common Project.
 4.4 Remove `R_DTOBase` from all DTOs.
 4.5 Remove all decoration attributes from all DTOs.
 

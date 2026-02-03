@@ -2,6 +2,9 @@
 name: common_generic_result_dto_template
 description: "Generic Result DTO template for Common Project using R_APIResultBaseDTO"
 ---
+# Location
+- Location: `COMMON/{ProgramName}/{ProgramName}Common/DTOs/{ProgramName}ResultDTO.cs`
+
 # Generic Result DTO Template
 ```csharp
 using R_APICommonDTO;

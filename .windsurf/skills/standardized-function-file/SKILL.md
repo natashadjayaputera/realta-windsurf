@@ -26,6 +26,7 @@ If file contains:
 
 Then:
 - Modify function signature according to back_business_object_overridden_function_pattern
+- If function has no implementation, `throw new NotImplementedException();`
 - Update database access using back_database_function_pattern
 - Update error retrieval using back_error_retrieval_pattern
 - Fix common errors using prevent_common_error_and_fixes

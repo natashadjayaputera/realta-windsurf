@@ -15,6 +15,7 @@ description: "Template for Common Projects .csproj"
 </PropertyGroup>
 
 <ItemGroup>
+  <!-- IMPORTANT: DO NOT CHANGE THE FOLDER DEPTH STRUCTURE -->
   <Reference Include="R_APICommonDTO">
     <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommonDTO.dll</HintPath>
   </Reference>

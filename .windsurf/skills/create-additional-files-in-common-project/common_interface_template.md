@@ -20,6 +20,12 @@ namespace {ProgramName}Common;
 
         // Example without parameters
         Task<{ProgramName}ResultDTO<{FunctionReturnType}>>{FunctionName}()
+
+        // Example with parameters without return type
+        Task<{ProgramName}ResultDTO>{FunctionName}({FunctionParameterType} poParameter)
+
+        // Example without parameters without return type
+        Task<{ProgramName}ResultDTO>{FunctionName}()
     }
 }
 ```

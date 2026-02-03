@@ -15,6 +15,7 @@ Add batch data manipulation in viewmodel classes in model project.
 - Read corresponding `{SubProgramName}Model.cs`, and search for the value of `DEFAULT_SERVICEPOINT_NAME`, and assign it as `{BatchServicePointName}`.
 - Read corresponding `ClassDeclaration.txt` and get the name of the ClassName and assign it to `{BatchBackClassName}`.
 - Read viewmodel_batch_additional_front_resources and add new resources to the `{SubProgramName}FrontResources_msgrsc.resx` and `{SubProgramName}FrontResources_msgrsc.id.resx` files.   
+- `{SubProgramName}ViewModel` must implements `R_IProcessProgressStatus`
 - Read viewmodel_batch_class_template and add batch viewmodel template to the `{SubProgramName}ViewModel` class.   
 - Read viewmodel_batch_using_statement and add using statement on the top of the `{SubProgramName}ViewModel.cs` file.
 

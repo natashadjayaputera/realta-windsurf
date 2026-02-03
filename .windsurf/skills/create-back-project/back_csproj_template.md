@@ -14,7 +14,7 @@ description: "Template for Back Projects .csproj"
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>10.0</LangVersion>
     <Nullable>enable</Nullable>
-    <ImplicitUsings>disable</ImplicitUsings>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <!-- IMPORTANT: Uncomment these references if there is any a function with category batch-function in `functions.txt` -->

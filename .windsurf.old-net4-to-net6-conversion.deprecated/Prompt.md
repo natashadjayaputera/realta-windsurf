@@ -1,0 +1,76 @@
+ProgramName: "FAM00500"
+ModuleName: "FA"
+
+Please find and replace the 2 things above including the "" 
+
+===========
+PROJECT-ANALYZER
+===========
+@project-analyzer
+VB.NET (.NET Framework 4) location (Back & Common Project): `realta-windsurf/net4/FA Smart Client/Development/Back/{ProgramName}*/**/*.vb`
+Do NOT read Front Project
+ProgramName: "FAM00500"
+ModuleName: "FA"
+Please be mindful of Report, Batch, and Back classes separation.
+
+===========
+COMMON
+===========
+This is the Common Layer / Common Project of the program.
+VB.NET (.NET Framework 4) location (Back & Common Project): `realta-windsurf/net4/FA Smart Client/Development/Back/{ProgramName}*/**/*.vb`
+C# (.NET 6) location (Common Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/{ModuleName}/{ProgramName}Common/`
+ProgramName: "FAM00500"
+ModuleName: "FA"
+Please be mindful of Report, Batch, and Back classes separation.
+
+===========
+BACK
+===========
+This is the Back Layer / Back Project of the program.
+VB.NET (.NET Framework 4) location (Back & Common Project): `realta-windsurf/net4/FA Smart Client/Development/Back/{ProgramName}*/**/*.vb`
+C# (.NET 6) location (Common Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/{ModuleName}/{ProgramName}Common/`
+C# (.NET 6) location (Back Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/BACK/{ModuleName}/{ProgramName}Back/`
+ProgramName: "FAM00500"
+ModuleName: "FA"
+Please be mindful of Report, Batch, and Back classes separation.
+
+{mention .vb files} Please scrutinize each function. DO NOT EDIT the .cs files. Please tell me all business process deviation in .cs files. Preserve the bugs as it was in the .vb files.
+
+===========
+SERVICE
+===========
+This is the Service Layer / Service Project of the program.
+C# (.NET 6) location (Common Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/{ModuleName}/{ProgramName}Common/`
+C# (.NET 6) location (Back Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/BACK/{ModuleName}/{ProgramName}Back/`
+C# (.NET 6) location (Service Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/SERVICE/{ModuleName}/{ProgramName}Service/`
+ProgramName: "FAM00500"
+ModuleName: "FA"
+Please be mindful of Report, Batch, and Back classes separation.
+
+===========
+MODEL
+===========
+This is the Model Layer / Model Project of the program.
+C# (.NET 6) location (Service Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/SERVICE/{ModuleName}/{ProgramName}Service/`
+C# (.NET 6) location (Common Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/{ModuleName}/{ProgramName}Common/`
+C# (.NET 6) location (Model Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/{ProgramName}Model/`
+ProgramName: "FAM00500"
+ModuleName: "FA"
+
+===========
+VIEWMODEL
+===========
+This is the ViewModel Layer in Model Project of the program.
+VB.NET (.NET Framework 4) location (Front Project): `realta-windsurf/net4/FA Smart Client/Development/Front/{ProgramName}*/**/*.vb`
+C# (.NET 6) location (Common Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/{ModuleName}/{ProgramName}Common/`
+C# (.NET 6) location (Model Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/{ProgramName}Model/`
+C# (.NET 6) location (ViewModel Class): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/{ProgramName}Model/VMs/`
+C# (.NET 6) location (Front Resources Project): `realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/{ProgramName}FrontResources/`
+ProgramName: "FAM00500"
+ModuleName: "FA"
+
+====================
+ALL PLAN APPROVAL
+====================
+approve, and please follow the plan
+

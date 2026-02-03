@@ -2,6 +2,9 @@
 name: viewmodel_class_template
 description: "Template for ViewModel Classes in Model Projects"
 ---
+# Location
+
+- Location: `FRONT/{ProgramName}Model/VMs/{SubProgramName}ViewModel.cs`
 
 # ViewModel Class Pattern
 
@@ -22,14 +25,13 @@ using System.Collections.Generic;
 
 namespace {ProgramName}Model.VMs
 {
-    // If it is implementing `R_IServiceCRUDAsyncBase`, {SubProgramName}ViewModel MUST INHERITS R_ViewModel<{SubProgramName}DTO>
     public class {SubProgramName}ViewModel
     {
         private readonly {SubProgramName}Model _model = new {SubProgramName}Model();
 
         // No constructor (IMPORTANT)
         
-        // IMPORTANT NOTE: Uncomment this if it is implementing `R_IServiceCRUDAsyncBase`
+        // IMPORTANT NOTE: Uncomment this if it is inheriting `R_BusinessObjectAsync`
         /*
         #region Business Object Functions
         public {SubProgramName}DTO {SubProgramName}Record { get; set; } = new {SubProgramName}DTO();
@@ -40,7 +42,7 @@ namespace {ProgramName}Model.VMs
             try
             {
                 var loResult = await _model.R_ServiceGetRecordAsync(poEntity);
-                CurrentRecord = loResult; // Store in separate property, DO NOT return value or use Data property
+                CurrentRecord = loResult;
             }
             catch (Exception ex) 
             {
@@ -55,7 +57,7 @@ namespace {ProgramName}Model.VMs
             try
             {
                 var loResult = await _model.R_ServiceSaveAsync(poEntity, peCRUDMode);
-                CurrentRecord = loResult; // Store in separate property, DO NOT return value or use Data property
+                CurrentRecord = loResult;
             }
             catch (Exception ex) 
             {
@@ -79,64 +81,12 @@ namespace {ProgramName}Model.VMs
         }
         #endregion
         */
-
-        // For each function in I{SubProgramName}, create a function in {SubProgramName}ViewModel with the following format:
-        // If {FunctionName} returns is list of data follow this format:
-        #region {FunctionName}Async
-        // Property
-        public List<{FunctionReturnType}> {FunctionName}List { get; set; } = new List<{FunctionReturnType}>();
-        public {FunctionReturnType}? {FunctionName}Record { get; set; } = null;
-
-        // Function
-        public async Task {FunctionName}Async({FunctionParameterType} poParameter)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                var loResult = await _model.{FunctionName}Async(poParameter);
-
-                {FunctionName}List = loResult.Data;
-                {FunctionName}Record = loResult.Data?.FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-        #endregion
-
-        // If {FunctionName} returns is single record follow this format:
-        #region {FunctionName}Async
-        // Property
-        public {FunctionReturnType}? {FunctionName}Record { get; set; } = null;
-
-        // Function
-        public async Task {FunctionName}Async({FunctionParameterType} poParameter)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                var loResult = await _model.{FunctionName}Async(poParameter);
-
-                {FunctionName}Record = loResult.Data;
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-        #endregion
     }
 }
 ```
 
 # Rules
+- Remove `cls` (case-sensitive) from ViewModel Class Name and ViewModel File Name
 - Must have a private readonly field of type `{ProgramName}Model`
 - Never redeclare `Data` property manually
 - No constructor (IMPORTANT)!

@@ -11,6 +11,6 @@ Parse VB.NET (.NET Framework 4) Classes to get class signature and functions chu
 1.1 From the {ProgramName}Back project folder, find all files with names ending in cls.vb (case-insensitive). Save their relative paths from `realta-windsurf` folder into the realta-windsurf/chunks_vb/{ProgramName}/cls_file_paths.txt file, with one path per line.
 
 ## Phase 2: Run VBParser
-2.1 For each line in chunks_vb/{ProgramName}/cls_file_paths.txt, execute vbparser.sh, passing:
+2.1 For each line in chunks_vb/{ProgramName}/cls_file_paths.txt, execute the script inside vbparser.sh, passing:
 - ProgramName = {ProgramName}
 - PathToNet4Cls = <current line value>

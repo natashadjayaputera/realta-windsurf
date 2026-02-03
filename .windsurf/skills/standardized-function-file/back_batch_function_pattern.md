@@ -37,6 +37,7 @@ public async Task R_BatchProcessAsync(R_BatchProcessPar poBatchProcessPar)
         }
     }
 
+EndBlock:
     loException.ThrowExceptionIfErrors();
 }
 
@@ -129,9 +130,7 @@ namespace {ProgramName}Common.DTOs;
 public class {SubProgramName}R_SaveBatchUserParameterDTO
 {
     // Add ALL custom parameters listed in `#region User Parameters`
-    public string VAR_CRECID { get; set; } = string.Empty;
-    public bool LJRNGRP_MODE { get; set; } 
-    public bool LDEPT_MODE { get; set; } 
+    // Search For `{SubProgramName}R_SaveBatchUserParameterDTO.{PropertyName}`
 }
 ```
 

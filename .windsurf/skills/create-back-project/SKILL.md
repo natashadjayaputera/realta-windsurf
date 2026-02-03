@@ -26,7 +26,7 @@ Create a .NET 6 back project
 
 ## Phase 5: Inject Functions
 5.1 From the `{ProgramName}Back` Project folder, find all files with names ending in `cls.cs` (case-insensitive). Save their relative paths from `realta-windsurf` folder into the realta-windsurf/chunks_cs/{ProgramName}/cls_file_paths.txt file, with one path per line.
-5.2 For each line in chunks_cs/{ProgramName}/cls_file_paths.txt, execute run-cs-function-injector.sh, passing:
+5.2 For each line in chunks_cs/{ProgramName}/cls_file_paths.txt, execute the script inside run-cs-function-injector.sh, passing:
 - ProgramName = {ProgramName}
 - PathToNet6Cls = <current line value>
 

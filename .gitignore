@@ -16,3 +16,6 @@ Nuget.Config
 
 /net4/
 /net6/
+
+chunks_cs/
+chunks_vb/

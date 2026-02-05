@@ -4,9 +4,9 @@ description: Workflow to convert VB.NET (.NET Framework 4) program to C# (.NET 6
 
 Run this in order, please ask user continue confirmation after each step:
 1. Invoke 01-run-vb-parser skill
-2. Invoke 02-convert-chunk skill
-3. Invoke 03-fix-chunk skill
-4. Invoke 04-standardized-function-file skill
+2. For every {SubProgramName}, invoke 02-convert-chunk skill
+3. For every {SubProgramName}, invoke 03-fix-chunk skill
+4. For every {SubProgramName}, invoke 04-standardized-function-file skill
 5. Invoke 05-create-common-project skill
 6. Invoke 06-create-additional-files-in-common-project skill
 7. Invoke 07-create-back-project skill

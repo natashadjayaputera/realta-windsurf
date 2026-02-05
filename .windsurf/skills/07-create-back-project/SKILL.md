@@ -25,13 +25,13 @@ Create a .NET 6 back project
 4.2 For each `ClassDeclaration.txt` file, read corresponding `functions.txt` in the same folder, read back_class_template and create back class, DO NOT READ ANY `XXXX_FunctionName.cs` because it will be injected later. DO NOT ADD ANY FUNCTION IN THE CLASS.
 
 ## Phase 5: Inject Functions
-5.1 Execute `{ROOT}/.windsurf/scripts/inject-functions.ps1`:
+5.1 Execute `../../scripts/inject-functions.ps1`:
 - ProgramName = {ProgramName}
 - RootPath = {ROOT}
 - SearchFolderBack = the location of {ProgramName}Back Project
 - OutputFolder = `{ROOT}/chunks_cs/{ProgramName}/`
 Example:
-`powershell -ExecutionPolicy Bypass -File "{ROOT}/.windsurf/scripts/inject-functions.ps1" -ProgramName "FAI00110" -RootPath "D:\_Work\AI\realta-windsurf" -SearchFolderBack "D:\_Work\AI\realta-windsurf\net6\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\FAI00110Back" -OutputFolder "D:\_Work\AI\realta-windsurf\chunks_cs\FAI00110"`
+`powershell -ExecutionPolicy Bypass -File "../../scripts/inject-functions.ps1" -ProgramName "FAI00110" -RootPath "D:\_Work\AI\realta-windsurf" -SearchFolderBack "D:\_Work\AI\realta-windsurf\net6\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\FAI00110Back" -OutputFolder "D:\_Work\AI\realta-windsurf\chunks_cs\FAI00110"`
 
 ## Phase 6: Build and Bug Fix (REPEAT UNTIL NO ERRORS AND WARNINGS)
 6.1 Build `{ProgramName}Back` project and create a list of all error codes and warnings.

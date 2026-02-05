@@ -5,7 +5,7 @@ A simple tool to fix indentation in C# files for specific programs in the `chunk
 ## Usage
 
 ```bash
-dotnet run --project .windsurf\tools\CsIndentFixer\CsIndentFixer.csproj -- "FAM00100"
+dotnet run --project .windsurf/tools/CsIndentFixer/CsIndentFixer.csproj -- "FAM00100"
 ```
 
 ## Parameters
@@ -35,8 +35,8 @@ The tool will:
 
 ```
 Found 23 C# files in FAM00100 to process...
-Fixed: chunks_cs\FAM00100\FAM001000201CLS\0002_R_Display.cs
-Fixed: chunks_cs\FAM00100\FAM001000201CLS\0003_R_Saving.cs
+Fixed: chunks_cs/FAM00100/FAM001000201CLS/0002_R_Display.cs
+Fixed: chunks_cs/FAM00100/FAM001000201CLS/0003_R_Saving.cs
 ...
 Completed: 20 files fixed, 0 errors
 ```

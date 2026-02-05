@@ -5,13 +5,13 @@ A tool to inject merged C# function chunks into a template file.
 ## Usage
 
 ```bash
-dotnet run --project .windsurf\tools\CsTemplateInjector\CsTemplateInjector.csproj -- "template.cs" "chunks_cs\ProgramName\ClassName"
+dotnet run --project .windsurf/tools/CsTemplateInjector/CsTemplateInjector.csproj -- "template.cs" "chunks_cs/ProgramName/ClassName"
 ```
 
 ## Parameters
 
 - `template.cs`: Path to the C# template file containing the insertion marker `// {INSERT_MERGED_CS_FUNCTION_HERE}`
-- `chunks_cs\ProgramName\ClassName`: Path to the directory containing C# chunk files to merge
+- `chunks_cs/ProgramName/ClassName`: Path to the directory containing C# chunk files to merge
 
 ## What it does
 

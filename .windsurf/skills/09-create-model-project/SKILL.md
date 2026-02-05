@@ -11,12 +11,12 @@ Create a .NET 6 model project.
 1.1 Read model_csproj_template as a template and create `{ProgramName}Model.csproj`.
 
 ## Phase 2: Create all Class Models
-2.1 Execute `{ROOT}/scripts/discover-interfaces.ps1`:
+2.1 Execute `../../scripts/discover-interfaces.ps1`:
 - ProgramName = {ProgramName}
 - RootPath = {ROOT}
 - SearchFolderCommon = the location of {ProgramName}Common Project
 Example:
-`powershell -ExecutionPolicy Bypass -File "{ROOT}/scripts/discover-interfaces.ps1" -ProgramName "FAI00110" -RootPath "D:\_Work\AI\realta-windsurf" -SearchFolderCommon "D:\_Work\AI\realta-windsurf\net6\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\COMMON\FAI00110Common"`
+`powershell -ExecutionPolicy Bypass -File "../../scripts/discover-interfaces.ps1" -ProgramName "FAI00110" -RootPath "D:\_Work\AI\realta-windsurf" -SearchFolderCommon "D:\_Work\AI\realta-windsurf\net6\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\COMMON\FAI00110Common"`
 2.2 For each interface found, read model_class_template and create model class.
 
 ## Phase 3: Build and Bug Fix (REPEAT UNTIL NO ERRORS AND WARNINGS)

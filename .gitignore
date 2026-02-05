@@ -19,3 +19,6 @@ Nuget.Config
 
 chunks_cs/
 chunks_vb/
+
+[Bb]in/
+[Oo]bj/

@@ -9,6 +9,15 @@ param(
     [string]$RootPath = (Get-Location).Path
 )
 
+# Validate RootPath parameter
+if (-not (Test-Path $RootPath)) {
+    Write-Error "Root path not found: $RootPath"
+    Write-Error "Ensure you're running from the repository root or provide the correct path."
+    exit 1
+}
+
+# Convert to absolute path if relative
+$RootPath = Resolve-Path $RootPath | Select-Object -ExpandProperty Path
 $ChunksCsPath = "$RootPath\chunks_cs\$ProgramName"
 $OutputFile = "$RootPath\chunks_cs\$ProgramName\viewmodel_with_batch_list_buffer.txt"
 

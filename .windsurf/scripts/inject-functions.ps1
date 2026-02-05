@@ -35,7 +35,13 @@ Write-Host "Search folder: $SearchFolderBack"
 
 # Use find-cls-cs-files.ps1 to find all cls.cs files
 Write-Host "Finding cls.cs files..."
-& powershell -ExecutionPolicy Bypass -File $FindClsCsScript -SearchFolder $SearchFolderBack -OutputFolder $OutputFolder
+try {
+    & powershell -ExecutionPolicy Bypass -File $FindClsCsScript -SearchFolder $SearchFolderBack -OutputFolder $OutputFolder
+} catch {
+    Write-Error "Failed to execute find-cls-cs-files.ps1. Ensure PowerShell execution policy allows script execution."
+    Write-Error "You may need to run: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser"
+    exit 1
+}
 
 if ($LASTEXITCODE -ne 0) {
     Write-Error "find-cls-cs-files.ps1 failed"
@@ -63,12 +69,14 @@ $currentFile = 0
 
 foreach ($clsFile in $clsFiles) {
     $currentFile++
-    $relativePath = $clsFile.Replace($RootPath, "").Replace("\", "/").TrimStart("/")
+    $relativePath = $clsFile.Replace("\", "/").TrimStart("/")
+    $fileName = [System.IO.Path]::GetFileNameWithoutExtension($clsFile)
+    $folderToBeInjected = "$OutputFolder/" + ($fileName -ireplace "cls$", "")
     
     Write-Host "Processing file $currentFile/$totalFiles : $relativePath"
     
     try {
-        $result = & dotnet run --project $CsFunctionInjectorProject -- $ProgramName $relativePath
+        $result = & dotnet run --project $CsFunctionInjectorProject -- $relativePath $folderToBeInjected
         
         if ($LASTEXITCODE -eq 0) {
             Write-Host "Successfully injected functions: $relativePath" -ForegroundColor Green

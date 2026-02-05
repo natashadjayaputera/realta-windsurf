@@ -5,7 +5,7 @@ A tool to parse VB.NET class files and extract individual functions/methods into
 ## Usage
 
 ```bash
-dotnet run --project .windsurf\tools\VbParser\VbParser.csproj -- "FAB00200" "Path-To-NET4-Cls\ClsFile.vb"
+dotnet run --project .windsurf/tools/VbParser/VbParser.csproj -- "FAB00200" "Path-To-NET4-Cls/ClsFile.vb"
 ```
 
 ## Parameters
@@ -51,8 +51,8 @@ chunks_vb/
 ```
 Class: FAB00200CLS
 Created 15 VB chunks.
-Output: chunks_vb\FAB00200\FAB00200CLS
-Signatures: chunks_vb\FAB00200\FAB00200CLS\functions.txt
+Output: chunks_vb/FAB00200/FAB00200CLS
+Signatures: chunks_vb/FAB00200/FAB00200CLS/functions.txt
 ```
 
 ## Requirements

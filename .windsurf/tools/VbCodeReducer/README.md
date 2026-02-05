@@ -1,83 +1,132 @@
-# VB Code Reducer
+# VB.NET Code Reducer
 
-A C# console tool to reduce VB.NET code by:
-1. Joining string concatenation operators (`" & `) across multiple lines into single lines
-2. Removing unnecessary empty lines while preserving logical code structure
-3. Removing comment lines (lines starting with `'`)
-4. Reducing multiple consecutive empty lines to just one
-5. Reducing multiple consecutive spaces to single spaces
-6. **NEW**: Splitting reduced files into chunks of 100 lines each
-
-## Features
-
-- **String Concatenation Joining**: Automatically detects and joins multi-line string concatenations
-- **Smart Empty Line Removal**: Removes excessive empty lines while preserving logical code blocks
-- **Comment Removal**: Removes all comment lines starting with single quotes
-- **Empty Line Normalization**: Reduces multiple consecutive empty lines to just one
-- **Space Normalization**: Reduces multiple consecutive spaces to single spaces while preserving indentation
-- **File Splitting**: Splits reduced files into chunks of 100 lines each for easier processing
-- **Backup Creation**: Automatically creates a backup of the original file
-- **Statistics**: Shows the number of lines reduced and percentage reduction
+A tool to reduce and optimize VB.NET code by removing unnecessary elements and optionally splitting large files into manageable chunks.
 
 ## Usage
 
-### Basic Usage
 ```bash
-dotnet run -- "path\to\your\vbfile.vb"
+# Process single file
+dotnet run --project .windsurf/tools/VbCodeReducer/VbCodeReducer.csproj -- "path/to/file.vb"
+
+# Process single file with splitting
+dotnet run --project .windsurf/tools/VbCodeReducer/VbCodeReducer.csproj -- "path/to/file.vb" --split
+
+# Process entire directory
+dotnet run --project .windsurf/tools/VbCodeReducer/VbCodeReducer.csproj -- "path/to/folder"
+
+# Process directory with splitting and debug mode
+dotnet run --project .windsurf/tools/VbCodeReducer/VbCodeReducer.csproj -- "path/to/folder" --split --debug
 ```
 
-### With File Splitting
-```bash
-dotnet run -- "path\to\your\vbfile.vb" --split
+## Parameters
+
+- `path`: Path to a VB.NET file (.vb) or directory containing VB.NET files
+- `--split`: (Optional) Split files into chunks of ~1000 lines each
+- `--debug`: (Optional) Create backup files before processing
+
+## What it does
+
+### Code Reduction Process
+1. **Removes consecutive empty lines** - Reduces multiple empty lines to single empty line
+2. **Removes comments** - Strips out all comment lines from the code
+3. **Preserves code structure** - Maintains functional integrity while reducing size
+
+### File Splitting (with `--split`)
+- Splits large VB.NET files into chunks of approximately 1000 lines
+- Creates files with naming pattern: `OriginalName_01_chunks.vb`, `OriginalName_02_chunks.vb`, etc.
+- Preserves line numbering and code structure within each chunk
+
+### Debug Mode (with `--debug`)
+- Creates backup files with `.backup` extension before processing
+- Useful for testing and recovery if issues occur
+
+## Output
+
+### Without Splitting
+- **In-place modification**: Original files are modified directly
+- **Reduced file size**: Typically 20-40% size reduction depending on comment density
+- **Preserved functionality**: All code logic remains intact
+
+### With Splitting
+- **Multiple chunk files**: Large files split into manageable pieces
+- **Line range information**: Each chunk shows the line numbers it contains
+- **Original file preserved**: Original file remains unchanged when splitting
+
+## Example Output
+
+```
+Processing file: C:\project\LargeClass.vb
+Original size: 2,847 lines
+Reduced size: 1,723 lines (60.5% of original)
+Saved: C:\project\LargeClass.vb
+
+Splitting file into chunks of 1000 lines...
+  Created: LargeClass_01_chunks.vb (lines 1-1000)
+  Created: LargeClass_02_chunks.vb (lines 1001-2000)
+  Created: LargeClass_03_chunks.vb (lines 2001-2847)
+Total chunks created: 3
 ```
 
-## Examples
+## Use Cases
 
-### String Concatenation Joining
-**Before:**
-```vb
-lcCmd = String.Format(" SELECT TOP 1 1 " &
-                      " FROM FAT_TRANS_HD " &
-                      " WHERE CCOMPANY_ID = @CCOMPANY_ID " &
-                      " AND CDEPT_CODE = @CDEPT_CODE ")
-```
+### 1. **Code Analysis**
+- Reduce file size for faster processing by other tools
+- Remove noise (comments) for focused code analysis
 
-**After:**
-```vb
-lcCmd = String.Format(" SELECT TOP 1 1  FROM FAT_TRANS_HD  WHERE CCOMPANY_ID = @CCOMPANY_ID  AND CDEPT_CODE = @CDEPT_CODE ")
-```
+### 2. **File Management**
+- Split large VB.NET class files into manageable chunks
+- Create smaller files for easier code review and editing
 
-### Space Normalization
-**Before:**
-```vb
-loCmd.CommandText = lcCmd
-Common.AddParameter(loCmd, "CCOMPANY_ID",  DbType.String,  poNewEntity.CCOMPANY_ID)
-```
+### 3. **Pre-processing**
+- Prepare code for migration or conversion processes
+- Clean up code before automated transformations
 
-**After:**
-```vb
-loCmd.CommandText = lcCmd
-Common.AddParameter(loCmd, "CCOMPANY_ID", DbType.String, poNewEntity.CCOMPANY_ID)
-```
+## Features
+
+### Code Reduction
+- **Smart comment removal**: Only removes actual comment lines, preserves string literals
+- **Empty line optimization**: Maintains code readability while reducing whitespace
+- **UTF-8 support**: Handles Unicode characters and international text
 
 ### File Splitting
-When using the `--split` option, the tool creates chunk files:
-- `filename_chunk1.vb` (lines 1-100)
-- `filename_chunk2.vb` (lines 101-200)
-- `filename_chunk3.vb` (lines 201-300)
-- And so on...
+- **Configurable chunk size**: Default 1000 lines, easily adjustable
+- **Preserved line numbering**: Easy to trace back to original file locations
+- **Safe naming**: Clear naming convention for chunk files
 
-## Build
+### Error Handling
+- **Graceful failure**: Continues processing other files if one fails
+- **Detailed reporting**: Shows success/failure statistics
+- **Backup protection**: Debug mode prevents data loss
 
-```bash
-dotnet build
-```
+## Requirements
 
-## Safety
+- .NET 6.0 SDK or later
+- VB.NET files (.vb extension)
+- Read/write permissions for target files/directories
 
-- Creates a `.backup` file before modifying the original
-- Preserves code functionality and indentation
-- Maintains valid VB.NET syntax when joining string concatenations
-- Only removes comment lines, preserving inline comments within code
-- Preserves leading indentation while normalizing spaces in code content
-- Creates numbered chunk files when splitting is enabled
+## Error Handling
+
+- **File not found**: Clear error message if path doesn't exist
+- **Permission errors**: Reports access issues
+- **Invalid files**: Skips non-.vb files in directory mode
+- **Processing errors**: Continues with other files, reports summary
+
+## Safety Features
+
+- **Backup mode**: `--debug` flag creates `.backup` files
+- **Non-destructive splitting**: Original files preserved when splitting
+- **Validation**: Checks file existence and permissions before processing
+- **Rollback capability**: Can restore from backups if needed
+
+## Integration
+
+This tool is commonly used in the VB.NET to C# conversion workflow:
+1. **Pre-processing**: Reduce and clean VB.NET files
+2. **Splitting**: Create manageable chunks for parsing
+3. **Parsing**: Feed chunks to VbParser for function extraction
+
+## Performance
+
+- **Fast processing**: Handles large files efficiently
+- **Memory conscious**: Processes files line by line for large files
+- **Batch capable**: Can process entire directories automatically

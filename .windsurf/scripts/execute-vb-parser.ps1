@@ -21,7 +21,13 @@ $FindClsScript = "$RootPath\.windsurf\scripts\find-cls-file.ps1"
 
 # Always run find-cls-file.ps1 first
 Write-Host "Running find-cls-file.ps1 first..."
-& powershell -ExecutionPolicy Bypass -File $FindClsScript -SearchFolder $SearchFolderBack -OutputFolder $OutputFolder
+try {
+    & powershell -ExecutionPolicy Bypass -File $FindClsScript -SearchFolder $SearchFolderBack -OutputFolder $OutputFolder
+} catch {
+    Write-Error "Failed to execute find-cls-file.ps1. Ensure PowerShell execution policy allows script execution."
+    Write-Error "You may need to run: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser"
+    exit 1
+}
 
 if ($LASTEXITCODE -ne 0) {
     Write-Error "find-cls-file.ps1 failed"

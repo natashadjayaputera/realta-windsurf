@@ -1,5 +1,5 @@
 ---
-name: fix-chunk
+name: 03-fix-chunk
 description: A tool to fix C# (.NET 6) Chunk files to follow new standard.
 ---
 
@@ -11,8 +11,8 @@ Fix C# (.NET 6) Chunk files to follow new standard.
 1.1 New Standard:
 - Do not add namespace.
 - Class name is in CamelCase, but {SubProgramName} is in ALL CAPS.
-- Replace `R_BusinessObject<T>` with `R_BusinessObjectAsync<T>`, if any.
-- Replace `R_IBatchProcess` with `R_IBatchProcessAsync`, if any.
+- Replace `R_BusinessObject<T>` with `R_BusinessObjectAsync<T>`, if any (DO NOT ADD IF IT'S NOT THERE).
+- Replace `R_IBatchProcess` with `R_IBatchProcessAsync`, if any (DO NOT ADD IF IT'S NOT THERE).
 - Do not add curly braces `{` or `}`
 1.2 From `chunks_cs/{ProgramName}/{SubProgramName}CLS`, edit `ClassDeclaration.txt` to follow new standard.
 

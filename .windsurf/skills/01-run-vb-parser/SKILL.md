@@ -1,5 +1,5 @@
 ---
-name: run-vb-parser
+name: 01-run-vb-parser
 description: A tool to parse VB.NET (.NET Framework 4) Classes to get class signature and functions chunks.
 ---
 

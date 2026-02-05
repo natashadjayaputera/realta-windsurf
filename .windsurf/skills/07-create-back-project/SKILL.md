@@ -1,5 +1,5 @@
 ---
-name: create-back-project
+name: 07-create-back-project
 description: A tool to create a .NET 6 back project
 ---
 

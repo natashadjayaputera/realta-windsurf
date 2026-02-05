@@ -1,5 +1,5 @@
 ---
-name: create-viewmodel-classes-in-model-project
+name: 10-create-viewmodel-classes-in-model-project
 description: A tool to create viewmodel classes in model project
 ---
 

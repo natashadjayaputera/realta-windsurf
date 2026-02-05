@@ -31,7 +31,7 @@
 dotnet run `
   --project tools\VbParser\VbParser.csproj `
   -- `
-  "FAB00200" `
+  "FAT00100" `
   "Path-To-NET4-Cls\ClsFile.vb"
 
 ## Injector
@@ -41,6 +41,49 @@ dotnet run `
   "Path-To-NET6-Cls\ClsFile.cs" `
   "chunks_cs\ProgramName\ClassName" 
 
+## CsIndentFixer
+dotnet run `
+  --project tools\CsIndentFixer\CsIndentFixer.csproj `
+  -- `
+  "FAM00100"
+
+## VbCodeReducer
+dotnet run `
+  --project tools\VbCodeReducer\VbCodeReducer.csproj `
+  -- `
+  "Path-To-VB-File.vb"
+
+### With File Splitting (150 lines per chunk)
+dotnet run `
+  --project tools\VbCodeReducer\VbCodeReducer.csproj `
+  -- `
+  "Path-To-VB-File.vb" --split
+
+### Process Entire Directory
+dotnet run `
+  --project tools\VbCodeReducer\VbCodeReducer.csproj `
+  -- `
+  "Path-To-Folder"
+
+### Process Directory with Splitting
+dotnet run `
+  --project tools\VbCodeReducer\VbCodeReducer.csproj `
+  -- `
+  "Path-To-Folder" --split
+
+### With Debug Mode (creates backups)
+dotnet run `
+  --project tools\VbCodeReducer\VbCodeReducer.csproj `
+  -- `
+  "Path-To-Folder" --split --debug
+
+### Features:
+- **Automatic detection**: Processes single file or entire directory
+- **Chunk size**: 150 lines per chunk
+- **Format**: XXXX_FunctionName_01_chunks.vb
+- **Debug mode**: Creates .backup files only when --debug is specified
+- **Source deletion**: Original files deleted after chunk creation (unless --debug)
+
 ## Add Package (IF NEEDED)
 dotnet add package Microsoft.CodeAnalysis.VisualBasic --ignore-failed-sources
 
@@ -48,12 +91,22 @@ dotnet add package Microsoft.CodeAnalysis.VisualBasic --ignore-failed-sources
 dotnet run `
   --project tools\VbParser\VbParser.csproj `
   -- `
-  "FAB00200" `
-  "net4\FA Smart Client\Development\Back\FAB00200Back\CLS\FAB00200CLS.vb"
+  "FAT00100" `
+  "net4\FA Smart Client\Development\Back\FAT00100Back\CLS\FAT00100CLS.vb"
 
 dotnet run `
   --project tools\CsTemplateInjector\CsTemplateInjector.csproj `
   -- `
   "FinalClass.cs" `
-  "chunks_cs\FAB00200\FAB00200CLS" 
+  "chunks_cs\FAT00100\FAT00100CLS"
+
+dotnet run `
+  --project tools\CsIndentFixer\CsIndentFixer.csproj `
+  -- `
+  "FAM00100" 
+
+dotnet run `
+  --project tools\VbCodeReducer\VbCodeReducer.csproj `
+  -- `
+  "chunks_vb\FAT00100\FAT00100Cls" --split --debug
 

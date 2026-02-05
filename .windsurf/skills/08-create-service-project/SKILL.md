@@ -1,5 +1,5 @@
 ---
-name: create-service-project
+name: 08-create-service-project
 description: A tool to create a .NET 6 service project based on interface files in Common Project
 ---
 

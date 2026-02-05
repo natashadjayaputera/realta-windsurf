@@ -1,5 +1,5 @@
 ---
-name: create-model-project
+name: 09-create-model-project
 description: A tool to create a .NET 6 model project
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: create-additional-files-in-common-project
+name: 06-create-additional-files-in-common-project
 description: A tool to create additional files in .NET6 common project.
 ---
 

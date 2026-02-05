@@ -1,5 +1,5 @@
 ---
-name: standardized-function-file
+name: 04-standardized-function-file
 description: A tool to fix C# (.NET 6) Function Chunk files to follow more complex new standard.
 ---
 

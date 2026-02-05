@@ -1,5 +1,5 @@
 ---
-name: create-common-project
+name: 05-create-common-project
 description: A tool to create a .NET 6 common project based on .NET4 common projects.
 ---
 

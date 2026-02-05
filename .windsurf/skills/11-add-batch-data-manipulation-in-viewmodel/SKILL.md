@@ -1,5 +1,5 @@
 ---
-name: add-batch-data-manipulation-in-viewmodel
+name: 11-add-batch-data-manipulation-in-viewmodel
 description: A tool to add batch data manipulation in viewmodel classes in model project
 ---
 

@@ -11,8 +11,13 @@ Create a .NET 6 service project based on interface files in Common Project
 1.1 Read service_csproj_template (just assume there is no report controller) as a template and create `{ProgramName}Service.csproj`. 
 
 ## Phase 2: Create all Controllers
-2.1 List all interfaces in `{ProgramName}Common` project.
-2.2 For each interface read service_controller_template and create controller.
+2.1 Execute `{ROOT}/scripts/discover-interfaces.ps1`:
+- ProgramName = {ProgramName}
+- RootPath = {ROOT}
+- SearchFolderCommon = the location of {ProgramName}Common Project
+Example:
+`powershell -ExecutionPolicy Bypass -File "{ROOT}/scripts/discover-interfaces.ps1" -ProgramName "FAI00110" -RootPath "D:\_Work\AI\realta-windsurf" -SearchFolderCommon "D:\_Work\AI\realta-windsurf\net6\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\COMMON\FAI00110Common"`
+2.2 For each interface found, read service_controller_template and create controller.
 
 ## Phase 3: Create Report Controller
 3.1 Search `btnPrint_R_GetData` in `{ProgramName}Front` project.

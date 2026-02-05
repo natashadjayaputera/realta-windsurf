@@ -19,12 +19,13 @@ IMPORTANT: Please continue to fix the function chunk files until all function ch
 - back_additional_properties_recognizer
 
 1.2 For each file in:
-chunks_cs/{ProgramName}/{SubProgramName}CLS
+chunks_cs/{ProgramName}/{SubProgramName}
 
 If file contains:
 //CATEGORY: business-object-overridden-function
 
 Then:
+- DO NOT CHANGE ANY SQL QUERIES (NON-NEGOTIABLE)
 - Modify function signature according to back_business_object_overridden_function_pattern
 - If function has no implementation, `throw new NotImplementedException();`
 - Update database access using back_database_function_pattern
@@ -42,12 +43,13 @@ Then:
 - back_additional_properties_recognizer
 
 2.2 For each file in:
-chunks_cs/{ProgramName}/{SubProgramName}CLS
+chunks_cs/{ProgramName}/{SubProgramName}
 
 If file contains:
 //CATEGORY: batch-function
 
 Then:
+- DO NOT CHANGE ANY SQL QUERIES (NON-NEGOTIABLE)
 - Change old implementation to follow back_batch_function_pattern, make sure User Parameter use `nameof({SubProgramName}R_SaveBatchUserParameterDTO.{UserParameterName}` as key
 - Add Standard Batch DTO following back_batch_function_pattern
 - Fix common errors using prevent_common_error_and_fixes
@@ -64,12 +66,13 @@ Then:
 - back_additional_properties_recognizer
 
 3.2 For each file in:
-chunks_cs/{ProgramName}/{SubProgramName}CLS
+chunks_cs/{ProgramName}/{SubProgramName}
 
 If file contains:
 //CATEGORY: other-function
 
 Then:
+- DO NOT CHANGE ANY SQL QUERIES (NON-NEGOTIABLE)
 - DO NOT MODIFY FUNCTION SIGNATURE (NON-NEGOTIABLE)
 - Update database access using back_database_function_pattern
 - Update error retrieval using back_error_retrieval_pattern

@@ -7,10 +7,11 @@ description: A tool to parse VB.NET (.NET Framework 4) Classes to get class sign
 Parse VB.NET (.NET Framework 4) Classes to get class signature and functions chunks.
 
 # Process
-## Phase 1: Get all Cls file paths
-1.1 From the {ProgramName}Back project folder, find all files with names ending in cls.vb (case-insensitive). Save their relative paths from `realta-windsurf` folder into the realta-windsurf/chunks_vb/{ProgramName}/cls_file_paths.txt file, with one path per line.
-
-## Phase 2: Run VBParser
-2.1 For each line in chunks_vb/{ProgramName}/cls_file_paths.txt, execute the script inside vbparser.sh, passing:
+## Phase 1: Run VBParser
+1.1 Execute `{ROOT}/.windsurf/scripts/execute-vb-parser.ps1`:
 - ProgramName = {ProgramName}
-- PathToNet4Cls = <current line value>
+- RootPath = {ROOT}
+- SearchFolderBack = the location of {ProgramName}Back Project
+- OutputFolder = `{ROOT}/chunks_vb/{ProgramName}/`
+Example:
+`powershell -ExecutionPolicy Bypass -File "{ROOT}/.windsurf/scripts/execute-vb-parser.ps1" -ProgramName "FAI00110" -RootPath "D:\_Work\AI\realta-windsurf" -SearchFolderBack "D:\_Work\AI\realta-windsurf\net4\FA Smart Client\Development\FAI00110" -OutputFolder "D:\_Work\AI\realta-windsurf\chunks_vb\FAI00110"`

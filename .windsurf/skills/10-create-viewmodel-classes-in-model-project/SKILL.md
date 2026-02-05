@@ -15,15 +15,15 @@ Create viewmodel classes in model project.
 1.5 Update `{ProgramName}Model.csproj` to reference `{ProgramName}FrontResources.csproj` with format: `<ProjectReference Include="..\{ProgramName}FrontResources\{ProgramName}FrontResources.csproj" />`
 
 ## Phase 2: Iterate SubProgram Folders
-2.1 Loop through each `{SubProgramName}CLS` folder inside `chunks_cs/{ProgramName}`.
-2.2 For each `{SubProgramName}CLS`, execute Phase 3.
+2.1 Loop through each `{SubProgramName}` folder inside `chunks_cs/{ProgramName}`.
+2.2 For each `{SubProgramName}`, execute Phase 3.
 
 ## Phase 3: Create `{SubProgramName}ViewModel` Classes
-3.1 Read `chunks_cs/{ProgramName}/{SubProgramName}CLS/ClassDeclaration.txt`.
+3.1 Read `chunks_cs/{ProgramName}/{SubProgramName}/ClassDeclaration.txt`.
 3.2 Decide if it is inheriting `R_BusinessObjectAsync`
 3.3 Read viewmodel_class_template and create viewmodel class based on the decision in step 3.2.
 3.4 If it is inheriting `R_BusinessObjectAsync`, {SubProgramName}ViewModel MUST INHERITS R_ViewModel<{SubProgramName}DTO>
-3.5 Read `chunks_cs/{ProgramName}/{SubProgramName}CLS/functions.txt` and read viewmodel_function_template and add functions with `//CATEGORY: other-function` to created viewmodel class in step 3.3
+3.5 Read `chunks_cs/{ProgramName}/{SubProgramName}/functions.txt` and read viewmodel_function_template and add functions with `//CATEGORY: other-function` to created viewmodel class in step 3.3
 
 ## Phase 4: Build and Bug Fix (REPEAT UNTIL NO ERRORS AND WARNINGS)
 4.1 Build {ProgramName}Model project and create a list of all error codes and warnings.

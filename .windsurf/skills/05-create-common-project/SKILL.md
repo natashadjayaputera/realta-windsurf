@@ -19,9 +19,15 @@ Create a .NET 6 common project based on .NET4 common projects.
 ## Phase 4: Convert DTOs from VB.NET to C#
 4.1 Read common_types_mapping as a reference to convert VB.NET types to C# types.
 4.2 All DTOs must be created with namespace `{ProgramName}Common.DTOs`.
-4.3 Convert each DTO from VB.NET `{ProgramName}Back` & `{ProgramName}Common` Project to C# Common Project.
-4.4 Remove `R_DTOBase` from all DTOs.
-4.5 Remove all decoration attributes from all DTOs.
+4.3 Execute `{ROOT}/.windsurf/scripts/find-dto-files.ps1`:
+- SearchFolderBack = the location of {ProgramName}Back Project
+- SearchFolderCommon = the location of {ProgramName}Common Project
+- OutputFolder = `{ROOT}/chunks_cs/{ProgramName}/`
+Example:
+`powershell -ExecutionPolicy Bypass -File "{ROOT}/.windsurf/scripts/find-dto-files.ps1" -SearchFolderBack "C:\path\to\back" -SearchFolderCommon "C:\path\to\common" -OutputFolder "C:\path\to\output"`
+4.4 Convert each line from `{ROOT}/chunks_cs/{ProgramName}/dto_files_list.txt` to DTO in `{ProgramName}Common/DTOs`.
+4.5 Remove `R_DTOBase` from all DTOs.
+4.6 Remove all decoration attributes from all DTOs.
 
 ## Phase 5: Convert Enums from VB.NET to C#
 5.1 All enums is in namespace `{ProgramName}Common.Enums`.

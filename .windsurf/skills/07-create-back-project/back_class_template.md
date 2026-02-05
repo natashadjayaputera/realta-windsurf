@@ -27,13 +27,13 @@ using System.Diagnostics;
 
 namespace {ProgramName}Back
 {
-    // Class Declaration MUST MATCH `chunks_cs/{ProgramName}/{SubProgramName}CLS/ClassDeclaration.txt`
-    public class {SubProgramName}CLS
+    // Class Declaration MUST MATCH `chunks_cs/{ProgramName}/{SubProgramName}/ClassDeclaration.txt`
+    public class {SubProgramName}Cls
     {
         private readonly Logger{ProgramName} _logger;
         private readonly ActivitySource _activitySource;
 
-        public {SubProgramName}CLS()
+        public {SubProgramName}Cls()
         {
             _logger = Logger{ProgramName}.R_GetInstanceLogger();
             _activitySource = {ProgramName}Activity.R_GetInstanceActivitySource();

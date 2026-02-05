@@ -45,7 +45,7 @@ namespace {ProgramName}Service
             var lcFunction = nameof(R_ServiceGetRecord);
             using var activity = _activitySource.StartActivity(lcFunction);
             var loEx = new R_Exception();
-            var loCls = new {SubProgramName}CLS();
+            var loCls = new {SubProgramName}Cls();
             var loRtn = new R_ServiceGetRecordResultDTO<{SubProgramName}DTO>();
 
             try
@@ -69,7 +69,7 @@ namespace {ProgramName}Service
             var lcFunction = nameof(R_ServiceSave);
             using var activity = _activitySource.StartActivity(lcFunction);
             var loEx = new R_Exception();
-            var loCls = new {SubProgramName}CLS();
+            var loCls = new {SubProgramName}Cls();
             var loRtn = new R_ServiceSaveResultDTO<{SubProgramName}DTO>();
 
             try
@@ -93,7 +93,7 @@ namespace {ProgramName}Service
             var lcFunction = nameof(R_ServiceDelete);
             using var activity = _activitySource.StartActivity(lcFunction);
             var loEx = new R_Exception();
-            var loCls = new {SubProgramName}CLS();
+            var loCls = new {SubProgramName}Cls();
             var loRtn = new R_ServiceDeleteResultDTO();
 
             try
@@ -119,7 +119,7 @@ namespace {ProgramName}Service
             var lcFunction = nameof({FunctionName});
             using var activity = _activitySource.StartActivity(lcFunction);
             var loEx = new R_Exception();
-            var loCls = new {SubProgramName}CLS();
+            var loCls = new {SubProgramName}Cls();
             var loRtn = new {FunctionReturnType}();
 
             try

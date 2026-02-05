@@ -1,5 +1,5 @@
-ProgramName: "FAR00100"
-SubProgramName: "FAR00100"
+ProgramName: "FAR00200"
+SubProgramName: "FAR00200"
 ModuleName: "FA"
 
 Please find and replace the 3 things above including the "" 
@@ -7,15 +7,15 @@ Please find and replace the 3 things above including the ""
 =================================
 01-run-vb-parser
 =================================
-VB.NET (.NET Framework 4) location (Back Project): 
-ProgramName: "FAR00100"
+VB.NET (.NET Framework 4) location (Back Project): @net4/FA Smart Client/Development/Back/FAR00200Back
+ProgramName: "FAR00200"
 ModuleName: "FA"
 
 =================================
 02-convert-chunk
 =================================
-ProgramName: "FAR00100"
-SubProgramName: "FAR00100"
+ProgramName: "FAR00200"
+SubProgramName: "FAR00200"
 ModuleName: "FA"
 
 NB: must do it for each SubProgramName, DO NOT ALLOW BATCH CONVERSION
@@ -23,8 +23,8 @@ NB: must do it for each SubProgramName, DO NOT ALLOW BATCH CONVERSION
 =================================
 03-fix-chunk
 =================================
-ProgramName: "FAR00100"
-SubProgramName: "FAR00100"
+ProgramName: "FAR00200"
+SubProgramName: "FAR00200"
 ModuleName: "FA"
 
 NB: must do it for each SubProgramName
@@ -32,8 +32,8 @@ NB: must do it for each SubProgramName
 =================================
 04-standardized-function-file
 =================================
-ProgramName: "FAR00100"
-SubProgramName: "FAR00100"
+ProgramName: "FAR00200"
+SubProgramName: "FAR00200"
 ModuleName: "FA"
 
 NB: must do it for each SubProgramName
@@ -41,78 +41,78 @@ NB: must do it for each SubProgramName
 =================================
 05-create-common-project
 =================================
-VB.NET (.NET Framework 4) location (Back Project): 
-VB.NET (.NET Framework 4) location (Common Project): 
-C# (.NET 6) location (Common Folder): 
-ProgramName: "FAR00100"
+VB.NET (.NET Framework 4) location (Back Project): @net4/FA Smart Client/Development/Back/FAR00200Back
+VB.NET (.NET Framework 4) location (Common Project): @net4/FA Smart Client/Development/Back/FAR00200Common
+C# (.NET 6) location (Common Folder): @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON
+ProgramName: "FAR00200"
 ModuleName: "FA"
 
 =================================
 06-create-additional-files-in-common-project
 =================================
-C# (.NET 6) location (Common Project):  
-ProgramName: "FAR00100"
+C# (.NET 6) location (Common Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/FA/FAR00200Common
+ProgramName: "FAR00200"
 ModuleName: "FA"
 
 =================================
 07-create-back-project
 =================================
-VB.NET (.NET Framework 4) location (Back Resources Project): 
-C# (.NET 6) location (Back Folder):  
-ProgramName: "FAR00100"
+VB.NET (.NET Framework 4) location (Back Resources Project): @net4/FA Smart Client/Development/Front/FAR00200FrontResources
+C# (.NET 6) location (Back Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/BACK
+ProgramName: "FAR00200"
 ModuleName: "FA"
 
 =================================
 08-create-service-project
 =================================
-VB.NET (.NET Framework 4) location (Front Project): 
-C# (.NET 6) location (Common Project):  
-C# (.NET 6) location (Service Folder):  
-ProgramName: "FAR00100"
+VB.NET (.NET Framework 4) location (Front Project): @net4/FA Smart Client/Development/Front/FAR00200Front
+C# (.NET 6) location (Common Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/FA/FAR00200Common
+C# (.NET 6) location (Service Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/SERVICE
+ProgramName: "FAR00200"
 ModuleName: "FA"
 
 =================================
 09-create-model-project
 =================================
-C# (.NET 6) location (Common Project):  
-C# (.NET 6) location (Model Folder):  
-ProgramName: "FAR00100"
+C# (.NET 6) location (Common Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/FA/FAR00200Common
+C# (.NET 6) location (Model Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT
+ProgramName: "FAR00200"
 ModuleName: "FA"
 
 =================================
 10-create-viewmodel-classes-in-model-project
 =================================
-VB.NET (.NET Framework 4) location (Front Resources Project): 
-C# (.NET 6) location (Common Project):  
-C# (.NET 6) location (Model Project):  
-C# (.NET 6) location (Front Resources Folder):  
-ProgramName: "FAR00100"
+VB.NET (.NET Framework 4) location (Front Resources Project): @net4/FA Smart Client/Development/Front/FAR00200FrontResources  
+C# (.NET 6) location (Common Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/FA/FAR00200Common  
+C# (.NET 6) location (Model Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/FAR00200Model  
+C# (.NET 6) location (Front Resources Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT  
+ProgramName: "FAR00200"
 ModuleName: "FA"
 
 =================================
 11-add-batch-data-manipulation-in-viewmodel
 =================================
-C# (.NET 6) location (Front Resources Project):  
-C# (.NET 6) location (Model Project):  
-ProgramName: "FAR00100"
+C# (.NET 6) location (Front Resources Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT  
+C# (.NET 6) location (Model Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/FAR00200Model  
+ProgramName: "FAR00200"
 ModuleName: "FA"
 
 
 
-
 =================================
-All folders
+How to use workflow
 =================================
-VB.NET (.NET Framework 4) location (Back Project): 
-VB.NET (.NET Framework 4) location (Common Project): 
-VB.NET (.NET Framework 4) location (Back Resources Project): 
-VB.NET (.NET Framework 4) location (Front Project): 
-VB.NET (.NET Framework 4) location (Front Resources Project): 
-C# (.NET 6) location (Common Folder): 
-C# (.NET 6) location (Back Folder):  
-C# (.NET 6) location (Service Folder):  
-C# (.NET 6) location (Model Folder):  
-C# (.NET 6) location (Front Resources Folder):  
-ProgramName: "FAR00100"
-SubProgramName: ["FAR00100"]
+/convert-net4-to-net6 
+VB.NET (.NET Framework 4) location (Back Project): @net4/FA Smart Client/Development/Back/FAR00200Back 
+VB.NET (.NET Framework 4) location (Common Project): @net4/FA Smart Client/Development/Back/FAR00200Common  
+VB.NET (.NET Framework 4) location (Back Resources Project): @net4/FA Smart Client/Development/Back/FAB00200BackResources  
+VB.NET (.NET Framework 4) location (Front Project): @net4/FA Smart Client/Development/Front/FAR00200Front  
+VB.NET (.NET Framework 4) location (Front Resources Project): @net4/FA Smart Client/Development/Front/FAR00200FrontResources  
+C# (.NET 6) location (Common Folder): @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON  
+C# (.NET 6) location (Back Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/BACK  
+C# (.NET 6) location (Service Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/SERVICE  
+C# (.NET 6) location (Model Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT  
+C# (.NET 6) location (Front Resources Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT  
+ProgramName: "FAR00200"
+SubProgramName: ["FAR00200"]
 ModuleName: "FA"

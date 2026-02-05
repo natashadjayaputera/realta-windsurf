@@ -2,7 +2,7 @@
 description: Workflow to convert VB.NET (.NET Framework 4) program to C# (.NET 6) program
 ---
 
-Run this in order:
+Run this in order, please ask user continue confirmation after each step:
 1. Invoke 01-run-vb-parser skill
 2. Invoke 02-convert-chunk skill
 3. Invoke 03-fix-chunk skill

@@ -121,7 +121,7 @@ private async Task _BatchProcessAsync(R_BatchProcessPar poBatchProcessPar)
 ```
 
 ## Batch DTOs
-Create `chunks_cs/{ProgramName}/{SubProgramName}CLS/DTO/{SubProgramName}R_SaveBatchUserParameterDTO.cs` with content:
+Create `chunks_cs/{ProgramName}/{SubProgramName}/DTO/{SubProgramName}R_SaveBatchUserParameterDTO.cs` with content:
 ### {SubProgramName}R_SaveBatchUserParameterDTO Structure
 ```csharp
 namespace {ProgramName}Common.DTOs;
@@ -134,7 +134,7 @@ public class {SubProgramName}R_SaveBatchUserParameterDTO
 }
 ```
 
-Create `chunks_cs/{ProgramName}/{SubProgramName}CLS/DTO/{SubProgramName}R_SaveBatchParameterDTO.cs` with content:
+Create `chunks_cs/{ProgramName}/{SubProgramName}/DTO/{SubProgramName}R_SaveBatchParameterDTO.cs` with content:
 ### {SubProgramName}R_SaveBatchParameterDTO Structure
 ```csharp
 using System.Collections.Generic;

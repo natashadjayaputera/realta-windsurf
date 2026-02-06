@@ -16,9 +16,12 @@ Nuget.Config
 
 /net4/
 /net6/
+/plan/
+.cursor/
 
 chunks_cs/
 chunks_vb/
 
 [Bb]in/
 [Oo]bj/
+

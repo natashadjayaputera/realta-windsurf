@@ -1,11 +1,11 @@
 param(
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$SearchFolderBack,
     
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$SearchFolderCommon,
     
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$OutputFolder
 )
 
@@ -31,27 +31,27 @@ Write-Host "Output: $OutputFolder" -ForegroundColor Green
 
 # Find files in Back project
 $filesInDtoFoldersBack = Get-ChildItem -Path $SearchFolderBack -Recurse -Directory | 
-    Where-Object { $_.Name -ieq "DTO" } | 
-    ForEach-Object { 
-        Get-ChildItem -Path $_.FullName -File -ErrorAction SilentlyContinue | 
-        Select-Object -ExpandProperty FullName
-    } | Where-Object { $_ -ne $null }
+Where-Object { $_.Name -ieq "DTO" -and $_.FullName -notmatch "\\bin\\|\\obj\\" } | 
+ForEach-Object { 
+    Get-ChildItem -Path $_.FullName -File -ErrorAction SilentlyContinue | 
+    Select-Object -ExpandProperty FullName
+} | Where-Object { $_ -ne $null -and $_ -notmatch "\\bin\\|\\obj\\" }
 
 $filesEndingWithDtoBack = Get-ChildItem -Path $SearchFolderBack -Recurse -File | 
-    Where-Object { $_.BaseName -ilike "*DTO" } | 
-    Select-Object -ExpandProperty FullName
+Where-Object { $_.BaseName -ilike "*DTO" -and $_.FullName -notmatch "\\bin\\|\\obj\\" } | 
+Select-Object -ExpandProperty FullName
 
 # Find files in Common project
 $filesInDtoFoldersCommon = Get-ChildItem -Path $SearchFolderCommon -Recurse -Directory | 
-    Where-Object { $_.Name -ieq "DTO" } | 
-    ForEach-Object { 
-        Get-ChildItem -Path $_.FullName -File -ErrorAction SilentlyContinue | 
-        Select-Object -ExpandProperty FullName
-    } | Where-Object { $_ -ne $null }
+Where-Object { $_.Name -ieq "DTO" -and $_.FullName -notmatch "\\bin\\|\\obj\\" } | 
+ForEach-Object { 
+    Get-ChildItem -Path $_.FullName -File -ErrorAction SilentlyContinue | 
+    Select-Object -ExpandProperty FullName
+} | Where-Object { $_ -ne $null -and $_ -notmatch "\\bin\\|\\obj\\" }
 
 $filesEndingWithDtoCommon = Get-ChildItem -Path $SearchFolderCommon -Recurse -File | 
-    Where-Object { $_.BaseName -ilike "*DTO" } | 
-    Select-Object -ExpandProperty FullName
+Where-Object { $_.BaseName -ilike "*DTO" -and $_.FullName -notmatch "\\bin\\|\\obj\\" } | 
+Select-Object -ExpandProperty FullName
 
 # Combine all files and remove duplicates
 $allFiles = @($filesInDtoFoldersBack) + @($filesEndingWithDtoBack) + @($filesInDtoFoldersCommon) + @($filesEndingWithDtoCommon)
@@ -66,6 +66,7 @@ if ($uniqueFiles.Count -gt 0) {
     $outputFile = Join-Path $OutputFolder "dto_files_list.txt"
     $uniqueFiles | Out-File -FilePath $outputFile -Encoding UTF8
     Write-Host "Saved to: $outputFile" -ForegroundColor Green
-} else {
+}
+else {
     Write-Host "No DTO files found." -ForegroundColor Gray
 }

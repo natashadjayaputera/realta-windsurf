@@ -46,6 +46,10 @@ ls .windsurf\scripts
 ls .windsurf\tools
 ```
 
+### 4. Install Extensions
+- [Compare Folders](https://marketplace.windsurf.com/vscode/item?itemName=moshfeu.compare-folders)
+- [Right Click Run File](https://marketplace.windsurf.com/vscode/item?itemName=crsx.right-click-run-file)
+
 ## Tool Validation
 
 ### Build All Tools
@@ -75,8 +79,9 @@ dotnet build .windsurf\tools\VbCodeReducer\VbCodeReducer.csproj
 
 ### Path Resolution
 - **Repository Root**: Automatically detected by looking for `.git` directory
-- **Working Directory**: Scripts should be run from repository root
-- **Relative Paths**: All internal paths are relative to repository root
+- **Working Directory**: Scripts can be run from any directory within the repository
+- **Relative Paths**: All internal paths are relative to auto-detected repository root
+- **Shared Functions**: Common functionality in `Common-Functions.ps1` with `Find-GitRoot()` function
 
 ### Directory Structure
 ```
@@ -103,14 +108,22 @@ chunks_vb/             # Generated VB chunks
 ## Usage Guidelines
 
 ### Running Scripts
-1. **Always run from repository root** - Scripts use relative paths from current location
+1. **Run from any directory** - Scripts auto-detect repository root via `.git` folder
 2. **Use PowerShell** - All scripts are PowerShell scripts (.ps1)
 3. **Provide required parameters** - Scripts validate required parameters
+4. **No RootPath needed** - Root folder is automatically detected
 
 ### Example Usage
 ```powershell
+# From any directory within repository
+.\.windsurf\scripts\detect-batch-processes.ps1 -ProgramName "FAT00100"
+
+# From subdirectory
+cd .windsurf
+.\scripts\detect-batch-processes.ps1 -ProgramName "FAT00100"
+
 # From repository root
-.\.windsurf\scripts\detect-batch-processes.ps1 -ProgramName "FAT00100" -RootPath "."
+.\.windsurf\scripts\detect-batch-processes.ps1 -ProgramName "FAT00100"
 ```
 
 ## Troubleshooting
@@ -133,8 +146,9 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 **Solution:** Run PowerShell as Administrator or check file permissions
 
 ### Path Issues
-- Scripts use `(Get-Location).Path` to determine repository root
-- All paths are relative to the repository root
+- Scripts use `Find-GitRoot()` function to automatically detect repository root
+- All paths are relative to the auto-detected repository root
+- Scripts work from any directory within the git repository
 - Ensure no spaces in repository path or quote paths if spaces exist
 
 ### .NET Version Issues
@@ -144,10 +158,11 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ## Development Notes
 
 ### Adding New Scripts
-1. Use relative paths from repository root
-2. Include proper error handling and validation
-3. Follow existing parameter naming conventions
-4. Add execution policy error handling as shown in existing scripts
+1. Use shared `Find-GitRoot()` function for repository root detection
+2. Load shared functions: `. (Join-Path (Split-Path $PSScriptRoot -Parent) "scripts\Common-Functions.ps1")`
+3. Include proper error handling and validation
+4. Follow existing parameter naming conventions
+5. Add execution policy error handling as shown in existing scripts
 
 ### Adding New Tools
 1. Target .NET 8.0 for compatibility

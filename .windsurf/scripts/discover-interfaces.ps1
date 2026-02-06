@@ -2,15 +2,21 @@
 # Finds all interfaces in the Common project
 
 param(
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$ProgramName,
     
-    [Parameter(Mandatory=$true)]
-    [string]$RootPath = (Get-Location).Path,
-    
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$SearchFolderCommon
 )
+
+# Load shared functions
+$SharedFunctionsPath = Join-Path (Split-Path $PSScriptRoot -Parent) "scripts\Common-Functions.ps1"
+if (Test-Path $SharedFunctionsPath) {
+    . $SharedFunctionsPath
+}
+
+# Auto-detect root folder from git repository
+$RootPath = Find-GitRoot
 
 $OutputFile = "$RootPath\chunks_cs\$ProgramName\interfaces_list.txt"
 
@@ -49,7 +55,7 @@ foreach ($file in $interfaceFiles) {
         $relativePath = $file.FullName.Replace($SearchFolderCommon, "").Replace("\", "/").TrimStart("/")
         
         $interfaces += [PSCustomObject]@{
-            Name = $interfaceName
+            Name     = $interfaceName
             FilePath = $relativePath
             FullName = $file.FullName
         }

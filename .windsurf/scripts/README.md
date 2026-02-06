@@ -2,12 +2,20 @@
 
 This directory contains PowerShell scripts for automating various tasks in the .NET 4 to .NET 6 conversion process.
 
+## 🚀 Auto-Root Detection
+
+> **Important**: All scripts now automatically detect the repository root from the `.git` folder. You can run scripts from **any directory** within the repository - no RootPath parameter needed!
+
+### Shared Functions
+- **Common-Functions.ps1**: Contains shared functionality including `Find-GitRoot()` for automatic repository root detection
+- All scripts load this shared functionality automatically
+
 ## categorize-functions.ps1
 **Purpose:** Categorizes functions based on back_function_categories rules
 
 ### Parameters + Example
 ```powershell
-.\categorize-functions.ps1 -ProgramName "FAT00100" -RootPath "d:\_Work\AI\realta-windsurf"
+.\categorize-functions.ps1 -ProgramName "FAT00100"
 ```
 
 ### High Level Process
@@ -20,7 +28,7 @@ Find subprograms with functions.txt -> Extract function signatures -> Determine 
 
 ### Parameters + Example
 ```powershell
-.\detect-batch-processes.ps1 -ProgramName "FAT00100" -RootPath "d:\_Work\AI\realta-windsurf"
+.\detect-batch-processes.ps1 -ProgramName "FAT00100"
 ```
 
 ### High Level Process
@@ -33,7 +41,7 @@ Search for *_R_BatchProcess.cs files -> Extract SubProgramName from parent folde
 
 ### Parameters + Example
 ```powershell
-.\discover-interfaces.ps1 -ProgramName "FAT00100" -RootPath "d:\_Work\AI\realta-windsurf" -SearchFolderCommon "d:\_Work\AI\realta-windsurf\projects\common"
+.\discover-interfaces.ps1 -ProgramName "FAT00100" -SearchFolderCommon "d:\_Work\AI\realta-windsurf\projects\common"
 ```
 
 ### High Level Process
@@ -46,7 +54,7 @@ Search Common project for *.cs files -> Find files with "public interface" decla
 
 ### Parameters + Example
 ```powershell
-.\execute-vb-parser.ps1 -ProgramName "FAT00100" -RootPath "d:\_Work\AI\realta-windsurf" -SearchFolderBack "d:\_Work\AI\realta-windsurf\projects\back" -OutputFolder "d:\_Work\AI\realta-windsurf\output"
+.\execute-vb-parser.ps1 -ProgramName "FAT00100" -SearchFolderBack "d:\_Work\AI\realta-windsurf\projects\back" -OutputFolder "d:\_Work\AI\realta-windsurf\output"
 ```
 
 ### High Level Process
@@ -98,7 +106,7 @@ Search Back project for DTO folders and *DTO files -> Search Common project for 
 
 ### Parameters + Example
 ```powershell
-.\fix-class-declaration.ps1 -ProgramName "FAT00100" -RootPath "d:\_Work\AI\realta-windsurf"
+.\fix-class-declaration.ps1 -ProgramName "FAT00100"
 ```
 
 ### High Level Process
@@ -111,7 +119,7 @@ Find all ClassDeclaration.txt files -> Remove namespace and curly braces -> Repl
 
 ### Parameters + Example
 ```powershell
-.\fix-indentation.ps1 -ProgramName "FAT00100" -RootPath "d:\_Work\AI\realta-windsurf"
+.\fix-indentation.ps1 -ProgramName "FAT00100"
 ```
 
 ### High Level Process
@@ -124,7 +132,7 @@ Validate CsIndentFixer project exists -> Run CsIndentFixer tool with ProgramName
 
 ### Parameters + Example
 ```powershell
-.\inject-functions.ps1 -ProgramName "FAT00100" -RootPath "d:\_Work\AI\realta-windsurf" -SearchFolderBack "d:\_Work\AI\realta-windsurf\projects\back" -OutputFolder "d:\_Work\AI\realta-windsurf\output"
+.\inject-functions.ps1 -ProgramName "FAT00100" -SearchFolderBack "d:\_Work\AI\realta-windsurf\projects\back" -OutputFolder "d:\_Work\AI\realta-windsurf\output"
 ```
 
 ### High Level Process

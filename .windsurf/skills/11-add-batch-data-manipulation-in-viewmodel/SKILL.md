@@ -10,9 +10,8 @@ Add batch data manipulation in viewmodel classes in model project.
 ## Phase 1: Batch Implementation in ViewModel Classes
 1.1 Execute `../../scripts/detect-batch-processes.ps1`:
 - ProgramName = {ProgramName}
-- RootPath = {ROOT}
 Example:
-`powershell -ExecutionPolicy Bypass -File "../../scripts/detect-batch-processes.ps1" -ProgramName "FAI00110" -RootPath "D:\_Work\AI\realta-windsurf"`
+`powershell -ExecutionPolicy Bypass -File "../../scripts/detect-batch-processes.ps1" -ProgramName "FAI00110"`
 1.2 For each line in `chunks_cs/{ProgramName}/viewmodel_with_batch_list_buffer.txt` file:
 - Read `chunks_cs/{ProgramName}/{SubProgramName}/**_R_BatchProcess.cs` and search for `R_NetCoreUtility.R_DeserializeObjectFromByte<List<T>>` and assign T as `{BatchDisplayListDTO}`.
 - Read `chunks_cs/{ProgramName}/{SubProgramName}/**_R_BatchProcess.cs` and get the LAST occurance of `RSP_WriteUploadProcessStatus` stored procedure and extract all 6 of the stored procedure arguments, and assign the 4th argument as `{BatchSteps}`.

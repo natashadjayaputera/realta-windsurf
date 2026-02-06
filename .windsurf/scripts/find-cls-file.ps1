@@ -1,7 +1,7 @@
 param(
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$SearchFolder,
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$OutputFolder
 )
 
@@ -16,8 +16,9 @@ if (-not (Test-Path $OutputFolder)) {
     New-Item -ItemType Directory -Path $OutputFolder -Force | Out-Null
 }
 
-# Find all files ending with cls.vb (case-insensitive) in nested folders
-$clsFiles = Get-ChildItem -Path $SearchFolder -Recurse -Filter "*cls.vb" -File | Where-Object { $_.Name -match "cls\.vb$" }
+# Find all files ending with cls.vb (case-insensitive) in nested folders, skipping bin and obj folders
+$clsFiles = Get-ChildItem -Path $SearchFolder -Recurse -Filter "*cls.vb" -File | 
+Where-Object { $_.Name -match "cls\.vb$" -and $_.FullName -notmatch "\\bin\\|\\obj\\" }
 
 # Output file path
 $outputFile = Join-Path $OutputFolder "cls_file_paths.txt"

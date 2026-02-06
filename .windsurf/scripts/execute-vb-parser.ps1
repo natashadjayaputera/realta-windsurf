@@ -2,18 +2,24 @@
 # Executes VB Parser for all files listed in cls_file_paths.txt
 
 param(
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$ProgramName,
     
-    [Parameter(Mandatory=$true)]
-    [string]$RootPath = (Get-Location).Path,
-    
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$SearchFolderBack,
     
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$OutputFolder
 )
+
+# Load shared functions
+$SharedFunctionsPath = Join-Path (Split-Path $PSScriptRoot -Parent) "scripts\Common-Functions.ps1"
+if (Test-Path $SharedFunctionsPath) {
+    . $SharedFunctionsPath
+}
+
+# Auto-detect root folder from git repository
+$RootPath = Find-GitRoot
 
 $ClsFilePathsFile = "$OutputFolder\cls_file_paths.txt"
 $VbParserProject = "$RootPath\.windsurf\tools\VbParser\VbParser.csproj"
@@ -23,7 +29,8 @@ $FindClsScript = "$RootPath\.windsurf\scripts\find-cls-file.ps1"
 Write-Host "Running find-cls-file.ps1 first..."
 try {
     & powershell -ExecutionPolicy Bypass -File $FindClsScript -SearchFolder $SearchFolderBack -OutputFolder $OutputFolder
-} catch {
+}
+catch {
     Write-Error "Failed to execute find-cls-file.ps1. Ensure PowerShell execution policy allows script execution."
     Write-Error "You may need to run: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser"
     exit 1
@@ -56,14 +63,16 @@ foreach ($filePath in $filePaths) {
     Write-Host "Processing file $currentFile/$totalFiles : $filePath"
     
     try {
-        $result = & dotnet run --project $VbParserProject -- $ProgramName $filePath
+        & dotnet run --project $VbParserProject -- $ProgramName $filePath
         
         if ($LASTEXITCODE -eq 0) {
             Write-Host "Successfully processed: $filePath" -ForegroundColor Green
-        } else {
+        }
+        else {
             Write-Warning "Failed to process: $filePath (Exit code: $LASTEXITCODE)"
         }
-    } catch {
+    }
+    catch {
         Write-Error "Error processing $filePath : $($_.Exception.Message)"
     }
     
@@ -78,6 +87,7 @@ if (Test-Path $OutputFolder) {
     Get-ChildItem $OutputFolder -Recurse | ForEach-Object {
         Write-Host "  $($_.FullName.Replace($OutputFolder, ''))" -ForegroundColor Cyan
     }
-} else {
+}
+else {
     Write-Warning "Output folder not found: $OutputFolder"
 }

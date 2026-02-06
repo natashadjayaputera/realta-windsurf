@@ -32,3 +32,11 @@ Fix it by adding .ToList() skips `R_Utility.R_ConvertTo<{TargetDTO}>(loDataTable
 ```csharp
 R_Utility.R_ConvertTo<{TargetDTO}>(loDataTable) => R_Utility.R_ConvertTo<{TargetDTO}>(loDataTable).ToList()
 ```
+
+## Error 5: Still using `R_Common.`
+
+Fix it by removing all occurance of `R_Common.`
+```csharp
+R_Common.eCRUDMode => eCRUDMode
+R_Common.R_BatchProcessPar => R_BatchProcessPar
+```

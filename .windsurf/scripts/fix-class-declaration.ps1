@@ -3,11 +3,17 @@
 
 param(
     [Parameter(Mandatory = $true)]
-    [string]$ProgramName,
-
-    [Parameter(Mandatory = $true)]
-    [string]$RootPath = (Get-Location).Path
+    [string]$ProgramName
 )
+
+# Load shared functions
+$SharedFunctionsPath = Join-Path (Split-Path $PSScriptRoot -Parent) "scripts\Common-Functions.ps1"
+if (Test-Path $SharedFunctionsPath) {
+    . $SharedFunctionsPath
+}
+
+# Auto-detect root folder from git repository
+$RootPath = Find-GitRoot
 
 $ChunksCsPath = "$RootPath\chunks_cs\$ProgramName"
 

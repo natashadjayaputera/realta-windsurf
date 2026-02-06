@@ -2,18 +2,24 @@
 # Finds all .cls.cs files and executes function injector for each
 
 param(
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$ProgramName,
     
-    [Parameter(Mandatory=$true)]
-    [string]$RootPath = (Get-Location).Path,
-    
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$SearchFolderBack,
     
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$OutputFolder
 )
+
+# Load shared functions
+$SharedFunctionsPath = Join-Path (Split-Path $PSScriptRoot -Parent) "scripts\Common-Functions.ps1"
+if (Test-Path $SharedFunctionsPath) {
+    . $SharedFunctionsPath
+}
+
+# Auto-detect root folder from git repository
+$RootPath = Find-GitRoot
 
 $ClsFilePathsFile = "$OutputFolder\cls_file_paths.txt"
 $CsFunctionInjectorProject = "$RootPath\.windsurf\tools\CsTemplateInjector\CsTemplateInjector.csproj"
@@ -37,7 +43,8 @@ Write-Host "Search folder: $SearchFolderBack"
 Write-Host "Finding cls.cs files..."
 try {
     & powershell -ExecutionPolicy Bypass -File $FindClsCsScript -SearchFolder $SearchFolderBack -OutputFolder $OutputFolder
-} catch {
+}
+catch {
     Write-Error "Failed to execute find-cls-cs-files.ps1. Ensure PowerShell execution policy allows script execution."
     Write-Error "You may need to run: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser"
     exit 1
@@ -76,14 +83,16 @@ foreach ($clsFile in $clsFiles) {
     Write-Host "Processing file $currentFile/$totalFiles : $relativePath"
     
     try {
-        $result = & dotnet run --project $CsFunctionInjectorProject -- $relativePath $folderToBeInjected
+        & dotnet run --project $CsFunctionInjectorProject -- $relativePath $folderToBeInjected | Out-Null
         
         if ($LASTEXITCODE -eq 0) {
             Write-Host "Successfully injected functions: $relativePath" -ForegroundColor Green
-        } else {
+        }
+        else {
             Write-Warning "Failed to inject functions: $relativePath (Exit code: $LASTEXITCODE)"
         }
-    } catch {
+    }
+    catch {
         Write-Error "Error processing $relativePath : $($_.Exception.Message)"
     }
     

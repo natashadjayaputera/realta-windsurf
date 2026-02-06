@@ -3,11 +3,17 @@
 
 param(
     [Parameter(Mandatory = $true)]
-    [string]$ProgramName,
-
-    [Parameter(Mandatory = $true)]
-    [string]$RootPath = (Get-Location).Path
+    [string]$ProgramName
 )
+
+# Load shared functions
+$SharedFunctionsPath = Join-Path (Split-Path $PSScriptRoot -Parent) "scripts\Common-Functions.ps1"
+if (Test-Path $SharedFunctionsPath) {
+    . $SharedFunctionsPath
+}
+
+# Auto-detect root folder from git repository
+$RootPath = Find-GitRoot
 
 $ChunksCsPath = "$RootPath\chunks_cs\$ProgramName"
 
@@ -35,9 +41,17 @@ foreach ($subProgramDir in $subProgramDirs) {
     $subProgramName = $subProgramDir.Name
     Write-Host "Processing subprogram: $subProgramName"
     
+    # Read functions.txt to get function list
+    $functionsTxtPath = "$($subProgramDir.FullName)\functions.txt"
+    $functionsContent = Get-Content -Path $functionsTxtPath -Raw
+    $functionLines = $functionsContent -split "`r`n|`r|`n"
+    
+    # Create a dictionary to store function categories
+    $functionCategories = @{}
+    
     # Find all function .cs files (excluding ClassDeclaration.txt)
     $functionFiles = Get-ChildItem -Path $subProgramDir.FullName -Filter "*.cs" -File | 
-                     Where-Object { $_.Name -ne "ClassDeclaration.txt" -and $_.Name -match "^\d{4}_" }
+    Where-Object { $_.Name -ne "ClassDeclaration.txt" -and $_.Name -match "^\d{4}_" }
     
     Write-Host "  Found $($functionFiles.Count) function files"
     
@@ -74,11 +88,61 @@ foreach ($subProgramDir in $subProgramDirs) {
             else {
                 Write-Host "      Category comment already exists"
             }
+            
+            # Store function name and category for functions.txt update
+            if ($functionSignature -match '(public|private|protected)\s+.*?(\w+)\s*\([^)]*\)') {
+                $functionName = $matches[2]
+                $functionCategories[$functionName] = $category
+            }
         }
         catch {
             Write-Error "Error processing $($functionFile.FullName): $($_.Exception.Message)"
         }
     }
+    
+    # Update functions.txt with categories
+    Write-Host "  Updating functions.txt with categories"
+    $updatedLines = @()
+    
+    foreach ($line in $functionLines) {
+        if ($line.Trim() -eq "" -or $line.StartsWith("#")) {
+            # Keep empty lines and comments as-is
+            $updatedLines += $line
+        }
+        else {
+            # This is a function line, try to add category
+            $functionSignature = $line.Trim()
+            # Extract function name from signature
+            if ($functionSignature -match '(public|private|protected)\s+.*?(\w+)\s*\([^)]*\)') {
+                $functionName = $matches[2]
+                # Check if category already exists
+                if ($functionSignature -match '//CATEGORY:') {
+                    # Category already exists, keep as-is
+                    $updatedLines += $line
+                    Write-Host "    Category already exists for: $functionName" -ForegroundColor Cyan
+                }
+                elseif ($functionCategories.ContainsKey($functionName)) {
+                    $category = $functionCategories[$functionName]
+                    $updatedLines += "$line //CATEGORY: $category"
+                    Write-Host "    Updated: $functionName -> $category" -ForegroundColor Green
+                }
+                else {
+                    # Function not found in processed files, keep as-is
+                    $updatedLines += $line
+                    Write-Host "    No category found for: $functionName" -ForegroundColor Yellow
+                }
+            }
+            else {
+                # Not a valid function signature, keep as-is
+                $updatedLines += $line
+            }
+        }
+    }
+    
+    # Write updated functions.txt
+    $updatedContent = $updatedLines -join "`r`n"
+    Set-Content -Path $functionsTxtPath -Value $updatedContent -NoNewline
+    Write-Host "  Updated functions.txt" -ForegroundColor Green
 }
 
 Write-Host "Function categorization process completed for Program: $ProgramName"

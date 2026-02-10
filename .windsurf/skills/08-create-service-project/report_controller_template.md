@@ -29,7 +29,7 @@ using R_CommonFrontBackAPI;
 using R_CommonFrontBackAPI.Log;
 using R_ReportFastReportBack;
 
-namespace {ProgramName}Service;
+namespace {ProgramName}Service
 {
     public class {SubProgramName}ReportController : R_ReportControllerBase
     {

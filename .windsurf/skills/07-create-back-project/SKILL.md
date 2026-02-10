@@ -27,7 +27,7 @@ Create a .NET 6 back project
 ## Phase 5: Inject Functions
 5.1 Execute `../../scripts/inject-functions.ps1`:
 - ProgramName = {ProgramName}
-- SearchFolderBack = the location of {ProgramName}Back Project
+- SearchFolderBack = the location of C# (.NET 6) {ProgramName}Back Project
 - OutputFolder = `{ROOT}/chunks_cs/{ProgramName}/`
 Example:
 `powershell -ExecutionPolicy Bypass -File "../../scripts/inject-functions.ps1" -ProgramName "FAI00110" -SearchFolderBack "D:\_Work\AI\realta-windsurf\net6\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\FAI00110Back" -OutputFolder "D:\_Work\AI\realta-windsurf\chunks_cs\FAI00110"`

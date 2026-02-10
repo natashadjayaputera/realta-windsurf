@@ -8,12 +8,12 @@ Convert VB.NET (.NET Framework 4) Chunk files into C# (.NET 6) Chunk files.
 
 # Process
 ## Phase 1: Convert `ClassDeclaration.txt` to `ClassDeclaration.txt`
-1.1 From `chunks_vb/{ProgramName}/{SubProgramName}`, convert `ClassDeclaration.txt` (class declaration in VB.NET) to `ClassDeclaration.txt` (class declaration in C#) and save it to `chunks_cs/{ProgramName}/{SubProgramName}`.
+1.1 From `chunks_vb/{ProgramName}/{SubProgramName}`, convert VB.NET `chunks_vb/{ProgramName}/{SubProgramName}/ClassDeclaration.txt` to C# `chunks_cs/{ProgramName}/{SubProgramName}/ClassDeclaration.txt`.
 1.2 Must add `public` keyword to the class declaration.
 1.3 Remove any `{` or `}` from the class declaration.
 
 ## Phase 2: Convert `functions.txt` to `functions.txt`
-2.1 From `chunks_vb/{ProgramName}/{SubProgramName}`, convert `functions.txt` (list of functions signature in VB.NET) to `functions.txt` (list of functions signature in C#) and save it to `chunks_cs/{ProgramName}/{SubProgramName}`.
+2.1 From `chunks_vb/{ProgramName}/{SubProgramName}`, convert VB.NET `chunks_vb/{ProgramName}/{SubProgramName}/functions.txt` (list of functions signature in VB.NET) to C# `chunks_cs/{ProgramName}/{SubProgramName}/functions.txt` (list of functions signature in C#).
 
 ## Phase 3: Convert `XXXX_FunctionName.vb` to `XXXX_FunctionName.cs`
 3.1 Rules to convert:

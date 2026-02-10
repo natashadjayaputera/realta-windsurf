@@ -124,13 +124,14 @@ private async Task _BatchProcessAsync(R_BatchProcessPar poBatchProcessPar)
 Create `chunks_cs/{ProgramName}/{SubProgramName}/DTO/{SubProgramName}R_SaveBatchUserParameterDTO.cs` with content:
 ### {SubProgramName}R_SaveBatchUserParameterDTO Structure
 ```csharp
-namespace {ProgramName}Common.DTOs;
-
-// DTO name MUST be {SubProgramName}R_SaveBatchUserParameterDTO
-public class {SubProgramName}R_SaveBatchUserParameterDTO
+namespace {ProgramName}Common.DTOs
 {
-    // Add ALL custom parameters listed in `#region User Parameters`
-    // Search For `{SubProgramName}R_SaveBatchUserParameterDTO.{PropertyName}`
+    // DTO name MUST be {SubProgramName}R_SaveBatchUserParameterDTO
+    public class {SubProgramName}R_SaveBatchUserParameterDTO
+    {
+        // Add ALL custom parameters listed in `#region User Parameters`
+        // Search For `{SubProgramName}R_SaveBatchUserParameterDTO.{PropertyName}`
+    }
 }
 ```
 
@@ -139,14 +140,15 @@ Create `chunks_cs/{ProgramName}/{SubProgramName}/DTO/{SubProgramName}R_SaveBatch
 ```csharp
 using System.Collections.Generic;
 
-namespace {ProgramName}Common.DTOs;
-
-// DTO name MUST be {SubProgramName}R_SaveBatchParameterDTO
-public class {SubProgramName}R_SaveBatchParameterDTO
+namespace {ProgramName}Common.DTOs
 {
-    public string CCOMPANY_ID { get; set; } = string.Empty;
-    public string CUSER_ID { get; set; } = string.Empty;
-    public {SubProgramName}R_SaveBatchUserParameterDTO UserParameters { get; set; } = new {SubProgramName}R_SaveBatchUserParameterDTO();
-    public List<{BatchListDisplayDTO}>? Data { get; set; }
+    // DTO name MUST be {SubProgramName}R_SaveBatchParameterDTO
+    public class {SubProgramName}R_SaveBatchParameterDTO
+    {
+        public string CCOMPANY_ID { get; set; } = string.Empty;
+        public string CUSER_ID { get; set; } = string.Empty;
+        public {SubProgramName}R_SaveBatchUserParameterDTO UserParameters { get; set; } = new {SubProgramName}R_SaveBatchUserParameterDTO();
+        public List<{BatchListDisplayDTO}>? Data { get; set; }
+    }
 }
 ```

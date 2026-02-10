@@ -15,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace {ProgramName}Model;
+namespace {ProgramName}Model
 {
     public class {SubProgramName}Model : R_BusinessObjectServiceClientBase<{SubProgramName}DTO>, I{SubProgramName}
     {

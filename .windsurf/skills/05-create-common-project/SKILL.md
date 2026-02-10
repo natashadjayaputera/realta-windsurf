@@ -20,8 +20,8 @@ Create a .NET 6 common project based on .NET4 common projects.
 4.1 Read common_types_mapping as a reference to convert VB.NET types to C# types.
 4.2 All DTOs must be created with namespace `{ProgramName}Common.DTOs`.
 4.3 Execute `../../scripts/find-dto-files.ps1`:
-- SearchFolderBack = the location of {ProgramName}Back Project
-- SearchFolderCommon = the location of {ProgramName}Common Project
+- SearchFolderBack = the location of VB.NET (.NET Framework 4) {ProgramName}Back Project
+- SearchFolderCommon = the location of VB.NET (.NET Framework 4) {ProgramName}Common Project
 - OutputFolder = `{ROOT}/chunks_cs/{ProgramName}/`
 Example:
 `powershell -ExecutionPolicy Bypass -File "../../scripts/find-dto-files.ps1" -SearchFolderBack "C:\path\to\back" -SearchFolderCommon "C:\path\to\common" -OutputFolder "C:\path\to\output"`
@@ -31,7 +31,7 @@ Example:
 
 ## Phase 5: Convert Enums from VB.NET to C#
 5.1 All enums is in namespace `{ProgramName}Common.Enums`.
-5.2 Convert each enum from VB.NET Back & Common Project to C# Common Project.
+5.2 Convert each enum from VB.NET (.NET Framework 4) Back & Common Project to C# (.NET 6) Common Project.
 
 ## Phase 6: Build and Bug Fix (REPEAT UNTIL NO ERRORS AND WARNINGS)
 6.1 Build {ProgramName}Common project and create a list of all error codes and warnings.

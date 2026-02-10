@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using R_CommonFrontBackAPI;
 using {ProgramName}Common.DTOs;
 
-namespace {ProgramName}Common;
+namespace {ProgramName}Common
 {
     public interface I{SubProgramName}
     {

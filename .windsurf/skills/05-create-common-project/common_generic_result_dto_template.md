@@ -9,7 +9,7 @@ description: "Generic Result DTO template for Common Project using R_APIResultBa
 ```csharp
 using R_APICommonDTO;
 
-namespace {ProgramName}Common.DTOs;
+namespace {ProgramName}Common.DTOs
 {
     // Generic Result DTO with data (for functions that return data)
     public class {ProgramName}ResultDTO<T> : R_APIResultBaseDTO

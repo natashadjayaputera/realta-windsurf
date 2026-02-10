@@ -10,7 +10,7 @@ Parse VB.NET (.NET Framework 4) Classes to get class signature and functions chu
 ## Phase 1: Run VBParser
 1.1 Execute `../../scripts/execute-vb-parser.ps1`:
 - ProgramName = {ProgramName}
-- SearchFolderBack = the location of {ProgramName}Back Project
+- SearchFolderBack = the location of VB.NET (.NET Framework 4) {ProgramName}Back Project
 - OutputFolder = `{ROOT}/chunks_vb/{ProgramName}/`
 
 Example:

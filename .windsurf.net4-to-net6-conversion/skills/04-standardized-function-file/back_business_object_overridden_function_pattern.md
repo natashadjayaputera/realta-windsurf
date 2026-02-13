@@ -8,6 +8,6 @@ Change the function signature to use this pattern exactly, please note that the 
 
 ```csharp
 protected override async Task R_DeletingAsync({ProgramName}DTO poEntity) {}
-protected override async Task<{ProgramName}DTO> R_DisplayAsync({ProgramName}DTO poEntity) {}
+protected override async Task<{SubProgramName}DTO> R_DisplayAsync({ProgramName}DTO poEntity) {}
 protected override async Task R_SavingAsync({ProgramName}DTO poNewEntity, eCRUDMode poCRUDMode) {}
 ```

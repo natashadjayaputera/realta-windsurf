@@ -26,13 +26,12 @@ try {
     # Generate Result DTOs
     Write-Host "Generating Result DTOs..." -ForegroundColor Cyan
     Invoke-DtoGeneration -ProgramName $ProgramName -SubProgramNames $SubProgramNames -Category "other-function" -DtoType "Result"
-    Invoke-DtoGeneration -ProgramName $ProgramName -SubProgramNames $SubProgramNames -Category "batch-function" -DtoType "Result"
     Write-Host "Result DTO generation completed!" -ForegroundColor Green
     
     Write-Host ""
     Write-Host "All DTO generation completed!" -ForegroundColor Green
 }
 catch {
-    Write-Error "Error generating DTOs: $_" -ForegroundColor Red
+    Write-Host "Error generating DTOs: $_" -ForegroundColor Red
 }
 

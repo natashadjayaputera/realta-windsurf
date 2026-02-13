@@ -272,7 +272,11 @@ function Invoke-DtoGeneration {
         }
         
         # Generate C# class
-        $className = if ($Category -eq "business-object-overridden-function") { "${SubProgramName}DTO" } else { "${SubProgramName}${spName}${DtoType}DTO" } 
+        $className = switch ($Category) {
+            "business-object-overridden-function" { "${SubProgramName}DTO" }
+            "batch-function" { "${SubProgramName}R_SaveBatchUserParameterDTO" }
+            default { "${SubProgramName}${spName}${DtoType}DTO" }
+        } 
         $namespace = "${ProgramName}Common.DTOs"
         
         $classContent = @"
@@ -307,6 +311,12 @@ namespace $namespace
         $classContent | Out-File -FilePath $outputFile -Encoding UTF8
         
         Write-Host "Generated: $outputFile"
+
+        if ($Category -eq "batch-function") {
+            #run generate-batch-dto.ps1
+            $batchScriptPath = Join-Path (Split-Path $PSScriptRoot -Parent) "scripts\generate-batch-dto.ps1"
+            & $batchScriptPath -ProgramName $ProgramName -SubProgramName $SubProgramName
+        }
     }
     
     foreach ($SubProgramName in $subPrograms) {

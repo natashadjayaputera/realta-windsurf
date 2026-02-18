@@ -80,7 +80,7 @@ SELECT
         WHEN p.character_maximum_length IS NOT NULL THEN CAST(p.character_maximum_length AS VARCHAR(10))
         WHEN p.numeric_precision IS NOT NULL AND p.numeric_scale IS NOT NULL THEN CAST(p.numeric_precision AS VARCHAR(10)) + ',' + CAST(p.numeric_scale AS VARCHAR(10))
         WHEN p.numeric_precision IS NOT NULL THEN CAST(p.numeric_precision AS VARCHAR(10))
-        ELSE NULL
+        ELSE CAST(-1 AS VARCHAR(10))
     END AS [Length],
     'NOT NULL' AS [Nullability]
 FROM 

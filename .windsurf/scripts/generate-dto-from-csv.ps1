@@ -14,6 +14,15 @@ if (Test-Path $SharedFunctionsPath) {
 
 # Main execution - generate both parameter and result DTOs
 try {
+    # Aggregate Entity DTOs for business-object-overridden-function
+    Write-Host "Aggregating Entity DTOs..." -ForegroundColor Cyan
+    $aggregateScriptPath = Join-Path $PSScriptRoot "aggregate-entity-dto.ps1"
+    if (Test-Path $aggregateScriptPath) {
+        & $aggregateScriptPath -ProgramName $ProgramName -SubProgramNames $SubProgramNames -Category "business-object-overridden-function"
+    } else {
+        Write-Warning "Aggregate script not found at $aggregateScriptPath"
+    }
+
     # Generate Parameter DTOs
     Write-Host "Generating Parameter DTOs..." -ForegroundColor Cyan
     Invoke-DtoGeneration -ProgramName $ProgramName -SubProgramNames $SubProgramNames -Category "business-object-overridden-function" -DtoType "Parameter"

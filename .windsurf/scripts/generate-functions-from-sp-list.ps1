@@ -9,6 +9,8 @@ param(
 # Import common functions
 . "$PSScriptRoot\Common-Functions.ps1"
 
+#region Helper Functions
+
 function Get-DbParameterMapping {
     param(
         [string]$DataType
@@ -66,7 +68,8 @@ function Get-UserParameterLines {
     )
     
     $userParameterLines = @()
-    $userParameterDTOPath = "partials\$ProgramName\$SubProgramName\common\dto\$($SubProgramName)R_SaveBatchUserParameterDTO.cs"
+    $gitRoot = Find-GitRoot
+    $userParameterDTOPath = Join-Path $gitRoot "partials\$ProgramName\$SubProgramName\common\dto\$($SubProgramName)R_SaveBatchUserParameterDTO.cs"
     
     if (Test-Path $userParameterDTOPath) {
         $dtoContent = Get-Content $userParameterDTOPath
@@ -92,12 +95,12 @@ function Get-UserParameterLines {
             
             foreach ($prop in $properties) {
                 $accessExpression = switch ($prop.Type.ToLower()) {
-                    "string" { "((System.Text.Json.JsonElement)lo$($prop.Name).Value).GetString()" }
-                    "int" { "((System.Text.Json.JsonElement)lo$($prop.Name).Value).GetInt32()" }
-                    "decimal" { "((System.Text.Json.JsonElement)lo$($prop.Name).Value).GetDecimal()" }
-                    "bool" { "((System.Text.Json.JsonElement)lo$($prop.Name).Value).GetBoolean()" }
-                    "datetime" { "((System.Text.Json.JsonElement)lo$($prop.Name).Value).GetDateTime()" }
-                    default { "((System.Text.Json.JsonElement)lo$($prop.Name).Value).ToString()" }
+                    "string" { "((System.Text.Json.JsonElement?)lo$($prop.Name)?.Value)?.GetString() ?? string.Empty" }
+                    "int" { "((System.Text.Json.JsonElement?)lo$($prop.Name)?.Value)?.GetInt32() ?? 0" }
+                    "decimal" { "((System.Text.Json.JsonElement?)lo$($prop.Name)?.Value)?.GetDecimal() ?? 0" }
+                    "bool" { "((System.Text.Json.JsonElement?)lo$($prop.Name)?.Value)?.GetBoolean() ?? false" }
+                    "datetime" { "((System.Text.Json.JsonElement?)lo$($prop.Name)?.Value)?.GetDateTime() ?? DateTime.MinValue" }
+                    default { "((System.Text.Json.JsonElement?)lo$($prop.Name)?.Value)?.ToString() ?? string.Empty" }
                 }
                 
                 $userParameterLines += "            $($prop.Type.ToLower()) $($prop.Name) = $accessExpression;"
@@ -115,6 +118,10 @@ function Get-UserParameterLines {
     return $userParameterLines -join "`r`n"
 }
 
+#endregion
+
+#region Parameter Processing Functions
+
 function Get-CommandParameterLines {
     param(
         [string]$StoredProcedureName,
@@ -127,11 +134,12 @@ function Get-CommandParameterLines {
     $parameterLines = @()
     
     # Determine CSV path based on category
+    $gitRoot = Find-GitRoot
     $csvPath = switch ($Category) {
-        "business-object-overridden-function" { "partials\$ProgramName\$SubProgramName\stored-procedure\parameters\business-object-overridden-function\Entity.csv" }
-        "batch-function" { "partials\$ProgramName\$SubProgramName\stored-procedure\parameters\batch-function\$($StoredProcedureName).csv" }
-        "other-function" { "partials\$ProgramName\$SubProgramName\stored-procedure\parameters\other-function\$($StoredProcedureName).csv" }
-        default { "partials\$ProgramName\$SubProgramName\stored-procedure\parameters\other-function\$($StoredProcedureName).csv" }
+        "business-object-overridden-function" { Join-Path $gitRoot "partials\$ProgramName\$SubProgramName\stored-procedure\parameters\business-object-overridden-function\Entity.csv" }
+        "batch-function" { Join-Path $gitRoot "partials\$ProgramName\$SubProgramName\stored-procedure\parameters\batch-function\$($StoredProcedureName).csv" }
+        "other-function" { Join-Path $gitRoot "partials\$ProgramName\$SubProgramName\stored-procedure\parameters\other-function\$($StoredProcedureName).csv" }
+        default { Join-Path $gitRoot "partials\$ProgramName\$SubProgramName\stored-procedure\parameters\other-function\$($StoredProcedureName).csv" }
     }
     
     if (Test-Path $csvPath) {
@@ -172,6 +180,10 @@ function Get-CommandParameterLines {
     return $parameterLines -join "`r`n"
 }
 
+#endregion
+
+#region Function Generation - Business Object Overridden Functions
+
 function Generate-BusinessObjectOverriddenFunctionNotImplemented {
     param(
         [string]$StoredProcedureName,
@@ -179,7 +191,7 @@ function Generate-BusinessObjectOverriddenFunctionNotImplemented {
         [string]$ProgramName,
         [string]$SubProgramName
     )
-    
+
     # Determine function signature based on function name
     $functionSignature = switch ($FunctionName) {
         "R_DisplayAsync" { "protected override async Task<$SubProgramName`DTO> R_DisplayAsync($SubProgramName`DTO poEntity)" }
@@ -214,6 +226,69 @@ function Generate-BusinessObjectOverriddenFunction {
         "R_DeletingAsync" { "protected override async Task R_DeletingAsync($SubProgramName`DTO poEntity)" }
         default { "protected override async Task $FunctionName($SubProgramName`DTO poEntity)" }
     }
+
+    $hasSpResource = Test-HasResourceFile -StoredProcedureName $StoredProcedureName -ProgramName $ProgramName -SubProgramName $SubProgramName
+    
+    # Build execution block based on function type
+    $executionBlock = switch ($FunctionName) {
+        "R_DisplayAsync" {
+            @"
+            var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
+            loResult = R_Utility.R_ConvertTo<$SubProgramName`DTO>(loDataTable).FirstOrDefault();
+"@
+        }
+        default {
+            @"
+            await loDb.SqlExecNonQueryAsync(loConn, loCmd);
+"@
+        }
+    }
+
+    $initBlock = switch ($FunctionName) {
+        "R_DisplayAsync" { @"
+    var loEx = new R_Exception();
+    var loDb = new R_Db();
+    $SubProgramName`DTO? loResult = null;
+"@ }
+        default {  @"
+    var loEx = new R_Exception();
+    var loDb = new R_Db();
+"@ }
+    }
+
+    $returnStatement = switch ($FunctionName) {
+        "R_DisplayAsync" { @"
+    loEx.ThrowExceptionIfErrors();
+    _logger.LogInfo("END function {$FunctionName}", lcFunction);
+
+    return loResult ?? new $SubProgramName`DTO();
+"@ }
+        default {  @"
+    loEx.ThrowExceptionIfErrors();
+    _logger.LogInfo("END function {$FunctionName}", lcFunction);
+"@  }
+    }
+    
+    # Add resource file handling if needed
+    $resourceHandling = ""
+    if ($hasSpResource) {
+        $resourceHandling = @"
+        R_ExternalException.R_SP_Init_Exception(loConn);
+
+        try
+        {
+$executionBlock
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
+"@
+    } else {
+        $resourceHandling = $executionBlock
+    }
     
     $functionContent = @"
 //CATEGORY: business-object-overridden-function
@@ -223,8 +298,7 @@ $functionSignature
     using var activity = _activitySource.StartActivity(lcFunction);
     _logger.LogInfo("START function {$FunctionName}", lcFunction);
 
-    var loEx = new R_Exception();
-    var loDb = new R_Db();
+$initBlock
 
     try
     {
@@ -244,24 +318,7 @@ $(Get-CommandParameterLines -StoredProcedureName $StoredProcedureName -ProgramNa
         _logger.LogDebug("{@ObjectQuery} {@Parameter}", loCmd.CommandText, loDbParams);
 
         // Execute stored procedure based on function type
-$(
-    switch ($FunctionName) {
-        "R_DisplayAsync" {
-            "        var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
-        var loResult = R_Utility.R_ConvertTo<$ProgramName`DTO>(loDataTable).FirstOrDefault();
-        loEx.ThrowExceptionIfErrors();
-        _logger.LogInfo(""END function {$FunctionName}"", lcFunction);
-        return loResult;"
-        }
-        default {
-            "        await loDb.SqlExecNonQueryAsync(loConn, loCmd);
-        loEx.ThrowExceptionIfErrors();
-        _logger.LogInfo(""END function {$FunctionName}"", lcFunction);"
-        }
-    }
-)
-
-        throw new NotImplementedException();
+$resourceHandling
     }
     catch (Exception ex)
     {
@@ -273,13 +330,16 @@ $(
         if (loDb != null) loDb = null;
     }
 
-    loEx.ThrowExceptionIfErrors();
-    _logger.LogInfo("END function {$FunctionName}", lcFunction);
+$returnStatement
 }
 "@
     
     return $functionContent
 }
+
+#endregion
+
+#region Function Generation - Batch
 
 function Generate-BatchFunction {
     param(
@@ -292,22 +352,23 @@ function Generate-BatchFunction {
 //CATEGORY: batch-function
 public async Task R_BatchProcessAsync(R_BatchProcessPar poBatchProcessPar)
 {
-    using Activity activity = _activitySource.StartActivity("R_BatchProcessAsync");
-    R_Exception loException = new R_Exception();
+    string lcFunction = nameof(R_BatchProcessAsync);
+    using var activity = _activitySource.StartActivity(lcFunction);
+    R_Exception loEx = new R_Exception();
     var loDb = new R_Db();
 
     try
     {
         if (loDb.R_TestConnection() == false)
         {
-            loException.Add("","Connection to database failed");
+            loEx.Add("","Connection to database failed");
             goto EndBlock;
         }
         _ = _BatchProcessAsync(poBatchProcessPar); // IMPORTANT: Fire and forget
     }
     catch (Exception ex)
     {
-        loException.Add(ex);
+        loEx.Add(ex);
     }
     finally
     {
@@ -318,7 +379,7 @@ public async Task R_BatchProcessAsync(R_BatchProcessPar poBatchProcessPar)
     }
 
 EndBlock:
-    loException.ThrowExceptionIfErrors();
+    loEx.ThrowExceptionIfErrors();
 }
 
 // Actual implementation of old R_BatchProcess / R_BatchProcessAsync is now in private function
@@ -338,7 +399,7 @@ private async Task _BatchProcessAsync(R_BatchProcessPar poBatchProcessPar)
         using var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled);
         {
             // Deserialize BigObject, MUST FOLLOW THIS EXACTLY
-            var loObject = R_NetCoreUtility.R_DeserializeObjectFromByte<List<{${SubProgramName}BatchListDisplayDTO}>>(poBatchProcessPar.BigObject);
+            var loObject = R_NetCoreUtility.R_DeserializeObjectFromByte<List<${SubProgramName}BatchListDisplayDTO>>(poBatchProcessPar.BigObject);
 
 $(Get-UserParameterLines -ProgramName $ProgramName -SubProgramName $SubProgramName)
 
@@ -379,6 +440,10 @@ $(Get-UserParameterLines -ProgramName $ProgramName -SubProgramName $SubProgramNa
     return $functionContent
 }
 
+#endregion
+
+#region Function Generation - Other
+
 function Generate-OtherFunction {
     param(
         [string]$StoredProcedureName,
@@ -390,7 +455,8 @@ function Generate-OtherFunction {
     $functionName = $StoredProcedureName
     
     # Check for existing DTOs
-    $dtoPath = "partials\$ProgramName\$SubProgramName\common\dto"
+    $gitRoot = Find-GitRoot
+    $dtoPath = Join-Path $gitRoot "partials\$ProgramName\$SubProgramName\common\dto"
     $parameterDTO = "$($SubProgramName)$($StoredProcedureName)ParameterDTO.cs"
     $resultDTO = "$($SubProgramName)$($StoredProcedureName)ResultDTO.cs"
     
@@ -411,7 +477,7 @@ public async Task<$returnType> $functionName($parameterType poParam)
 
     var loEx = new R_Exception();
     var loDb = new R_Db();
-    $returnType loResult = new();
+    $returnType`? loResult = null;
 
     try
     {
@@ -453,16 +519,83 @@ $(
 
     loEx.ThrowExceptionIfErrors();
     _logger.LogInfo("END function {$functionName}", lcFunction);
-    return loResult;
+    return loResult ?? new $returnType();
 }
 "@
     
     return $functionContent
 }
 
-# Main execution
-$spListPath = "partials\$ProgramName\$SubProgramName\stored-procedure\sp_list.txt"
-$chunksPath = "chunks_cs\$ProgramName\$SubProgramName"
+#endregion
+
+#region Resource File Functions
+
+function Test-HasResourceFile {
+    param(
+        [string]$StoredProcedureName,
+        [string]$ProgramName,
+        [string]$SubProgramName
+    )
+    
+    $gitRoot = Find-GitRoot
+    $resourcePath = Join-Path $gitRoot "partials\$ProgramName\$SubProgramName\stored-procedure\resources"
+    $resourceFile = Join-Path $resourcePath "$($StoredProcedureName).txt"
+    
+    return Test-Path $resourceFile
+}
+
+function New-AdditionalPropertiesFile {
+    param(
+        [string]$ProgramName,
+        [string]$SubProgramName
+    )
+    
+    $gitRoot = Find-GitRoot
+    $resourcePath = Join-Path $gitRoot "partials\$ProgramName\$SubProgramName\stored-procedure\resources"
+    $chunksPath = Join-Path $gitRoot "chunks_cs\$ProgramName\$SubProgramName"
+    
+    if (-not (Test-Path $resourcePath)) {
+        Write-Warning "Resources path not found: $resourcePath"
+        return
+    }
+    
+    # Get all .txt files in resources folder
+    $resourceFiles = Get-ChildItem -Path $resourcePath -Filter "*.txt" -File
+    
+    if ($resourceFiles.Count -eq 0) {
+        Write-Host "No resource files found in $resourcePath"
+        return
+    }
+    
+    $additionalPropertiesContent = @()
+    
+    foreach ($resourceFile in $resourceFiles) {
+        $spName = $resourceFile.BaseName
+        $className = "$($spName)Resources.Resources_Dummy_Class"
+        $fieldName = "_$spName"
+        
+        $additionalPropertiesContent += "private $className $fieldName = new();"
+    }
+    
+    if ($additionalPropertiesContent.Count -gt 0) {
+        $additionalPropertiesContent += ""  # Add empty line at the end
+        
+        $filePath = Join-Path $chunksPath "0000_AdditionalProperties.cs"
+        $additionalPropertiesContent | Out-File -FilePath $filePath -Encoding UTF8 -Force
+        Write-Host "Generated: $filePath"
+    }
+}
+
+#endregion
+
+#region Main Execution
+$gitRoot = Find-GitRoot
+$spListPath = Join-Path $gitRoot "partials\$ProgramName\$SubProgramName\stored-procedure\sp_list.txt"
+$chunksPath = Join-Path $gitRoot "chunks_cs\$ProgramName\$SubProgramName"
+
+# Track categories for class declaration
+$hasBusinessObjectFunctions = $false
+$hasBatchFunctions = $false
 
 if (-not (Test-Path $spListPath)) {
     Write-Error "sp_list.txt not found at $spListPath"
@@ -477,6 +610,9 @@ if (-not (Test-Path $chunksPath)) {
 # Read and process sp_list.txt
 $spListContent = Get-Content $spListPath
 $functionsList = @()
+
+# Initialize sequence counter
+$sequenceCounter = 1
 
 foreach ($line in $spListContent) {
     if ([string]::IsNullOrWhiteSpace($line) -or $line.StartsWith("#")) {
@@ -495,6 +631,14 @@ foreach ($line in $spListContent) {
     $implementationFlag = if ($parts.Count -gt 3) { $parts[3].Trim() } else { $null }
     
     Write-Host "Processing: $storedProcedureName | $category | $functionName | $implementationFlag"
+    
+    # Track categories for class declaration
+    if ($category -eq "business-object-overridden-function") {
+        $hasBusinessObjectFunctions = $true
+    }
+    if ($category -eq "batch-function") {
+        $hasBatchFunctions = $true
+    }
     
     $functionContent = switch ($category) {
         "business-object-overridden-function" {
@@ -521,20 +665,54 @@ foreach ($line in $spListContent) {
     }
     
     if ($functionContent) {
-        # Generate filename
+        # Generate filename with sequence number
+        $sequenceNumber = "{0:D4}" -f $sequenceCounter
         $fileName = switch ($category) {
-            "business-object-overridden-function" { "$($functionName).cs" }
-            "batch-function" { "R_BatchProcess.cs" }
-            "other-function" { "$($storedProcedureName).cs" }
-            default { "$($storedProcedureName).cs" }
+            "business-object-overridden-function" { "$($sequenceNumber)_$($functionName).cs" }
+            "batch-function" { "$($sequenceNumber)_R_BatchProcessAsync.cs" }
+            "other-function" { "$($sequenceNumber)_$($storedProcedureName).cs" }
+            default { "$($sequenceNumber)_$($storedProcedureName).cs" }
         }
         
         $filePath = Join-Path $chunksPath $fileName
         $functionContent | Out-File -FilePath $filePath -Encoding UTF8 -Force
         Write-Host "Generated: $filePath"
         
-        # Add to functions list
-        $functionsList += $functionContent
+        # Increment sequence counter
+        $sequenceCounter++
+        
+        # Add only function signature and category to functions list (single line format)
+        $functionSignature = switch ($category) {
+            "business-object-overridden-function" {
+                $signature = switch ($functionName) {
+                    "R_DisplayAsync" { "protected override async Task<$SubProgramName`DTO> R_DisplayAsync($SubProgramName`DTO poEntity)" }
+                    "R_SavingAsync" { "protected override async Task R_SavingAsync($SubProgramName`DTO poNewEntity, eCRUDMode poCRUDMode)" }
+                    "R_DeletingAsync" { "protected override async Task R_DeletingAsync($SubProgramName`DTO poEntity)" }
+                    default { "protected override async Task $functionName($SubProgramName`DTO poEntity)" }
+                }
+                "$signature //CATEGORY: $category"
+            }
+            "batch-function" { "public async Task R_BatchProcessAsync(R_BatchProcessPar poBatchProcessPar) //CATEGORY: $category" }
+            "other-function" { 
+                # Check for existing DTOs
+                $gitRoot = Find-GitRoot
+                $dtoPath = Join-Path $gitRoot "partials\$ProgramName\$SubProgramName\common\dto"
+                $parameterDTO = "$($SubProgramName)$($storedProcedureName)ParameterDTO.cs"
+                $resultDTO = "$($SubProgramName)$($storedProcedureName)ResultDTO.cs"
+                
+                $hasParameterDTO = Test-Path (Join-Path $dtoPath $parameterDTO)
+                $hasResultDTO = Test-Path (Join-Path $dtoPath $resultDTO)
+                
+                # Build function signature based on available DTOs
+                $parameterType = if ($hasParameterDTO) { "$($SubProgramName)$($storedProcedureName)ParameterDTO" } else { "object" }
+                $returnType = if ($hasResultDTO) { "$($SubProgramName)$($storedProcedureName)ResultDTO" } else { "object" }
+                
+                "public async Task<$returnType> $storedProcedureName($parameterType poParam) //CATEGORY: $category"
+            }
+            default { "public async Task $storedProcedureName(object poParam) //CATEGORY: $category" }
+        }
+        
+        $functionsList += $functionSignature
     }
 }
 
@@ -544,4 +722,26 @@ if ($functionsList.Count -gt 0) {
     Write-Host "Generated: functions.txt"
 }
 
+# Generate ClassDeclaration.txt based on categories found
+$classDeclaration = @()
+if ($hasBusinessObjectFunctions -and $hasBatchFunctions) {
+    $classDeclaration += "public class $($SubProgramName)CLS : R_BusinessObjectAsync<$($SubProgramName)DTO>, R_IBatchProcessAsync"
+} elseif ($hasBusinessObjectFunctions) {
+    $classDeclaration += "public class $($SubProgramName)CLS : R_BusinessObjectAsync<$($SubProgramName)DTO>"
+} elseif ($hasBatchFunctions) {
+    $classDeclaration += "public class $($SubProgramName)CLS : R_IBatchProcessAsync"
+} else {
+    $classDeclaration += "public class $($SubProgramName)CLS"
+}
+
+if ($classDeclaration.Count -gt 0) {
+    $classDeclaration | Out-File -FilePath (Join-Path $chunksPath "ClassDeclaration.txt") -Encoding UTF8 -Force
+    Write-Host "Generated: ClassDeclaration.txt"
+}
+
+# Generate AdditionalProperties.cs based on resource files
+New-AdditionalPropertiesFile -ProgramName $ProgramName -SubProgramName $SubProgramName
+
 Write-Host "Function generation completed for $ProgramName\$SubProgramName"
+
+#endregion

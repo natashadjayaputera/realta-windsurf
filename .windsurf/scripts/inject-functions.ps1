@@ -1,0 +1,102 @@
+# Function Injection Script
+# Finds all .cls.cs files and executes function injector for each
+
+param(
+    [Parameter(Mandatory = $true)]
+    [string]$ProgramName,
+    
+    [Parameter(Mandatory = $true)]
+    [string]$SearchFolderBack,
+    
+    [Parameter(Mandatory = $true)]
+    [string]$OutputFolder
+)
+
+# Load shared functions
+$SharedFunctionsPath = Join-Path (Split-Path $PSScriptRoot -Parent) "scripts\Common-Functions.ps1"
+if (Test-Path $SharedFunctionsPath) {
+    . $SharedFunctionsPath
+}
+
+# Auto-detect root folder from git repository
+$RootPath = Find-GitRoot
+
+$ClsFilePathsFile = "$OutputFolder\cls_file_paths.txt"
+$CsFunctionInjectorProject = "$RootPath\.windsurf\tools\CsTemplateInjector\CsTemplateInjector.csproj"
+$FindClsCsScript = "$RootPath\.windsurf\scripts\find-cls-cs-files.ps1"
+
+# Validate paths
+if (-not (Test-Path $SearchFolderBack)) {
+    Write-Error "Search folder not found: $SearchFolderBack"
+    exit 1
+}
+
+if (-not (Test-Path $CsFunctionInjectorProject)) {
+    Write-Error "CsTemplateInjector project not found: $CsFunctionInjectorProject"
+    exit 1
+}
+
+Write-Host "Starting function injection for Program: $ProgramName"
+Write-Host "Search folder: $SearchFolderBack"
+
+# Use find-cls-cs-files.ps1 to find all cls.cs files
+Write-Host "Finding cls.cs files..."
+try {
+    & powershell -ExecutionPolicy Bypass -File $FindClsCsScript -SearchFolder $SearchFolderBack -OutputFolder $OutputFolder
+}
+catch {
+    Write-Error "Failed to execute find-cls-cs-files.ps1. Ensure PowerShell execution policy allows script execution."
+    Write-Error "You may need to run: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser"
+    exit 1
+}
+
+if ($LASTEXITCODE -ne 0) {
+    Write-Error "find-cls-cs-files.ps1 failed"
+    exit 1
+}
+
+# Read the cls file paths
+if (-not (Test-Path $ClsFilePathsFile)) {
+    Write-Error "cls_file_paths.txt not found at $ClsFilePathsFile"
+    exit 1
+}
+
+$clsFiles = Get-Content $ClsFilePathsFile
+
+if ($clsFiles.Count -eq 0) {
+    Write-Warning "No cls.cs files found in $SearchFolderBack"
+    exit 0
+}
+
+Write-Host "Found $($clsFiles.Count) cls.cs files"
+
+# Execute function injector for each file
+$totalFiles = $clsFiles.Count
+$currentFile = 0
+
+foreach ($clsFile in $clsFiles) {
+    $currentFile++
+    $relativePath = $clsFile.Replace("\", "/").TrimStart("/")
+    $fileName = [System.IO.Path]::GetFileNameWithoutExtension($clsFile)
+    $folderToBeInjected = "$OutputFolder/" + ($fileName -ireplace "cls$", "")
+    
+    Write-Host "Processing file $currentFile/$totalFiles : $relativePath"
+    
+    try {
+        & dotnet run --project $CsFunctionInjectorProject -- $relativePath $folderToBeInjected | Out-Null
+        
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "Successfully injected functions: $relativePath" -ForegroundColor Green
+        }
+        else {
+            Write-Warning "Failed to inject functions: $relativePath (Exit code: $LASTEXITCODE)"
+        }
+    }
+    catch {
+        Write-Error "Error processing $relativePath : $($_.Exception.Message)"
+    }
+    
+    Write-Host "---"
+}
+
+Write-Host "Function injection completed for $ProgramName"

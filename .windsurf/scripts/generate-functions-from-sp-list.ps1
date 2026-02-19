@@ -489,6 +489,42 @@ function Generate-OtherFunction {
     # Build function signature with conditional parameters and return type
     $functionSignature = "public async Task$returnPart $functionName($parameterPart)"
     
+    $hasSpResource = Test-HasResourceFile -StoredProcedureName $StoredProcedureName -ProgramName $ProgramName -SubProgramName $SubProgramName
+
+    $executionBlock = if ($hasResultDTO) {
+        if ($ReturnTypeIndicator -eq "list") {
+            "        var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
+        loResult = R_Utility.R_ConvertTo<$resultDTOType>(loDataTable).ToList();"
+        } else {
+            "        var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
+        loResult = R_Utility.R_ConvertTo<$resultDTOType>(loDataTable).FirstOrDefault();"
+        }
+    } else {
+        "        // Execute stored procedure without return value
+        await loDb.SqlExecNonQueryAsync(loConn, loCmd);"
+    }
+
+    # Add resource file handling if needed
+    $resourceHandling = ""
+    if ($hasSpResource) {
+        $resourceHandling = @"
+        R_ExternalException.R_SP_Init_Exception(loConn);
+
+        try
+        {
+$executionBlock
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
+"@
+    } else {
+        $resourceHandling = $executionBlock
+    }
+    
     $functionContent = @"
 //CATEGORY: other-function
 $functionSignature
@@ -524,20 +560,7 @@ $(Get-CommandParameterLines -StoredProcedureName $StoredProcedureName -ProgramNa
 
         _logger.LogDebug("{@ObjectQuery} {@Parameter}", loCmd.CommandText, loDbParams);
 
-$(
-    if ($hasResultDTO) {
-        if ($ReturnTypeIndicator -eq "list") {
-            "        var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
-        loResult = R_Utility.R_ConvertTo<$resultDTOType>(loDataTable).ToList();"
-        } else {
-            "        var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
-        loResult = R_Utility.R_ConvertTo<$resultDTOType>(loDataTable).FirstOrDefault();"
-        }
-    } else {
-        "        // Execute stored procedure without return value
-        await loDb.SqlExecNonQueryAsync(loConn, loCmd);"
-    }
-)
+$resourceHandling
     }
     catch (Exception ex)
     {

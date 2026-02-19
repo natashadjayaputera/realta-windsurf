@@ -13,8 +13,8 @@ Add batch data manipulation in viewmodel classes in model project.
 Example:
 `powershell -ExecutionPolicy Bypass -File "../../scripts/detect-batch-processes.ps1" -ProgramName "FAI00110"`
 1.2 For each line in `chunks_cs/{ProgramName}/viewmodel_with_batch_list_buffer.txt` file:
-- Read `chunks_cs/{ProgramName}/{SubProgramName}/**_R_BatchProcess.cs` and search for `R_NetCoreUtility.R_DeserializeObjectFromByte<List<T>>` and assign T as `{BatchDisplayListDTO}`.
-- Read `chunks_cs/{ProgramName}/{SubProgramName}/**_R_BatchProcess.cs` and get the LAST occurance of `RSP_WriteUploadProcessStatus` stored procedure and extract all 6 of the stored procedure arguments, and assign the 4th argument as `{BatchSteps}`.
+- Read `chunks_cs/{ProgramName}/{SubProgramName}/**_R_BatchProcessAsync.cs` and search for `R_NetCoreUtility.R_DeserializeObjectFromByte<List<T>>` and assign T as `{BatchDisplayListDTO}`.
+- Read `chunks_cs/{ProgramName}/{SubProgramName}/**_R_BatchProcessAsync.cs` and get the LAST occurance of `RSP_WriteUploadProcessStatus` stored procedure and extract all 6 of the stored procedure arguments, and assign the 4th argument as `{BatchSteps}`.
 - Read corresponding `{SubProgramName}Model.cs`, and search for the value of `DEFAULT_SERVICEPOINT_NAME`, and assign it as `{BatchServicePointName}`.
 - Read corresponding `ClassDeclaration.txt` and get the name of the ClassName and assign it to `{BatchBackClassName}`.
 - Read viewmodel_batch_additional_front_resources and add new resources to the `{SubProgramName}FrontResources_msgrsc.resx` and `{SubProgramName}FrontResources_msgrsc.id.resx` files.   

@@ -36,8 +36,8 @@ if (-not (Test-Path $ChunksCsPath)) {
 Write-Host "Starting batch process detection for Program: $ProgramName"
 Write-Host "Chunks CS path: $ChunksCsPath"
 
-# Find all files ending with _R_BatchProcess.cs (case-insensitive)
-$batchFiles = Get-ChildItem -Path $ChunksCsPath -Recurse -Filter "*_R_BatchProcess*.cs" -File | Where-Object { $_.Name -match "_R_BatchProcess\.cs$" }
+# Find all files ending with R_BatchProcess.cs or R_BatchProcessAsync.cs (case-insensitive)
+$batchFiles = Get-ChildItem -Path $ChunksCsPath -Recurse -Filter "*R_BatchProcess*.cs" -File | Where-Object { $_.Name -match "R_BatchProcess(\.cs|Async\.cs)$" }
 
 if ($batchFiles.Count -eq 0) {
     Write-Warning "No batch process files found in $ChunksCsPath"

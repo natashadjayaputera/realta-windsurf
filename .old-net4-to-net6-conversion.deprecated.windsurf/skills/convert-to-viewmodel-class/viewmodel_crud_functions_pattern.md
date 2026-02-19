@@ -6,7 +6,7 @@ description: "Standard CRUD pattern for ViewModel functions"
 Each CRUD function follows this template:
 ```csharp
 private readonly {ProgramName}Model _model = new {ProgramName}Model();
-public {ProgramName}DTO {ProgramName}Record { get; set; } = new {ProgramName}DTO();
+public {ProgramName}DTO CurrentRecord { get; set; } = new {ProgramName}DTO();
 
 public async Task GetRecordAsync({ProgramName}DTO poEntity)
 {

@@ -239,20 +239,20 @@ private async Task ServiceGetError(string pcKeyGuid)
         SumInvalid = 0;
 
         // Update display list with error messages
-        .ToList().ForEach(x =>
-        {
-            if (loResultData.Any(y => y.SeqNo == x.SeqNo))  // Use x.SeqNo or x.No depending on DTO property name
-            {
-                x.Notes = loResultData.Where(y => y.SeqNo == x.SeqNo).FirstOrDefault()?.ErrorMessage ?? string.Empty;
-                x.Valid = "N";
-                SumInvalid++;
-            }
-            else
-            {
-                x.Valid = "Y";
-                SumValid++;
-            }
-        });
+        // .ToList().ForEach(x =>
+        // {
+        //     if (loResultData.Any(y => y.SeqNo == x.SeqNo))  // Use x.SeqNo or x.No depending on DTO property name
+        //     {
+        //         x.Notes = loResultData.Where(y => y.SeqNo == x.SeqNo).FirstOrDefault()?.ErrorMessage ?? string.Empty;
+        //         x.Valid = "N";
+        //         SumInvalid++;
+        //     }
+        //     else
+        //     {
+        //         x.Valid = "Y";
+        //         SumValid++;
+        //     }
+        // });
 
         // Handle unhandled errors (SeqNo < 0)
         if (loResultData.Any(x => x.SeqNo < 0))

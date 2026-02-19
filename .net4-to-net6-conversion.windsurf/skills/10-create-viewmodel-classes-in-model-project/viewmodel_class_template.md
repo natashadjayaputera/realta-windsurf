@@ -34,7 +34,7 @@ namespace {ProgramName}Model.VMs
         // IMPORTANT NOTE: Uncomment this if it is inheriting `R_BusinessObjectAsync`
         /*
         #region Business Object Functions
-        public {SubProgramName}DTO {SubProgramName}Record { get; set; } = new {SubProgramName}DTO();
+        public {SubProgramName}DTO CurrentRecord { get; set; } = new {SubProgramName}DTO();
 
         public async Task GetRecordAsync({SubProgramName}DTO poEntity)
         {

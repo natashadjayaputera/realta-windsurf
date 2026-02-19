@@ -18,11 +18,11 @@ Example:
 ## Phase 2: Generate Back Functions from sp_list.txt
 2.1 Execute `../../scripts/generate-functions-from-sp-list.ps1` for each subprogram:
 - ProgramName = {ProgramName}
-- SubProgramName = {SubProgramName}
+- SubProgramNames = {SubProgramNames}
 
 Example:
 ```powershell
-powershell -ExecutionPolicy Bypass -File "../../scripts/generate-functions-from-sp-list.ps1" -ProgramName "FAM00100" -SubProgramName "FAM00100,FAM0010002,FAM001000201,FAM001000202"
+powershell -ExecutionPolicy Bypass -File "../../scripts/generate-functions-from-sp-list.ps1" -ProgramName "FAM00100" -SubProgramNames "FAM00100,FAM0010002,FAM001000201,FAM001000202"
 ```
 
 ## Phase 3: Generate Program Resources

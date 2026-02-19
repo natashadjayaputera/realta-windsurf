@@ -3,11 +3,13 @@ param(
     [string]$ProgramName,
     
     [Parameter(Mandatory=$true)]
-    [string]$SubProgramName
+    [string]$SubProgramNames
 )
 
 # Import common functions
 . "$PSScriptRoot\Common-Functions.ps1"
+
+$subPrograms = $SubProgramNames -split ',' | ForEach-Object { $_.Trim() }
 
 #region Helper Functions
 
@@ -629,30 +631,36 @@ function New-AdditionalPropertiesFile {
 #endregion
 
 #region Main Execution
-$gitRoot = Find-GitRoot
-$spListPath = Join-Path $gitRoot "partials\$ProgramName\$SubProgramName\stored-procedure\sp_list.txt"
-$chunksPath = Join-Path $gitRoot "chunks_cs\$ProgramName\$SubProgramName"
 
-# Track categories for class declaration
-$hasBusinessObjectFunctions = $false
-$hasBatchFunctions = $false
+# Process each subprogram
+foreach ($SubProgramName in $subPrograms) {
+    Write-Host "Processing subprogram: $SubProgramName"
+    Write-Host "================================"
+    
+    $gitRoot = Find-GitRoot
+    $spListPath = Join-Path $gitRoot "partials\$ProgramName\$SubProgramName\stored-procedure\sp_list.txt"
+    $chunksPath = Join-Path $gitRoot "chunks_cs\$ProgramName\$SubProgramName"
 
-if (-not (Test-Path $spListPath)) {
-    Write-Error "sp_list.txt not found at $spListPath"
-    exit 1
-}
+    # Track categories for class declaration
+    $hasBusinessObjectFunctions = $false
+    $hasBatchFunctions = $false
 
-# Create chunks directory if it doesn't exist
-if (-not (Test-Path $chunksPath)) {
-    New-Item -ItemType Directory -Path $chunksPath -Force
-}
+    if (-not (Test-Path $spListPath)) {
+        Write-Warning "sp_list.txt not found at $spListPath - skipping subprogram $SubProgramName"
+        continue
+    }
 
-# Read and process sp_list.txt
-$spListContent = Get-Content $spListPath
-$functionsList = @()
+    # Create chunks directory if it doesn't exist
+    if (-not (Test-Path $chunksPath)) {
+        New-Item -ItemType Directory -Path $chunksPath -Force
+    }
 
-# Initialize sequence counter
-$sequenceCounter = 1
+    # Read and process sp_list.txt
+    $spListContent = Get-Content $spListPath
+    $functionsList = @()
+
+    # Initialize sequence counter
+    $sequenceCounter = 1
 
 foreach ($line in $spListContent) {
     if ([string]::IsNullOrWhiteSpace($line) -or $line.StartsWith("#")) {
@@ -794,8 +802,12 @@ if ($classDeclaration.Count -gt 0) {
 }
 
 # Generate AdditionalProperties.cs based on resource files
-New-AdditionalPropertiesFile -ProgramName $ProgramName -SubProgramName $SubProgramName
+    New-AdditionalPropertiesFile -ProgramName $ProgramName -SubProgramName $SubProgramName
 
-Write-Host "Function generation completed for $ProgramName\$SubProgramName"
+    Write-Host "Function generation completed for $ProgramName\$SubProgramName"
+    Write-Host ""
+}
+
+Write-Host "All subprograms processed successfully!"
 
 #endregion

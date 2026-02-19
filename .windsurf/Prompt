@@ -20,6 +20,7 @@ SubProgramName: ["HDM00300"]
 =================================
 ProgramName: "HDM00300"
 SubProgramName: ["HDM00300"]
+AdditionalLanguage: ["id"]
 
 =================================
 03-create-common-project
@@ -97,3 +98,4 @@ ProgramName: "HDM00300"
 SubProgramName: ["HDM00300", "HDM00301"]
 ModuleName: "HD"
 ReportSubProgram: ["HDM00300"]
+AdditionalLanguage: ["id"]

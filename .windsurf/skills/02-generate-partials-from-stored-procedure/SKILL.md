@@ -29,18 +29,20 @@ powershell -ExecutionPolicy Bypass -File "../../scripts/generate-functions-from-
 3.1 Execute `../../scripts/create-program-resources.ps1`:
 - ProgramName = {ProgramName}
 - OutputPath = "chunks_cs/resources"
+- AdditionalLanguage = {AdditionalLanguage}
 
 Example:
 ```powershell
-powershell -ExecutionPolicy Bypass -File "../../scripts/create-program-resources.ps1" -ProgramName "FAM00100" -OutputPath "chunks_cs/resources"
+powershell -ExecutionPolicy Bypass -File "../../scripts/create-program-resources.ps1" -ProgramName "FAM00100" -OutputPath "chunks_cs/resources" -AdditionalLanguage "id"
 ```
 
 ## Phase 4: Generate Stored Procedure Resources
 4.1 Execute `../../scripts/create-sp-resources.ps1`:
 - ProgramName = {ProgramName}
 - OutputPath = "chunks_cs/spr"
+- AdditionalLanguage = {AdditionalLanguage}
 
 Example:
 ```powershell
-powershell -ExecutionPolicy Bypass -File "../../scripts/create-sp-resources.ps1" -ProgramName "FAM00100" -OutputPath "chunks_cs/spr"
+powershell -ExecutionPolicy Bypass -File "../../scripts/create-sp-resources.ps1" -ProgramName "FAM00100" -OutputPath "chunks_cs/spr" -AdditionalLanguage "id"
 ```

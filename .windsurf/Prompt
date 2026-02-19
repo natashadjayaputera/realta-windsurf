@@ -1,5 +1,5 @@
-ProgramName: "HDM00100"
-SubProgramName: "HDM00100"
+ProgramName: "HDM00200"
+SubProgramName: "HDM00200"
 ModuleName: "HD"
 ModuleFolder: /HD/
 
@@ -12,68 +12,68 @@ HOW TO USE SKILLS
 =================================
 01-extract-stored-procedure-data
 =================================
-ProgramName: "HDM00100"
-SubProgramName: ["HDM00100"]
+ProgramName: "HDM00200"
+SubProgramName: ["HDM00200"]
 
 =================================
 02-generate-partials-from-stored-procedure
 =================================
-ProgramName: "HDM00100"
-SubProgramName: ["HDM00100"]
+ProgramName: "HDM00200"
+SubProgramName: ["HDM00200"]
 
 =================================
 03-create-common-project
 =================================
 C# (.NET 6) location (Common Folder): @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON
-ProgramName: "HDM00100"
+ProgramName: "HDM00200"
 ModuleName: "HD"
 
 =================================
 04-create-additional-files-in-common-project
 =================================
-C# (.NET 6) location (Common Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/HD/HDM00100Common
-ProgramName: "HDM00100"
+C# (.NET 6) location (Common Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/HD/HDM00200Common
+ProgramName: "HDM00200"
 ModuleName: "HD"
 
 =================================
 05-create-back-project
 =================================
 C# (.NET 6) location (Back Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/BACK
-ProgramName: "HDM00100"
+ProgramName: "HDM00200"
 ModuleName: "HD"
 
 =================================
 06-create-service-project
 =================================
-C# (.NET 6) location (Common Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/HD/HDM00100Common
+C# (.NET 6) location (Common Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/HD/HDM00200Common
 C# (.NET 6) location (Service Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/SERVICE
-ProgramName: "HDM00100"
+ProgramName: "HDM00200"
 ModuleName: "HD"
-ReportSubProgram: ["HDM00100"]
+ReportSubProgram: ["HDM00200"]
 
 =================================
 07-create-model-project
 =================================
-C# (.NET 6) location (Common Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/HD/HDM00100Common
+C# (.NET 6) location (Common Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/HD/HDM00200Common
 C# (.NET 6) location (Model Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT
-ProgramName: "HDM00100"
+ProgramName: "HDM00200"
 ModuleName: "HD"
 
 =================================
 08-create-viewmodel-classes-in-model-project
 =================================
-C# (.NET 6) location (Common Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/HD/HDM00100Common  
-C# (.NET 6) location (Model Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/HDM00100Model  
+C# (.NET 6) location (Common Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/COMMON/HD/HDM00200Common  
+C# (.NET 6) location (Model Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/HDM00200Model  
 C# (.NET 6) location (Front Resources Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT  
-ProgramName: "HDM00100"
+ProgramName: "HDM00200"
 ModuleName: "HD"
 
 =================================
 09-add-batch-data-manipulation-in-viewmodel
 =================================
 C# (.NET 6) location (Front Resources Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT  
-C# (.NET 6) location (Model Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/HDM00100Model  
-ProgramName: "HDM00100"
+C# (.NET 6) location (Model Project):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/HDM00200Model  
+ProgramName: "HDM00200"
 ModuleName: "HD"
 
 =================================
@@ -93,7 +93,7 @@ C# (.NET 6) location (Back Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Prog
 C# (.NET 6) location (Service Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/SERVICE  
 C# (.NET 6) location (Model Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT  
 C# (.NET 6) location (Front Resources Folder):  @net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT  
-ProgramName: "HDM00100"
-SubProgramName: ["HDM00100"]
+ProgramName: "HDM00200"
+SubProgramName: ["HDM00200", "HDM00201"]
 ModuleName: "HD"
-ReportSubProgram: ["HDM00100"]
+ReportSubProgram: ["HDM00200"]

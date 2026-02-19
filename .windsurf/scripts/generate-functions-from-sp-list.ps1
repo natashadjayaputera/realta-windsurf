@@ -448,7 +448,8 @@ function Generate-OtherFunction {
     param(
         [string]$StoredProcedureName,
         [string]$ProgramName,
-        [string]$SubProgramName
+        [string]$SubProgramName,
+        [string]$ReturnTypeIndicator
     )
     
     # Use stored procedure name as function name
@@ -463,13 +464,32 @@ function Generate-OtherFunction {
     $hasParameterDTO = Test-Path (Join-Path $dtoPath $parameterDTO)
     $hasResultDTO = Test-Path (Join-Path $dtoPath $resultDTO)
     
-    # Build function signature based on available DTOs
-    $parameterType = if ($hasParameterDTO) { "$($SubProgramName)$($StoredProcedureName)ParameterDTO" } else { "object" }
-    $returnType = if ($hasResultDTO) { "$($SubProgramName)$($StoredProcedureName)ResultDTO" } else { "object" }
+    # Build function signature based on available DTOs and return type indicator
+    $parameterPart = if ($hasParameterDTO) { "$($SubProgramName)$($StoredProcedureName)ParameterDTO poParam" } else { "" }
+    
+    # Determine return type based on ReturnTypeIndicator and DTO availability
+    if ($hasResultDTO) {
+        $resultDTOType = "$($SubProgramName)$($StoredProcedureName)ResultDTO"
+        if ($ReturnTypeIndicator -eq "list") {
+            $returnType = "List<$resultDTOType>"
+        } elseif ($ReturnTypeIndicator -eq "single") {
+            $returnType = $resultDTOType
+        } else {
+            # Default to single result if not specified
+            $returnType = $resultDTOType
+        }
+        $returnPart = "<$returnType>"
+    } else {
+        # If no ResultDTO found, return Task (no return value)
+        $returnPart = ""
+    }
+    
+    # Build function signature with conditional parameters and return type
+    $functionSignature = "public async Task$returnPart $functionName($parameterPart)"
     
     $functionContent = @"
 //CATEGORY: other-function
-public async Task<$returnType> $functionName($parameterType poParam)
+$functionSignature
 {
     string lcFunction = nameof($functionName);
     using var activity = _activitySource.StartActivity(lcFunction);
@@ -477,7 +497,13 @@ public async Task<$returnType> $functionName($parameterType poParam)
 
     var loEx = new R_Exception();
     var loDb = new R_Db();
-    $returnType`? loResult = null;
+$(
+    if ($hasResultDTO) {
+        "    $returnType`? loResult = null;"
+    } else {
+        ""
+    }
+)
 
     try
     {
@@ -498,12 +524,16 @@ $(Get-CommandParameterLines -StoredProcedureName $StoredProcedureName -ProgramNa
 
 $(
     if ($hasResultDTO) {
-        "        var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
-        loResult = R_Utility.R_ConvertTo<$returnType>(loDataTable).FirstOrDefault();"
+        if ($ReturnTypeIndicator -eq "list") {
+            "        var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
+        loResult = R_Utility.R_ConvertTo<$resultDTOType>(loDataTable).ToList();"
+        } else {
+            "        var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
+        loResult = R_Utility.R_ConvertTo<$resultDTOType>(loDataTable).FirstOrDefault();"
+        }
     } else {
-        "        // Execute query and convert to result manually since no ResultDTO found
-        var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
-        // TODO: Convert loDataTable to appropriate result type"
+        "        // Execute stored procedure without return value
+        await loDb.SqlExecNonQueryAsync(loConn, loCmd);"
     }
 )
     }
@@ -519,7 +549,17 @@ $(
 
     loEx.ThrowExceptionIfErrors();
     _logger.LogInfo("END function {$functionName}", lcFunction);
-    return loResult ?? new $returnType();
+$(
+    if ($hasResultDTO) {
+        if ($ReturnTypeIndicator -eq "list") {
+            "    return loResult ?? new List<$resultDTOType>();"
+        } else {
+            "    return loResult ?? new $resultDTOType();"
+        }
+    } else {
+        "    return;"
+    }
+)
 }
 "@
     
@@ -656,7 +696,7 @@ foreach ($line in $spListContent) {
             Generate-BatchFunction -StoredProcedureName $storedProcedureName -ProgramName $ProgramName -SubProgramName $SubProgramName
         }
         "other-function" {
-            Generate-OtherFunction -StoredProcedureName $storedProcedureName -ProgramName $ProgramName -SubProgramName $SubProgramName
+            Generate-OtherFunction -StoredProcedureName $storedProcedureName -ProgramName $ProgramName -SubProgramName $SubProgramName -ReturnTypeIndicator $functionName
         }
         default {
             Write-Warning "Unknown category: $category for $storedProcedureName"
@@ -703,11 +743,25 @@ foreach ($line in $spListContent) {
                 $hasParameterDTO = Test-Path (Join-Path $dtoPath $parameterDTO)
                 $hasResultDTO = Test-Path (Join-Path $dtoPath $resultDTO)
                 
-                # Build function signature based on available DTOs
-                $parameterType = if ($hasParameterDTO) { "$($SubProgramName)$($storedProcedureName)ParameterDTO" } else { "object" }
-                $returnType = if ($hasResultDTO) { "$($SubProgramName)$($storedProcedureName)ResultDTO" } else { "object" }
+                # Build function signature based on available DTOs and return type indicator
+                $parameterPart = if ($hasParameterDTO) { "$($SubProgramName)$($storedProcedureName)ParameterDTO poParam" } else { "" }
                 
-                "public async Task<$returnType> $storedProcedureName($parameterType poParam) //CATEGORY: $category"
+                # Determine return type based on functionName and DTO availability
+                if ($hasResultDTO) {
+                    $resultDTOType = "$($SubProgramName)$($storedProcedureName)ResultDTO"
+                    if ($functionName -eq "list") {
+                        $returnType = "List<$resultDTOType>"
+                    } elseif ($functionName -eq "single") {
+                        $returnType = $resultDTOType
+                    } else {
+                        # Default to single result if not specified
+                        $returnType = $resultDTOType
+                    }
+                    "public async Task<$returnType> $storedProcedureName($parameterPart) //CATEGORY: $category"
+                } else {
+                    # If no ResultDTO found, return Task (no return value)
+                    "public async Task $storedProcedureName($parameterPart) //CATEGORY: $category"
+                }
             }
             default { "public async Task $storedProcedureName(object poParam) //CATEGORY: $category" }
         }

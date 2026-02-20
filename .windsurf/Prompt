@@ -1,7 +1,9 @@
 ProgramName: "ABC00100"
-SubProgramName: "ABC00100"
+SubProgramName: ["ABC00100", "ABC00101"]
 ModuleName: "AB"
 ModuleFolder: /AB/
+ReportSubProgram: ["ABC00100"]
+AdditionalLanguage: ["id"]
 
 Please find and replace the 3 things above including the "" 
 

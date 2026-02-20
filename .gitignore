@@ -25,3 +25,8 @@ chunks_vb/
 [Bb]in/
 [Oo]bj/
 
+
+partials/**/results/**
+partials/**/parameters/**
+partials/**/common/**
+

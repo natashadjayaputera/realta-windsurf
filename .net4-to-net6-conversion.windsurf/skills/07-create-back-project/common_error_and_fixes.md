@@ -6,9 +6,10 @@ description: "Common error and fixes"
 
 ## Error CS0246: The type or namespace name `{YOUR_SP_NAME}Resources` could not be found
 
-Fix it by add this reference to `{ProgramName}Back.csproj` (must follow exactly, do not change the depth!)
+Fix it by add this reference to `{ProgramName}Back.csproj`
 ```xml
 <ItemGroup>
+    <!-- IMPORTANT: DO NOT CHANGE THE FOLDER DEPTH STRUCTURE -->
     <ProjectReference Include="..\..\{ModuleName}\{ModuleName}_SPR\{YOUR_SP_NAME}Resources\{YOUR_SP_NAME}Resources.csproj" />
 </ItemGroup>
 ```

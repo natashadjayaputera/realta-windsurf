@@ -14,7 +14,7 @@ Create a .NET 6 common project based on .NET4 common projects.
 2.1 Read common_generic_result_dto_template as a template and create `{ProgramName}ResultDTO.cs`.
 
 ## Phase 3: Add Additional DTO
-3.1 Execute `copy {SearchFolder} {OutputFolder}`
+3.1 Execute `copy {SearchFolder} {OutputFolder}` for each SubProgramName 
 - SearchFolder = `partials/{ProgramName}/{SubProgramName}/common/dto`
 - OutputFolder = C# (.NET 6) location (Common Folder) + {ModuleName} + '{ProgramName}Common/DTOs'
 Example:

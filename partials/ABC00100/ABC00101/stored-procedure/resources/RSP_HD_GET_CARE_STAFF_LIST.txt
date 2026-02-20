@@ -1,4 +1,0 @@
-module_name:HD
-8001|Duplicate Asset Code|Kode Aset Duplikat
-8002|Asset Not Found|Aset Tidak Ditemukan
-8003|You are not authorized to access this asset|Anda Tidak Berhak Mengakses Aset Ini

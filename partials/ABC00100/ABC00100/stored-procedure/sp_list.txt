@@ -1,6 +1,0 @@
-RSP_HD_MAINTAIN_SYSTEM_PARAMETER|business-object-overridden-function|R_DeletingAsync|NOT_IMPLEMENTED
-RSP_HD_MAINTAIN_SYSTEM_PARAMETER|business-object-overridden-function|R_SavingAsync
-RSP_HD_GET_SYSTEM_PARAM|business-object-overridden-function|R_DisplayAsync
-RSP_HD_GET_CARE_STAFF_LIST|other-function|list
-RSP_HD_GET_CARE_LIST|other-function|single
-RSP_HD_GET_ASSET_LIST|other-function

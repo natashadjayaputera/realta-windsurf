@@ -15,13 +15,13 @@ HOW TO USE SKILLS
 01-extract-stored-procedure-data
 =================================
 ProgramName: "ABC00100"
-SubProgramName: ["ABC00100"]
+SubProgramName: ["ABC00100", "ABC00101"]
 
 =================================
 02-generate-partials-from-stored-procedure
-=================================
+===============================
 ProgramName: "ABC00100"
-SubProgramName: ["ABC00100"]
+SubProgramName: ["ABC00100", "ABC00101"]
 AdditionalLanguage: ["id"]
 
 =================================

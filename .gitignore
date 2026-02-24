@@ -26,7 +26,12 @@ chunks_vb/
 [Oo]bj/
 
 
+# Ignore all files in partials except ABC00100
+partials/*
+!partials/ABC00100/
+!partials/ABC00100/**
+
+# Override: always ignore these specific folders even in ABC00100
 partials/**/results/**
 partials/**/parameters/**
 partials/**/common/**
-

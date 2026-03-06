@@ -1,0 +1,2 @@
+docling "D:\_Work\AI\realta-windsurf\net6\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SPEC\GSM01500\GSM01500 - Center.docx" `
+  --output "D:\_Work\AI\realta-windsurf\net6\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SPEC\GSM01500\"

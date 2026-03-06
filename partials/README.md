@@ -65,10 +65,12 @@ Explanation:
 8001|Duplicate Asset Code|Kode Aset Duplikat
 8002|Asset Not Found|Aset Tidak Ditemukan
 8003|You are not authorized to access this asset|Anda Tidak Berhak Mengakses Aset Ini
+Err001|General Error|Terjadi kesalahan
+DUPLICATED_ID|Duplicate ID|ID Duplikat
 ```
 
 Explanation:
-- **First field**: Error code
+- **First field**: Error code (it's in 0-9A-Za-z format)
 - **Second field**: Error message default (English)
 - **Third++ fields**: 
   * Error messages in other languages (Indonesian, etc.)
@@ -83,11 +85,13 @@ module_name:HD
 8001|Duplicate Asset Code|Kode Aset Duplikat
 8002|Asset Not Found|Aset Tidak Ditemukan
 8003|You are not authorized to access this asset|Anda Tidak Berhak Mengakses Aset Ini
+Err001|General Error|Terjadi kesalahan
+DUPLICATED_ID|Duplicate ID|ID Duplikat
 ```
 
 Explanation:
 - **First line**: module_name:<module_name> - this is Mandatory
-- **First field**: Error code
+- **First field**: Error code (it's in 0-9A-Za-z format)
 - **Second field**: Error message default (English)
 - **Third++ fields**: 
   * Error messages in other languages (Indonesian, etc.)

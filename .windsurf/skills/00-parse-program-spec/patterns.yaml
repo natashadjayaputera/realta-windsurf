@@ -1,0 +1,3024 @@
+---
+project: BIMASAKTI 11
+module: GL
+program_id: GLT00300
+program_title: Reversing Journal
+purpose: Program for Reversing Journal entry
+updated_date: 2023-04-27
+updated_by: SG
+---
+
+program_definition: Program for create, update, view, approve, and commit Reversing Journal
+
+related_tables:
+  - table_name: GLT_TRANS_HD
+    access: RW
+  - table_name: GLT_TRANS_JRN
+    access: RW
+  - table_name: GLA_ACCOUNT_BALANCE
+    access: RW
+  - table_name: GSM_COA
+    access: R
+  - table_name: GSM_CENTER
+    access: R
+  - table_name: GSM_COMPANY
+    access: R
+  - table_name: GSM_DEPARTMENT
+    access: R
+  - table_name: GSM_CURRENCY
+    access: R
+  - table_name: GSM_CURRENCY_RATE
+    access: R
+  - table_name: GLM_SYSTEM_PARAM
+    access: R
+
+roles:
+  - Users who have access to the program
+
+tabs:
+  - tab_id: JOURNAL_LIST
+    sub_program_id: GLT00300
+    initialization:
+      - run_process: INITIAL_PROCESS
+
+    user_interface_elements:
+      - element_id: journal_list_department_label
+        type: label
+        text: "Department"
+      - element_id: journal_list_department_code_textbox
+        type: textbox
+        field: VAR_FILTER.CDEPT_CODE
+        defaults:
+          - "First value from VAR_USER_DEPARTMENT_LIST.CDEPT_CODE"
+          - conditions:
+              operator: contains
+              field: VAR_USER_DEPARTMENT_LIST.CDEPT_CODE
+              value: VAR_GL_SYSTEM_PARAM.CCLOSE_DEPT_CODE
+              true: "VAR_GL_SYSTEM_PARAM.CCLOSE_DEPT_CODE"
+              false: ""
+        validations:
+          - max_length: 20
+          - upper_case: true
+        events:
+          on_lost_focus:
+            - search_lookup:
+                program: GSL00700
+                project: LOOKUP_GS
+                parameters:
+                  - VAR_COMPANY_ID
+                  - VAR_USER_ID
+                  - "SearchText: VAR_FILTER.CDEPT_CODE"
+                save_to: VAR_RESULT
+            - conditions:
+                operator: is_not_empty
+                field: VAR_RESULT
+                true:
+                  - set_var:
+                      name: VAR_FILTER.CDEPT_NAME
+                      value: "VAR_RESULT.CDEPT_NAME"
+                false:
+                  - display_message:
+                      text: "Department {0} not found!"
+                      buttons: [OK]
+                      args: ["VAR_FILTER.CDEPT_CODE"]
+                  - set_focus: department_code_textbox
+                  - set_var:
+                      name: VAR_FILTER.CDEPT_CODE
+                      value: ""
+                  - set_var:
+                      name: VAR_FILTER.CDEPT_NAME
+                      value: ""
+      - element_id: journal_list_department_code_lookup_button
+        type: button
+        text: "..."
+        events:
+          on_click:
+            - open_lookup:
+                program: GSL00700
+                project: LOOKUP_GS
+                parameters:
+                  - VAR_COMPANY_ID
+                  - VAR_USER_ID
+                save_to: VAR_RESULT
+            - conditions:
+                operator: is_not_empty
+                field: VAR_RESULT
+                true:
+                  - set_var:
+                      name: VAR_FILTER.CDEPT_CODE
+                      value: "VAR_RESULT.CDEPT_CODE"
+                  - set_var:
+                      name: VAR_FILTER.CDEPT_NAME
+                      value: "VAR_RESULT.CDEPT_NAME"
+                false:
+                  - set_var:
+                      name: VAR_FILTER.CDEPT_CODE
+                      value: ""
+                  - set_var:
+                      name: VAR_FILTER.CDEPT_NAME
+                      value: ""
+      - element_id: journal_list_department_name_textbox
+        type: textbox
+        field: VAR_FILTER.CDEPT_NAME
+        defaults:
+          - "First value from VAR_USER_DEPARTMENT_LIST.CDEPT_NAME"
+          - conditions:
+              operator: contains
+              field: VAR_USER_DEPARTMENT_LIST.CDEPT_CODE
+              value: VAR_GL_SYSTEM_PARAM.CCLOSE_DEPT_CODE
+              true: "VAR_GL_SYSTEM_PARAM.CCLOSE_DEPT_NAME"
+              false: ""
+        validations:
+          - disabled: true
+      - element_id: journal_list_journal_period_label
+        type: label
+        text: "Journal Period"
+      - element_id: journal_list_journal_period_year_numeric_textbox
+        type: numeric_textbox
+        field: VAR_FILTER.CJOURNAL_PERIOD_YY
+        defaults:
+          - "VAR_GL_SYSTEM_PARAM.CSOFT_PERIOD_YY"
+        validations:
+          - min: "VAR_GSM_PERIOD.IMIN_YY"
+          - max: "VAR_GSM_PERIOD.IMAX_YY"
+          - step: 1
+      - element_id: journal_list_journal_period_month_combobox
+        type: combobox
+        text: VAR_JOURNAL_PERIOD_MM_OPTIONS.CNAME
+        value: VAR_JOURNAL_PERIOD_MM_OPTIONS.CCODE
+        field: VAR_FILTER.CJOURNAL_PERIOD_MM
+        defaults:
+          - "VAR_GL_SYSTEM_PARAM.CSOFT_PERIOD_MM"
+        options:
+          create_var: VAR_JOURNAL_PERIOD_MM_OPTIONS
+          data:
+            - {CCODE: '01', CNAME: '01'}
+            - {CCODE: '02', CNAME: '02'}
+            - {CCODE: '03', CNAME: '03'}
+            - {CCODE: '04', CNAME: '04'}
+            - {CCODE: '05', CNAME: '05'}
+            - {CCODE: '06', CNAME: '06'}
+            - {CCODE: '07', CNAME: '07'}
+            - {CCODE: '08', CNAME: '08'}
+            - {CCODE: '09', CNAME: '09'}
+            - {CCODE: '10', CNAME: '10'}
+            - {CCODE: '11', CNAME: '11'}
+            - {CCODE: '12', CNAME: '12'}
+      - element_id: journal_list_status_label
+        type: label
+        text: "Status"
+      - element_id: journal_list_status_combobox
+        type: combobox
+        text: VAR_JOURNAL_STATUS_OPTIONS.CNAME
+        value: VAR_JOURNAL_STATUS_OPTIONS.CCODE
+        field: VAR_FILTER.CSTATUS
+        options:
+          - run_stored_procedure:
+              name: RSP_GS_GET_GSB_CODE_LIST
+              parameters:
+                - 'BIMASAKTI'
+                - VAR_COMPANY_ID
+                - '_GL_JOURNAL_STATUS'
+                - VAR_LANGUAGE_ID
+              save_to: VAR_JOURNAL_STATUS_OPTIONS
+          - add_option:
+              to: VAR_JOURNAL_STATUS_OPTIONS
+              data:
+                CCODE: ''
+                CNAME: 'All'
+      - element_id: journal_list_search_textbox
+        type: textbox
+        field: VAR_FILTER.CSEARCH_TEXT
+        validations:
+          - max_length: 20
+      - element_id: journal_list_search_button
+        type: button
+        text: "Search"
+        events:
+          on_click:
+            - run_process: SEARCH_PROCESS
+      - element_id: journal_list_show_all_button
+        type: button
+        text: "Show All"
+        events:
+          on_click:
+            - run_process: SHOW_ALL_PROCESS
+      - element_id: journal_list_journal_list_grid
+        type: grid
+        field: VAR_JOURNAL_LIST
+        batch: true
+        mode: VIEW
+        events:
+          on_selected_row_changed:
+            - run_process: REFRESH_JOURNAL_DETAIL_PROCESS
+        columns:
+          - column: CREC_ID
+            header: Journal ID
+            type: Textbox
+            validations: Hidden
+          - column: LALLOW_APPROVE
+            header: Allow Approve
+            type: Textbox
+            validations: Hidden
+          - column: CREF_PRD
+            header: Journal Period
+            type: Textbox
+            validations: Hidden
+          - column: CSTATUS
+            header: Status Code
+            type: Textbox
+            validations: Hidden
+          - column: CREF_NO
+            header: Reference No.
+            type: Textbox
+            validations: Disabled
+          - column: CREF_DATE
+            header: Reference Date
+            type: DateTime
+            validations: Disabled
+          - column: CREVERSE_DATE
+            header: Reversing Date
+            type: DateTime
+            validations: Disabled
+          - column: CDOC_NO
+            header: Document No.
+            type: Textbox
+            validations: Disabled
+          - column: CTRANS_DESC
+            header: Description
+            type: Textbox
+            validations: Disabled
+          - column: CCURRENCY_CODE
+            header: Currency
+            type: Textbox
+            validations: Disabled
+          - column: NTRANS_AMOUNT
+            header: Amount
+            type: Numeric Textbox
+            validations: Disabled
+          - column: CSTATUS_NAME
+            header: Status
+            type: Textbox
+            validations: Disabled
+          - column: CUPDATE_BY
+            header: Updated By
+            type: Textbox
+            validations: Disabled
+          - column: DUPDATE_DATE
+            header: Updated Date
+            type: DateTime
+            validations: Disabled
+          - column: CCREATE_BY
+            header: Created By
+            type: Textbox
+            validations: Disabled
+          - column: DCREATE_DATE
+            header: Created Date
+            type: DateTime
+            validations: Disabled
+      - element_id: journal_list_journal_detail_grid
+        type: grid
+        field: VAR_JOURNAL_DETAIL
+        mode: VIEW
+        columns:
+          - column: CREC_ID
+            header: Journal Detail ID
+            type: Textbox
+            validations: Hidden
+          - column: INO
+            header: No.
+            type: Numeric Textbox
+            validations: Disabled
+          - column: CGLACCOUNT_NO
+            header: Account No.
+            type: Textbox
+            validations: Disabled
+          - column: CGLACCOUNT_NAME
+            header: Account Name
+            type: Textbox
+            validations: Disabled
+          - column: CCENTER_NAME
+            header: Center
+            type: Textbox
+            validations: Disabled
+          - column: CDBCR
+            header: D/C
+            type: Textbox
+            validations: Disabled
+          - column: NDEBIT
+            header: Debit
+            type: Numeric Textbox
+            validations:
+              conditions:
+                operator: equals
+                field: CDBCR
+                value: "D"
+                true: Disabled
+                false: Hidden
+          - column: NCREDIT
+            header: Credit
+            type: Numeric Textbox
+            validations:
+              conditions:
+                operator: equals
+                field: CDBCR
+                value: "C"
+                true: Disabled
+                false: Hidden
+          - column: CDETAIL_DESC
+            header: Description
+            type: Textbox
+            validations: Disabled
+          - column: CDOCUMENT_NO
+            header: Voucher No.
+            type: Textbox
+            validations: Disabled
+          - column: CDOCUMENT_DATE
+            header: Voucher Date
+            type: DateTime
+            validations: Disabled
+          - column: NLDEBIT
+            header: DB (Local)
+            type: Numeric Textbox
+            validations:
+              conditions:
+                operator: equals
+                field: CDBCR
+                value: "D"
+                true: Disabled
+                false: Hidden
+          - column: NLCREDIT
+            header: CR (Local)
+            type: Numeric Textbox
+            validations:
+              conditions:
+                operator: equals
+                field: CDBCR
+                value: "C"
+                true: Disabled
+                false: Hidden
+          - column: NBDEBIT
+            header: DB (Base)
+            type: Numeric Textbox
+            validations:
+              conditions:
+                operator: equals
+                field: CDBCR
+                value: "D"
+                true: Disabled
+                false: Hidden
+          - column: NBCREDIT
+            header: CR (Base)
+            type: Numeric Textbox
+            validations:
+              conditions:
+                operator: equals
+                field: CDBCR
+                value: "C"
+                true: Disabled
+                false: Hidden
+      - element_id: journal_list_approve_button
+        type: button
+        text: "Approve"
+        validations:
+          conditions:
+            operator: and
+            conditions:
+                operator: equals
+                field:
+                  source: selected_row
+                  variable: VAR_JOURNAL_LIST
+                  column: CSTATUS
+                value: "10"
+                operator: equals
+                field: VAR_GSM_TRANSACTION_CODE.LAPPROVAL_FLAG
+                value: true
+            true: Enabled
+            false: Disabled
+        events:
+          on_click:
+            - run_process: APPROVE_JOURNAL_PROCESS
+      - element_id: journal_list_commit_undo_button
+        type: button
+        text:
+          conditions:
+            operator: equals
+            field:
+                source: selected_row
+                variable: VAR_JOURNAL_LIST
+                column: CSTATUS
+            value: "80"
+            true: "Undo"
+            false: "Commit"
+        validations:
+          conditions:
+            operator: or
+            conditions:
+                operator: equals
+                field:
+                  source: selected_row
+                  variable: VAR_JOURNAL_LIST
+                  column: CSTATUS
+                value: "20"
+                operator: group
+                conditions:
+                    operator: and
+                    conditions:
+                      operator: equals
+                      field:
+                        source: selected_row
+                        variable: VAR_JOURNAL_LIST
+                        column: CSTATUS
+                      value: "80"
+                      operator: not_equals
+                      field: VAR_IUNDO_COMMIT_JRN
+                      value: 1
+                      operator: greater_or_equal
+                      field: CJOURNAL_PERIOD
+                      value: VAR_GL_SYSTEM_PARAM.CSOFT_PERIOD
+            true: Enabled
+            false: Disabled
+        events:
+          on_click:
+            - run_process: COMMIT_JOURNAL_PROCESS
+      - element_id: journal_list_rapid_approval_button
+        type: button
+        text: "Rapid Approval"
+        validations:
+          conditions:
+            operator: equals
+            field: VAR_GSM_TRANSACTION_CODE.LAPPROVAL_FLAG
+            value: true
+            true: Enabled
+            false: Disabled
+        events:
+          on_click:
+            - run_process: RAPID_APPROVAL_PROCESS
+      - element_id: journal_list_rapid_commit_button
+        type: button
+        text: "Rapid Commit"
+        events:
+          on_click:
+            - open_popup: POPUP_RAPID_COMMIT
+
+    processes:
+      - process_id: INITIAL_PROCESS
+        category: initialization
+        validations: []
+        action:
+          - front:
+              - set_var:
+                  name: VAR_TRANS_CODE
+                  value: "000020"
+              - set_var:
+                  name: VAR_COMPANY_ID
+                  value: "Login User's Company ID"
+              - set_var:
+                  name: VAR_USER_ID
+                  value: "Login User ID"
+              - set_var:
+                  name: VAR_LANGUAGE_ID
+                  value: "Login User's Language ID"
+          - back:
+              - set_var:
+                  name: VAR_TODAY
+                  value: "Get Property Date with function dbo.RFN_GET_DB_TODAY(VAR_COMPANY_ID)"
+              - run_stored_procedure:
+                  name: RSP_GL_GET_SYSTEM_PARAM
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_LANGUAGE_ID
+                  save_to: VAR_GL_SYSTEM_PARAM
+              - conditions:
+                  operator: is_empty
+                  field: VAR_GL_SYSTEM_PARAM
+                  true:
+                    - display_message:
+                        text: "The program cannot continue because the GL System Parameter has not been set. Please configure the system parameter before proceeding"
+                        buttons: [OK]
+                    - close_program
+              - run_stored_procedure:
+                  name: RSP_GS_GET_COMPANY_INFO
+                  parameters:
+                    - VAR_COMPANY_ID
+                  save_to: VAR_GSM_COMPANY
+              - run_stored_procedure:
+                  name: RSP_GS_GET_DEPT_LOOKUP_LIST
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_USER_ID
+                  save_to: VAR_USER_DEPARTMENT_LIST
+              - run_stored_procedure:
+                  name: RSP_GS_GET_PERIOD_DT_INFO
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_GL_SYSTEM_PARAM.CCURRENT_PERIOD_YY
+                    - VAR_GL_SYSTEM_PARAM.CCURRENT_PERIOD_MM
+                  save_to: VAR_RESULT
+                  set_var:
+                    name: VAR_CCURRENT_PERIOD_START_DATE
+                    value: "VAR_RESULT.CSTART_DATE"
+              - run_stored_procedure:
+                  name: RSP_GS_GET_PERIOD_DT_INFO
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_GL_SYSTEM_PARAM.CSOFT_PERIOD_YY
+                    - VAR_GL_SYSTEM_PARAM.CSOFT_PERIOD_MM
+                  save_to: VAR_RESULT
+                  set_var:
+                    name: VAR_CSOFT_PERIOD_START_DATE
+                    value: "VAR_RESULT.CSTART_DATE"
+              - run_stored_procedure:
+                  name: RSP_GL_GET_SYSTEM_ENABLE_OPTION_INFO
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - "GL014001"
+                  save_to: VAR_RESULT
+                  set_var:
+                    name: VAR_IUNDO_COMMIT_JRN
+                    value: "VAR_RESULT.IOPTION"
+              - run_stored_procedure:
+                  name: RSP_GS_GET_TRANS_CODE_INFO
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_TRANS_CODE
+                  save_to: VAR_GSM_TRANSACTION_CODE
+              - run_stored_procedure:
+                  name: RSP_GS_GET_PERIOD_YEAR_RANGE
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - ""
+                    - ""
+                  save_to: VAR_GSM_PERIOD
+      - process_id: SEARCH_PROCESS
+        category: other-function
+        validations:
+          - field: VAR_FILTER.CDEPT_CODE
+            conditions:
+              operator: is_empty
+              field: VAR_FILTER.CDEPT_CODE
+            message: "Please Select Department!"
+          - field: VAR_FILTER.CSEARCH_TEXT
+            conditions:
+              operator: is_empty
+              field: VAR_FILTER.CSEARCH_TEXT
+            message: "Please input keyword to search!"
+          - field: VAR_FILTER.CSEARCH_TEXT
+            conditions:
+              operator: less_than
+              field: VAR_FILTER.CSEARCH_TEXT length
+              value: 3
+            message: "Minimum search keyword is 3 characters!"
+        action:
+          - back:
+              - run_stored_procedure:
+                  name: RSP_GL_SEARCH_REVERSING_LIST
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_USER_ID
+                    - VAR_FILTER.CDEPT_CODE
+                    - "VAR_FILTER.CJOURNAL_PERIOD_YY + VAR_FILTER.CJOURNAL_PERIOD_MM"
+                    - VAR_FILTER.CSTATUS
+                    - VAR_FILTER.CSEARCH_TEXT
+                    - VAR_LANGUAGE_ID
+                  save_to: VAR_JOURNAL_LIST
+          - front:
+              - conditions:
+                  operator: equals
+                  field: VAR_JOURNAL_LIST length
+                  value: 0
+                  true:
+                    - display_message:
+                        text: "No Data Found!"
+                        buttons: [OK]
+                  false:
+                    - run_process: REFRESH_JOURNAL_DETAIL_PROCESS
+
+      - process_id: SHOW_ALL_PROCESS
+        category: other-function
+        validations: []
+        action:
+          - back:
+              - run_stored_procedure:
+                  name: RSP_GL_SEARCH_REVERSING_LIST
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_USER_ID
+                    - VAR_FILTER.CDEPT_CODE
+                    - "VAR_FILTER.CJOURNAL_PERIOD_YY + VAR_FILTER.CJOURNAL_PERIOD_MM"
+                    - VAR_FILTER.CSTATUS
+                    - ""
+                    - VAR_LANGUAGE_ID
+                  save_to: VAR_JOURNAL_LIST
+          - front:
+              - conditions:
+                  operator: equals
+                  field: VAR_JOURNAL_LIST length
+                  value: 0
+                  true:
+                    - display_message:
+                        text: "No Data Found!"
+                        buttons: [OK]
+                  false:
+                    - run_process: REFRESH_JOURNAL_DETAIL_PROCESS
+
+      - process_id: REFRESH_JOURNAL_DETAIL_PROCESS
+        category: other-function
+        validations: []
+        action:
+          - back:
+              - run_stored_procedure:
+                  name: RSP_GL_GET_JOURNAL_DETAIL_LIST
+                  parameters:
+                    - field:
+                        source: selected_row
+                        variable: VAR_JOURNAL_LIST
+                        column: CREC_ID
+                    - VAR_LANGUAGE_ID
+                  save_to: VAR_JOURNAL_DETAIL
+
+      - process_id: APPROVE_JOURNAL_PROCESS
+        category: other-function
+        validations: []
+        action:
+          - front:
+              - conditions:
+                  operator: equals
+                  field:
+                    source: selected_row
+                    variable: VAR_JOURNAL_LIST
+                    column: LALLOW_APPROVE
+                  value: false
+                  true:
+                    - display_message:
+                        text: "You don't have right to approve this journal!"
+                        buttons: [OK]
+                    - end_process
+              - display_message:
+                  text: "Are you sure want to approve this journal?"
+                  buttons: [Yes/No]
+                  on_no: end_process
+          - back:
+              - run_stored_procedure:
+                  name: RSP_GL_UPDATE_JOURNAL_STATUS
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_USER_ID
+                    - VAR_USER_ID
+                    - field:
+                        source: selected_row
+                        variable: VAR_JOURNAL_LIST
+                        column: CREC_ID
+                    - 20
+                    - VAR_GL_SYSTEM_PARAM.LCOMMIT_APRJRN
+                    - 0
+          - front:
+              - conditions:
+                  operator: is_not_empty
+                  field: ""
+                  true:
+                    - display_error_message
+                  false:
+                    - display_message:
+                        text: "Selected Journal Approved Successfully!"
+                        buttons: [OK]
+                    - conditions:
+                        operator: is_not_empty
+                        field: VAR_FILTER.CSEARCH_TEXT
+                        true:
+                          - run_process: SEARCH_PROCESS
+                        false:
+                          - run_process: REFRESH_JOURNAL_DETAIL_PROCESS
+
+      - process_id: COMMIT_JOURNAL_PROCESS
+        category: other-function
+        validations: []
+        action:
+          - front:
+              - conditions:
+                  operator: equals
+                  field:
+                    source: selected_row
+                    variable: VAR_JOURNAL_LIST
+                    column: CSTATUS
+                  value: 80
+                  true:
+                    - display_message:
+                        text: "Are you sure want to undo commit this journal?"
+                        buttons: [Yes/No]
+                        on_no: end_process
+                  false:
+                    - display_message:
+                        text: "Are you sure want to commit this journal?"
+                        buttons: [Yes/No]
+                        on_no: end_process
+          - back:
+              - conditions:
+                  operator: equals
+                  field:
+                    source: selected_row
+                    variable: VAR_JOURNAL_LIST
+                    column: CSTATUS
+                  value: 80
+                  true:
+                    - conditions:
+                        operator: equals
+                        field: VAR_GL_SYSTEM_PARAM.IREVERSE_JRN_POST
+                        value: true
+                        true:
+                          - run_stored_procedure:
+                              name: RSP_GL_UNDO_REVERSING_JRN
+                              parameters:
+                                - VAR_COMPANY_ID
+                                - VAR_USER_ID
+                                - field:
+                                    source: selected_row
+                                    variable: VAR_JOURNAL_LIST
+                                    column: CREC_ID
+                  false:
+                    - conditions:
+                        operator: equals
+                        field: VAR_GL_SYSTEM_PARAM.IREVERSE_JRN_POST
+                        value: true
+                        true:
+                          - run_stored_procedure:
+                              name: RSP_GL_PROCESS_REVERSING_JRN
+                              parameters:
+                                - VAR_COMPANY_ID
+                                - VAR_USER_ID
+                                - field:
+                                    source: selected_row
+                                    variable: VAR_JOURNAL_LIST
+                                    column: CDEPT_CODE
+                                - field:
+                                    source: selected_row
+                                    variable: VAR_JOURNAL_LIST
+                                    column: CREF_NO
+                                - field:
+                                    source: selected_row
+                                    variable: VAR_JOURNAL_LIST
+                                    column: CREC_ID
+              - conditions:
+                  operator: equals
+                  field:
+                    source: selected_row
+                    variable: VAR_JOURNAL_LIST
+                    column: CSTATUS
+                  value: 80
+                  true:
+                    - conditions:
+                        operator: equals
+                        field: VAR_GSM_TRANSACTION_CODE.LAPPROVAL_FLAG
+                        value: true
+                        true:
+                          - set_var:
+                              name: VAR_NEW_STATUS
+                              value: 10
+                        false:
+                          - set_var:
+                              name: VAR_NEW_STATUS
+                              value: 0
+                  false:
+                    - set_var:
+                        name: VAR_NEW_STATUS
+                        value: 80
+              - run_stored_procedure:
+                  name: RSP_GL_UPDATE_JOURNAL_STATUS
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_USER_ID
+                    - VAR_USER_ID
+                    - field:
+                        source: selected_row
+                        variable: VAR_JOURNAL_LIST
+                        column: CREC_ID
+                    - VAR_NEW_STATUS
+                    - 0
+                    - conditions:
+                        operator: equals
+                        field:
+                          source: selected_row
+                          variable: VAR_JOURNAL_LIST
+                          column: CSTATUS
+                        value: 80
+                        true: 1
+                        false: 0
+          - front:
+              - conditions:
+                  operator: is_not_empty
+                  field: ""
+                  true:
+                    - display_error_message
+                  false:
+                    - conditions:
+                        operator: equals
+                        field:
+                          source: selected_row
+                          variable: VAR_JOURNAL_LIST
+                          column: CSTATUS
+                        value: 80
+                        true:
+                          - display_message:
+                              text: "Selected Journal Undo Commit Successfully!"
+                              buttons: [OK]
+                        false:
+                          - display_message:
+                              text: "Selected Journal Committed Successfully!"
+                              buttons: [OK]
+                    - conditions:
+                        operator: is_not_empty
+                        field: VAR_FILTER.CSEARCH_TEXT
+                        true:
+                          - run_process: SEARCH_PROCESS
+                        false:
+                          - run_process: REFRESH_JOURNAL_DETAIL_PROCESS
+
+      - process_id: RAPID_APPROVAL_PROCESS
+        category: other-function
+        validations:
+          - field: VAR_FILTER.CDEPT_CODE
+            conditions:
+              operator: is_empty
+              field: VAR_FILTER.CDEPT_CODE
+            message: "Please Select Department!"
+        action:
+          - back:
+              - run_stored_procedure:
+                  name: RSP_GS_GET_ALLOW_APPROVAL_STATUS
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_TRANS_CODE
+                    - VAR_FILTER.CDEPT_CODE
+                    - VAR_USER_ID
+                  save_to: VAR_RESULT
+          - front:
+              - conditions:
+                  operator: is_empty
+                  field: VAR_RESULT
+                  true:
+                    - display_message:
+                        text: "You don't have right to approve this journal type!"
+                        buttons: [OK]
+                    - end_process
+              - open_popup: POPUP_RAPID_APPROVAL
+
+  - tab_id: POPUP_RAPID_COMMIT
+    sub_program_id: GLT00301
+    initialization:
+      - run_process: INITIAL_PROCESS
+
+    user_interface_elements:
+      - element_id: popup_rapid_commit_department_label
+        type: label
+        text: "Department"
+      - element_id: popup_rapid_commit_department_code_textbox
+        type: textbox
+        field: VAR_DEPT_CODE
+        validations:
+          - disabled: true
+      - element_id: popup_rapid_commit_department_name_textbox
+        type: textbox
+        field: VAR_DEPT_NAME
+        validations:
+          - disabled: true
+      - element_id: popup_rapid_commit_journal_period_label
+        type: label
+        text: "Journal Period"
+      - element_id: popup_rapid_commit_journal_period_year_numeric_textbox
+        type: numeric_textbox
+        field: VAR_JOURNAL_PERIOD_YY
+        validations:
+          - disabled: true
+      - element_id: popup_rapid_commit_journal_period_month_numeric_textbox
+        type: numeric_textbox
+        field: VAR_JOURNAL_PERIOD_MM
+        validations:
+          - disabled: true
+      - element_id: popup_rapid_commit_status_label
+        type: label
+        text: "Status"
+      - element_id: popup_rapid_commit_status_textbox
+        type: textbox
+        field: VAR_JOURNAL_STATUS_DISPLAY
+        validations:
+          - disabled: true
+      - element_id: popup_rapid_commit_journal_list_grid
+        type: grid
+        mode: VIEW
+        field: VAR_POPUP_RAPID_COMMIT_LIST
+        batch: true
+        events:
+          on_selected_row_changed:
+            - run_process: REFRESH_JOURNAL_DETAIL_PROCESS
+        columns:
+          - column: LSELECTED
+            type: SelectCheckBox
+          - column: CREC_ID
+            header: Journal ID
+            type: Textbox
+            validations: Hidden
+          - column: CREF_PRD
+            header: Journal Period
+            type: Textbox
+            validations: Hidden
+          - column: CREF_NO
+            header: Reference No.
+            type: Textbox
+            validations: Disabled
+          - column: CREF_DATE
+            header: Reference Date
+            type: DateTime
+            validations: Disabled
+          - column: CDOC_NO
+            header: Document No.
+            type: Textbox
+            validations: Disabled
+          - column: CTRANS_DESC
+            header: Description
+            type: Textbox
+            validations: Disabled
+          - column: CCURRENCY_CODE
+            header: Currency
+            type: Textbox
+            validations: Disabled
+          - column: NTRANS_AMOUNT
+            header: Amount
+            type: Numeric Textbox
+            validations: Disabled
+      - element_id: popup_rapid_commit_commit_button
+        type: button
+        text: "Commit"
+        validations:
+          conditions:
+            operator: is_not_empty
+            field: VAR_POPUP_RAPID_COMMIT_LIST
+            true: Enabled
+            false: Disabled
+        events:
+          on_click:
+            - run_process: COMMIT_PROCESS
+      - element_id: popup_rapid_commit_cancel_button
+        type: button
+        text: "Cancel"
+        events:
+          on_click:
+            - close_popup: POPUP_RAPID_COMMIT
+      - element_id: popup_rapid_commit_progress_bar
+        type: progress_bar
+
+    processes:
+      - process_id: INITIAL_PROCESS
+        category: initialization
+        validations: []
+        action:
+          - front:
+              - set_var:
+                  name: VAR_POPUP_RAPID_COMMIT_LIST
+                  value: empty list
+              - set_var:
+                  name: VAR_COMPANY_ID
+                  value: "VAR_COMPANY_ID from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_USER_ID
+                  value: "VAR_USER_ID from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_TRANS_CODE
+                  value: "VAR_TRANS_CODE from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_LANGUAGE_ID
+                  value: "VAR_LANGUAGE_ID from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_DEPT_CODE
+                  value: "VAR_FILTER.CDEPT_CODE from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_DEPT_NAME
+                  value: "VAR_FILTER.CDEPT_NAME from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_JOURNAL_PERIOD_YY
+                  value: "VAR_FILTER.CJOURNAL_PERIOD_YY from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_JOURNAL_PERIOD_MM
+                  value: "VAR_FILTER.CJOURNAL_PERIOD_MM from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_JOURNAL_STATUS
+                  value: "20"
+              - set_var:
+                  name: VAR_JOURNAL_STATUS_DISPLAY
+                  value: "Approved"
+          - back:
+              - run_stored_procedure:
+                  name: RSP_GL_SEARCH_JOURNAL_LIST
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_USER_ID
+                    - VAR_TRANS_CODE
+                    - VAR_DEPT_CODE
+                    - "VAR_JOURNAL_PERIOD_YY + VAR_JOURNAL_PERIOD_MM"
+                    - VAR_JOURNAL_STATUS
+                    - ""
+                    - VAR_LANGUAGE_ID
+                  save_to: VAR_POPUP_RAPID_COMMIT_LIST
+      - process_id: COMMIT_PROCESS
+        category: batch-function
+        validations:
+          - set_var:
+              name: VAR_DATA_COUNT
+              value: "Total rows in VAR_POPUP_RAPID_COMMIT_LIST with LSELECTED = TRUE"
+          - field: VAR_DATA_COUNT
+            conditions: 0
+            message: "Please select Journal to commit!"
+        action:
+          - back:
+              - start_batch_process
+              - set_var:
+                  name: VAR_STEP
+                  value: 0
+              - set_var:
+                  name: VAR_ERROR_COUNT
+                  value: 0
+              - set_var:
+                  name: VAR_KEY_GUID
+                  value: "New Guid"
+              - run_stored_procedure:
+                  name: RSP_WRITEUPLOADPROCESSSTATUS
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_USER_ID
+                    - VAR_KEY_GUID
+                    - VAR_STEP
+                    - "Start Committing Reversing Journal"
+                    - 0
+              - loop:
+                  through: VAR_POPUP_RAPID_COMMIT_LIST
+                  as: CURRENT_ROW
+                  actions:
+                    - set_var:
+                        name: VAR_STEP
+                        value: "VAR_STEP + 1"
+                    - run_stored_procedure:
+                        name: RSP_WRITEUPLOADPROCESSSTATUS
+                        parameters:
+                          - VAR_COMPANY_ID
+                          - VAR_USER_ID
+                          - VAR_KEY_GUID
+                          - VAR_STEP
+                          - "Processing data {VAR_STEP} of {VAR_DATA_COUNT}"
+                          - 0
+                    - run_stored_procedure:
+                        name: RSP_GL_UPDATE_JOURNAL_STATUS
+                        parameters:
+                          - VAR_COMPANY_ID
+                          - VAR_USER_ID
+                          - VAR_USER_ID
+                          - CURRENT_ROW.CREC_ID
+                          - 80
+                          - VAR_GL_SYSTEM_PARAM.LCOMMIT_APRJRN
+                          - 0
+                    - conditions:
+                        operator: equals
+                        field: VAR_GL_SYSTEM_PARAM.IREVERSE_JRN_POST
+                        value: true
+                        true:
+                          - run_stored_procedure:
+                              name: RSP_GL_PROCESS_REVERSING_JRN
+                              parameters:
+                                - VAR_COMPANY_ID
+                                - VAR_USER_ID
+                                - CURRENT_ROW.CDEPT_CODE
+                                - CURRENT_ROW.CREF_NO
+                                - CURRENT_ROW.CREC_ID
+                    - conditions:
+                        operator: is_not_empty
+                        field: ""
+                        true:
+                          - set_var:
+                              name: VAR_ERROR_COUNT
+                              value: "VAR_ERROR_COUNT + 1"
+                    - conditions:
+                        operator: equals
+                        field: VAR_STEP
+                        value: VAR_DATA_COUNT
+                        true:
+                          - break_loop
+              - run_stored_procedure:
+                  name: RSP_WRITEUPLOADPROCESSSTATUS
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_USER_ID
+                    - VAR_KEY_GUID
+                    - VAR_STEP
+                    - "Finish Committing Reversing Journal!"
+                    - conditions:
+                        operator: greater_than
+                        field: VAR_ERROR_COUNT
+                        value: 0
+                        true: 9
+                        false: 1
+              - end_batch_process
+          - front:
+              - conditions:
+                  operator: is_not_empty
+                  field: ""
+                  true:
+                    - display_error_message
+                  false:
+                    - display_message:
+                        text: "Selected Journal(s) Committed Successfully!"
+                        buttons: [OK]
+                    - refresh_grid: popup_rapid_commit_journal_list_grid
+
+  - tab_id: POPUP_RAPID_APPROVAL
+    sub_program_id: GLT00302
+    initialization:
+      - run_process: INITIAL_PROCESS
+
+    user_interface_elements:
+      - element_id: popup_rapid_approval_department_label
+        type: label
+        text: "Department"
+      - element_id: popup_rapid_approval_department_code_textbox
+        type: textbox
+        field: VAR_DEPT_CODE
+        validations:
+          - disabled: true
+      - element_id: popup_rapid_approval_department_name_textbox
+        type: textbox
+        field: VAR_DEPT_NAME
+        validations:
+          - disabled: true
+      - element_id: popup_rapid_approval_journal_period_label
+        type: label
+        text: "Journal Period"
+      - element_id: popup_rapid_approval_journal_period_year_numeric_textbox
+        type: numeric_textbox
+        field: VAR_JOURNAL_PERIOD_YY
+        validations:
+          - disabled: true
+      - element_id: popup_rapid_approval_journal_period_month_numeric_textbox
+        type: numeric_textbox
+        field: VAR_JOURNAL_PERIOD_MM
+        validations:
+          - disabled: true
+      - element_id: popup_rapid_approval_status_label
+        type: label
+        text: "Status"
+      - element_id: popup_rapid_approval_status_textbox
+        type: textbox
+        field: VAR_JOURNAL_STATUS_DISPLAY
+        validations:
+          - disabled: true
+      - element_id: popup_rapid_approval_journal_list_grid
+        type: grid
+        mode: VIEW
+        field: VAR_POPUP_RAPID_APPROVE_LIST
+        batch: true
+        events:
+          on_selected_row_changed:
+            - run_process: REFRESH_JOURNAL_DETAIL_PROCESS
+        columns:
+          - column: LSELECTED
+            type: SelectCheckBox
+          - column: CREC_ID
+            header: Journal ID
+            type: Textbox
+            validations: Hidden
+          - column: CREF_PRD
+            header: Journal Period
+            type: Textbox
+            validations: Hidden
+          - column: CREF_NO
+            header: Reference No.
+            type: Textbox
+            validations: Disabled
+          - column: CREF_DATE
+            header: Reference Date
+            type: DateTime
+            validations: Disabled
+          - column: CDOC_NO
+            header: Document No.
+            type: Textbox
+            validations: Disabled
+          - column: CTRANS_DESC
+            header: Description
+            type: Textbox
+            validations: Disabled
+          - column: CCURRENCY_CODE
+            header: Currency
+            type: Textbox
+            validations: Disabled
+          - column: NTRANS_AMOUNT
+            header: Amount
+            type: Numeric Textbox
+            validations: Disabled
+      - element_id: popup_rapid_approval_approve_button
+        type: button
+        text: "Approve"
+        validations:
+          conditions:
+            operator: is_not_empty
+            field: VAR_POPUP_RAPID_APPROVE_LIST
+            true: Enabled
+            false: Disabled
+        events:
+          on_click:
+            - run_process: APPROVE_PROCESS
+      - element_id: popup_rapid_approval_cancel_button
+        type: button
+        text: "Cancel"
+        events:
+          on_click:
+            - close_popup: POPUP_RAPID_APPROVAL
+      - element_id: popup_rapid_approval_progress_bar
+        type: progress_bar
+
+    processes:
+      - process_id: INITIAL_PROCESS
+        category: initialization
+        validations: []
+        action:
+          - front:
+              - set_var:
+                  name: VAR_POPUP_RAPID_APPROVE_LIST
+                  value: empty list
+              - set_var:
+                  name: VAR_COMPANY_ID
+                  value: "VAR_COMPANY_ID from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_USER_ID
+                  value: "VAR_USER_ID from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_TRANS_CODE
+                  value: "VAR_TRANS_CODE from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_LANGUAGE_ID
+                  value: "VAR_LANGUAGE_ID from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_DEPT_CODE
+                  value: "VAR_FILTER.CDEPT_CODE from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_DEPT_NAME
+                  value: "VAR_FILTER.CDEPT_NAME from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_JOURNAL_PERIOD_YY
+                  value: "VAR_FILTER.CJOURNAL_PERIOD_YY from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_JOURNAL_PERIOD_MM
+                  value: "VAR_FILTER.CJOURNAL_PERIOD_MM from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_JOURNAL_STATUS
+                  value: "10"
+              - set_var:
+                  name: VAR_JOURNAL_STATUS_DISPLAY
+                  value: "Submitted"
+          - back:
+              - run_stored_procedure:
+                  name: RSP_GL_SEARCH_JOURNAL_LIST
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_USER_ID
+                    - VAR_TRANS_CODE
+                    - VAR_DEPT_CODE
+                    - "VAR_JOURNAL_PERIOD_YY + VAR_JOURNAL_PERIOD_MM"
+                    - VAR_JOURNAL_STATUS
+                    - ""
+                    - VAR_LANGUAGE_ID
+                  save_to: VAR_POPUP_RAPID_APPROVE_LIST
+      - process_id: APPROVE_PROCESS
+        category: batch-function
+        validations:
+          - set_var:
+              name: VAR_DATA_COUNT
+              value: "Total rows in VAR_POPUP_RAPID_APPROVE_LIST with LSELECTED = TRUE"
+          - field: VAR_DATA_COUNT
+            conditions: 0
+            message: "Please select Journal to commit!"
+        action:
+          - back:
+              - start_batch_process
+              - set_var:
+                  name: VAR_STEP
+                  value: 0
+              - set_var:
+                  name: VAR_ERROR_COUNT
+                  value: 0
+              - set_var:
+                  name: VAR_KEY_GUID
+                  value: "New Guid"
+              - run_stored_procedure:
+                  name: RSP_WRITEUPLOADPROCESSSTATUS
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_USER_ID
+                    - VAR_KEY_GUID
+                    - VAR_STEP
+                    - "Start Approving Reversing Journal"
+                    - 0
+              - loop:
+                  through: VAR_POPUP_RAPID_APPROVE_LIST
+                  as: CURRENT_ROW
+                  actions:
+                    - set_var:
+                        name: VAR_STEP
+                        value: "VAR_STEP + 1"
+                    - run_stored_procedure:
+                        name: RSP_WRITEUPLOADPROCESSSTATUS
+                        parameters:
+                          - VAR_COMPANY_ID
+                          - VAR_USER_ID
+                          - VAR_KEY_GUID
+                          - VAR_STEP
+                          - "Processing data {VAR_STEP} of {VAR_DATA_COUNT}"
+                          - 0
+                    - run_stored_procedure:
+                        name: RSP_GL_UPDATE_JOURNAL_STATUS
+                        parameters:
+                          - VAR_COMPANY_ID
+                          - VAR_USER_ID
+                          - VAR_USER_ID
+                          - CURRENT_ROW.CREC_ID
+                          - 20
+                          - VAR_GL_SYSTEM_PARAM.LCOMMIT_APRJRN
+                          - 0
+                    - conditions:
+                        operator: and
+                        conditions:
+                            operator: equals
+                            field: VAR_GL_SYSTEM_PARAM.LCOMMIT_APRJRN
+                            value: true
+                            operator: equals
+                            field: VAR_GL_SYSTEM_PARAM.IREVERSE_JRN_POST
+                            value: true
+                        true:
+                          - run_stored_procedure:
+                              name: RSP_GL_PROCESS_REVERSING_JRN
+                              parameters:
+                                - VAR_COMPANY_ID
+                                - VAR_USER_ID
+                                - CURRENT_ROW.CDEPT_CODE
+                                - CURRENT_ROW.CREF_NO
+                                - CURRENT_ROW.CREC_ID
+                    - conditions:
+                        operator: is_not_empty
+                        field: ""
+                        true:
+                          - set_var:
+                              name: VAR_ERROR_COUNT
+                              value: "VAR_ERROR_COUNT + 1"
+                    - conditions:
+                        operator: equals
+                        field: VAR_STEP
+                        value: VAR_DATA_COUNT
+                        true:
+                          - break_loop
+              - run_stored_procedure:
+                  name: RSP_WRITEUPLOADPROCESSSTATUS
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_USER_ID
+                    - VAR_KEY_GUID
+                    - VAR_STEP
+                    - "Finish Approving Reversing Journal!"
+                    - conditions:
+                        operator: greater_than
+                        field: VAR_ERROR_COUNT
+                        value: 0
+                        true: 9
+                        false: 1
+              - end_batch_process
+          - front:
+              - conditions:
+                  operator: is_not_empty
+                  field: ""
+                  true:
+                    - display_error_message
+                  false:
+                    - display_message:
+                        text: "Selected Journal(s) Approved Successfully!"
+                        buttons: [OK]
+                    - refresh_grid: popup_rapid_approval_journal_list_grid
+
+  - tab_id: JOURNAL_ENTRY
+    sub_program_id: GLT00303
+    initialization:
+      - run_process: INITIAL_PROCESS
+
+    user_interface_elements:
+      - element_id: journal_entry_journal_description_groupbox
+        type: groupbox
+        text: "Journal Description"
+        contains:
+          - element_id: journal_entry_journal_form
+            type: form
+            mode: [VIEW, ADD, EDIT, DELETE]
+            active_mode: VAR_FORM_SAVE_MODE
+            elements:
+              - element_id: journal_entry_department_label
+                type: label
+                text: "Department"
+              - element_id: journal_entry_department_code_textbox
+                type: textbox
+                field: VAR_JOURNAL_FORM.CDEPT_CODE
+                defaults:
+                  - "First value from VAR_USER_DEPARTMENT_LIST.CDEPT_CODE"
+                  - conditions:
+                      operator: contains
+                      field: VAR_USER_DEPARTMENT_LIST.CDEPT_CODE
+                      value: VAR_GL_SYSTEM_PARAM.CCLOSE_DEPT_CODE
+                      true: "VAR_GL_SYSTEM_PARAM.CCLOSE_DEPT_CODE"
+                      false: ""
+                validations:
+                  - max_length: 5
+                  - upper_case: true
+                  - conditions:
+                      operator: equals
+                      field: VAR_FORM_SAVE_MODE
+                      value: "ADD"
+                      true: enabled
+                      false: disabled
+                events:
+                  on_lost_focus:
+                    - search_lookup:
+                        program: GSL00700
+                        project: LOOKUP_GS
+                        parameters:
+                          - VAR_COMPANY_ID
+                          - VAR_USER_ID
+                          - "SearchText: VAR_JOURNAL_FORM.CDEPT_CODE"
+                        save_to: VAR_RESULT
+                    - conditions:
+                        operator: is_not_empty
+                        field: VAR_RESULT
+                        true:
+                          - set_var:
+                              name: VAR_JOURNAL_FORM.CDEPT_NAME
+                              value: "VAR_RESULT.CDEPT_NAME"
+                        false:
+                          - display_message:
+                              text: "Department {0} not found!"
+                              buttons: [OK]
+                              args: ["VAR_JOURNAL_FORM.CDEPT_CODE"]
+                          - set_focus: journal_entry_department_code_textbox
+                          - set_var:
+                              name: VAR_JOURNAL_FORM.CDEPT_CODE
+                              value: ""
+                          - set_var:
+                              name: VAR_JOURNAL_FORM.CDEPT_NAME
+                              value: ""
+              - element_id: journal_entry_department_code_lookup_button
+                type: button
+                text: "..."
+                events:
+                  on_click:
+                    - open_lookup:
+                        program: GSL00700
+                        project: LOOKUP_GS
+                        parameters:
+                          - VAR_COMPANY_ID
+                          - VAR_USER_ID
+                        save_to: VAR_RESULT
+                    - conditions:
+                        operator: is_not_empty
+                        field: VAR_RESULT
+                        true:
+                          - set_var:
+                              name: VAR_JOURNAL_FORM.CDEPT_CODE
+                              value: "VAR_RESULT.CDEPT_CODE"
+                          - set_var:
+                              name: VAR_JOURNAL_FORM.CDEPT_NAME
+                              value: "VAR_RESULT.CDEPT_NAME"
+                        false:
+                          - set_var:
+                              name: VAR_JOURNAL_FORM.CDEPT_CODE
+                              value: ""
+                          - set_var:
+                              name: VAR_JOURNAL_FORM.CDEPT_NAME
+                              value: ""
+              - element_id: journal_entry_department_name_textbox
+                type: textbox
+                field: VAR_JOURNAL_FORM.CDEPT_NAME
+                defaults:
+                  - "First value from VAR_USER_DEPARTMENT_LIST.CDEPT_NAME"
+                  - conditions:
+                      operator: contains
+                      field: VAR_USER_DEPARTMENT_LIST.CDEPT_CODE
+                      value: VAR_GL_SYSTEM_PARAM.CCLOSE_DEPT_CODE
+                      true: "VAR_GL_SYSTEM_PARAM.CCLOSE_DEPT_NAME"
+                      false: ""
+                validations:
+                  - disabled: true
+              - element_id: journal_entry_reference_no_label
+                type: label
+                text: "Reference No.*"
+              - element_id: journal_entry_reference_no_textbox
+                type: textbox
+                field: VAR_JOURNAL_FORM.CREF_NO
+                validations:
+                  - max_length: 30
+                  - conditions:
+                      operator: and
+                      conditions:
+                          operator: equals
+                          field: VAR_FORM_SAVE_MODE
+                          value: "ADD"
+                          operator: equals
+                          field: VAR_GSM_TRANSACTION_CODE.LINCREMENT_FLAG
+                          value: true
+                      true: enabled
+                      false: disabled
+              - element_id: journal_entry_ref_date_label
+                type: label
+                text: "Ref. Date*"
+              - element_id: journal_entry_ref_date_datepicker
+                type: datepicker
+                field: VAR_JOURNAL_FORM.CREF_DATE
+                defaults: VAR_TODAY
+                validations:
+                  - required: true
+                  - max_length: 30
+                  - conditions:
+                      operator: not_equals
+                      field: VAR_FORM_SAVE_MODE
+                      value: "VIEW"
+                      true: enabled
+                      false: disabled
+                events:
+                  on_value_changed:
+                    - conditions:
+                        operator: or
+                        conditions:
+                            operator: not_equals
+                            field: VAR_JOURNAL_FORM.CCURRENCY_CODE
+                            value: VAR_GSM_COMPANY.CLOCAL_CURRENCY_CODE
+                            operator: not_equals
+                            field: VAR_JOURNAL_FORM.CCURRENCY_CODE
+                            value: VAR_GSM_COMPANY.CBASE_CURRENCY_CODE
+                        true:
+                          - run_process: REFRESH_CURRENCY_RATE_PROCESS
+              - element_id: journal_entry_document_no_label
+                type: label
+                text: "Document No."
+              - element_id: journal_entry_document_no_textbox
+                type: textbox
+                field: VAR_JOURNAL_FORM.CDOC_NO
+                validations:
+                  - required: true
+                  - max_length: 30
+                  - conditions:
+                      operator: not_equals
+                      field: VAR_FORM_SAVE_MODE
+                      value: "VIEW"
+                      true: enabled
+                      false: disabled
+              - element_id: journal_entry_doc_date_label
+                type: label
+                text: "Doc. Date*"
+              - element_id: journal_entry_doc_date_datepicker
+                type: datepicker
+                field: VAR_JOURNAL_FORM.CDOC_DATE
+                defaults: VAR_TODAY
+                validations:
+                  - required: true
+                  - conditions:
+                      operator: not_equals
+                      field: VAR_FORM_SAVE_MODE
+                      value: "VIEW"
+                      true: enabled
+                      false: disabled
+              - element_id: journal_entry_reversing_date_label
+                type: label
+                text: "Reversing Date*"
+              - element_id: journal_entry_reversing_date_datepicker
+                type: datepicker
+                field: VAR_JOURNAL_FORM.CREVERSE_DATE
+                validations:
+                  - required: true
+              - element_id: journal_entry_description_label
+                type: label
+                text: "Description*"
+              - element_id: journal_entry_description_textbox
+                type: textbox
+                field: VAR_JOURNAL_FORM.CTRANS_DESC
+                validations:
+                  - required: true
+                  - max_length: 200
+                  - conditions:
+                      operator: not_equals
+                      field: VAR_FORM_SAVE_MODE
+                      value: "VIEW"
+                      true: enabled
+                      false: disabled
+              - element_id: journal_entry_status_label
+                type: label
+                text: "Status"
+              - element_id: journal_entry_status_textbox
+                type: textbox
+                field: VAR_JOURNAL_FORM.CSTATUS_NAME
+                validations:
+                  - disabled: true
+              - element_id: journal_entry_currency_label
+                type: label
+                text: "Currency*"
+              - element_id: journal_entry_currency_combobox
+                type: combobox
+                text: VAR_JOURNAL_CURRENCY_OPTIONS.CCURRENCY_NAME
+                value: VAR_JOURNAL_CURRENCY_OPTIONS.CCURRENCY_CODE
+                field: VAR_JOURNAL_FORM.CCURRENCY_CODE
+                defaults:
+                  - VAR_GSM_COMPANY.CLOCAL_CURRENCY_CODE
+                options:
+                  - run_stored_procedure:
+                      name: RSP_GS_GET_CURRENCY_LIST
+                      parameters:
+                        - VAR_COMPANY_ID
+                        - VAR_USER_ID
+                      save_to: VAR_JOURNAL_CURRENCY_OPTIONS
+                events:
+                  on_value_changed:
+                    - run_process: REFRESH_CURRENCY_RATE_PROCESS
+              - element_id: journal_entry_base_rate_label
+                type: label
+                text: "Base Rate"
+              - element_id: journal_entry_currency_rate_label
+                type: label
+                text: "Currency Rate"
+              - element_id: journal_entry_local_currency_label
+                type: label
+                text: "Local Currency"
+              - element_id: journal_entry_local_currency_numeric_textbox
+                type: numeric_textbox
+                field: VAR_JOURNAL_FORM.NLBASE_RATE
+                validations:
+                  - conditions:
+                      operator: not_equals
+                      field: VAR_JOURNAL_FORM.CCURRENCY_CODE
+                      value: VAR_GSM_COMPANY.CLOCAL_CURRENCY_CODE
+                      true: enabled
+                      false: disabled
+              - element_id: journal_entry_transaction_currency_code_textbox
+                type: textbox
+                field: VAR_JOURNAL_FORM.CCURRENCY_CODE
+                validations:
+                  - disabled: true
+              - element_id: journal_entry_local_currency_rate_numeric_textbox
+                type: numeric_textbox
+                field: VAR_JOURNAL_FORM.NLCURRENCY_RATE
+                validations:
+                  - conditions:
+                      operator: not_equals
+                      field: VAR_JOURNAL_FORM.CCURRENCY_CODE
+                      value: VAR_GSM_COMPANY.CLOCAL_CURRENCY_CODE
+                      true: enabled
+                      false: disabled
+              - element_id: journal_entry_local_currency_code_textbox
+                type: textbox
+                field: VAR_GSM_COMPANY.CLOCAL_CURRENCY_CODE
+                validations:
+                  - disabled: true
+              - element_id: journal_entry_base_currency_label
+                type: label
+                text: "Base Currency"
+              - element_id: journal_entry_base_currency_numeric_textbox
+                type: numeric_textbox
+                field: VAR_JOURNAL_FORM.NBBASE_RATE
+                validations:
+                  - conditions:
+                      operator: not_equals
+                      field: VAR_JOURNAL_FORM.CCURRENCY_CODE
+                      value: VAR_GSM_COMPANY.CBASE_CURRENCY_CODE
+                      true: enabled
+                      false: disabled
+              - element_id: journal_entry_base_currency_rate_numeric_textbox
+                type: numeric_textbox
+                field: VAR_JOURNAL_FORM.NBCURRENCY_RATE
+                validations:
+                  - conditions:
+                      operator: not_equals
+                      field: VAR_JOURNAL_FORM.CCURRENCY_CODE
+                      value: VAR_GSM_COMPANY.CBASE_CURRENCY_CODE
+                      true: enabled
+                      false: disabled
+              - element_id: journal_entry_base_currency_code_textbox
+                type: textbox
+                field: VAR_GSM_COMPANY.CBASE_CURRENCY_CODE
+                validations:
+                  - disabled: true
+              - element_id: journal_entry_prelist_label
+                type: label
+                text: "Prelist"
+              - element_id: journal_entry_prelist_numeric_textbox
+                type: numeric_textbox
+                field: VAR_JOURNAL_FORM._AMOUNT_AMOUNT
+              - element_id: journal_entry_total_debit_label
+                type: label
+                text: "Total Debit"
+              - element_id: journal_entry_total_debit_numeric_textbox
+                type: numeric_textbox
+                field: VAR_JOURNAL_FORM.NDEBIT_AMOUNT
+                validations:
+                  - disabled: true
+              - element_id: journal_entry_total_credit_label
+                type: label
+                text: "Total Credit"
+              - element_id: journal_entry_total_credit_numeric_textbox
+                type: numeric_textbox
+                field: VAR_JOURNAL_FORM.NCREDIT_AMOUNT
+                validations:
+                  - disabled: true
+              - element_id: journal_entry_updated_by_label
+                type: label
+                text: "Updated By"
+              - element_id: journal_entry_updated_by_textbox
+                type: textbox
+                field: VAR_JOURNAL_FORM.CUPDATE_BY
+                validations:
+                  - disabled: true
+              - element_id: journal_entry_updated_date_datepicker
+                type: datepicker
+                field: VAR_JOURNAL_FORM.DUPDATE_DATE
+                validations:
+                  - disabled: true
+              - element_id: journal_entry_created_by_label
+                type: label
+                text: "Created By"
+              - element_id: journal_entry_created_by_textbox
+                type: textbox
+                field: VAR_JOURNAL_FORM.CCREATE_BY
+                validations:
+                  - disabled: true
+              - element_id: journal_entry_created_date_datepicker
+                type: datepicker
+                field: VAR_JOURNAL_FORM.DCREATE_DATE
+                validations:
+                  - disabled: true
+
+      - element_id: journal_entry_journal_detail_groupbox
+        type: groupbox
+        text: "Journal Detail"
+        contains:
+          - element_id: journal_entry_journal_detail_grid
+            type: grid
+            field: VAR_JOURNAL_DETAIL_LIST
+            mode: [VIEW, ADD, EDIT, DELETE]
+            active_mode: VAR_GRID_SAVE_MODE
+            validations:
+              - conditions:
+                  operator: not_equals
+                  field: VAR_FORM_SAVE_MODE
+                  value: "VIEW"
+                  true: enabled
+                  false: disabled
+            events:
+              on_add:
+                - run_process: ADD_JOURNAL_DETAIL_PROCESS
+              on_edit:
+                - run_process: EDIT_JOURNAL_DETAIL_PROCESS
+              on_delete:
+                - run_process: DELETE_JOURNAL_DETAIL_PROCESS
+              on_save:
+                - run_process: SAVE_JOURNAL_DETAIL_PROCESS
+            columns:
+              - column: CREC_ID
+                header: Journal Detail ID
+                type: Textbox
+                validations: Hidden
+              - column: CBSIS
+                header: Account Type
+                type: Textbox
+                validations: Hidden
+              - column: CINPUT_TYPE
+                header: Input Type
+                type: Textbox
+                validations: Hidden
+              - column: INO
+                header: No.
+                type: Numeric Textbox
+                validations: Disabled
+              - column: CGLACCOUNT_NO
+                header: Account No.
+                type: Lookup Textbox
+                validations:
+                  - max_length: 20
+                  - upper_case: true
+                  - conditions:
+                      operator: equals
+                      field: VAR_GRID_SAVE_MODE
+                      value: "EDIT"
+                      true: enabled
+                      false: disabled
+                events:
+                  on_lost_focus:
+                    - search_lookup:
+                        program: GSL00500
+                        project: LOOKUP_GS
+                        parameters:
+                          - VAR_COMPANY_ID
+                          - ""
+                          - "GLM00100"
+                          - ""
+                          - ""
+                          - 0
+                          - 0
+                          - VAR_USER_ID
+                          - ""
+                          - VAR_LANGUAGE_ID
+                          - "SearchText: current row VAR_JOURNAL_DETAIL_LIST.CGLACCOUNT_NO"
+                        save_to: VAR_RESULT
+                    - conditions:
+                        operator: is_not_empty
+                        field: VAR_RESULT
+                        true:
+                          - set_var:
+                              name: "current row VAR_JOURNAL_DETAIL_LIST.CGLACCOUNT_NO"
+                              value: "VAR_RESULT.CGLACCOUNT_NO"
+                          - set_var:
+                              name: "current row VAR_JOURNAL_DETAIL_LIST.CGLACCOUNT_NAME"
+                              value: "VAR_RESULT.CGLACCOUNT_NAME"
+                          - set_var:
+                              name: "current row VAR_JOURNAL_DETAIL_LIST.CBSIS"
+                              value: "VAR_RESULT.CBSIS"
+                          - conditions:
+                              operator: and
+                              conditions:
+                                  operator: equals
+                                  field: "VAR_RESULT.CBSIS"
+                                  value: "B"
+                                  operator: equals
+                                  field: VAR_GSM_COMPANY.LENABLE_CENTER_IS
+                                  value: true
+                              true:
+                                - set_var:
+                                    name: "current row VAR_JOURNAL_DETAIL_LIST.CCENTER_CODE"
+                                    value: ""
+                                - set_var:
+                                    name: "current row VAR_JOURNAL_DETAIL_LIST.CCENTER_NAME"
+                                    value: ""
+                        false:
+                          - display_message:
+                              text: "GL Account {0} not found!"
+                              buttons: [OK]
+                              args: ["current row VAR_JOURNAL_DETAIL_LIST.CGLACCOUNT_NO"]
+                          - set_focus: this column
+              - column: CGLACCOUNT_NAME
+                header: Account Name
+                type: Textbox
+                validations: Disabled
+              - column: CCENTER_CODE
+                header: Center
+                type: Combobox
+                text: VAR_JOURNAL_STATUS_OPTIONS.CCENTER_NAME
+                value: VAR_JOURNAL_STATUS_OPTIONS.CCENTER_CODE
+                options:
+                  - run_stored_procedure:
+                      name: RSP_GS_GET_CENTER_LIST
+                      parameters:
+                        - VAR_COMPANY_ID
+                        - VAR_USER_ID
+                      save_to: VAR_JOURNAL_STATUS_OPTIONS
+                validations:
+                  - conditions:
+                      operator: and
+                      conditions:
+                          operator: equals
+                          field: VAR_GRID_SAVE_MODE
+                          value: "EDIT"
+                          operator: or
+                          conditions:
+                              operator: equals
+                              field: VAR_GSM_COMPANY.LENABLE_CENTER_BS
+                              value: true
+                              operator: and
+                              conditions:
+                                  operator: equals
+                                  field: "current row VAR_JOURNAL_DETAIL_LIST.CBSIS"
+                                  value: "I"
+                                  operator: equals
+                                  field: VAR_GSM_COMPANY.LENABLE_CENTER_IS
+                                  value: true
+                      true: enabled
+                      false: disabled
+              - column: CDBCR
+                header: D/C
+                type: Textbox
+                validations: Disabled
+                value:
+                  conditions:
+                      operator: and
+                      conditions:
+                          operator: greater_than
+                          field: "current row VAR_JOURNAL_DETAIL_LIST.NDEBIT"
+                          value: 0
+                          operator: equals
+                          field: "current row VAR_JOURNAL_DETAIL_LIST.NCREDIT"
+                          value: 0
+                      true: "D"
+                      false:
+                        operator: and
+                        conditions:
+                            operator: equals
+                            field: "current row VAR_JOURNAL_DETAIL_LIST.NDEBIT"
+                            value: 0
+                            operator: greater_than
+                            field: "current row VAR_JOURNAL_DETAIL_LIST.NCREDIT"
+                            value: 0
+                        true: "C"
+                        false: ""
+              - column: NDEBIT
+                header: Debit
+                type: Numeric Textbox
+                validations:
+                  - conditions:
+                      operator: not_equals
+                      field: VAR_GRID_SAVE_MODE
+                      value: "VIEW"
+                      true: enabled
+                      false: disabled
+                  - decimal_places: 2
+              - column: NCREDIT
+                header: Credit
+                type: Numeric Textbox
+                validations:
+                  - conditions:
+                      operator: not_equals
+                      field: VAR_GRID_SAVE_MODE
+                      value: "VIEW"
+                      true: enabled
+                      false: disabled
+                  - decimal_places: 2
+              - column: CDETAIL_DESC
+                header: Description
+                type: Textbox
+                validations:
+                  - conditions:
+                      operator: not_equals
+                      field: VAR_GRID_SAVE_MODE
+                      value: "VIEW"
+                      true: enabled
+                      false: disabled
+              - column: CDOCUMENT_NO
+                header: Voucher No.
+                type: Textbox
+                validations:
+                  - max_length: 30
+                  - conditions:
+                      operator: not_equals
+                      field: VAR_GRID_SAVE_MODE
+                      value: "VIEW"
+                      true: enabled
+                      false: disabled
+              - column: CDOCUMENT_DATE
+                header: Voucher Date
+                type: DateTime
+                validations:
+                  - conditions:
+                      operator: not_equals
+                      field: VAR_GRID_SAVE_MODE
+                      value: "VIEW"
+                      true: enabled
+                      false: disabled
+              - column: NLDEBIT
+                header: DB (Local)
+                type: Numeric Textbox
+                validations: Disabled
+              - column: NLCREDIT
+                header: CR (Local)
+                type: Numeric Textbox
+                validations: Disabled
+              - column: NBDEBIT
+                header: DB (Base)
+                type: Numeric Textbox
+                validations: Disabled
+              - column: NBCREDIT
+                header: CR (Base)
+                type: Numeric Textbox
+                validations: Disabled
+
+      - element_id: journal_entry_add_button
+        type: button
+        text: "Add"
+        validations:
+          - conditions:
+              operator: equals
+              field: VAR_FORM_SAVE_MODE
+              value: "VIEW"
+              true: enabled
+              false: disabled
+        events:
+          on_click:
+            - run_process: ADD_JOURNAL_PROCESS
+
+      - element_id: journal_entry_copy_button
+        type: button
+        text: "Copy"
+        validations:
+          - conditions:
+              operator: and
+              conditions:
+                  operator: equals
+                  field: VAR_FORM_SAVE_MODE
+                  value: "VIEW"
+                  operator: is_not_empty
+                  field: VAR_JOURNAL_FORM
+              true: enabled
+              false: disabled
+        events:
+          on_click:
+            - run_process: COPY_JOURNAL_PROCESS
+
+      - element_id: journal_entry_modify_button
+        type: button
+        text: "Modify"
+        validations:
+          - conditions:
+              operator: and
+              conditions:
+                  operator: equals
+                  field: VAR_FORM_SAVE_MODE
+                  value: "VIEW"
+                  operator: equals
+                  field: VAR_JOURNAL_FORM.CSTATUS
+                  value: "00"
+              true: enabled
+              false: disabled
+        events:
+          on_click:
+            - run_process: EDIT_JOURNAL_PROCESS
+
+      - element_id: journal_entry_delete_button
+        type: button
+        text: "Delete"
+        validations:
+          - conditions:
+              operator: and
+              conditions:
+                  operator: equals
+                  field: VAR_FORM_SAVE_MODE
+                  value: "VIEW"
+                  operator: equals
+                  field: VAR_JOURNAL_FORM.CSTATUS
+                  value: "00"
+              true: enabled
+              false: disabled
+        events:
+          on_click:
+            - run_process: DELETE_JOURNAL_PROCESS
+
+      - element_id: journal_entry_cancel_button
+        type: button
+        text: "Cancel"
+        validations:
+          - conditions:
+              operator: not_equals
+              field: VAR_FORM_SAVE_MODE
+              value: "VIEW"
+              true: enabled
+              false: disabled
+        events:
+          on_click:
+            - run_process: CANCEL_JOURNAL_PROCESS
+
+      - element_id: journal_entry_save_button
+        type: button
+        text: "Save"
+        validations:
+          - conditions:
+              operator: not_equals
+              field: VAR_FORM_SAVE_MODE
+              value: "VIEW"
+              true: enabled
+              false: disabled
+        events:
+          on_click:
+            - run_process: SAVE_JOURNAL_PROCESS
+
+      - element_id: journal_entry_print_button
+        type: button
+        text: "Print"
+        validations:
+          - conditions:
+              operator: and
+              conditions:
+                  operator: equals
+                  field: VAR_FORM_SAVE_MODE
+                  value: "VIEW"
+                  operator: is_not_empty
+                  field: VAR_JOURNAL_FORM
+              true: enabled
+              false: disabled
+        events:
+          on_click:
+            - call_program:
+                program: GLTR00100
+                parameters:
+                  - P_JOURNAL_ID: VAR_JOURNAL_ID
+
+      - element_id: journal_entry_submit_button
+        type: button
+        text:
+          conditions:
+            operator: equals
+            field: VAR_JOURNAL_FORM.CSTATUS
+            value: "10"
+            true: "Undo Submit"
+            false: "Submit"
+        validations:
+          - conditions:
+              operator: and
+              conditions:
+                  operator: equals
+                  field: VAR_FORM_SAVE_MODE
+                  value: "VIEW"
+                  operator: or
+                  conditions:
+                      operator: equals
+                      field: VAR_JOURNAL_FORM.CSTATUS
+                      value: "00"
+                      operator: equals
+                      field: VAR_JOURNAL_FORM.CSTATUS
+                      value: "10"
+              true: enabled
+              false: disabled
+        events:
+          on_click:
+            - run_process: SUBMIT_JOURNAL_PROCESS
+
+      - element_id: journal_entry_approve_button
+        type: button
+        text: "Approve"
+        validations:
+          - conditions:
+              operator: and
+              conditions:
+                  operator: equals
+                  field: VAR_JOURNAL_FORM.CSTATUS
+                  value: "00"
+                  operator: equals
+                  field: VAR_GSM_TRANSACTION_CODE.LAPPROVAL_FLAG
+                  value: true
+              true: enabled
+              false: disabled
+        events:
+          on_click:
+            - run_process: APPROVE_JOURNAL_PROCESS
+
+      - element_id: journal_entry_commit_button
+        type: button
+        text:
+          conditions:
+            operator: equals
+            field: VAR_JOURNAL_FORM.CSTATUS
+            value: "80"
+            true: "Undo Commit"
+            false: "Commit"
+        validations:
+          - conditions:
+              operator: and
+              conditions:
+                  operator: or
+                  conditions:
+                      operator: equals
+                      field: VAR_JOURNAL_FORM.CSTATUS
+                      value: "20"
+                      operator: and
+                      conditions:
+                          operator: equals
+                          field: VAR_JOURNAL_FORM.CSTATUS
+                          value: "80"
+                          operator: not_equals
+                          field: VAR_IUNDO_COMMIT_JRN
+                          value: 1
+                  operator: greater_or_equal
+                  field: VAR_JOURNAL_FORM.CJOURNAL_PERIOD
+                  value: VAR_GL_SYSTEM_PARAM.CSOFT_PERIOD
+              true: enabled
+              false: disabled
+        events:
+          on_click:
+            - run_process: COMMIT_JOURNAL_PROCESS
+
+    processes:
+      - process_id: INITIAL_PROCESS
+        category: initialization
+        validations: []
+        action:
+          - front:
+              - set_var:
+                  name: VAR_JOURNAL_FORM
+                  value: empty object
+              - set_var:
+                  name: VAR_JOURNAL_DETAIL_LIST
+                  value: empty list
+              - set_var:
+                  name: VAR_FORM_SAVE_MODE
+                  value: "VIEW"
+              - set_var:
+                  name: VAR_GRID_SAVE_MODE
+                  value: "VIEW"
+              - set_var:
+                  name: VAR_JOURNAL_ID
+                  value: "selected VAR_JOURNAL_LIST.CREC_ID from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_COMPANY_ID
+                  value: "VAR_COMPANY_ID from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_USER_ID
+                  value: "VAR_USER_ID from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_LANGUAGE_ID
+                  value: "VAR_LANGUAGE_ID from JOURNAL_LIST"
+              - set_var:
+                  name: VAR_GSM_COMPANY
+                  value: "VAR_GSM_COMPANY from JOURNAL_LIST"
+              - run_process: REFRESH_FORM_PROCESS
+
+      - process_id: REFRESH_FORM_PROCESS
+        category: business-object-overridden-function
+        validations: []
+        action:
+          - back:
+              - start_display_process
+              - run_stored_procedure:
+                  name: RSP_GL_GET_JOURNAL
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_USER_ID
+                    - VAR_JOURNAL_ID
+                    - VAR_LANGUAGE_ID
+                  save_to: VAR_JOURNAL_FORM
+              - run_stored_procedure:
+                  name: RSP_GL_GET_JOURNAL_DETAIL_LIST
+                  parameters:
+                    - VAR_JOURNAL_FORM.CREC_ID
+                    - VAR_LANGUAGE_ID
+                  save_to: VAR_JOURNAL_DETAIL_LIST
+              - end_display_process
+
+      - process_id: REFRESH_CURRENCY_RATE_PROCESS
+        category: other-function
+        validations: []
+        action:
+          - back:
+              - run_stored_procedure:
+                  name: RSP_GS_GET_LAST_CURRENCY_RATE
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_JOURNAL_FORM.CCURRENCY_CODE
+                    - VAR_GL_SYSTEM_PARAM.CRATETYPE_CODE
+                    - "VAR_JOURNAL_FORM.CREF_DATE (YYYYMMDD)"
+                  save_to: VAR_RESULT
+          - front:
+              - conditions:
+                  operator: is_not_empty
+                  field: VAR_RESULT
+                  true:
+                    - set_var:
+                        name: VAR_JOURNAL_FORM.NLBASE_RATE
+                        value: "VAR_RESULT.NLBASE_RATE"
+                    - set_var:
+                        name: VAR_JOURNAL_FORM.NLCURRENCY_RATE
+                        value: "VAR_RESULT.NLCURRENCY_RATE"
+                    - set_var:
+                        name: VAR_JOURNAL_FORM.NBBASE_RATE
+                        value: "VAR_RESULT.NBBASE_RATE"
+                    - set_var:
+                        name: VAR_JOURNAL_FORM.NBCURRENCY_RATE
+                        value: "VAR_RESULT.NBCURRENCY_RATE"
+                  false:
+                    - set_var:
+                        name: VAR_JOURNAL_FORM.NLBASE_RATE
+                        value: 1
+                    - set_var:
+                        name: VAR_JOURNAL_FORM.NLCURRENCY_RATE
+                        value: 1
+                    - set_var:
+                        name: VAR_JOURNAL_FORM.NBBASE_RATE
+                        value: 1
+                    - set_var:
+                        name: VAR_JOURNAL_FORM.NBCURRENCY_RATE
+                        value: 1
+
+      - process_id: ADD_JOURNAL_PROCESS
+        category: other-function
+        validations: []
+        action:
+          - front:
+              - set_var:
+                  name: VAR_FORM_SAVE_MODE
+                  value: "ADD"
+              - set_disabled: JOURNAL_LIST
+              - set_var:
+                  name: VAR_JOURNAL_FORM
+                  value: empty object
+              - set_var:
+                  name: VAR_JOURNAL_DETAIL_LIST
+                  value: empty list
+              - set_focus: journal_entry_department_code_textbox
+
+      - process_id: EDIT_JOURNAL_PROCESS
+        category: other-function
+        validations: []
+        action:
+          - front:
+              - set_var:
+                  name: VAR_FORM_SAVE_MODE
+                  value: "EDIT"
+              - set_disabled: JOURNAL_LIST
+              - set_focus: journal_entry_department_code_textbox
+
+      - process_id: DELETE_JOURNAL_PROCESS
+        category: business-object-overridden-function
+        validations: []
+        action:
+          - front:
+              - display_message:
+                  text: "Are you sure you want to delete this journal?"
+                  buttons: [Yes/No]
+                  on_no: end_process
+          - back:
+              - start_delete_process
+              - run_stored_procedure:
+                  name: RSP_GL_UPDATE_JOURNAL_STATUS
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_USER_ID
+                    - VAR_USER_ID
+                    - VAR_JOURNAL_FORM.CREC_ID
+                    - 99
+                    - 0
+                    - 0
+              - end_delete_process
+          - front:
+              - conditions:
+                  operator: is_not_empty
+                  field: ""
+                  true:
+                    - display_error_message
+                  false:
+                    - display_message:
+                        text: "Journal Deleted Successfully"
+                        buttons: [OK]
+
+      - process_id: COPY_JOURNAL_PROCESS
+        category: other-function
+        validations: []
+        action:
+          - front:
+              - set_var:
+                  name: VAR_FORM_SAVE_MODE
+                  value: "ADD"
+              - set_disabled: JOURNAL_LIST
+              - set_var:
+                  name: VAR_JOURNAL_FORM.CREF_NO
+                  value: ""
+              - set_focus: journal_entry_department_code_textbox
+
+      - process_id: SUBMIT_JOURNAL_PROCESS
+        category: other-function
+        validations:
+          - field: VAR_JOURNAL_FORM.CSTATUS
+            conditions:
+              operator: and
+              conditions:
+                  operator: equals
+                  field: VAR_JOURNAL_FORM.CSTATUS
+                  value: "00"
+                  operator: less_than
+                  field: VAR_JOURNAL_FORM.CREF_PRD
+                  value: VAR_GL_SYSTEM_PARAM.CSOFT_PERIOD
+            message: "Cannot Submit Journal with date before Soft Close Period!"
+        action:
+          - front:
+              - conditions:
+                  operator: equals
+                  field: VAR_JOURNAL_FORM.CSTATUS
+                  value: "10"
+                  true:
+                    - display_message:
+                        text: "Are you sure you want to undo submit this journal?"
+                        buttons: [Yes/No]
+                        on_no: end_process
+                  false:
+                    - display_message:
+                        text: "Are you sure you want to submit this journal?"
+                        buttons: [Yes/No]
+                        on_no: end_process
+              - conditions:
+                  operator: equals
+                  field: VAR_JOURNAL_FORM.CSTATUS
+                  value: "00"
+                  true:
+                    - set_var:
+                        name: VAR_NEW_STATUS
+                        value: "10"
+                  false:
+                    - set_var:
+                        name: VAR_NEW_STATUS
+                        value: "00"
+          - back:
+              - run_stored_procedure:
+                  name: RSP_GL_UPDATE_JOURNAL_STATUS
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_USER_ID
+                    - VAR_USER_ID
+                    - VAR_JOURNAL_FORM.CREC_ID
+                    - VAR_NEW_STATUS
+                    - 0
+                    - 0
+          - front:
+              - conditions:
+                  operator: is_not_empty
+                  field: ""
+                  true:
+                    - display_error_message
+                  false:
+                    - run_process: REFRESH_FORM_PROCESS
+
+      - process_id: APPROVE_JOURNAL_PROCESS
+        category: other-function
+        validations: []
+        action:
+          - front:
+              - conditions:
+                  operator: equals
+                  field: VAR_JOURNAL_FORM.LALLOW_APPROVE
+                  value: false
+                  true:
+                    - display_message:
+                        text: "You don't have right to approve this journal!"
+                        buttons: [OK]
+                    - end_process
+              - display_message:
+                  text: "Are you sure you want to approve this journal?"
+                  buttons: [Yes/No]
+                  on_no: end_process
+          - back:
+              - run_stored_procedure:
+                  name: RSP_GL_UPDATE_JOURNAL_STATUS
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_USER_ID
+                    - VAR_USER_ID
+                    - VAR_JOURNAL_FORM.CREC_ID
+                    - 20
+                    - VAR_GL_SYSTEM_PARAM.LCOMMIT_APRJRN
+                    - 0
+          - front:
+              - conditions:
+                  operator: is_not_empty
+                  field: ""
+                  true:
+                    - display_error_message
+                  false:
+                    - display_message:
+                        text: "Journal Approved Successfully"
+                        buttons: [OK]
+
+      - process_id: COMMIT_JOURNAL_PROCESS
+        category: other-function
+        validations:
+          - field: VAR_GSM_TRANSACTION_CODE.LINCREMENT_FLAG
+            conditions:
+              operator: equals
+              field: VAR_GSM_TRANSACTION_CODE.LINCREMENT_FLAG
+              value: false
+            message: "Cannot commit Reverse Journal with Manual numbering! Transaction numbering setting for Reversing Journal should be auto increment, not manual numbering!"
+        action:
+          - front:
+              - conditions:
+                  operator: equals
+                  field: VAR_JOURNAL_FORM.CSTATUS
+                  value: "80"
+                  true:
+                    - display_message:
+                        text: "Are you sure you want to undo commit this journal?"
+                        buttons: [Yes/No]
+                        on_no: end_process
+                  false:
+                    - display_message:
+                        text: "Are you sure you want to commit this journal?"
+                        buttons: [Yes/No]
+                        on_no: end_process
+          - back:
+              - conditions:
+                  operator: equals
+                  field: VAR_JOURNAL_FORM.CSTATUS
+                  value: "80"
+                  true:
+                    - run_stored_procedure:
+                        name: RSP_GL_UNDO_REVERSING_JRN
+                        parameters:
+                          - VAR_COMPANY_ID
+                          - VAR_USER_ID
+                          - VAR_JOURNAL_FORM.CREC_ID
+                  false:
+                    - conditions:
+                        operator: equals
+                        field: VAR_GL_SYSTEM_PARAM.IREVERSE_JRN_POST
+                        value: true
+                        true:
+                          - run_stored_procedure:
+                              name: RSP_GL_PROCESS_REVERSING_JRN
+                              parameters:
+                                - VAR_COMPANY_ID
+                                - VAR_USER_ID
+                                - VAR_JOURNAL_FORM.CDEPT_CODE
+                                - VAR_JOURNAL_FORM.CREF_NO
+                                - VAR_JOURNAL_FORM.CREC_ID
+              - conditions:
+                  operator: equals
+                  field: VAR_JOURNAL_FORM.CSTATUS
+                  value: "80"
+                  true:
+                    - conditions:
+                        operator: equals
+                        field: VAR_GSM_TRANSACTION_CODE.LAPPROVAL_FLAG
+                        value: true
+                        true:
+                          - set_var:
+                              name: VAR_NEW_STATUS
+                              value: "10"
+                        false:
+                          - set_var:
+                              name: VAR_NEW_STATUS
+                              value: "00"
+                  false:
+                    - set_var:
+                        name: VAR_NEW_STATUS
+                        value: "80"
+              - run_stored_procedure:
+                  name: RSP_GL_UPDATE_JOURNAL_STATUS
+                  parameters:
+                    - VAR_COMPANY_ID
+                    - VAR_USER_ID
+                    - VAR_USER_ID
+                    - VAR_JOURNAL_FORM.CREC_ID
+                    - VAR_NEW_STATUS
+                    - 0
+                    - conditions:
+                        operator: equals
+                        field: VAR_JOURNAL_FORM.CSTATUS
+                        value: "80"
+                        true: 1
+                        false: 0
+          - front:
+              - conditions:
+                  operator: is_not_empty
+                  field: ""
+                  true:
+                    - display_error_message
+                  false:
+                    - conditions:
+                        operator: equals
+                        field: VAR_JOURNAL_FORM.CSTATUS
+                        value: "80"
+                        true:
+                          - display_message:
+                              text: "Journal Undo Committed Successfully"
+                              buttons: [OK]
+                        false:
+                          - display_message:
+                              text: "Journal Committed Successfully"
+                              buttons: [OK]
+
+      - process_id: SAVE_JOURNAL_PROCESS
+        category: business-object-overridden-function
+        validations:
+          - field: VAR_JOURNAL_FORM.CDEPT_CODE
+            conditions:
+              operator: is_empty
+              field: VAR_JOURNAL_FORM.CDEPT_CODE
+            message: "Please select Department!"
+          - field: VAR_JOURNAL_FORM.CREF_NO
+            conditions:
+              operator: and
+              conditions:
+                  operator: is_empty
+                  field: VAR_JOURNAL_FORM.CREF_NO
+                  operator: equals
+                  field: VAR_GSM_TRANSACTION_CODE.LINCREMENT_FLAG
+                  value: false
+            message: "Reference No. is required!"
+          - field: VAR_JOURNAL_FORM.CREF_DATE
+            conditions:
+              operator: less_than
+              field: VAR_JOURNAL_FORM.CREF_DATE
+              value: VAR_CCURRENT_PERIOD_START_DATE
+            message: "Reference Date may not be earlier than Current Period!"
+          - field: VAR_JOURNAL_FORM.CREF_DATE
+            conditions:
+              operator: greater_than
+              field: VAR_JOURNAL_FORM.CREF_DATE
+              value: VAR_JOURNAL_FORM.CREVERSE_DATE
+            message: "Reference Date may not be later than Reversing Date!"
+          - field: VAR_JOURNAL_FORM.CREF_DATE
+            conditions:
+              operator: greater_than
+              field: VAR_JOURNAL_FORM.CREF_DATE
+              value: VAR_TODAY
+            message: "Reference Date may not be later than Today!"
+          - field: VAR_JOURNAL_FORM.CDOC_NO
+            conditions:
+              operator: is_empty
+              field: VAR_JOURNAL_FORM.CDOC_NO
+            message: "Document No. is required!"
+          - field: VAR_JOURNAL_FORM.CDOC_DATE
+            conditions:
+              operator: is_empty
+              field: VAR_JOURNAL_FORM.CDOC_DATE
+            message: "Document Date is required!"
+          - field: VAR_JOURNAL_FORM.CDOC_DATE
+            conditions:
+              operator: and
+              conditions:
+                  operator: is_not_empty
+                  field: VAR_JOURNAL_FORM.CDOC_DATE
+                  operator: is_not_empty
+                  field: VAR_JOURNAL_FORM.CREVERSE_DATE
+                  operator: greater_than
+                  field: VAR_JOURNAL_FORM.CDOC_DATE
+                  value: VAR_JOURNAL_FORM.CREVERSE_DATE
+            message: "Document Date cannot be after Reversing Date!"
+          - field: VAR_JOURNAL_FORM.CDOC_DATE
+            conditions:
+              operator: and
+              conditions:
+                  operator: is_not_empty
+                  field: VAR_JOURNAL_FORM.CDOC_DATE
+                  operator: less_than
+                  field: VAR_JOURNAL_FORM.CDOC_DATE
+                  value: VAR_CCURRENT_PERIOD_START_DATE
+            message: "Document Date cannot be before Current Period!"
+          - field: VAR_JOURNAL_FORM.CREVERSE_DATE
+            conditions:
+              operator: is_empty
+              field: VAR_JOURNAL_FORM.CREVERSE_DATE
+            message: "Reversing Date is required!"
+          - field: VAR_JOURNAL_FORM.CREVERSE_DATE
+            conditions:
+              operator: less_than
+              field: VAR_JOURNAL_FORM.CREVERSE_DATE
+              value: VAR_JOURNAL_FORM.CREF_DATE
+            message: "Reversing Date may not be earlier than Ref. Date!"
+          - field: VAR_JOURNAL_FORM.CTRANS_DESC
+            conditions:
+              operator: is_empty
+              field: VAR_JOURNAL_FORM.CTRANS_DESC
+            message: "Description is required!"
+          - field: VAR_JOURNAL_DETAIL_LIST
+            conditions:
+              operator: is_empty
+              field: VAR_JOURNAL_DETAIL_LIST
+            message: "Please input Journal Detail!"
+          - field: VAR_JOURNAL_FORM.NTRANS_AMOUNT
+            conditions:
+              operator: and
+              conditions:
+                  operator: or
+                  conditions:
+                      operator: greater_than
+                      field: VAR_JOURNAL_FORM.NDEBIT_AMOUNT
+                      value: 0
+                      operator: greater_than
+                      field: VAR_JOURNAL_FORM.NCREDIT_AMOUNT
+                      value: 0
+                  operator: not_equals
+                  field: VAR_JOURNAL_FORM.NDEBIT_AMOUNT
+                  value: VAR_JOURNAL_FORM.NCREDIT_AMOUNT
+            message: "Total Debit Amount must be equal to Total Credit Amount!"
+          - field: VAR_JOURNAL_FORM.NPRELIST_AMOUNT
+            conditions:
+              operator: and
+              conditions:
+                  operator: greater_than
+                  field: VAR_JOURNAL_FORM.NPRELIST_AMOUNT
+                  value: 0
+                  operator: not_equals
+                  field: VAR_JOURNAL_FORM.NPRELIST_AMOUNT
+                  value: VAR_JOURNAL_FORM.NTRANS_AMOUNT
+            message: "Journal Amount is not equal to Prelist!"
+          - field: VAR_JOURNAL_FORM.NLBASE_RATE
+            conditions:
+              operator: less_or_equal
+              field: VAR_JOURNAL_FORM.NLBASE_RATE
+              value: 0
+            message: "Local Currency Base Rate must be greater than 0!"
+          - field: VAR_JOURNAL_FORM.NLCURRENCY_RATE
+            conditions:
+              operator: less_or_equal
+              field: VAR_JOURNAL_FORM.NLCURRENCY_RATE
+              value: 0
+            message: "Local Currency Rate must be greater than 0!"
+          - field: VAR_JOURNAL_FORM.NBBASE_RATE
+            conditions:
+              operator: less_or_equal
+              field: VAR_JOURNAL_FORM.NBBASE_RATE
+              value: 0
+            message: "Base Currency Base Rate must be greater than 0!"
+          - field: VAR_JOURNAL_FORM.NBCURRENCY_RATE
+            conditions:
+              operator: less_or_equal
+              field: VAR_JOURNAL_FORM.NBCURRENCY_RATE
+              value: 0
+            message: "Base Currency  Rate must be greater than 0!"
+        action:
+          - back:
+              - start_update_process
+              - create_temporary_table:
+                  name: "#GLT0100_JOURNAL_DETAIL"
+                  columns:
+                    - name: CGLACCOUNT_NO
+                      type: VARCHAR(20)
+                    - name: CCENTER_CODE
+                      type: VARCHAR(10)
+                    - name: CDBCR
+                      type: CHAR(1)
+                    - name: NAMOUNT
+                      type: NUMERIC(19,2)
+                    - name: CDETAIL_DESC
+                      type: NVARCHAR(200)
+                    - name: CDOCUMENT_NO
+                      type: VARCHAR(20)
+                    - name: CDOCUMENT_DATE
+                      type: VARCHAR(8)
+                    - name: CINPUT_TYPE
+                      type: CHAR(1)
+                      default: "'M'"
+              - bulk_insert:
+                  from: VAR_JOURNAL_DETAIL_LIST
+                  to: "#GLT0100_JOURNAL_DETAIL"
+              - run_stored_procedure:
+                  name: RSP_GL_SAVE_JOURNAL
+                  parameters:
+                    - VAR_USER_ID
+                    - conditions:
+                        operator: equals
+                        field: VAR_FORM_SAVE_MODE
+                        value: "ADD"
+                        true: ""
+                        false: "VAR_JOURNAL_FORM.CREC_ID"
+                    - conditions:
+                        operator: equals
+                        field: VAR_FORM_SAVE_MODE
+                        value: "ADD"
+                        true: "NEW"
+                        false: "VAR_FORM_SAVE_MODE"
+                    - VAR_COMPANY_ID
+                    - VAR_JOURNAL_FORM.CDEPT_CODE
+                    - VAR_TRANS_CODE
+                    - conditions:
+                        operator: equals
+                        field: VAR_GSM_TRANSACTION_CODE.LINCREMENT_FLAG
+                        value: false
+                        true: "VAR_JOURNAL_FORM.CREF_NO"
+                        false: ""
+                    - VAR_JOURNAL_FORM.CDOC_NO
+                    - "VAR_JOURNAL_FORM.CDOC_DATE (YYYYMMDD)"
+                    - "VAR_JOURNAL_FORM.CREF_DATE (YYYYMMDD)"
+                    - "VAR_JOURNAL_FORM.CREVERSE_DATE (YYYYMMDD)"
+                    - 0
+                    - VAR_JOURNAL_FORM.CTRANS_DESC
+                    - VAR_JOURNAL_FORM.CCURRENCY_CODE
+                    - VAR_JOURNAL_FORM.NLBASE_RATE
+                    - VAR_JOURNAL_FORM.NLCURRENCY_RATE
+                    - VAR_JOURNAL_FORM.NBBASE_RATE
+                    - VAR_JOURNAL_FORM.NBCURRENCY_RATE
+                    - VAR_JOURNAL_FORM.NPRELIST_AMOUNT
+                  save_to: VAR_RESULT
+              - end_update_process
+          - front:
+              - conditions:
+                  operator: is_not_empty
+                  field: ""
+                  true:
+                    - display_error_message
+                  false:
+                    - set_var:
+                        name: VAR_JOURNAL_ID
+                        value: "VAR_RESULT.CJRN_ID"
+              - set_var:
+                  name: VAR_FORM_SAVE_MODE
+                  value: "VIEW"
+              - set_enabled: JOURNAL_LIST
+              - run_process: REFRESH_FORM_PROCESS
+
+      - process_id: CANCEL_JOURNAL_PROCESS
+        category: other-function
+        validations: []
+        action:
+          - front:
+              - display_message:
+                  text: "You haven't saved your changes. Are you sure want to cancel?"
+                  buttons: [Yes/No]
+                  on_no: end_process
+              - set_var:
+                  name: VAR_FORM_SAVE_MODE
+                  value: "VIEW"
+              - set_enabled: JOURNAL_LIST
+              - run_process: REFRESH_FORM_PROCESS
+
+      - process_id: ADD_JOURNAL_DETAIL_PROCESS
+        category: other-function
+        validations:
+          - field: VAR_JOURNAL_FORM.CDOC_NO
+            conditions:
+              operator: is_empty
+              field: VAR_JOURNAL_FORM.CDOC_NO
+            message: "Document No. is required!"
+          - field: VAR_JOURNAL_FORM.CDOC_DATE
+            conditions:
+              operator: is_empty
+              field: VAR_JOURNAL_FORM.CDOC_DATE
+            message: "Document Date is required!"
+          - field: VAR_JOURNAL_FORM.CDOC_DATE
+            conditions:
+              operator: and
+              conditions:
+                  operator: is_not_empty
+                  field: VAR_JOURNAL_FORM.CDOC_DATE
+                  operator: is_not_empty
+                  field: VAR_JOURNAL_FORM.CREVERSE_DATE
+                  operator: greater_than
+                  field: VAR_JOURNAL_FORM.CDOC_DATE
+                  value: VAR_JOURNAL_FORM.CREVERSE_DATE
+            message: "Document Date cannot be after Reversing Date!"
+          - field: VAR_JOURNAL_FORM.CDOC_DATE
+            conditions:
+              operator: and
+              conditions:
+                  operator: is_not_empty
+                  field: VAR_JOURNAL_FORM.CDOC_DATE
+                  operator: less_than
+                  field: VAR_JOURNAL_FORM.CDOC_DATE
+                  value: VAR_CCURRENT_PERIOD_START_DATE
+            message: "Document Date cannot be before Current Period!"
+          - field: VAR_JOURNAL_FORM.CTRANS_DESC
+            conditions:
+              operator: is_empty
+              field: VAR_JOURNAL_FORM.CTRANS_DESC
+            message: "Description is required!"
+        action:
+          - front:
+              - set_var:
+                  name: VAR_GRID_SAVE_MODE
+                  value: "ADD"
+              - add_row:
+                  to: VAR_JOURNAL_DETAIL_LIST
+                  as: current_row
+              - set_var:
+                  name: "current row VAR_JOURNAL_DETAIL_LIST.NO"
+                  value: "VAR_JOURNAL_DETAIL_LIST.Count + 1"
+              - set_var:
+                  name: "current row VAR_JOURNAL_DETAIL_LIST.CDETAIL_DESC"
+                  value: "VAR_JOURNAL_FORM.CTRANS_DESC"
+              - set_var:
+                  name: "current row VAR_JOURNAL_DETAIL_LIST.CDOC_NO"
+                  value: "VAR_JOURNAL_FORM.CDOC_NO"
+              - set_var:
+                  name: "current row VAR_JOURNAL_DETAIL_LIST.CDOC_DATE"
+                  value: "VAR_JOURNAL_FORM.CDOC_DATE"
+              - set_focus: "VAR_JOURNAL_DETAIL_LIST.CGLACCOUNT_NO"
+
+      - process_id: EDIT_JOURNAL_DETAIL_PROCESS
+        category: other-function
+        validations:
+          - field: VAR_JOURNAL_FORM.CDOC_NO
+            conditions:
+              operator: is_empty
+              field: VAR_JOURNAL_FORM.CDOC_NO
+            message: "Document No. is required!"
+          - field: VAR_JOURNAL_FORM.CDOC_DATE
+            conditions:
+              operator: is_empty
+              field: VAR_JOURNAL_FORM.CDOC_DATE
+            message: "Document Date is required!"
+          - field: VAR_JOURNAL_FORM.CDOC_DATE
+            conditions:
+              operator: and
+              conditions:
+                  operator: is_not_empty
+                  field: VAR_JOURNAL_FORM.CDOC_DATE
+                  operator: is_not_empty
+                  field: VAR_JOURNAL_FORM.CREVERSE_DATE
+                  operator: greater_than
+                  field: VAR_JOURNAL_FORM.CDOC_DATE
+                  value: VAR_JOURNAL_FORM.CREVERSE_DATE
+            message: "Document Date cannot be after Reversing Date!"
+          - field: VAR_JOURNAL_FORM.CDOC_DATE
+            conditions:
+              operator: and
+              conditions:
+                  operator: is_not_empty
+                  field: VAR_JOURNAL_FORM.CDOC_DATE
+                  operator: less_than
+                  field: VAR_JOURNAL_FORM.CDOC_DATE
+                  value: VAR_CCURRENT_PERIOD_START_DATE
+            message: "Document Date cannot be before Current Period!"
+          - field: VAR_JOURNAL_FORM.CTRANS_DESC
+            conditions:
+              operator: is_empty
+              field: VAR_JOURNAL_FORM.CTRANS_DESC
+            message: "Description is required!"
+        action:
+          - front:
+              - set_var:
+                  name: VAR_GRID_SAVE_MODE
+                  value: "EDIT"
+              - set_focus: "VAR_JOURNAL_DETAIL_LIST.CGLACCOUNT_NO"
+
+      - process_id: DELETE_JOURNAL_DETAIL_PROCESS
+        category: other-function
+        validations: []
+        action:
+          - front:
+              - display_message:
+                  text: "Delete Selected Journal Detail?"
+                  buttons: [Yes/No]
+                  on_no: end_process
+              - delete_row:
+                  from: VAR_JOURNAL_DETAIL_LIST
+                  selected: true
+              - recalculate:
+                  field: "VAR_JOURNAL_DETAIL_LIST.NO"
+                  formula: "row index + 1"
+              - run_process: REFRESH_JOURNAL_DETAIL_PROCESS
+
+      - process_id: REFRESH_JOURNAL_DETAIL_PROCESS
+        category: other-function
+        validations: []
+        action:
+          - front:
+              - set_var:
+                  name: VAR_JOURNAL_FORM.NDEBIT_AMOUNT
+                  value: "SUM of VAR_JOURNAL_DETAIL_LIST.NDEBIT"
+              - set_var:
+                  name: VAR_JOURNAL_FORM.NCREDIT_AMOUNT
+                  value: "SUM of VAR_JOURNAL_DETAIL_LIST.NCREDIT"
+
+      - process_id: SAVE_JOURNAL_DETAIL_PROCESS
+        category: other-function
+        validations:
+          - field: "current row VAR_JOURNAL_DETAIL_LIST.CGLACCOUNT_NO"
+            conditions:
+              operator: is_empty
+              field: "current row VAR_JOURNAL_DETAIL_LIST.CGLACCOUNT_NO"
+            message: "Account No. is required!"
+          - field: "current row VAR_JOURNAL_DETAIL_LIST.CGLACCOUNT_NO"
+            conditions:
+              operator: exists_in
+              field: "current row VAR_JOURNAL_DETAIL_LIST.CGLACCOUNT_NO"
+              in: VAR_JOURNAL_DETAIL_LIST
+            message: "Account No. {0} already exists! [current row VAR_JOURNAL_DETAIL_LIST.CGLACCOUNT_NO]"
+          - field: "current row VAR_JOURNAL_DETAIL_LIST.CCENTER_CODE"
+            conditions:
+              operator: and
+              conditions:
+                  operator: is_empty
+                  field: "current row VAR_JOURNAL_DETAIL_LIST.CCENTER_CODE"
+                  operator: or
+                  conditions:
+                      operator: equals
+                      field: VAR_GSM_COMPANY.LENABLE_CENTER_BS
+                      value: true
+                      operator: and
+                      conditions:
+                          operator: equals
+                          field: "current row VAR_JOURNAL_DETAIL_LIST.CBSIS"
+                          value: "I"
+                          operator: equals
+                          field: VAR_GSM_COMPANY.LENABLE_CENTER_BS
+                          value: true
+            message: "Center Code is required for Account No. {0}! [current row VAR_JOURNAL_DETAIL_LIST.CGLACCOUNT_NO]"
+          - field: "current row VAR_JOURNAL_DETAIL_LIST.NDEBIT"
+            conditions:
+              operator: and
+              conditions:
+                  operator: equals
+                  field: "current row VAR_JOURNAL_DETAIL_LIST.NDEBIT"
+                  value: 0
+                  operator: equals
+                  field: "current row VAR_JOURNAL_DETAIL_LIST.NCREDIT"
+                  value: 0
+            message: "Journal amount cannot be 0!"
+          - field: "current row VAR_JOURNAL_DETAIL_LIST.NDEBIT"
+            conditions:
+              operator: and
+              conditions:
+                  operator: greater_than
+                  field: "current row VAR_JOURNAL_DETAIL_LIST.NDEBIT"
+                  value: 0
+                  operator: greater_than
+                  field: "current row VAR_JOURNAL_DETAIL_LIST.NCREDIT"
+                  value: 0
+            message: "Journal amount can only be either Debit or Credit!"
+        action:
+          - front:
+              - set_var:
+                  name: VAR_JOURNAL_FORM.CDBCR
+                  value:
+                    conditions:
+                      operator: greater_than
+                      field: "VAR_JOURNAL_DETAIL_LIST.NDEBIT"
+                      value: 0
+                      true: "D"
+                      false: "C"
+              - run_process: REFRESH_JOURNAL_DETAIL_PROCESS

@@ -14,7 +14,7 @@ Create a .NET 6 common project based on .NET4 common projects.
 2.1 Read common_generic_result_dto_template as a template and create `{ProgramName}ResultDTO.cs`.
 
 ## Phase 3: Add Additional DTO
-3.1 Copy `chunks_cs/{ProgramName}/**/DTO` to `{ProgramName}Common/DTOs`
+3.1 Execute: `powershell -Command "Copy-Item 'chunks_cs\{ProgramName}\**\DTO\*' '{ProgramName}Common\DTOs' -Recurse -Force`
 
 ## Phase 4: Convert DTOs from VB.NET to C#
 4.1 Read common_types_mapping as a reference to convert VB.NET types to C# types.

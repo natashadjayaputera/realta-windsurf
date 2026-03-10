@@ -11,7 +11,7 @@ Create viewmodel classes in model project.
 1.1 Read front_resource_csproj_template as a template and create `{ProgramName}FrontResources.csproj`.
 1.2 Read front_resources_dummy_class_template and create resource dummy class.
 1.3 Create resource `{ProgramName}FrontResources_msgrsc.resx` and `{ProgramName}FrontResources_msgrsc.id.resx` files (English and Indonesian) based on VB.NET `{ProgramName}FrontResources` Project.
-1.4 Create `{ProgramName}FrontResources_msgrsc.Designer.cs` file based on VB.NET `{ProgramName}FrontResources` Project.
+1.4 Create `{ProgramName}FrontResources_msgrsc.Designer.cs` file based on `front_resources_designer_template.md`.
 1.5 Update `{ProgramName}Model.csproj` to reference `{ProgramName}FrontResources.csproj` with format: `<ProjectReference Include="..\{ProgramName}FrontResources\{ProgramName}FrontResources.csproj" />`
 
 ## Phase 2: Iterate SubProgram Folders

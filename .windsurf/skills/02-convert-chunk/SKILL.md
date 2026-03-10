@@ -17,10 +17,11 @@ Convert VB.NET (.NET Framework 4) Chunk files into C# (.NET 6) Chunk files.
 
 ## Phase 3: Convert `XXXX_FunctionName.vb` to `XXXX_FunctionName.cs`
 3.1 Rules to convert:
+- Follow the rules in `prevent-error.md` to prevent common errors during conversion.
 - Convert manually (do not use or create any script)
 - Do not change any logic even if it's buggy (NON-NEGOTIABLE)
 - Do not change any SQL Queries (NON-NEGOTIABLE)
 - Do not add any improvement or enhancement (NON-NEGOTIABLE)
-- Remove comments
+- Do not remove comments
 - Do not change any variable name
 3.2 Following the rules from 3.1, convert each `*.vb` to `*.cs` and save it to `chunks_cs/{ProgramName}/{SubProgramName}`.

@@ -25,6 +25,7 @@ If file contains:
 //CATEGORY: business-object-overridden-function
 
 Then:
+- Do not remove comments
 - DO NOT CHANGE ANY SQL QUERIES (NON-NEGOTIABLE)
 - Modify function signature according to back_business_object_overridden_function_pattern
 - If function has no implementation, `throw new NotImplementedException();`
@@ -49,6 +50,7 @@ If file contains:
 //CATEGORY: batch-function
 
 Then:
+- Do not remove comments
 - DO NOT CHANGE ANY SQL QUERIES (NON-NEGOTIABLE)
 - Change old implementation to follow back_batch_function_pattern, make sure User Parameter use `nameof({SubProgramName}R_SaveBatchUserParameterDTO.{UserParameterName}` as key
 - Add Standard Batch DTO following back_batch_function_pattern
@@ -72,6 +74,7 @@ If file contains:
 //CATEGORY: other-function
 
 Then:
+- Do not remove comments
 - DO NOT CHANGE ANY SQL QUERIES (NON-NEGOTIABLE)
 - DO NOT MODIFY FUNCTION SIGNATURE (NON-NEGOTIABLE)
 - Update database access using back_database_function_pattern

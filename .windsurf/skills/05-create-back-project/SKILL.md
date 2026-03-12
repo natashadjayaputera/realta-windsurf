@@ -10,7 +10,7 @@ Create a .NET 6 back project
 ## Phase 1: Copy `{ProgramName}BackResources` Project 
 1.1 Execute `../../scripts/copy-folders-with-duplicate-check.ps1`:
 - SearchFolder = `chunks_cs/resources/{ProgramName}BackResources`
-- OutputFolder = C# (.NET 6) location (Back Folder) + {ModuleName} + '{ProgramName}BackResources'
+- OutputFolder = C# (.NET 6) location (Back Folder) + {ModuleName}
 Example:
 `powershell -ExecutionPolicy Bypass -File "../../scripts/copy-folders-with-duplicate-check.ps1" -SearchFolder "chunks_cs/resources/FAI00110BackResources" -OutputFolder "D:/_Work/AI/realta-windsurf/net6/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/BACK/FA"`
 1.2 Execute `../../scripts/copy-folders-with-duplicate-check.ps1`:

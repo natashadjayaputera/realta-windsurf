@@ -6,7 +6,7 @@ description: "Common error and fixes"
 
 ## Error CS0246: The type or namespace name `{YOUR_SP_NAME}Resources` could not be found
 
-Fix it by add this reference to `{ProgramName}Back.csproj`
+Fix it by add this reference to `{ProgramName}Back.csproj`. Search for `{YOUR_SP_NAME}Resources.csproj` file in `chunks_cs\spr\` folder, and get `{ModuleName}` from the parent folder name, the format is `chunks_cs\spr\{ModuleName}\{ModuleName}_SPR\{YOUR_SP_NAME}Resources\{YOUR_SP_NAME}Resources.csproj`.
 ```xml
 <ItemGroup>
     <!-- IMPORTANT: DO NOT CHANGE THE FOLDER DEPTH STRUCTURE -->

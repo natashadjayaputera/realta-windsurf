@@ -23,7 +23,7 @@ description: "Template for Common Projects .csproj"
     <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
   </Reference>
   <Reference Include="BaseHeaderReportCOMMON">
-    <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Common\BaseHeaderReportCOMMON.dll</HintPath>
+    <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\BaseHeaderReportCOMMON.dll</HintPath>
   </Reference>
 </ItemGroup>
 ```

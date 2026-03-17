@@ -4,6 +4,7 @@ ModuleName: "AB"
 ModuleFolder: /AB/
 ReportSubProgram: ["ABC00100"]
 AdditionalLanguage: ["id"]
+FunctionName: "RSP_HD_GET_CARE_STAFF_LIST"
 
 Please find and replace the 3 things above including the "" 
 
